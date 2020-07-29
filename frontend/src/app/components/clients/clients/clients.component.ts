@@ -15,7 +15,7 @@ export class ClientsComponent implements OnInit {
 
   clients: any[] = [];
   length: number;
-  displayedColumns: string[] = ['position', 'name'];
+  displayedColumns: string[] = ['codigo', 'nombreyapellido', 'telefono', 'acciones'];
   dataSource = null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   
@@ -25,7 +25,7 @@ export class ClientsComponent implements OnInit {
     this.getAll();
   }
 
-  public getAll(){
+  getAll(){
     this.clientsService.getAll()
       .subscribe(
         res => {
@@ -34,6 +34,11 @@ export class ClientsComponent implements OnInit {
           this.dataSource.paginator = this.paginator;
         }
       )}
+
+  applyFilter(filterValue: string){  
+    filterValue = filterValue.toLowerCase();
+    this.dataSource.filter = filterValue; 
+  }
 
 }
   
