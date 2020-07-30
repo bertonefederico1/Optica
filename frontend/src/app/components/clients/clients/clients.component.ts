@@ -1,8 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 
 import { ClientsService } from './../../../services/clients/clients.service';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { AddClientComponent } from './../add-client/add-client.component';
 
 
 
@@ -19,10 +21,23 @@ export class ClientsComponent implements OnInit {
   dataSource = null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   
-  constructor(private clientsService: ClientsService){ }
+  constructor(
+    private clientsService: ClientsService,
+    private dialogRef: MatDialog
+  ){ }
   
   ngOnInit() {
     this.getAll();
+  }
+
+  openDialog(){
+    const dialogRef = this.dialogRef.open(AddClientComponent, {
+      width: '70vw'
+    });
+    dialogRef.afterClosed()
+      .subscribe(res => {
+        this.getAll();
+      })
   }
 
   getAll(){

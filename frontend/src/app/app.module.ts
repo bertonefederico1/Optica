@@ -2,17 +2,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MaterialModule } from "./material.module";
 import { HttpClientModule } from "@angular/common/http";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ClientsComponent } from './components/clients/clients/clients.component';
+import { AddClientComponent } from './components/clients/add-client/add-client.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ClientsComponent
+    ClientsComponent,
+    AddClientComponent
   ],
   imports: [
     BrowserModule,
@@ -20,7 +22,8 @@ import { ClientsComponent } from './components/clients/clients/clients.component
     MaterialModule,
     HttpClientModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
