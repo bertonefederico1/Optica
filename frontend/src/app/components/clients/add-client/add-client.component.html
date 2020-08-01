@@ -1,7 +1,8 @@
-<h4 class="center-align section titulo">NUEVO CLIENTE</h4>
+<h4 *ngIf="!data" class="center-align section titulo">NUEVO CLIENTE</h4>
+<h4 *ngIf="data" class="center-align section titulo">EDITAR CLIENTE</h4>
 <div class="container section">
     <div class="row">
-        <form class="col s12" [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+        <form class="col s12" [formGroup]="clientForm">
           <div class="row">
             <div class="input-field col s5">
               Nombre
@@ -32,11 +33,11 @@
             <div style="margin-left: 0.5rem;">
                 <div>Obra Social</div> 
                 <br>          
-                <select class="browser-default col s4" style="border-color: black;">
+                <select class="browser-default col s4" style="border-color: black;" formControlName="obraSocial">
                     <option value="" disabled selected>Seleccionar</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
+                    <option [ngValue]="1">Option 1</option>
+                    <option [ngValue]="2">Option 2</option>
+                    <option [ngValue]="3">Option 3</option>
                 </select>
             </div>
             <div class="input-field col s4" style="margin-top: -1.5rem; margin-left: 6.5rem;">
@@ -46,8 +47,8 @@
         </div>
         </form>
       </div>
-      <div style="margin-left: 35rem;">
-        <button class="waves-effect red btn" (click)="cancel()" style="margin-right: 5px;">Cancelar</button>
-        <button type="submit" class="waves-effect green btn">Guardar</button>
+      <div class="row">
+        <button type="submit" class="waves-effect green btn" [disabled]="clientForm.status === 'INVALID'" (click)="onSubmit()">Guardar</button>
+        <button class="waves-effect red btn" (click)="cancel()" style="margin-left: 0.2rem;">Cancelar</button>
       </div>
 </div>

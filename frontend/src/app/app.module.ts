@@ -9,12 +9,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ClientsComponent } from './components/clients/clients/clients.component';
 import { AddClientComponent } from './components/clients/add-client/add-client.component';
+import { ClientDataComponent } from './components/clients/client-data/client-data.component';
+import { SuppliersComponent } from './components/suppliers/suppliers/suppliers.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ClientsComponent,
-    AddClientComponent
+    AddClientComponent,
+    ClientDataComponent,
+    SuppliersComponent
   ],
   imports: [
     BrowserModule,

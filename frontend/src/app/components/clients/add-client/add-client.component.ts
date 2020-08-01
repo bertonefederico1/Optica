@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-client',
@@ -10,25 +10,27 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class AddClientComponent {
 
   constructor(
-    private dialogRef: MatDialogRef<AddClientComponent>
+    private dialogRef: MatDialogRef<AddClientComponent>,
+    @Inject(MAT_DIALOG_DATA) public data
   ) { }
 
   clientForm = new FormGroup({
-    name: new FormControl(''),
-    surname: new FormControl(''),
-    address: new FormControl(''),
-    telephone: new FormControl(''),
-    email: new FormControl(''),
-    nsocio: new FormControl('')
+    name: new FormControl('', Validators.required),
+    surname: new FormControl('', Validators.required),
+    address: new FormControl('', Validators.required),
+    telephone: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
+    nsocio: new FormControl('', Validators.required),
+    obraSocial: new FormControl('', Validators.required)
   });
 
   cancel(){
     this.dialogRef.close();
   }
 
-onSubmit(){
-    console.log(this.clientForm.value);
-    console.log("asd");
+
+  onSubmit(){
+    console.log("GUARDAR CLIENTE");
   }
 
 }
