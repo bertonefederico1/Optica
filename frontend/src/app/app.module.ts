@@ -11,6 +11,7 @@ import { ClientsComponent } from './components/clients/clients/clients.component
 import { AddClientComponent } from './components/clients/add-client/add-client.component';
 import { ClientDataComponent } from './components/clients/client-data/client-data.component';
 import { SuppliersComponent } from './components/suppliers/suppliers/suppliers.component';
+import { AddSupplierComponent } from './components/suppliers/add-supplier/add-supplier.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SuppliersComponent } from './components/suppliers/suppliers/suppliers.c
     ClientsComponent,
     AddClientComponent,
     ClientDataComponent,
-    SuppliersComponent
+    SuppliersComponent,
+    AddSupplierComponent
   ],
   imports: [
     BrowserModule,

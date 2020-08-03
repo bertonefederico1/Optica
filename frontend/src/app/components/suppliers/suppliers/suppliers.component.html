@@ -1,7 +1,7 @@
 <div class="container section">
     <div class="row">
         <input class="col s3 offset-s9" type="search" (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
-        <a class="waves-effect green btn" (click)="addClient()">Agregar</a>
+        <a class="waves-effect green btn" (click)="addSupplier()">Agregar</a>
       </div>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 striped res">
         <ng-container matColumnDef="codigo">
@@ -28,6 +28,6 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
     
-      <mat-paginator [length]= "clients.length" [pageSize]="10" showFirstLastButtons></mat-paginator>
+      <mat-paginator [length]= "suppliers.length" [pageSize]="10" showFirstLastButtons></mat-paginator>
     
     </div>
