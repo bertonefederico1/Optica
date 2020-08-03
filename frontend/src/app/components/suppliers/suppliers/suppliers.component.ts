@@ -1,9 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ɵConsole } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { SuppliersService } from './../../../services/suppliers/suppliers.service';
 import { AddSupplierComponent } from './../add-supplier/add-supplier.component';
 import { MatTableDataSource } from '@angular/material/table';
+import { CloseScrollStrategy } from '@angular/cdk/overlay';
+import { SupplierDataComponent } from '../supplier-data/supplier-data.component';
 
 @Component({
   selector: 'app-suppliers',
@@ -15,7 +17,7 @@ export class SuppliersComponent implements OnInit {
   suppliers: any[] = [];
   edit: boolean;
   length: number;
-  displayedColumns: string[] = ['codigo', 'nombreyapellido', 'telefono', 'acciones'];
+  displayedColumns: string[] = ['codigo', 'nombrefantasia', 'telefono', 'email', 'acciones'];
   dataSource = null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   
@@ -28,7 +30,14 @@ export class SuppliersComponent implements OnInit {
     this.getAll();
   }
 
-  editClient(){
+  dataSupplier(){
+    const dialogRef = this.dialogRef.open(SupplierDataComponent, {
+      height: '60vw',
+      width: '70vw'
+    });
+  }
+
+  editSupplier(){
     this.edit = true;
     const dialogRef = this.dialogRef.open(AddSupplierComponent, {
       height: '60vw',
@@ -36,6 +45,11 @@ export class SuppliersComponent implements OnInit {
       disableClose: true,
       data: this.edit
     });
+    dialogRef.afterClosed()
+      .subscribe(res => {
+        this.getAll();
+        console.log("editado");
+      })
   }
 
   addSupplier(){
@@ -64,7 +78,6 @@ export class SuppliersComponent implements OnInit {
       )}
 
   applyFilter(filterValue: string){  
-    filterValue = filterValue.toLowerCase();
     this.dataSource.filter = filterValue; 
   }
 

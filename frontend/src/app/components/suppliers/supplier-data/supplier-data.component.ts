@@ -2,14 +2,14 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-client-data',
-  templateUrl: './client-data.component.html',
-  styleUrls: ['./client-data.component.css']
+  selector: 'app-supplier-data',
+  templateUrl: './supplier-data.component.html',
+  styleUrls: ['./supplier-data.component.css']
 })
-export class ClientDataComponent implements OnInit {
+export class SupplierDataComponent implements OnInit {
 
   constructor(
-    private dialogRef: MatDialogRef<ClientDataComponent>,
+    private dialogRef: MatDialogRef<SupplierDataComponent>,
     @Inject(MAT_DIALOG_DATA) public client
   ) { }
 
@@ -19,5 +19,4 @@ export class ClientDataComponent implements OnInit {
   close(){
     this.dialogRef.close();
   }
-
 }

@@ -12,6 +12,7 @@ import { AddClientComponent } from './components/clients/add-client/add-client.c
 import { ClientDataComponent } from './components/clients/client-data/client-data.component';
 import { SuppliersComponent } from './components/suppliers/suppliers/suppliers.component';
 import { AddSupplierComponent } from './components/suppliers/add-supplier/add-supplier.component';
+import { SupplierDataComponent } from './components/suppliers/supplier-data/supplier-data.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AddSupplierComponent } from './components/suppliers/add-supplier/add-su
     AddClientComponent,
     ClientDataComponent,
     SuppliersComponent,
-    AddSupplierComponent
+    AddSupplierComponent,
+    SupplierDataComponent
   ],
   imports: [
     BrowserModule,
