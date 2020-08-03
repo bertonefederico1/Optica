@@ -13,6 +13,8 @@ import { ClientDataComponent } from './components/clients/client-data/client-dat
 import { SuppliersComponent } from './components/suppliers/suppliers/suppliers.component';
 import { AddSupplierComponent } from './components/suppliers/add-supplier/add-supplier.component';
 import { SupplierDataComponent } from './components/suppliers/supplier-data/supplier-data.component';
+import { ObrasSocialesComponent } from './components/obrasSociales/obras-sociales/obras-sociales.component';
+import { AddObraSocialComponent } from './components/obrasSociales/add-obra-social/add-obra-social.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { SupplierDataComponent } from './components/suppliers/supplier-data/supp
     ClientDataComponent,
     SuppliersComponent,
     AddSupplierComponent,
-    SupplierDataComponent
+    SupplierDataComponent,
+    ObrasSocialesComponent,
+    AddObraSocialComponent
   ],
   imports: [
     BrowserModule,

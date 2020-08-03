@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ClientsComponent } from './components/clients/clients/clients.component';
-import { AddClientComponent } from './components/clients/add-client/add-client.component';
 import { SuppliersComponent } from './components/suppliers/suppliers/suppliers.component';
+import { ObrasSocialesComponent } from "./components/obrasSociales/obras-sociales/obras-sociales.component";
 
 
 const routes: Routes = [{
@@ -12,6 +12,9 @@ const routes: Routes = [{
 },{
   path: 'proveedores',
   component: SuppliersComponent
+},{
+  path: 'obrasSociales',
+  component: ObrasSocialesComponent
 }];
 
 @NgModule({

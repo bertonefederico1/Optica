@@ -74,8 +74,7 @@ export class ClientsComponent implements OnInit {
         }
       )}
 
-  applyFilter(filterValue: string){  
-    filterValue = filterValue.toLowerCase();
+  applyFilter(filterValue: string){
     this.dataSource.filter = filterValue; 
   }
 

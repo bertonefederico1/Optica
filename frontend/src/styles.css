@@ -3,6 +3,10 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.active {
+    font-weight: bold;
+}
+
 .titulo {
     text-decoration: underline;
     font-weight: bold !important;
