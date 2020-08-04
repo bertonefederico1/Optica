@@ -7,12 +7,16 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   templateUrl: './add-client.component.html',
   styleUrls: ['./add-client.component.css']
 })
-export class AddClientComponent {
+export class AddClientComponent implements OnInit{
 
   constructor(
     private dialogRef: MatDialogRef<AddClientComponent>,
     @Inject(MAT_DIALOG_DATA) public data
   ) { }
+
+  ngOnInit(){
+    
+  }
 
   clientForm = new FormGroup({
     name: new FormControl('', Validators.required),

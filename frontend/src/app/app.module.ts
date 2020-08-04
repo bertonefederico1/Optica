@@ -15,6 +15,9 @@ import { AddSupplierComponent } from './components/suppliers/add-supplier/add-su
 import { SupplierDataComponent } from './components/suppliers/supplier-data/supplier-data.component';
 import { ObrasSocialesComponent } from './components/obrasSociales/obras-sociales/obras-sociales.component';
 import { AddObraSocialComponent } from './components/obrasSociales/add-obra-social/add-obra-social.component';
+import { LensesComponent } from './components/lenses/lenses/lenses.component';
+import { AddLensComponent } from './components/lenses/add-lens/add-lens.component';
+import { LensDataComponent } from './components/lenses/lens-data/lens-data.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { AddObraSocialComponent } from './components/obrasSociales/add-obra-soci
     AddSupplierComponent,
     SupplierDataComponent,
     ObrasSocialesComponent,
-    AddObraSocialComponent
+    AddObraSocialComponent,
+    LensesComponent,
+    AddLensComponent,
+    LensDataComponent
   ],
   imports: [
     BrowserModule,

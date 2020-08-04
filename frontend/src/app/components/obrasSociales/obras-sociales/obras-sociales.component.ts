@@ -27,8 +27,8 @@ export class ObrasSocialesComponent implements OnInit {
   editObraSocial(id: number){
     this.edit = true;
     const dialogRef = this.dialogRef.open(AddObraSocialComponent, {
-      height: '60vh',
-      width: '70vw',
+      height: '65vh',
+      width: '50vw',
       disableClose: true,
       data: this.edit
     });
@@ -41,8 +41,8 @@ export class ObrasSocialesComponent implements OnInit {
   addObraSocial(){
     this.edit = false;
     const dialogRef = this.dialogRef.open(AddObraSocialComponent, {
-      height: '60vw',
-      width: '70vw',
+      height: '40vw',
+      width: '50vw',
       disableClose: true,
       data: this.edit
     });
