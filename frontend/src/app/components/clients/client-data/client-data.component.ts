@@ -8,7 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class ClientDataComponent implements OnInit {
 
-  constructor(
+ constructor(
     private dialogRef: MatDialogRef<ClientDataComponent>,
     @Inject(MAT_DIALOG_DATA) public client
   ) { }
@@ -19,5 +19,5 @@ export class ClientDataComponent implements OnInit {
   close(){
     this.dialogRef.close();
   }
-
+ 
 }

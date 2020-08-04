@@ -1,28 +1,27 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatDialog } from '@angular/material/dialog';
-import { LensDataComponent } from '../lens-data/lens-data.component';
-import { AddLensComponent } from './../add-lens/add-lens.component';
 import { MatTableDataSource } from '@angular/material/table';
-import { LensesService } from './../../../services/lenses/lenses.service';
+import { MatDialog } from '@angular/material/dialog';
+import { FramesService } from './../../../services/frames/frames.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { DataFrameComponent } from './../data-frame/data-frame.component';
+import { AddFrameComponent } from './../add-frame/add-frame.component';
 
 @Component({
-  selector: 'app-lenses',
-  templateUrl: './lenses.component.html',
-  styleUrls: ['./lenses.component.css']
+  selector: 'app-frames',
+  templateUrl: './frames.component.html',
+  styleUrls: ['./frames.component.css']
 })
-export class LensesComponent implements OnInit {
+export class FramesComponent implements OnInit {
 
-  lenses: any[] = [];
+  frames: any[] = [];
   edit: boolean;
   length: number;
-  displayedColumns: string[] = ['codigo', 'sphericalValue', 'cylindricalValue', 'quantityInStock', 'lensMaterial', 'acciones'];
+  displayedColumns: string[] = ['code', 'brand', 'model', 'quantityInStock', 'actions'];
   dataSource = null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  clientsService: any;
   
   constructor(
-    private lensService: LensesService,
+    private framesService: FramesService,
     private dialogRef: MatDialog
   ){ }
   
@@ -30,17 +29,17 @@ export class LensesComponent implements OnInit {
     this.getAll();
   }
 
-  dataLens(lens) {
-    const dialogRef = this.dialogRef.open(LensDataComponent, {
+  dataFrame(frame) {
+    const dialogRef = this.dialogRef.open(DataFrameComponent, {
       height: '60vw',
       width: '70vw',
-      data: lens
+      data: frame
     });
   }
 
-  editLens(){
+  editFrame(){
     this.edit = true;
-    const dialogRef = this.dialogRef.open(AddLensComponent, {
+    const dialogRef = this.dialogRef.open(AddFrameComponent, {
       height: '60vw',
       width: '70vw',
       disableClose: true,
@@ -48,9 +47,9 @@ export class LensesComponent implements OnInit {
     });
   }
 
-  addLens(){
+  addFrame(){
     this.edit = false;
-    const dialogRef = this.dialogRef.open(AddLensComponent, {
+    const dialogRef = this.dialogRef.open(AddFrameComponent, {
       height: '60vw',
       width: '70vw',
       disableClose: true,
@@ -63,7 +62,7 @@ export class LensesComponent implements OnInit {
   }
 
   getAll(){
-    this.lensService.getAll()
+    this.framesService.getAll()
       .subscribe(
         res => {
           this.dataSource = new MatTableDataSource();
@@ -76,4 +75,5 @@ export class LensesComponent implements OnInit {
     this.dataSource.filter = filterValue; 
   }
 
+  
 }

@@ -18,6 +18,9 @@ import { AddObraSocialComponent } from './components/obrasSociales/add-obra-soci
 import { LensesComponent } from './components/lenses/lenses/lenses.component';
 import { AddLensComponent } from './components/lenses/add-lens/add-lens.component';
 import { LensDataComponent } from './components/lenses/lens-data/lens-data.component';
+import { FramesComponent } from './components/frames/frames/frames.component';
+import { AddFrameComponent } from './components/frames/add-frame/add-frame.component';
+import { DataFrameComponent } from './components/frames/data-frame/data-frame.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,10 @@ import { LensDataComponent } from './components/lenses/lens-data/lens-data.compo
     AddObraSocialComponent,
     LensesComponent,
     AddLensComponent,
-    LensDataComponent
+    LensDataComponent,
+    FramesComponent,
+    AddFrameComponent,
+    DataFrameComponent
   ],
   imports: [
     BrowserModule,
