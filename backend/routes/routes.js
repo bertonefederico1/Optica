@@ -7,6 +7,7 @@ const customerController = require('../controllers/customerController');
 
 //Rutas de clientes
 router.get('/clientes', customerController.getAll);
+router.get('/cliente/:id', customerController.getOne);
 router.post('/nuevoCliente', customerController.createCustomer);
 router.put('/editarCliente/:id', customerController.editCustomer);
 router.put('/suspenderCliente/:id', customerController.suspendCustomer);

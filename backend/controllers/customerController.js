@@ -17,6 +17,19 @@ customerController.getAll = async (req, res) => {
     }
 };
 
+customerController.getOne = async (req, res) => {
+    try {
+        const customer = await Customer.findOne(req.params.id, {
+            where: {
+                activo: 1
+            }
+        });
+        res.json(customer);
+    } catch(err){
+        res.json(err);
+    }
+}
+
 customerController.createCustomer = async (req, res) => {
     try {
         await Customer.create({
@@ -58,7 +71,7 @@ customerController.suspendCustomer = async (req, res) => {
     } catch (err) {
         res.json(err);
     }
-}
+};
 
 
 module.exports = customerController;
