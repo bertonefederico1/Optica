@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ClientsService } from './../../../services/clients/clients.service';
 
 @Component({
   selector: 'app-add-client',
@@ -11,7 +12,8 @@ export class AddClientComponent implements OnInit{
 
   constructor(
     private dialogRef: MatDialogRef<AddClientComponent>,
-    @Inject(MAT_DIALOG_DATA) public data
+    @Inject(MAT_DIALOG_DATA) public data,
+    private clientService: ClientsService
   ) { }
 
   ngOnInit(){
@@ -34,7 +36,11 @@ export class AddClientComponent implements OnInit{
 
 
   onSubmit(){
-    console.log("GUARDAR CLIENTE");
+    this.clientService.addClient(this.clientForm.value)
+      .subscribe(
+        res => this.dialogRef.close(),
+        err => console.log(err)
+      )
   }
 
 }

@@ -19,7 +19,13 @@ customerController.getAll = async (req, res) => {
 
 customerController.createCustomer = async (req, res) => {
     try {
-        await Customer.create(req.body);
+        await Customer.create({
+            nombre: req.body.name,
+            apellido: req.body.surname,
+            telefono: req.body.telephone,
+            email: req.body.email,
+            domicilio: req.body.address
+        });
         res.json({status: "OK"});
     } catch (err) {
         res.json(err);

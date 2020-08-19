@@ -6,6 +6,7 @@ import { SuppliersComponent } from './components/suppliers/suppliers/suppliers.c
 import { ObrasSocialesComponent } from "./components/obrasSociales/obras-sociales/obras-sociales.component";
 import { LensesComponent } from './components/lenses/lenses/lenses.component';
 import { FramesComponent } from './components/frames/frames/frames.component';
+import { AddClientComponent } from './components/clients/add-client/add-client.component';
 
 
 const routes: Routes = [{
