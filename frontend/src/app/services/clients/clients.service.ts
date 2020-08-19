@@ -8,7 +8,7 @@ export class ClientsService {
 
   constructor(private http: HttpClient) { }
 
-  readonly URL: string= "https://jsonplaceholder.typicode.com/albums"
+  readonly URL: string= "http://localhost:3000/clientes"
 
   getAll(){
     return this.http.get<any>(`${this.URL}`);
