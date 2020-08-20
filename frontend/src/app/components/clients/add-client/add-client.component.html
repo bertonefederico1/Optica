@@ -30,21 +30,30 @@
             </div>
         </div>
         <div class="row">
-            <div style="margin-left: 0.5rem;">
-                <div>Obra Social</div> 
+          <div formArrayName="obrasSociales" *ngFor="let obraSocial of obrasSociales.controls; let i = index">
+            <div [formGroupName]="i" style="margin-left: 0.5rem;">
+              <div>Obra Social</div> 
                 <br>          
                 <select class="browser-default col s4" style="border-color: black;" formControlName="obraSocial">
-                    <option value="" disabled selected>Seleccionar</option>
-                    <option [ngValue]="1">Option 1</option>
-                    <option [ngValue]="2">Option 2</option>
-                    <option [ngValue]="3">Option 3</option>
+                  <option value="" disabled selected>Seleccionar</option>
+                  <option [ngValue]="1">Option 1</option>
+                  <option [ngValue]="2">Option 2</option>
+                  <option [ngValue]="3">Option 3</option>
                 </select>
             </div>
-            <div class="input-field col s4" style="margin-top: -1.5rem; margin-left: 6.5rem;">
-                Número de Socio
-                <input placeholder="" type="text" formControlName="nsocio" class="validate">
-            </div>
+              <div class="row">
+                  <div class="input-field col s4" style="margin-top: -1.5rem; margin-left: 3rem;">
+                    Número de Socio
+                    <input placeholder="" type="text" class="validate" formControlName="nsocio">
+                  </div>
+                  <a *ngIf="i > 0" (click)="removeObraSocial(i)" class="right" style="color: red; cursor: pointer;"><i class="material-icons">delete</i></a>
+              </div>
+          </div>
+          <span (click)="addObraSocial()" class="blue-text" style="cursor: pointer; margin-left: 0.5rem;">
+            Agregar Obra Social
+          </span>
         </div>
+        
         </form>
       </div>
       <div class="row">

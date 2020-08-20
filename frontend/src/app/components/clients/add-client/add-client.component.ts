@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Validators, FormBuilder, FormArray, FormGroup, FormControl } from '@angular/forms';
 import { ClientsService } from './../../../services/clients/clients.service';
 
 @Component({
@@ -10,25 +10,51 @@ import { ClientsService } from './../../../services/clients/clients.service';
 })
 export class AddClientComponent implements OnInit{
 
+
   constructor(
     private dialogRef: MatDialogRef<AddClientComponent>,
     @Inject(MAT_DIALOG_DATA) public data,
-    private clientService: ClientsService
+    private clientService: ClientsService,
+    private fb: FormBuilder
   ) { }
 
-  ngOnInit(){
+  ngOnInit(){  
     
   }
 
-  clientForm = new FormGroup({
-    name: new FormControl('', Validators.required),
-    surname: new FormControl('', Validators.required),
-    address: new FormControl('', Validators.required),
-    telephone: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required),
-    nsocio: new FormControl('', Validators.required),
-    obraSocial: new FormControl('', Validators.required)
+
+
+  clientForm = this.fb.group ({
+    name: ['', Validators.required],
+    surname: ['', Validators.required],
+    address: ['', Validators.required],
+    telephone: ['', Validators.required],
+    email: ['', Validators.required],
+    obrasSociales: this.fb.array([this.fb.group({
+      obraSocial: new FormControl(''),
+      nsocio: new FormControl('')
+    })])
   });
+
+
+  get obrasSociales() {
+    return this.clientForm.get('obrasSociales') as FormArray;
+  }
+
+
+  addObraSocial(){
+    const obraSocial = this.fb.group({
+      obraSocial: new FormControl(''),
+      nsocio: new FormControl('')
+    });
+    this.obrasSociales.push(obraSocial);
+  }
+
+
+  removeObraSocial(index: number){
+    this.obrasSociales.removeAt(index);
+  }
+
 
   cancel(){
     this.dialogRef.close();
@@ -36,11 +62,12 @@ export class AddClientComponent implements OnInit{
 
 
   onSubmit(){
-    this.clientService.addClient(this.clientForm.value)
+    console.log(this.clientForm);
+    /* this.clientService.addClient(this.clientForm.value)
       .subscribe(
         res => this.dialogRef.close(),
         err => console.log(err)
-      )
+      ) */ 
   }
 
 }
