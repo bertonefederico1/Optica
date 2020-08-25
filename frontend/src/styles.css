@@ -7,6 +7,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     font-weight: bold;
 }
 
+.border-black {
+    border-color: black;
+}
+
+.border-black:focus {
+    border-width: .1rem;
+    border-color: #18A1F5;
+}
 
 .titulo {
     text-decoration: underline;

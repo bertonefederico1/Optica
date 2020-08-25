@@ -1,6 +1,6 @@
-<h4 *ngIf="!data" class="center-align section titulo">NUEVO CLIENTE</h4>
-<h4 *ngIf="data" class="center-align section titulo">EDITAR CLIENTE</h4>
-<div class="container section">
+<h4 mat-dialog-title *ngIf="!data" class="center-align section titulo">NUEVO CLIENTE</h4>
+<h4 mat-dialog-title *ngIf="data" class="center-align section titulo">EDITAR CLIENTE</h4>
+<mat-dialog-content>
     <div class="row">
         <form class="col s12" [formGroup]="clientForm">
           <div class="row">
@@ -34,30 +34,28 @@
             <div [formGroupName]="i" style="margin-left: 0.5rem;">
               <div>Obra Social</div> 
                 <br>          
-                <select class="browser-default col s4" style="border-color: black;" formControlName="obraSocial">
+                <select class="browser-default col s4 border-black" formControlName="obraSocial">
                   <option value="" disabled selected>Seleccionar</option>
-                  <option [ngValue]="1">Option 1</option>
-                  <option [ngValue]="2">Option 2</option>
-                  <option [ngValue]="3">Option 3</option>
+                  <option *ngFor="let obraSocial of obrasSocialesAvailables" [ngValue]="obraSocial.idObraSocial">{{ obraSocial.nombre }}</option>
                 </select>
-            </div>
-              <div class="row">
+                <div class="row">
                   <div class="input-field col s4" style="margin-top: -1.5rem; margin-left: 3rem;">
                     Número de Socio
-                    <input placeholder="" type="text" class="validate" formControlName="nsocio">
+                    <input placeholder="" type="text" formControlName="nsocio" class="validate">
                   </div>
-                  <a *ngIf="i > 0" (click)="removeObraSocial(i)" class="right" style="color: red; cursor: pointer;"><i class="material-icons">delete</i></a>
+                  <a (click)="removeObraSocial(i)" class="right" style="color: red; cursor: pointer;"><i class="material-icons">delete</i></a>
               </div>
+            </div>
           </div>
-          <span (click)="addObraSocial()" class="blue-text" style="cursor: pointer; margin-left: 0.5rem;">
+          <a (click)="addObraSocial()" class="blue-text asd" style="cursor: pointer; margin-left: 0.5rem;">
             Agregar Obra Social
-          </span>
+          </a>
         </div>
-        
         </form>
-      </div>
-      <div class="row">
-        <button type="submit" class="waves-effect green btn" [disabled]="clientForm.status === 'INVALID'" (click)="onSubmit()">Guardar</button>
-        <button class="waves-effect red btn" (click)="cancel()" style="margin-left: 0.2rem;">Cancelar</button>
-      </div>
-</div>
+    </div>
+    <div class="row">
+      <button class="waves-effect green btn" [disabled]="clientForm.status === 'INVALID'" (click)="onSubmit()">Guardar</button>
+      <button class="waves-effect red btn" (click)="cancel()" style="margin-left: 0.2rem;">Cancelar</button>
+    </div>
+</mat-dialog-content>
+
