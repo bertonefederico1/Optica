@@ -1,61 +1,68 @@
-<h4 mat-dialog-title *ngIf="!data" class="center-align section titulo">NUEVO CLIENTE</h4>
-<h4 mat-dialog-title *ngIf="data" class="center-align section titulo">EDITAR CLIENTE</h4>
-<mat-dialog-content>
-    <div class="row">
-        <form class="col s12" [formGroup]="clientForm">
-          <div class="row">
-            <div class="input-field col s5">
-              Nombre
-              <input placeholder="" type="text" formControlName="name" class="validate">
-            </div>
-            <div class="input-field col s4">
-              Apellido
-              <input placeholder="" type="text" formControlName="surname" class="validate">
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s5">
-                Dirección
-                <input placeholder="" type="text" formControlName="address" class="validate">
-            </div>
-            <div class="input-field col s4">
-                Telefono
-                <input placeholder="" type="text" formControlName="telephone" class="validate">
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s5">
-              Email
-              <input placeholder="" type="email" formControlName="email" class="validate">
-            </div>
+<h4 mat-dialog-title *ngIf="!data.edit" class="center-align section titulo">
+  NUEVO CLIENTE
+</h4>
+<h4 mat-dialog-title *ngIf="data.edit" class="center-align section titulo">
+  EDITAR CLIENTE
+</h4>
+  <div class="row">
+    <form class="col s12" #clientForm>
+      <div class="row">
+        <div class="input-field col s5">
+          Nombre
+          <input placeholder="" type="text" name="name" [(ngModel)]="client.nombre" class="validate" />
         </div>
-        <div class="row">
-          <div formArrayName="obrasSociales" *ngFor="let obraSocial of obrasSociales.controls; let i = index">
-            <div [formGroupName]="i" style="margin-left: 0.5rem;">
-              <div>Obra Social</div> 
-                <br>          
-                <select class="browser-default col s4 border-black" formControlName="obraSocial">
-                  <option value="" disabled selected>Seleccionar</option>
-                  <option *ngFor="let obraSocial of obrasSocialesAvailables" [ngValue]="obraSocial.idObraSocial">{{ obraSocial.nombre }}</option>
-                </select>
-                <div class="row">
-                  <div class="input-field col s4" style="margin-top: -1.5rem; margin-left: 3rem;">
-                    Número de Socio
-                    <input placeholder="" type="text" formControlName="nsocio" class="validate">
-                  </div>
-                  <a (click)="removeObraSocial(i)" class="right" style="color: red; cursor: pointer;"><i class="material-icons">delete</i></a>
+        <div class="input-field col s4">
+          Apellido
+          <input placeholder="" type="text" name="surname" [(ngModel)]="client.apellido" class="validate" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s5">
+          Dirección
+          <input placeholder="" type="text" name="address" [(ngModel)]="client.domicilio" class="validate" />
+        </div>
+        <div class="input-field col s4">
+          Telefono
+          <input placeholder="" type="text" name="telephone" [(ngModel)]="client.telefono" class="validate" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s5">
+          Email
+          <input placeholder="" type="email" name="email" [(ngModel)]="client.email" class="validate" />
+        </div>
+      </div>
+      <div class="row">
+        <h3 class="subtitle">OBRA/S SOCIAL/ES</h3>
+        <app-obras-sociales-por-cliente></app-obras-sociales-por-cliente>
+      </div>
+      <br>
+      <div class="row" >
+          <div style="margin-left: 0.5rem;">
+            <div>Obra Social</div>
+            <br>
+            <select class="browser-default col s4 border-black" name="idObraSocial" [(ngModel)]="idObraSocial">
+              <option value="" disabled selected>Seleccionar</option>
+              <option *ngFor="let obraSocial of obrasSocialesAvailables" [ngValue]="obraSocial.idObraSocial">
+                {{ obraSocial.nombre }}</option>
+            </select>
+            <div class="row">
+              <div class="input-field col s4" style="margin-top: -1.5rem; margin-left: 3rem;">
+                Número de Socio
+                <input placeholder="" type="text" name="nsocio" [(ngModel)]="nsocio" class="validate" />
               </div>
+              <button (click)="addObraSocial()"  
+              class="waves-effect waves-light btn-small">Agregar</button>
             </div>
           </div>
-          <a (click)="addObraSocial()" class="blue-text asd" style="cursor: pointer; margin-left: 0.5rem;">
-            Agregar Obra Social
-          </a>
-        </div>
-        </form>
-    </div>
-    <div class="row">
-      <button class="waves-effect green btn" [disabled]="clientForm.status === 'INVALID'" (click)="onSubmit()">Guardar</button>
-      <button class="waves-effect red btn" (click)="cancel()" style="margin-left: 0.2rem;">Cancelar</button>
-    </div>
-</mat-dialog-content>
-
+      </div>
+    </form>
+  </div>
+  <div class="row">
+    <button class="waves-effect green btn" (click)="onSubmit()">
+      Guardar
+    </button>
+    <button class="waves-effect red btn" (click)="cancel()" style="margin-left: 0.2rem;">
+      Cancelar
+    </button>
+  </div>

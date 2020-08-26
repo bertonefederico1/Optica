@@ -21,6 +21,7 @@ import { LensDataComponent } from './components/lenses/lens-data/lens-data.compo
 import { FramesComponent } from './components/frames/frames/frames.component';
 import { AddFrameComponent } from './components/frames/add-frame/add-frame.component';
 import { DataFrameComponent } from './components/frames/data-frame/data-frame.component';
+import { ObrasSocialesPorClienteComponent } from './components/obrasSociales/obras-sociales-por-cliente/obras-sociales-por-cliente.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { DataFrameComponent } from './components/frames/data-frame/data-frame.co
     LensDataComponent,
     FramesComponent,
     AddFrameComponent,
-    DataFrameComponent
+    DataFrameComponent,
+    ObrasSocialesPorClienteComponent
   ],
   imports: [
     BrowserModule,

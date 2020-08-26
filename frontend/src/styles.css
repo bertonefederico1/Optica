@@ -16,6 +16,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     border-color: #18A1F5;
 }
 
+.subtitle {
+    text-decoration: underline;
+    font-weight: bold !important;
+}
+
+.vertical-divider {
+    border-right: 1px black solid;
+}
+
 .titulo {
     text-decoration: underline;
     font-weight: bold !important;

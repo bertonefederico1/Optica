@@ -14,8 +14,8 @@ export class ClientsService {
     return this.http.get<any>(`${this.URL}/clientes`);
   }
 
-  getOne(idCliente: number){
-    return this.http.get<any>(`${this.URL}/cliente/${idCliente}`)
+  getOne(idClient: number){
+    return this.http.get<any>(`${this.URL}/cliente/${idClient}`)
   }
 
   addClient(client) {

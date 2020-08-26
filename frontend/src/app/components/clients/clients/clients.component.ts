@@ -40,13 +40,16 @@ export class ClientsComponent implements OnInit {
     });
   }
 
-  editClient(){
+  editClient(idClient: number){
     this.edit = true;
     const dialogRef = this.dialogRef.open(AddClientComponent, {
       height: '60vw',
       width: '70vw',
       disableClose: true,
-      data: this.edit
+      data: {
+        edit: this.edit,
+        idClient: idClient
+      }
     });
   }
 
