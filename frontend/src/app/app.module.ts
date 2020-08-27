@@ -7,9 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ClientsComponent } from './components/clients/clients/clients.component';
-import { AddClientComponent } from './components/clients/add-client/add-client.component';
-import { ClientDataComponent } from './components/clients/client-data/client-data.component';
+import { CustomersComponent } from './components/customers/customers/customers.component';
+import { AddCustomerComponent } from './components/customers/add-customer/add-customer.component';
+import { CustomerDataComponent } from './components/customers/customer-data/customer-data.component';
 import { SuppliersComponent } from './components/suppliers/suppliers/suppliers.component';
 import { AddSupplierComponent } from './components/suppliers/add-supplier/add-supplier.component';
 import { SupplierDataComponent } from './components/suppliers/supplier-data/supplier-data.component';
@@ -26,9 +26,9 @@ import { ObrasSocialesPorClienteComponent } from './components/obrasSociales/obr
 @NgModule({
   declarations: [
     AppComponent,
-    ClientsComponent,
-    AddClientComponent,
-    ClientDataComponent,
+    CustomersComponent,
+    AddCustomerComponent,
+    CustomerDataComponent,
     SuppliersComponent,
     AddSupplierComponent,
     SupplierDataComponent,

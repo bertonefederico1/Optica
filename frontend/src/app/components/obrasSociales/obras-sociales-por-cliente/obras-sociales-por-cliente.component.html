@@ -7,9 +7,9 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Alvin</td>
-        <td>Eclair</td>
+      <tr *ngFor="let obraSocial of obrasSocialesDelCliente">
+        <td>{{ obraSocial.obraSocial.nombre }}</td>
+        <td>{{ obraSocial.nsocio }}</td>
         <td>
             <a class="right" style="color: red; cursor: pointer;"><i
             class="material-icons">delete</i></a>

@@ -1,22 +1,22 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 
-import { ClientsService } from './../../../services/clients/clients.service';
+import { CustomersService } from '../../../services/customers/customers.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
-import { AddClientComponent } from './../add-client/add-client.component';
-import { ClientDataComponent } from '../client-data/client-data.component';
+import { AddCustomerComponent } from '../add-customer/add-customer.component';
+import { CustomerDataComponent } from '../customer-data/customer-data.component';
 
 
 
 @Component({
-  selector: 'app-clients',
-  templateUrl: './clients.component.html',
-  styleUrls: ['./clients.component.css']
+  selector: 'app-customers',
+  templateUrl: './customers.component.html',
+  styleUrls: []
 })
-export class ClientsComponent implements OnInit {
+export class CustomersComponent implements OnInit {
 
-  clients: any[] = [];
+  customers: any[] = [];
   edit: boolean;
   length: number;
   displayedColumns: string[] = ['codigo', 'nombreyapellido', 'telefono', 'acciones'];
@@ -24,7 +24,7 @@ export class ClientsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   
   constructor(
-    private clientsService: ClientsService,
+    private customerService: CustomersService,
     private dialogRef: MatDialog
   ){ }
   
@@ -32,30 +32,30 @@ export class ClientsComponent implements OnInit {
     this.getAll();
   }
 
-  dataClient(client) {
-    const dialogRef = this.dialogRef.open(ClientDataComponent, {
+  dataCustomer(customerID) {
+    const dialogRef = this.dialogRef.open(CustomerDataComponent, {
       height: '60vw',
       width: '70vw',
-      data: client
+      data: customerID
     });
   }
 
-  editClient(idClient: number){
+  editCustomer(customerID: number){
     this.edit = true;
-    const dialogRef = this.dialogRef.open(AddClientComponent, {
+    const dialogRef = this.dialogRef.open(AddCustomerComponent, {
       height: '60vw',
       width: '70vw',
       disableClose: true,
       data: {
         edit: this.edit,
-        idClient: idClient
+        customerID: customerID
       }
     });
   }
 
-  addClient(){
+  addCustomer(){
     this.edit = false;
-    const dialogRef = this.dialogRef.open(AddClientComponent, {
+    const dialogRef = this.dialogRef.open(AddCustomerComponent, {
       height: '60vw',
       width: '70vw',
       disableClose: true,
@@ -68,7 +68,7 @@ export class ClientsComponent implements OnInit {
   }
 
   getAll(){
-    this.clientsService.getAll()
+    this.customerService.getAll()
       .subscribe(
         res => {
           this.dataSource = new MatTableDataSource();

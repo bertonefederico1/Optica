@@ -1,56 +1,57 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ClientsService } from './../../../services/clients/clients.service';
-import { ObrasSocialesService } from './../../../services/obrasSociales/obras-sociales.service';
-import { Client } from './../../../models/client';
+import { CustomersService } from '../../../services/customers/customers.service';
+import { ObrasSocialesService } from '../../../services/obrasSociales/obras-sociales.service';
+import { Customer } from '../../../models/Customer';
 
 
 @Component({
-  selector: 'app-add-client',
-  templateUrl: './add-client.component.html',
-  styleUrls: ['./add-client.component.css']
+  selector: 'app-add-customer',
+  templateUrl: './add-customer.component.html',
+  styleUrls: []
 })
-export class AddClientComponent implements OnInit{
+export class AddCustomerComponent implements OnInit{
 
 
   constructor(
-    private dialogRef: MatDialogRef<AddClientComponent>,
+    private dialogRef: MatDialogRef<AddCustomerComponent>,
     @Inject(MAT_DIALOG_DATA) public data,
-    private clientService: ClientsService,
+    private customerService: CustomersService,
     private obraSocialService: ObrasSocialesService
   ) { }
 
   obrasSocialesAvailables = [];
-  client: Client = new Client();
+  customer: Customer = new Customer();
   nsocio: number;
-  idObraSocial = '';
+  obraSocial = '';
 
 
   ngOnInit(){  
     this.getObrasSocialesAvailables();
     if (this.data.edit) {
-      this.getClient(this.data.idClient);
+      this.getCustomer(this.data.customerID);
     } else {
 
     };
   }
 
 
-  getClient(idClient: number){
-    this.clientService.getOne(idClient)
+  getCustomer(customerID: number){
+    this.customerService.getOne(customerID)
       .subscribe(
         res => {
-          this.client = res;
+          this.customer = res;
         },
         err => console.log(err)
       )
   }
 
   addObraSocial(){
-    this.client.obrasSociales.push({
-      obraSocial: this.idObraSocial,
+    this.customer.obrasSociales.push({
+      obraSocial: this.obraSocial,
       nsocio: this.nsocio
     });
+    console.log(this.customer.obrasSociales);
   }
 
 
@@ -69,7 +70,8 @@ export class AddClientComponent implements OnInit{
 
 
   onSubmit(){
-     this.clientService.addClient(this.client)
+    console.log(this.customer);
+     this.customerService.addCustomer(this.customer)
       .subscribe(
         res => this.dialogRef.close(),
         err => console.log(err)

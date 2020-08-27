@@ -1,17 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ClientsComponent } from './components/clients/clients/clients.component';
+import { CustomersComponent } from './components/customers/customers/customers.component';
 import { SuppliersComponent } from './components/suppliers/suppliers/suppliers.component';
 import { ObrasSocialesComponent } from "./components/obrasSociales/obras-sociales/obras-sociales.component";
 import { LensesComponent } from './components/lenses/lenses/lenses.component';
 import { FramesComponent } from './components/frames/frames/frames.component';
-import { AddClientComponent } from './components/clients/add-client/add-client.component';
 
 
 const routes: Routes = [{
   path: 'clientes',
-  component: ClientsComponent
+  component: CustomersComponent
 },{
   path: 'proveedores',
   component: SuppliersComponent

@@ -9,41 +9,41 @@
       <div class="row">
         <div class="input-field col s5">
           Nombre
-          <input placeholder="" type="text" name="name" [(ngModel)]="client.nombre" class="validate" />
+          <input placeholder="" type="text" name="name" [(ngModel)]="customer.name" class="validate" />
         </div>
         <div class="input-field col s4">
           Apellido
-          <input placeholder="" type="text" name="surname" [(ngModel)]="client.apellido" class="validate" />
+          <input placeholder="" type="text" name="surname" [(ngModel)]="customer.surname" class="validate" />
         </div>
       </div>
       <div class="row">
         <div class="input-field col s5">
           Dirección
-          <input placeholder="" type="text" name="address" [(ngModel)]="client.domicilio" class="validate" />
+          <input placeholder="" type="text" name="address" [(ngModel)]="customer.address" class="validate" />
         </div>
         <div class="input-field col s4">
           Telefono
-          <input placeholder="" type="text" name="telephone" [(ngModel)]="client.telefono" class="validate" />
+          <input placeholder="" type="text" name="telephone" [(ngModel)]="customer.telephone" class="validate" />
         </div>
       </div>
       <div class="row">
         <div class="input-field col s5">
           Email
-          <input placeholder="" type="email" name="email" [(ngModel)]="client.email" class="validate" />
+          <input placeholder="" type="email" name="email" [(ngModel)]="customer.email" class="validate" />
         </div>
       </div>
       <div class="row">
         <h3 class="subtitle">OBRA/S SOCIAL/ES</h3>
-        <app-obras-sociales-por-cliente></app-obras-sociales-por-cliente>
+        <app-obras-sociales-por-cliente [obrasSocialesDelCliente] = customer.obrasSociales></app-obras-sociales-por-cliente>
       </div>
       <br>
       <div class="row" >
           <div style="margin-left: 0.5rem;">
             <div>Obra Social</div>
             <br>
-            <select class="browser-default col s4 border-black" name="idObraSocial" [(ngModel)]="idObraSocial">
+            <select class="browser-default col s4 border-black" name="idObraSocial" [(ngModel)]="obraSocial">
               <option value="" disabled selected>Seleccionar</option>
-              <option *ngFor="let obraSocial of obrasSocialesAvailables" [ngValue]="obraSocial.idObraSocial">
+              <option *ngFor="let obraSocial of obrasSocialesAvailables" [ngValue]="obraSocial">
                 {{ obraSocial.nombre }}</option>
             </select>
             <div class="row">

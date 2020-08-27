@@ -4,7 +4,7 @@ import { HttpClient } from "@angular/common/http";
 @Injectable({
   providedIn: 'root'
 })
-export class ClientsService {
+export class CustomersService {
 
   constructor(private http: HttpClient) { }
 
@@ -14,12 +14,12 @@ export class ClientsService {
     return this.http.get<any>(`${this.URL}/clientes`);
   }
 
-  getOne(idClient: number){
-    return this.http.get<any>(`${this.URL}/cliente/${idClient}`)
+  getOne(customerID: number){
+    return this.http.get<any>(`${this.URL}/cliente/${customerID}`)
   }
 
-  addClient(client) {
-    return this.http.post(`${this.URL}/nuevoCliente`, client); 
+  addCustomer(customer) {
+    return this.http.post(`${this.URL}/nuevoCliente`, customer); 
   }
 
 }
