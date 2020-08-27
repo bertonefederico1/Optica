@@ -51,7 +51,10 @@ export class AddCustomerComponent implements OnInit{
       obraSocial: this.obraSocial,
       nsocio: this.nsocio
     });
-    console.log(this.customer.obrasSociales);
+  }
+
+  deleteObraSocial(obrasSociales){
+    this.customer.obrasSociales = obrasSociales;
   }
 
 
@@ -70,7 +73,6 @@ export class AddCustomerComponent implements OnInit{
 
 
   onSubmit(){
-    console.log(this.customer);
      this.customerService.addCustomer(this.customer)
       .subscribe(
         res => this.dialogRef.close(),

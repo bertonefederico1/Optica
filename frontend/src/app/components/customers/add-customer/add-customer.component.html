@@ -34,7 +34,10 @@
       </div>
       <div class="row">
         <h3 class="subtitle">OBRA/S SOCIAL/ES</h3>
-        <app-obras-sociales-por-cliente [obrasSocialesDelCliente] = customer.obrasSociales></app-obras-sociales-por-cliente>
+        <app-obras-sociales-por-cliente 
+          [obrasSocialesDelCliente] = customer.obrasSociales
+          (deleteOS)="deleteObraSocial($event)">
+        </app-obras-sociales-por-cliente>
       </div>
       <br>
       <div class="row" >

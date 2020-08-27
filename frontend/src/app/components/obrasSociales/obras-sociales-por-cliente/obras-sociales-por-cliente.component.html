@@ -11,7 +11,7 @@
         <td>{{ obraSocial.obraSocial.nombre }}</td>
         <td>{{ obraSocial.nsocio }}</td>
         <td>
-            <a class="right" style="color: red; cursor: pointer;"><i
+            <a (click)="deleteObraSocial(obraSocial.obraSocial.idObraSocial)" class="right" style="color: red; cursor: pointer;"><i
             class="material-icons">delete</i></a>
         </td>
       </tr>
