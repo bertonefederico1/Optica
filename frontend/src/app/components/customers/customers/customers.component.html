@@ -22,7 +22,7 @@
         <td mat-cell *matCellDef="let customer">
             <a style="cursor: pointer" (click)="dataCustomer(customer.idCliente)"><i class="material-icons">visibility</i></a>
             <a style="cursor: pointer" (click)="editCustomer(customer.idCliente)"><i class="material-icons">edit</i></a>
-            <a style="cursor: pointer; color: red"><i class="material-icons">delete</i></a>
+            <a style="cursor: pointer; color: red" (click)="deleteCustomer(customer.idCliente)"><i class="material-icons">delete</i></a>
         </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

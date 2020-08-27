@@ -24,7 +24,7 @@ customerController.getOne = async (req, res) => {
     try {
         const customer = await Customer.findOne({
             where: {
-                idCliente: req.params.id,
+                idCliente: req.params.idCliente,
                 activo: 1
             },
             include: ObraSocial
@@ -38,16 +38,16 @@ customerController.getOne = async (req, res) => {
 customerController.createCustomer = async (req, res) => {
     try {
         const customer = await Customer.create({
-            nombre: req.body.name,
-            apellido: req.body.surname,
-            telefono: req.body.telephone,
+            nombre: req.body.nombre,
+            apellido: req.body.apellido,
+            telefono: req.body.telefono,
             email: req.body.email,
-            domicilio: req.body.address
+            domicilio: req.body.domicilio
         });
         req.body.obrasSociales.map(os => {
             Customer_ObraSocial.create({
                 idCliente: customer.idCliente,
-                idObraSocial: os.obraSocial,
+                idObraSocial: os.obraSocial.idObraSocial,
                 nroSocio: os.nsocio
             })
         });
@@ -59,12 +59,24 @@ customerController.createCustomer = async (req, res) => {
 
 customerController.editCustomer = async (req, res) => {
     try {
-        Customer.update(req.body, {
+        await Customer.update(req.body, {
             where: {
-                idCliente: req.params.id
+                idCliente: req.params.idCliente
             }
         });
-        res.json({status: "OK"});
+        await Customer_ObraSocial.destroy({
+            where: {
+                idCliente: req.params.idCliente
+            }
+        });
+        req.body.obrasSociales.map((os) => {
+            Customer_ObraSocial.create({
+                idObraSocial: os.obraSocial.idObraSocial,
+                idCliente: req.params.idCliente,
+                nroSocio: os.nsocio
+            })
+        });
+        res.json({status: "OK"})
     } catch (err) {
         res.json(err);
     }
@@ -76,10 +88,10 @@ customerController.suspendCustomer = async (req, res) => {
             activo: 0
         }, {
             where: {
-                idCliente: req.params.id
+                idCliente: req.params.idCliente
             }
         });
-        res.json({status: "OK"});
+        res.json({status: "Deleted"});
     } catch (err) {
         res.json(err);
     }

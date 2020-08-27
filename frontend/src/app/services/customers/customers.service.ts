@@ -22,4 +22,12 @@ export class CustomersService {
     return this.http.post(`${this.URL}/nuevoCliente`, customer); 
   }
 
+  editCustomer(customerID: number, customer) {
+    return this.http.put(`${this.URL}/editarCliente/${customerID}`, customer); 
+  }
+
+  deleteCustomer(customerID: number) {
+    return this.http.put(`${this.URL}/suspenderCliente/${customerID}`, false);
+  }
+
 }

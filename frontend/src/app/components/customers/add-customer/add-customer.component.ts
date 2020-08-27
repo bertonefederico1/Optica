@@ -30,8 +30,6 @@ export class AddCustomerComponent implements OnInit{
     this.getObrasSocialesAvailables();
     if (this.data.edit) {
       this.getCustomer(this.data.customerID);
-    } else {
-
     };
   }
 
@@ -41,17 +39,30 @@ export class AddCustomerComponent implements OnInit{
       .subscribe(
         res => {
           this.customer = res;
+          this.customer.obrasSociales = [];
+          res.obra_socials.map((os) => {
+            const obraSocial = {
+              nsocio: os.cliente_obra_social.nroSocio,
+              obraSocial: {
+                idObraSocial: os.idObraSocial,
+                nombre: os.nombre
+              }
+            }
+            this.customer.obrasSociales.push(obraSocial);
+          })
         },
         err => console.log(err)
       )
   }
 
+  
   addObraSocial(){
     this.customer.obrasSociales.push({
       obraSocial: this.obraSocial,
       nsocio: this.nsocio
     });
   }
+
 
   deleteObraSocial(obrasSociales){
     this.customer.obrasSociales = obrasSociales;
@@ -73,11 +84,19 @@ export class AddCustomerComponent implements OnInit{
 
 
   onSubmit(){
-     this.customerService.addCustomer(this.customer)
+    if (this.data.edit) {
+      this.customerService.editCustomer(this.data.customerID, this.customer)
+        .subscribe(
+          res => this.dialogRef.close(),
+          err => console.log(err)
+        )
+    } else {
+      this.customerService.addCustomer(this.customer)
       .subscribe(
         res => this.dialogRef.close(),
         err => console.log(err)
       )
+    }
   }
 
 }

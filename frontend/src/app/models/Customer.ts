@@ -1,9 +1,9 @@
 export class Customer {
 
-    name: String = '';
-    surname: String = '';
-    address: String = '';
-    telephone: String = '';
+    nombre: String = '';
+    apellido: String = '';
+    domicilio: String = '';
+    telefono: String = '';
     email: String = '';
-    obrasSociales = []
+    obrasSociales: any = []
 }

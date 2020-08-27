@@ -8,10 +8,10 @@ const obraSocialController = require('../controllers/obraSocialController');
 
 //Rutas de clientes
 router.get('/clientes', customerController.getAll);
-router.get('/cliente/:id', customerController.getOne);
+router.get('/cliente/:idCliente', customerController.getOne);
 router.post('/nuevoCliente', customerController.createCustomer);
-router.put('/editarCliente/:id', customerController.editCustomer);
-router.put('/suspenderCliente/:id', customerController.suspendCustomer);
+router.put('/editarCliente/:idCliente', customerController.editCustomer);
+router.put('/suspenderCliente/:idCliente', customerController.suspendCustomer);
 
 //Rutas de obras social
 router.get('/obrasSociales', obraSocialController.getAll);

@@ -40,6 +40,16 @@ export class CustomersComponent implements OnInit {
     });
   }
 
+  deleteCustomer(customerID: number){
+    if (confirm('¿Seguro que desea eliminar el cliente?')){
+      this.customerService.deleteCustomer(customerID)
+      .subscribe(
+        res => this.getAll(),
+        err => console.log(err)
+      )
+    }
+  }
+
   editCustomer(customerID: number){
     this.edit = true;
     const dialogRef = this.dialogRef.open(AddCustomerComponent, {
@@ -51,6 +61,10 @@ export class CustomersComponent implements OnInit {
         customerID: customerID
       }
     });
+    dialogRef.afterClosed()
+      .subscribe(res => {
+        this.getAll();
+      })
   }
 
   addCustomer(){
@@ -59,7 +73,9 @@ export class CustomersComponent implements OnInit {
       height: '60vw',
       width: '70vw',
       disableClose: true,
-      data: this.edit
+      data: {
+        edit: this.edit
+      }
     });
     dialogRef.afterClosed()
       .subscribe(res => {
