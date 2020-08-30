@@ -14,7 +14,7 @@ customerController.getAll = async (req, res) => {
                 activo: 1
             }
         });
-        res.json(customers);
+        res.status(200).json(customers);
     } catch (err) {
         res.json(err);
     }
@@ -29,7 +29,7 @@ customerController.getOne = async (req, res) => {
             },
             include: ObraSocial
         });
-        res.json(customer);
+        res.status(200).json(customer);
     } catch(err){
         res.json(err);
     }
@@ -37,6 +37,9 @@ customerController.getOne = async (req, res) => {
 
 customerController.createCustomer = async (req, res) => {
     try {
+        if(req.body.obrasSociales.length === 0) {
+            throw new Error();
+        }; 
         const customer = await Customer.create({
             nombre: req.body.nombre,
             apellido: req.body.apellido,
@@ -51,14 +54,19 @@ customerController.createCustomer = async (req, res) => {
                 nroSocio: os.nsocio
             })
         });
-        res.json({status: "OK"});
+        res.status(200).json();
     } catch (err) {
-        res.json(err);
+        res.status(400).json({
+            message: err
+        })
     }
 };
 
 customerController.editCustomer = async (req, res) => {
     try {
+        if(req.body.obrasSociales.length === 0) {
+            throw new Error();
+        }; 
         await Customer.update(req.body, {
             where: {
                 idCliente: req.params.idCliente
@@ -76,9 +84,11 @@ customerController.editCustomer = async (req, res) => {
                 nroSocio: os.nsocio
             })
         });
-        res.json({status: "OK"})
+        res.status(200).json();
     } catch (err) {
-        res.json(err);
+        res.status(400).json({
+            message: err
+        })
     }
 };
 
@@ -91,7 +101,7 @@ customerController.suspendCustomer = async (req, res) => {
                 idCliente: req.params.idCliente
             }
         });
-        res.json({status: "Deleted"});
+        res.status(200).json();
     } catch (err) {
         res.json(err);
     }

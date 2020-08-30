@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { AddCustomerComponent } from '../add-customer/add-customer.component';
 import { CustomerDataComponent } from '../customer-data/customer-data.component';
+import { Customer } from 'src/app/models/Customer';
 
 
 
@@ -16,7 +17,7 @@ import { CustomerDataComponent } from '../customer-data/customer-data.component'
 })
 export class CustomersComponent implements OnInit {
 
-  customers: any[] = [];
+  customers: Customer[] = [];
   edit: boolean;
   length: number;
   displayedColumns: string[] = ['codigo', 'nombreyapellido', 'telefono', 'acciones'];
@@ -90,11 +91,27 @@ export class CustomersComponent implements OnInit {
           this.dataSource = new MatTableDataSource();
           this.dataSource.data = res;
           this.dataSource.paginator = this.paginator;
+          
         }
       )}
 
-  applyFilter(filterValue: string){
-    this.dataSource.filter = filterValue; 
+  /* applyFilter(filterValue: string){
+     this.dataSource.filter = filterValue.trim().toLowerCase(); 
+    this.dataSource.filterPredicate((data, filterValue) => {
+      return data.apellido.indexOf(filterValue) !== -1
+    })
+  } */
+
+  setupFilter(column: string) {
+    this.dataSource.filterPredicate = (data: any, filter: string) => {
+      console.log(data[column]);
+      const textToSearch = data[column] && data[column].toLowerCase() || '';
+      return textToSearch.indexOf(filter) !== -1;
+    };
+  }
+  
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }

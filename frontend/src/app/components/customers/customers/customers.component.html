@@ -1,7 +1,7 @@
 <div class="container section">
 <h1 class="titulo">CLIENTES</h1>
 <div class="row">
-    <input class="col s3 offset-s9" type="search" (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+    <input class="col s3 offset-s9" type="search" (keyup)="applyFilter($event.target.value)" (focus)="setupFilter('apellido')" placeholder="Buscar">
     <a class="waves-effect green btn" (click)="addCustomer()">Agregar</a>
   </div>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 striped res centered">

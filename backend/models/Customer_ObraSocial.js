@@ -14,6 +14,9 @@ const Customer_ObraSocial = sequelize.define('cliente_obra_social', {
         references: {
             model: Customer,
             key: 'idCliente'
+        },
+        validate: {
+            notEmpty: false
         }
     },
     idObraSocial: {
@@ -21,9 +24,17 @@ const Customer_ObraSocial = sequelize.define('cliente_obra_social', {
         references: {
             model: ObraSocial,
             key: 'idObraSocial'
+        },
+        validate: {
+            notEmpty: false
         }
     },
-    nroSocio: DataTypes.INTEGER
+    nroSocio: {
+        type: DataTypes.INTEGER,
+        validate: {
+            notEmpty: false
+        }
+    }
 },{
     createdAt: false,
     updatedAt: false

@@ -88,13 +88,13 @@ export class AddCustomerComponent implements OnInit{
       this.customerService.editCustomer(this.data.customerID, this.customer)
         .subscribe(
           res => this.dialogRef.close(),
-          err => console.log(err)
+          err => alert("Verifique los datos ingresados")
         )
     } else {
       this.customerService.addCustomer(this.customer)
       .subscribe(
         res => this.dialogRef.close(),
-        err => console.log(err)
+        err => alert("Verifique los datos ingresados")
       )
     }
   }
