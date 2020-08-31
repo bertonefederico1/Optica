@@ -24,14 +24,17 @@ export class CustomersComponent implements OnInit {
   dataSource = null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   
+
   constructor(
     private customerService: CustomersService,
     private dialogRef: MatDialog
   ){ }
   
+
   ngOnInit() {
     this.getAll();
   }
+
 
   dataCustomer(customerID) {
     const dialogRef = this.dialogRef.open(CustomerDataComponent, {
@@ -40,6 +43,7 @@ export class CustomersComponent implements OnInit {
       data: customerID
     });
   }
+
 
   deleteCustomer(customerID: number){
     if (confirm('¿Seguro que desea eliminar el cliente?')){
@@ -50,6 +54,7 @@ export class CustomersComponent implements OnInit {
       )
     }
   }
+
 
   editCustomer(customerID: number){
     this.edit = true;
@@ -68,6 +73,7 @@ export class CustomersComponent implements OnInit {
       })
   }
 
+
   addCustomer(){
     this.edit = false;
     const dialogRef = this.dialogRef.open(AddCustomerComponent, {
@@ -84,6 +90,22 @@ export class CustomersComponent implements OnInit {
       })
   }
 
+  changeRange() {
+    this.paginator._intl.getRangeLabel = (page, pageSize, length) => {
+      if (length == 0 || pageSize == 0) {
+          return `0 de ${length}`;
+      }
+      length = Math.max(length, 0);
+      const startIndex = page * pageSize;
+      const endIndex = startIndex < length ?
+          Math.min(startIndex + pageSize, length) :
+          startIndex + pageSize;
+      return `${startIndex + 1} – ${endIndex} de ${length}`;
+    }
+  }
+  
+
+
   getAll(){
     this.customerService.getAll()
       .subscribe(
@@ -91,21 +113,19 @@ export class CustomersComponent implements OnInit {
           this.dataSource = new MatTableDataSource();
           this.dataSource.data = res;
           this.dataSource.paginator = this.paginator;
-          
+          this.paginator._intl.itemsPerPageLabel = "Clientes por página";
+          this.changeRange();
+          this.paginator._intl.lastPageLabel = "Última Página";
+          this.paginator._intl.firstPageLabel = "Primer Página";
+          this.paginator._intl.nextPageLabel = "Siguiente";
+          this.paginator._intl.previousPageLabel = "Anterior";
         }
       )}
 
-  /* applyFilter(filterValue: string){
-     this.dataSource.filter = filterValue.trim().toLowerCase(); 
-    this.dataSource.filterPredicate((data, filterValue) => {
-      return data.apellido.indexOf(filterValue) !== -1
-    })
-  } */
 
   setupFilter(column: string) {
     this.dataSource.filterPredicate = (data: any, filter: string) => {
-      console.log(data[column]);
-      const textToSearch = data[column] && data[column].toLowerCase() || '';
+      const textToSearch = data[column].toLowerCase();
       return textToSearch.indexOf(filter) !== -1;
     };
   }

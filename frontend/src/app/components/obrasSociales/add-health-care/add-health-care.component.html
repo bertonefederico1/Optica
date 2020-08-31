@@ -1,0 +1,28 @@
+<h4 *ngIf="!data" class="center-align section titulo">NUEVA OBRA SOCIAL</h4>
+<h4 *ngIf="data" class="center-align section titulo">EDITAR OBRA SOCIAL</h4>
+<div class="container section">
+    <div class="row">
+        <form class="col s12" [formGroup]="obraSocialForm">
+          <div class="row">
+            <div class="input-field col s5">
+              Nombre
+              <input placeholder="" type="text" formControlName="name" class="validate">
+            </div>
+            <div class="input-field col s6">
+              Período de facturación en meses
+              <input placeholder="" type="number" formControlName="billingPeriod" class="validate">
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s5">
+                Cantidad anteojos por período
+                <input placeholder="" type="number" formControlName="numberGlassesPerPeriod" class="validate">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="row">
+        <button type="submit" class="waves-effect green btn" [disabled]="obraSocialForm.status === 'INVALID'" (click)="onSubmit()">Guardar</button>
+        <button class="waves-effect red btn" (click)="cancel()" style="margin-left: 0.2rem;">Cancelar</button>
+      </div>
+</div>

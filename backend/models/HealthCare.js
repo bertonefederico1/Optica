@@ -3,7 +3,7 @@
 const sequelize = require('../database/db-connection');
 const { DataTypes } = require('Sequelize');
 
-const ObraSocial = sequelize.define('obra_social', {
+const HealthCare = sequelize.define('obra_social', {
     idObraSocial: { 
         type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true, allowNull: false
      },
@@ -33,4 +33,4 @@ const ObraSocial = sequelize.define('obra_social', {
     updatedAt: false
 });
 
-module.exports = ObraSocial;
+module.exports = HealthCare;

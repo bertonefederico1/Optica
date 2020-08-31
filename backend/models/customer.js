@@ -3,8 +3,8 @@
 const sequelize = require('../database/db-connection');
 const { DataTypes } = require('Sequelize');
 
-const ObraSocial = require('../models/ObraSocial');
-const Customer_ObraSocial = require('../models/Customer_ObraSocial');
+const HealthCare = require('../models/HealthCare');
+const Customer_HealthCare = require('./Customer_HealthCare');
 
 
 const Customer = sequelize.define('cliente', {
@@ -44,7 +44,7 @@ const Customer = sequelize.define('cliente', {
     updatedAt: false
 });
 
-Customer.belongsToMany(ObraSocial, { through: Customer_ObraSocial, foreignKey: 'idCliente'});
-ObraSocial.belongsToMany(Customer, { through: Customer_ObraSocial, foreignKey: 'idObraSocial'});
+Customer.belongsToMany(HealthCare, { through: Customer_HealthCare, foreignKey: 'idCliente'});
+HealthCare.belongsToMany(Customer, { through: Customer_HealthCare, foreignKey: 'idObraSocial'});
 
 module.exports = Customer;

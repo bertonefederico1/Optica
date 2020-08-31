@@ -3,14 +3,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-add-obra-social',
-  templateUrl: './add-obra-social.component.html',
-  styleUrls: ['./add-obra-social.component.css']
+  selector: 'app-add-health-care',
+  templateUrl: './add-health-care.component.html',
+  styleUrls: []
 })
-export class AddObraSocialComponent implements OnInit {
+export class AddHealthCareComponent implements OnInit {
 
   constructor(
-    private dialogRef: MatDialogRef<AddObraSocialComponent>,
+    private dialogRef: MatDialogRef<AddHealthCareComponent>,
     @Inject(MAT_DIALOG_DATA) public data
   ) { }
 

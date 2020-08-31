@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-obras-sociales-por-cliente',
-  templateUrl: './obras-sociales-por-cliente.component.html',
+  selector: 'app-health-care-per-customer',
+  templateUrl: './health-care-per-customer.component.html',
   styleUrls: []
 })
 export class ObrasSocialesPorClienteComponent implements OnInit {

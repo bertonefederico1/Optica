@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CustomersService } from '../../../services/customers/customers.service';
-import { ObrasSocialesService } from '../../../services/obrasSociales/obras-sociales.service';
+import { HealthCaresService } from '../../../services/healthCares/health-cares.service';
 import { Customer } from '../../../models/Customer';
 
 
@@ -17,13 +17,13 @@ export class AddCustomerComponent implements OnInit{
     private dialogRef: MatDialogRef<AddCustomerComponent>,
     @Inject(MAT_DIALOG_DATA) public data,
     private customerService: CustomersService,
-    private obraSocialService: ObrasSocialesService
+    private healthCareService: HealthCaresService
   ) { }
 
-  obrasSocialesAvailables = [];
+  healthCaresAvailables = [];
   customer: Customer = new Customer();
-  nsocio: number;
-  obraSocial = '';
+  nPartner: number;
+  healthCare = '';
 
 
   ngOnInit(){  
@@ -41,14 +41,14 @@ export class AddCustomerComponent implements OnInit{
           this.customer = res;
           this.customer.obrasSociales = [];
           res.obra_socials.map((os) => {
-            const obraSocial = {
+            const healthCare = {
               nsocio: os.cliente_obra_social.nroSocio,
               obraSocial: {
                 idObraSocial: os.idObraSocial,
                 nombre: os.nombre
               }
             }
-            this.customer.obrasSociales.push(obraSocial);
+            this.customer.obrasSociales.push(healthCare);
           })
         },
         err => console.log(err)
@@ -58,8 +58,8 @@ export class AddCustomerComponent implements OnInit{
   
   addObraSocial(){
     this.customer.obrasSociales.push({
-      obraSocial: this.obraSocial,
-      nsocio: this.nsocio
+      obraSocial: this.healthCare,
+      nsocio: this.nPartner
     });
   }
 
@@ -70,9 +70,9 @@ export class AddCustomerComponent implements OnInit{
 
 
   getObrasSocialesAvailables(){
-    this.obraSocialService.getAll()
+    this.healthCareService.getAll()
       .subscribe(
-        res => this.obrasSocialesAvailables = res,
+        res => this.healthCaresAvailables = res,
         err => console.log(err)
       )
   }

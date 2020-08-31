@@ -1,0 +1,19 @@
+<table class="centered col s6">
+    <thead>
+      <tr>
+          <th>Descripción</th>
+          <th>Nro. Socio</th>
+          <th>Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let healthCare of healthCaresCustomer">
+        <td>{{ healthCare.obraSocial.nombre }}</td>
+        <td>{{ healthCare.nsocio }}</td>
+        <td>
+            <a (click)="deleteObraSocial(healthCare.obraSocial.idObraSocial)" class="right" style="color: red; cursor: pointer;"><i
+            class="material-icons">delete</i></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>

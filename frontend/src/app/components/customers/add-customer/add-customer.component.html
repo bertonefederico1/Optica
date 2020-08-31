@@ -34,25 +34,25 @@
       </div>
       <div class="row">
         <h3 class="subtitle">OBRA/S SOCIAL/ES</h3>
-        <app-obras-sociales-por-cliente 
-          [obrasSocialesDelCliente] = customer.obrasSociales
+        <app-health-care-per-customer 
+          [healthCaresCustomer] = customer.obrasSociales
           (deleteOS)="deleteObraSocial($event)">
-        </app-obras-sociales-por-cliente>
+      </app-health-care-per-customer>
       </div>
       <br>
       <div class="row" >
           <div style="margin-left: 0.5rem;">
             <div>Obra Social</div>
             <br>
-            <select class="browser-default col s4 border-black" name="idObraSocial" [(ngModel)]="obraSocial">
+            <select class="browser-default col s4 border-black" name="idHealthCare" [(ngModel)]="healthCare">
               <option value="" disabled selected>Seleccionar</option>
-              <option *ngFor="let obraSocial of obrasSocialesAvailables" [ngValue]="obraSocial">
-                {{ obraSocial.nombre }}</option>
+              <option *ngFor="let healthCare of healthCaresAvailables" [ngValue]="healthCare">
+                {{ healthCare.nombre }}</option>
             </select>
             <div class="row">
               <div class="input-field col s4" style="margin-top: -1.5rem; margin-left: 3rem;">
                 Número de Socio
-                <input placeholder="" type="text" name="nsocio" [(ngModel)]="nsocio" class="validate" />
+                <input placeholder="" type="text" name="nsocio" [(ngModel)]="nPartner" class="validate" />
               </div>
               <button (click)="addObraSocial()"  
               class="waves-effect waves-light btn-small">Agregar</button>

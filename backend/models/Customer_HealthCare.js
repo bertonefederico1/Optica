@@ -3,9 +3,9 @@
 const sequelize = require('../database/db-connection');
 const { DataTypes } = require('Sequelize');
 const Customer = require('./Customer');
-const ObraSocial = require('./Customer_ObraSocial')
+const HealthCare = require('./Customer_HealthCare')
 
-const Customer_ObraSocial = sequelize.define('cliente_obra_social', {
+const Customer_HealthCare = sequelize.define('cliente_obra_social', {
     idCliente_ObraSocial: { 
         type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true, allowNull: false
      },
@@ -22,7 +22,7 @@ const Customer_ObraSocial = sequelize.define('cliente_obra_social', {
     idObraSocial: {
         type: DataTypes.INTEGER,
         references: {
-            model: ObraSocial,
+            model: HealthCare,
             key: 'idObraSocial'
         },
         validate: {
@@ -40,4 +40,4 @@ const Customer_ObraSocial = sequelize.define('cliente_obra_social', {
     updatedAt: false
 });
 
-module.exports = Customer_ObraSocial;
+module.exports = Customer_HealthCare;

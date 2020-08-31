@@ -1,8 +1,8 @@
 'use strict'
 
 const Customer = require('../models/Customer');
-const ObraSocial = require('../models/ObraSocial');
-const Customer_ObraSocial = require('../models/Customer_ObraSocial');
+const ObraSocial = require('../models/HealthCare');
+const Customer_ObraSocial = require('../models/Customer_HealthCare');
 const customerController = { };
 
 

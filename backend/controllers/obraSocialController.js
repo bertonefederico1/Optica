@@ -1,36 +1,36 @@
 'use strict'
 
 const Customer = require('../models/Customer');
-const ObraSocial = require('../models/ObraSocial');
-const obraSocialController = { };
+const HealthCare = require('../models/HealthCare');
+const HealthCareController = { };
 
-obraSocialController.getAll = async (req, res) => {
+HealthCareController.getAll = async (req, res) => {
     try {
-        const obrasSociales = await ObraSocial.findAll({
+        const HealthCares = await HealthCare.findAll({
             where: {
                 activo: 1
             }
         });
-        res.json(obrasSociales);
+        res.json(HealthCares);
     } catch (err) {
         res.json(err);
     }
 };
 
-obraSocialController.getOne = async (req, res) => {
+HealthCareController.getOne = async (req, res) => {
     try {
-        const obraSocial = await ObraSocial.findOne(req.params.id, {
+        const HealthCare = await HealthCare.findOne(req.params.id, {
             where: {
                 activo: 1
             }
         });
-        res.json(obraSocial);
+        res.json(HealthCare);
     } catch(err){
         res.json(err);
     }
 }
 
-/* obraSocialController.createObraSocial = async (req, res) => {
+/* HealthCareController.createObraSocial = async (req, res) => {
     try {
         await Customer.create({
             nombre: req.body.name,
@@ -58,9 +58,9 @@ obraSocialController.getOne = async (req, res) => {
     }
 }; */
 
-obraSocialController.suspendObraSocial = async (req, res) => {
+HealthCareController.suspendObraSocial = async (req, res) => {
     try {
-        await ObraSocial.update({
+        await HealthCare.update({
             activo: 0
         }, {
             where: {
@@ -74,4 +74,4 @@ obraSocialController.suspendObraSocial = async (req, res) => {
 };
 
 
-module.exports = obraSocialController;
+module.exports = HealthCareController;

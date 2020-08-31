@@ -7,21 +7,26 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { CustomersComponent } from './components/customers/customers/customers.component';
 import { AddCustomerComponent } from './components/customers/add-customer/add-customer.component';
 import { CustomerDataComponent } from './components/customers/customer-data/customer-data.component';
+
 import { SuppliersComponent } from './components/suppliers/suppliers/suppliers.component';
 import { AddSupplierComponent } from './components/suppliers/add-supplier/add-supplier.component';
 import { SupplierDataComponent } from './components/suppliers/supplier-data/supplier-data.component';
-import { ObrasSocialesComponent } from './components/obrasSociales/obras-sociales/obras-sociales.component';
-import { AddObraSocialComponent } from './components/obrasSociales/add-obra-social/add-obra-social.component';
+
+import { HealthCaresComponent } from './components/healthCares/health-cares/health-cares.component';
+import { AddHealthCareComponent } from './components/healthCares/add-health-care/add-health-care.component';
+import { HealthCaresPerCustomerComponent } from './components/healthCares/health-cares-per-customer/health-care-per-customer.component';
+
 import { LensesComponent } from './components/lenses/lenses/lenses.component';
 import { AddLensComponent } from './components/lenses/add-lens/add-lens.component';
 import { LensDataComponent } from './components/lenses/lens-data/lens-data.component';
+
 import { FramesComponent } from './components/frames/frames/frames.component';
 import { AddFrameComponent } from './components/frames/add-frame/add-frame.component';
 import { DataFrameComponent } from './components/frames/data-frame/data-frame.component';
-import { ObrasSocialesPorClienteComponent } from './components/obrasSociales/obras-sociales-por-cliente/obras-sociales-por-cliente.component';
 
 @NgModule({
   declarations: [
@@ -32,15 +37,15 @@ import { ObrasSocialesPorClienteComponent } from './components/obrasSociales/obr
     SuppliersComponent,
     AddSupplierComponent,
     SupplierDataComponent,
-    ObrasSocialesComponent,
-    AddObraSocialComponent,
+    HealthCaresComponent,
+    AddHealthCareComponent,
     LensesComponent,
     AddLensComponent,
     LensDataComponent,
     FramesComponent,
     AddFrameComponent,
     DataFrameComponent,
-    ObrasSocialesPorClienteComponent
+    HealthCaresPerCustomerComponent
   ],
   imports: [
     BrowserModule,

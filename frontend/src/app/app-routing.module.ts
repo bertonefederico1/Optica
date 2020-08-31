@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { CustomersComponent } from './components/customers/customers/customers.component';
 import { SuppliersComponent } from './components/suppliers/suppliers/suppliers.component';
-import { ObrasSocialesComponent } from "./components/obrasSociales/obras-sociales/obras-sociales.component";
+import { HealthCaresComponent } from "./components/healthCares/health-cares/health-cares.component";
 import { LensesComponent } from './components/lenses/lenses/lenses.component';
 import { FramesComponent } from './components/frames/frames/frames.component';
 
@@ -16,7 +16,7 @@ const routes: Routes = [{
   component: SuppliersComponent
 },{
   path: 'obrasSociales',
-  component: ObrasSocialesComponent
+  component: HealthCaresComponent
 },{
   path: 'lentes',
   component: LensesComponent

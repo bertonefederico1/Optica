@@ -1,18 +1,18 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ObrasSocialesService } from './../../../services/obrasSociales/obras-sociales.service';
+import { Component, OnInit } from '@angular/core';
+import { HealthCaresService } from '../../../services/healthCares/health-cares.service';
 import { MatTableDataSource } from '@angular/material/table';
-import { AddObraSocialComponent } from './../add-obra-social/add-obra-social.component';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { AddHealthCareComponent } from '../add-health-care/add-health-care.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-obras-sociales',
-  templateUrl: './obras-sociales.component.html',
-  styleUrls: ['./obras-sociales.component.css']
+  selector: 'app-health-cares',
+  templateUrl: './health-cares.component.html',
+  styleUrls: []
 })
-export class ObrasSocialesComponent implements OnInit {
+export class HealthCaresComponent implements OnInit {
 
   constructor(
-    private obrasSocialesService: ObrasSocialesService,
+    private obrasSocialesService: HealthCaresService,
     private dialogRef: MatDialog
   ) { }
 
@@ -26,7 +26,7 @@ export class ObrasSocialesComponent implements OnInit {
 
   editObraSocial(id: number){
     this.edit = true;
-    const dialogRef = this.dialogRef.open(AddObraSocialComponent, {
+    const dialogRef = this.dialogRef.open(AddHealthCareComponent, {
       height: '65vh',
       width: '50vw',
       disableClose: true,
@@ -40,7 +40,7 @@ export class ObrasSocialesComponent implements OnInit {
 
   addObraSocial(){
     this.edit = false;
-    const dialogRef = this.dialogRef.open(AddObraSocialComponent, {
+    const dialogRef = this.dialogRef.open(AddHealthCareComponent, {
       height: '40vw',
       width: '50vw',
       disableClose: true,
