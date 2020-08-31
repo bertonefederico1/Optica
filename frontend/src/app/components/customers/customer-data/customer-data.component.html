@@ -1,32 +1,56 @@
-<div class="container">
-    <div class="planilla">
+
+    <div class="sheet">
         <p>
-            <h4 class="center-align titulo">DATOS PERSONALES</h4>
+            <h4 class="center-align title1">DATOS PERSONALES</h4>
             <br><br>
 
         <p>
-            <label class="black-text etiqueta">Nombre y Apellido: </label>
-            <span class="contenido"></span>
+            <div class="row">
+                <label class="black-text label1">Nombre y Apellido: </label>
+                <span class="content">{{customer.nombre}} {{customer.apellido}}</span>
+            </div>
+            
         <p>
-            <label class="black-text etiqueta">Teléfono: </label>
-            <span class="contenido"></span>
+            <div class="row">
+                <label class="black-text label1">Teléfono: </label>
+                <span class="content">{{customer.telefono}}</span>
+            </div>
 
         <p>
-            <label class="black-text etiqueta">Email: </label>
-            <span class="contenido"></span>
+            <div class="row">
+                <label class="black-text label1">Email: </label>
+                <span class="content">{{customer.email}}</span>
+            </div>
 
         <p>
-            <label class="black-text etiqueta">Dirección: </label>
-            <span class="contenido"></span>
+            <div class="row">
+                <label class="black-text label1">Domicilio: </label>
+                <span class="content">{{customer.domicilio}}</span>
+            </div>
 
         <p>
-            <div class="row black-text etiqueta">
-                Obra social: 
-            </div> 
+            <div class="row">
+                <div class="black-text label1">
+                    Obra/s social/es: 
+                </div> 
+            </div>
 
-        FALTA PONER NUMERO DE SOCIO POR CADA OBRA SOCIAL
+        <p>
+            <table class="stripped responsive-table container">
+                <thead style="background-color: grey">
+                  <tr>
+                      <th>Descripción</th>
+                      <th>Nº de Socio</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let healthCare of customer.obra_socials">
+                    <td>{{healthCare.nombre}}</td>
+                    <td>{{healthCare.cliente_obra_social.nroSocio}}</td>
+                  </tr> 
+                </tbody>
+              </table>
     </div>
     <div style="padding-bottom: 2rem">
         <a (click)="close()" class="waves-effect red btn-large" style="display: block">Salir</a>
     </div>
-</div>

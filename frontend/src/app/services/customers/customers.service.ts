@@ -11,23 +11,23 @@ export class CustomersService {
   readonly URL: string= "http://localhost:3000"
 
   getAll(){
-    return this.http.get<any>(`${this.URL}/clientes`);
+    return this.http.get<any>(`${this.URL}/customers`);
   }
 
   getOne(customerID: number){
-    return this.http.get<any>(`${this.URL}/cliente/${customerID}`)
+    return this.http.get<any>(`${this.URL}/customer/${customerID}`)
   }
 
   addCustomer(customer) {
-    return this.http.post(`${this.URL}/nuevoCliente`, customer); 
+    return this.http.post(`${this.URL}/newCustomer`, customer); 
   }
 
   editCustomer(customerID: number, customer) {
-    return this.http.put(`${this.URL}/editarCliente/${customerID}`, customer); 
+    return this.http.put(`${this.URL}/editCustomer/${customerID}`, customer); 
   }
 
   deleteCustomer(customerID: number) {
-    return this.http.put(`${this.URL}/suspenderCliente/${customerID}`, false);
+    return this.http.put(`${this.URL}/suspendCustomer/${customerID}`, false);
   }
 
 }

@@ -24,7 +24,7 @@ customerController.getOne = async (req, res) => {
     try {
         const customer = await Customer.findOne({
             where: {
-                idCliente: req.params.idCliente,
+                idCliente: req.params.customerID,
                 activo: 1
             },
             include: ObraSocial
@@ -69,18 +69,18 @@ customerController.editCustomer = async (req, res) => {
         }; 
         await Customer.update(req.body, {
             where: {
-                idCliente: req.params.idCliente
+                idCliente: req.params.customerID
             }
         });
         await Customer_ObraSocial.destroy({
             where: {
-                idCliente: req.params.idCliente
+                idCliente: req.params.customerID
             }
         });
         req.body.obrasSociales.map((os) => {
             Customer_ObraSocial.create({
                 idObraSocial: os.obraSocial.idObraSocial,
-                idCliente: req.params.idCliente,
+                idCliente: req.params.customerID,
                 nroSocio: os.nsocio
             })
         });
@@ -98,7 +98,7 @@ customerController.suspendCustomer = async (req, res) => {
             activo: 0
         }, {
             where: {
-                idCliente: req.params.idCliente
+                idCliente: req.params.customerID
             }
         });
         res.status(200).json();

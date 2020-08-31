@@ -11,6 +11,6 @@ export class HealthCaresService {
   readonly URL: string= "http://localhost:3000"
 
   getAll(){
-    return this.http.get<any>(`${this.URL}/obrasSociales`);
+    return this.http.get<any>(`${this.URL}/healthCares`);
   }
 }

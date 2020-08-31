@@ -38,8 +38,8 @@ export class CustomersComponent implements OnInit {
 
   dataCustomer(customerID) {
     const dialogRef = this.dialogRef.open(CustomerDataComponent, {
-      height: '60vw',
-      width: '70vw',
+      height: '90%',
+      width: '90%',
       data: customerID
     });
   }
@@ -90,6 +90,7 @@ export class CustomersComponent implements OnInit {
       })
   }
 
+
   changeRange() {
     this.paginator._intl.getRangeLabel = (page, pageSize, length) => {
       if (length == 0 || pageSize == 0) {
@@ -105,7 +106,6 @@ export class CustomersComponent implements OnInit {
   }
   
 
-
   getAll(){
     this.customerService.getAll()
       .subscribe(
@@ -113,7 +113,7 @@ export class CustomersComponent implements OnInit {
           this.dataSource = new MatTableDataSource();
           this.dataSource.data = res;
           this.dataSource.paginator = this.paginator;
-          this.paginator._intl.itemsPerPageLabel = "Clientes por página";
+          this.paginator._intl.itemsPerPageLabel = "Clientes Por Página";
           this.changeRange();
           this.paginator._intl.lastPageLabel = "Última Página";
           this.paginator._intl.firstPageLabel = "Primer Página";

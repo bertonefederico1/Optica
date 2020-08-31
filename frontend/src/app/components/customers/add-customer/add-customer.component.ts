@@ -22,7 +22,7 @@ export class AddCustomerComponent implements OnInit{
 
   healthCaresAvailables = [];
   customer: Customer = new Customer();
-  nPartner: number;
+  nPartner: number = null;
   healthCare = '';
 
 
@@ -57,10 +57,15 @@ export class AddCustomerComponent implements OnInit{
 
   
   addObraSocial(){
-    this.customer.obrasSociales.push({
-      obraSocial: this.healthCare,
-      nsocio: this.nPartner
-    });
+    if(this.nPartner !== null && this.healthCare !== ''){
+      this.customer.obrasSociales.push({
+        obraSocial: this.healthCare,
+        nsocio: this.nPartner
+      });
+    } else{
+      alert("Verifique los datos ingresados");
+    }
+    
   }
 
 

@@ -1,10 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
-
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .active {
     font-weight: bold;
+}
+
+.sheet table {
+    margin-bottom: 10px;
 }
 
 .border-black {
@@ -21,18 +23,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     font-weight: bold !important;
 }
 
-.vertical-divider {
-    border-right: 1px black solid;
-}
 
-.titulo {
+.title1 {
     text-decoration: underline;
     font-weight: bold !important;
     font-size: 2rem !important;
     text-align: center;
 }
 
-.planilla {
+.sheet {
     margin: 2em;
     border-radius: 5px;
     border-left: 2px solid black;
@@ -42,7 +41,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     box-shadow: 10px 10px 5px grey;
 }
 
-.etiqueta {
+.label1 {
     padding-left: 1.5rem;
     font-size: 2rem;
     font-style: italic;
@@ -50,7 +49,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     text-decoration: underline;
 }
 
-.contenido {
+.content {
+    color:#0A034F;
+    margin-left: 30px;
     font-size: 1rem;
     font-size: 2em;
     text-shadow: 1px 1px;

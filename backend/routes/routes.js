@@ -4,17 +4,17 @@ const express = require('express');
 const router = express.Router();
 
 const customerController = require('../controllers/customerController');
-const obraSocialController = require('../controllers/obraSocialController');
+const obraSocialController = require('../controllers/healthCareController');
 
 //Rutas de clientes
-router.get('/clientes', customerController.getAll);
-router.get('/cliente/:idCliente', customerController.getOne);
-router.post('/nuevoCliente', customerController.createCustomer);
-router.put('/editarCliente/:idCliente', customerController.editCustomer);
-router.put('/suspenderCliente/:idCliente', customerController.suspendCustomer);
+router.get('/customers', customerController.getAll);
+router.get('/customer/:customerID', customerController.getOne);
+router.post('/newCustomer', customerController.createCustomer);
+router.put('/editCustomer/:customerID', customerController.editCustomer);
+router.put('/suspendCustomer/:customerID', customerController.suspendCustomer);
 
 //Rutas de obras social
-router.get('/obrasSociales', obraSocialController.getAll);
+router.get('/healthCares', obraSocialController.getAll);
 
 
 
