@@ -6,6 +6,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     font-weight: bold;
 }
 
+.selected:focus {
+    padding-top: 3px !important;
+}
+
 .sheet table {
     margin-bottom: 10px;
 }

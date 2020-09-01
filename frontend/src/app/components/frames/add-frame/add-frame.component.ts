@@ -5,7 +5,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-add-frame',
   templateUrl: './add-frame.component.html',
-  styleUrls: ['./add-frame.component.css']
+  styleUrls: []
 })
 export class AddFrameComponent implements OnInit {
 

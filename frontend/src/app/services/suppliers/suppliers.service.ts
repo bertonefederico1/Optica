@@ -8,9 +8,13 @@ export class SuppliersService {
 
   constructor(private http: HttpClient) { }
 
-  readonly URL: string= "https://jsonplaceholder.typicode.com/albums"
+  readonly URL: string= "http://localhost:3000"
 
   getAll(){
-    return this.http.get<any>(`${this.URL}`);
+    return this.http.get<any>(`${this.URL}/suppliersLaboratories`);
+  }
+
+  addSupplier(supplier: any){
+    return this.http.post(`${this.URL}/newSupplierLaboratory`, supplier);
   }
 }

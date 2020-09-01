@@ -1,30 +1,30 @@
-<h4 *ngIf="!data" class="center-align section titulo">NUEVO PROVEEDOR/LABORATORIO</h4>
-<h4 *ngIf="data" class="center-align section titulo">EDITAR PROVEEDOR/LABORATORIO</h4>
+<h4 *ngIf="!data.edit" class="center-align section title1">NUEVO PROVEEDOR/LABORATORIO</h4>
+<h4 *ngIf="data.edit" class="center-align section title1">EDITAR PROVEEDOR/LABORATORIO</h4>
 <div class="container section">
     <div class="row">
         <form class="col s12" [formGroup]="supplierForm">
           <div class="row">
-            <div class="input-field col s5">
+            <div class="input-field col s9">
               Razón Social
               <input placeholder="" type="text" formControlName="businessName" class="validate">
             </div>
-            <div class="input-field col s4">
+            <div class="input-field col s9">
               Nombre de Fantasía
               <input placeholder="" type="text" formControlName="fantasyName" class="validate">
             </div>
           </div>
           <div class="row">
-            <div class="input-field col s5">
+            <div class="input-field col s9">
                 Teléfono
                 <input placeholder="" type="text" formControlName="telephone" class="validate">
             </div>
-            <div class="input-field col s4">
+            <div class="input-field col s9">
                 Dirección
                 <input placeholder="" type="text" formControlName="address" class="validate">
             </div>
           </div>
           <div class="row">
-            <div class="input-field col s5">
+            <div class="input-field col s9">
               Email
               <input placeholder="" type="email" formControlName="email" class="validate">
             </div>
@@ -32,7 +32,7 @@
         </form>
       </div>
       <div class="row">
-        <button type="submit" class="waves-effect green btn" [disabled]="supplierForm.status === 'INVALID'" (click)="onSubmit()">Guardar</button>
-        <button class="waves-effect red btn" (click)="cancel()" style="margin-left: 0.2rem;">Cancelar</button>
+        <button type="submit" class="waves-effect green btn selected" (click)="onSubmit()">Guardar</button>
+        <button class="waves-effect red btn selected" (click)="cancel()" style="margin-left: 0.2rem;">Cancelar</button>
       </div>
 </div>

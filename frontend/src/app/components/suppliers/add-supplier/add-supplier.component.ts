@@ -1,15 +1,17 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { SuppliersService } from './../../../services/suppliers/suppliers.service';
 
 @Component({
   selector: 'app-add-supplier',
   templateUrl: './add-supplier.component.html',
-  styleUrls: ['./add-supplier.component.css']
+  styleUrls: []
 })
 export class AddSupplierComponent implements OnInit {
 
   constructor( 
+    private supplierService: SuppliersService,
     private dialogRef: MatDialogRef<AddSupplierComponent>,
     @Inject(MAT_DIALOG_DATA) public data
     ) { }
@@ -30,7 +32,15 @@ export class AddSupplierComponent implements OnInit {
   }
 
   onSubmit(){
-    this.dialogRef.close(this.supplierForm.value);
+    if (this.data.edit){
+      
+    }else {
+      this.supplierService.addSupplier(this.supplierForm.value)
+        .subscribe(res => {
+          this.dialogRef.close();
+        },
+        err => alert("Verifique los datos ingresados"))
+    }
   }
 
 }

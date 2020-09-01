@@ -9,7 +9,7 @@ import { AddFrameComponent } from './../add-frame/add-frame.component';
 @Component({
   selector: 'app-frames',
   templateUrl: './frames.component.html',
-  styleUrls: ['./frames.component.css']
+  styleUrls: []
 })
 export class FramesComponent implements OnInit {
 

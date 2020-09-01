@@ -10,7 +10,7 @@ import { SupplierDataComponent } from '../supplier-data/supplier-data.component'
 @Component({
   selector: 'app-suppliers',
   templateUrl: './suppliers.component.html',
-  styleUrls: ['./suppliers.component.css']
+  styleUrls: []
 })
 export class SuppliersComponent implements OnInit {
 
@@ -43,12 +43,13 @@ export class SuppliersComponent implements OnInit {
       height: '60vw',
       width: '70vw',
       disableClose: true,
-      data: this.edit
+      data: {
+        edit: this.edit
+      }
     });
     dialogRef.afterClosed()
       .subscribe(res => {
         this.getAll();
-        console.log("editado");
       })
   }
 
@@ -63,8 +64,11 @@ export class SuppliersComponent implements OnInit {
     dialogRef.afterClosed()
       .subscribe(res => {
         this.getAll();
-        console.log(res);
       })
+  }
+
+  deleteSupplier(supplierID: number){
+    console.log(supplierID)
   }
 
   getAll(){

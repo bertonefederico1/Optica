@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'app-data-frame',
   templateUrl: './data-frame.component.html',
-  styleUrls: ['./data-frame.component.css']
+  styleUrls: []
 })
 export class DataFrameComponent implements OnInit {
 

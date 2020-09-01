@@ -4,7 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
   selector: 'app-supplier-data',
   templateUrl: './supplier-data.component.html',
-  styleUrls: ['./supplier-data.component.css']
+  styleUrls: []
 })
 export class SupplierDataComponent implements OnInit {
 
