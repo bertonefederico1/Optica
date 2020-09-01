@@ -1,30 +1,36 @@
-<div class="container">
-    <div class="planilla">
-        <p>
-            <h4 class="center-align titulo">DATOS PROVEEDOR/LABORATORIO</h4>
-            <br><br>
+<div *ngIf="supplier" class="sheet">
+  <p></p>
+  <h4 class="center-align title1">DATOS PROVEEDOR/LABORATORIO</h4>
+  <br /><br />
 
-        <p>
-            <label class="black-text etiqueta">Razón Social: </label>
-            <span class="contenido"></span>
-        <p>
-            <label class="black-text etiqueta">Nombre de Fantasía: </label>
-            <span class="contenido"></span>
+  <p>
+    <label class="black-text label1">Razón Social: </label>
+    <span class="content">{{ supplier.razonSocial }}</span>
+  </p>
 
-        <p>
-            <label class="black-text etiqueta">Teléfono: </label>
-            <span class="contenido"></span>
+  <p>
+    <label class="black-text label1">Nombre de Fantasía: </label>
+    <span class="content">{{ supplier.nombreFantasia }}</span>
+  </p>
 
-        <p>
-            <label class="black-text etiqueta">Dirección: </label>
-            <span class="contenido"></span>
+  <p>
+    <label class="black-text label1">Teléfono: </label>
+    <span class="content">{{ supplier.telefono }}</span>
+  </p>
 
-        <p>
-            <label class="black-text etiqueta">Email: </label>
-            <span class="contenido"></span>
+  <p>
+    <label class="black-text label1">Domicilio: </label>
+    <span class="content">{{ supplier.domicilio }}</span>
+  </p>
 
-    </div>
-    <div style="padding-bottom: 2rem">
-        <a (click)="close()" class="waves-effect red btn-large" style="display: block">Salir</a>
-    </div>
+  <p>
+    <label class="black-text label1">Email: </label>
+    <span class="content">{{ supplier.email }}</span>
+  </p>
+</div>
+
+<div style="padding-bottom: 2rem">
+  <a (click)="close()" class="waves-effect red btn-large" style="display: block"
+    >Salir</a
+  >
 </div>

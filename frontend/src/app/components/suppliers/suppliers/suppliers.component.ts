@@ -30,21 +30,25 @@ export class SuppliersComponent implements OnInit {
     this.getAll();
   }
 
-  dataSupplier(){
+  dataSupplier(supplierID: number){
     const dialogRef = this.dialogRef.open(SupplierDataComponent, {
-      height: '60vw',
-      width: '70vw'
+      height: '90%',
+      width: '90%',
+      data: {
+        supplierID: supplierID
+      }
     });
   }
 
-  editSupplier(){
+  editSupplier(supplierID: number){
     this.edit = true;
     const dialogRef = this.dialogRef.open(AddSupplierComponent, {
       height: '60vw',
       width: '70vw',
       disableClose: true,
       data: {
-        edit: this.edit
+        edit: this.edit,
+        supplierID: supplierID
       }
     });
     dialogRef.afterClosed()
@@ -68,7 +72,26 @@ export class SuppliersComponent implements OnInit {
   }
 
   deleteSupplier(supplierID: number){
-    console.log(supplierID)
+    if (confirm("¿Seguro que desea eliminar el proveedor/laboratorio?")) {
+      this.supplierService.deleteSupplier(supplierID)
+        .subscribe(
+          res => this.getAll()
+        )
+    }
+  }
+
+  changeRange() {
+    this.paginator._intl.getRangeLabel = (page, pageSize, length) => {
+      if (length == 0 || pageSize == 0) {
+          return `0 de ${length}`;
+      }
+      length = Math.max(length, 0);
+      const startIndex = page * pageSize;
+      const endIndex = startIndex < length ?
+          Math.min(startIndex + pageSize, length) :
+          startIndex + pageSize;
+      return `${startIndex + 1} – ${endIndex} de ${length}`;
+    }
   }
 
   getAll(){
@@ -78,8 +101,24 @@ export class SuppliersComponent implements OnInit {
           this.dataSource = new MatTableDataSource();
           this.dataSource.data = res;
           this.dataSource.paginator = this.paginator;
+          this.paginator._intl.itemsPerPageLabel = "Proveedores/Laboratorios Por Página";
+          this.changeRange();
+          this.paginator._intl.lastPageLabel = "Última Página";
+          this.paginator._intl.firstPageLabel = "Primer Página";
+          this.paginator._intl.nextPageLabel = "Siguiente";
+          this.paginator._intl.previousPageLabel = "Anterior";
         }
       )}
+
+  setupFilter() {
+    const column1 = 'codigo';
+    const column2 = 'nombreFantasia';
+    this.dataSource.filterPredicate = (data: any, filter: string) => {
+      console.log(data)
+      /* const textToSearch = data[column1].toLowerCase();
+      return textToSearch.indexOf(filter) !== -1; */
+    };
+  }
 
   applyFilter(filterValue: string){  
     this.dataSource.filter = filterValue; 

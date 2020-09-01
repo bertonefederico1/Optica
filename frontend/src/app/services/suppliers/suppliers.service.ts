@@ -17,4 +17,17 @@ export class SuppliersService {
   addSupplier(supplier: any){
     return this.http.post(`${this.URL}/newSupplierLaboratory`, supplier);
   }
+
+  getOne(supplierID: number){
+    return this.http.get<any>(`${this.URL}/supplierLaboratory/${supplierID}`)
+  }
+
+  editSupplier(supplierID: number, supplier) {
+    return this.http.put(`${this.URL}/editSupplierLaboratory/${supplierID}`, supplier); 
+  }
+
+  deleteSupplier(supplierID: number) {
+    return this.http.put(`${this.URL}/suspendSupplierLaboratory/${supplierID}`, false);
+  }
+
 }

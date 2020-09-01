@@ -32,10 +32,7 @@ const Laboratory = sequelize.define('proveedor_laboratorio', {
         }
     },
     email: {
-        type: DataTypes.STRING,
-        validate: {
-            notEmpty: false
-        }
+        type: DataTypes.STRING
     },
     activo: { 
         type: DataTypes.BOOLEAN, defaultValue: 1

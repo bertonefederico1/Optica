@@ -18,13 +18,13 @@ SupplierLaboratoryController.getAll = async (req, res) => {
 
 SupplierLaboratoryController.getOne = async (req, res) => {
     try {
-        const healthCare = await Supplier_Laboratory.findOne({
+        const supplierLaboratory = await Supplier_Laboratory.findOne({
             where: {
-                idObraSocial: req.params.healthCareID,
+                idProvLab: req.params.supplierLaboratoryID,
                 activo: 1
             }
         });
-        res.status(200).json(healthCare);
+        res.status(200).json(supplierLaboratory);
     } catch(err){
         res.status(400).json(err);
     }
@@ -48,12 +48,14 @@ SupplierLaboratoryController.createSupplierLaboratory = async (req, res) => {
 SupplierLaboratoryController.editSupplierLaboratory = async (req, res) => {
     try {
         await Supplier_Laboratory.update({
-            nombre: req.body.name,
-            periodoFacMeses: req.body.billingPeriod,
-            cantFacPeriodo: req.body.numberGlassesPerPeriod
+            razonSocial: req.body.businessName,
+            nombreFantasia: req.body.fantasyName,
+            domicilio: req.body.address,
+            telefono: req.body.telephone,
+            email: req.body.email
         }, {
             where: {
-                idObraSocial: req.params.healthCareID
+                idProvLab: req.params.supplierLaboratoryID
             }
         });
         res.status(200).json();
@@ -68,7 +70,7 @@ SupplierLaboratoryController.suspendSupplierLaboratory = async (req, res) => {
             activo: 0
         }, {
             where: {
-                idObraSocial: req.params.healthCareID
+                idProvLab: req.params.supplierLaboratoryID
             }
         });
         res.status(200).json();
