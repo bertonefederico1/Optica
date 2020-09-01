@@ -1,56 +1,55 @@
+<div *ngIf="customer" class="sheet">
+  <p></p>
+  <h4 class="center-align title1">DATOS PERSONALES</h4>
+  <br /><br />
 
-    <div class="sheet">
-        <p>
-            <h4 class="center-align title1">DATOS PERSONALES</h4>
-            <br><br>
+  <p></p>
+  <div class="row">
+    <label class="black-text label1">Nombre y Apellido: </label>
+    <span class="content">{{ customer.nombre }} {{ customer.apellido }}</span>
+  </div>
 
-        <p>
-            <div class="row">
-                <label class="black-text label1">Nombre y Apellido: </label>
-                <span class="content">{{customer.nombre}} {{customer.apellido}}</span>
-            </div>
-            
-        <p>
-            <div class="row">
-                <label class="black-text label1">Teléfono: </label>
-                <span class="content">{{customer.telefono}}</span>
-            </div>
+  <p></p>
+  <div class="row">
+    <label class="black-text label1">Teléfono: </label>
+    <span class="content">{{ customer.telefono }}</span>
+  </div>
 
-        <p>
-            <div class="row">
-                <label class="black-text label1">Email: </label>
-                <span class="content">{{customer.email}}</span>
-            </div>
+  <p></p>
+  <div class="row">
+    <label class="black-text label1">Email: </label>
+    <span class="content">{{ customer.email }}</span>
+  </div>
 
-        <p>
-            <div class="row">
-                <label class="black-text label1">Domicilio: </label>
-                <span class="content">{{customer.domicilio}}</span>
-            </div>
+  <p></p>
+  <div class="row">
+    <label class="black-text label1">Domicilio: </label>
+    <span class="content">{{ customer.domicilio }}</span>
+  </div>
 
-        <p>
-            <div class="row">
-                <div class="black-text label1">
-                    Obra/s social/es: 
-                </div> 
-            </div>
+  <p></p>
+  <div class="row">
+    <div class="black-text label1">Obra/s social/es:</div>
+  </div>
 
-        <p>
-            <table class="stripped responsive-table container">
-                <thead style="background-color: grey">
-                  <tr>
-                      <th>Descripción</th>
-                      <th>Nº de Socio</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let healthCare of customer.obra_socials">
-                    <td>{{healthCare.nombre}}</td>
-                    <td>{{healthCare.cliente_obra_social.nroSocio}}</td>
-                  </tr> 
-                </tbody>
-              </table>
-    </div>
-    <div style="padding-bottom: 2rem">
-        <a (click)="close()" class="waves-effect red btn-large" style="display: block">Salir</a>
-    </div>
+  <p></p>
+  <table class="stripped responsive-table container">
+    <thead style="background-color: grey">
+      <tr>
+        <th>Descripción</th>
+        <th>Nº de Socio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let healthCare of customer.obra_socials">
+        <td>{{ healthCare.nombre }}</td>
+        <td>{{ healthCare.cliente_obra_social.nroSocio }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div>
+  <a (click)="close()" class="waves-effect red btn-large" style="display: block"
+    >Salir</a
+  >
+</div>

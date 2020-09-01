@@ -12,7 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class HealthCaresComponent implements OnInit {
 
   constructor(
-    private obrasSocialesService: HealthCaresService,
+    private healthCareService: HealthCaresService,
     private dialogRef: MatDialog
   ) { }
 
@@ -24,37 +24,44 @@ export class HealthCaresComponent implements OnInit {
   displayedColumns: string[] = ['codigo', 'nombre', 'periodoFacturacion', 'cantidadAnteojosPorPeriodo', 'acciones'];
   dataSource = null;
 
-  editObraSocial(id: number){
+  editHealthCare(healthCareID: number){
     this.edit = true;
     const dialogRef = this.dialogRef.open(AddHealthCareComponent, {
-      height: '65vh',
-      width: '50vw',
+      height: '90%',
+      width: '70%',
       disableClose: true,
-      data: this.edit
+      data: {
+        edit: this.edit,
+        healthCareID: healthCareID
+      }
     });
     dialogRef.afterClosed()
-      .subscribe(
-        res=> console.log("OS EDITADA")
-      )
+      .subscribe(res => this.getAll())
   }
 
-  addObraSocial(){
+  addHealthCare(){
     this.edit = false;
     const dialogRef = this.dialogRef.open(AddHealthCareComponent, {
-      height: '40vw',
-      width: '50vw',
+      height: '90%',
+      width: '70%',
       disableClose: true,
       data: this.edit
     });
     dialogRef.afterClosed()
-      .subscribe(res => {
-        this.getAll();
-        console.log("OS AGREGADA");
-      })
+      .subscribe(res => this.getAll())
+  }
+
+  deleteHealthCare(healthCareID: number){
+    if (confirm("¿Seguro que desea eliminar la obra social?")){
+      this.healthCareService.deleteHealthCare(healthCareID)
+      .subscribe(
+        res => this.getAll()
+      )
+    }
   }
 
   getAll(){
-    this.obrasSocialesService.getAll()
+    this.healthCareService.getAll()
       .subscribe(
         res => {
           this.dataSource = new MatTableDataSource();
@@ -63,8 +70,15 @@ export class HealthCaresComponent implements OnInit {
       )
   }
 
+  setupFilter(column: string) {
+    this.dataSource.filterPredicate = (data: any, filter: string) => {
+      const textToSearch = data[column].toLowerCase();
+      return textToSearch.indexOf(filter) !== -1;
+    }
+  }
+
   applyFilter(filterValue: string){ 
-    this.dataSource.filter = filterValue; 
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }

@@ -1,75 +1,77 @@
 'use strict'
 
-const Customer = require('../models/Customer');
 const HealthCare = require('../models/HealthCare');
 const HealthCareController = { };
 
 HealthCareController.getAll = async (req, res) => {
     try {
-        const HealthCares = await HealthCare.findAll({
+        const healthCares = await HealthCare.findAll({
             where: {
                 activo: 1
             }
         });
-        res.json(HealthCares);
+        res.status(200).json(healthCares);
     } catch (err) {
-        res.json(err);
+        res.status(400).json(err);
     }
 };
 
 HealthCareController.getOne = async (req, res) => {
     try {
-        const HealthCare = await HealthCare.findOne(req.params.id, {
+        const healthCare = await HealthCare.findOne({
             where: {
+                idObraSocial: req.params.healthCareID,
                 activo: 1
             }
         });
-        res.json(HealthCare);
+        res.status(200).json(healthCare);
     } catch(err){
-        res.json(err);
+        res.status(400).json(err);
     }
 }
 
-/* HealthCareController.createObraSocial = async (req, res) => {
+HealthCareController.createHealthCare = async (req, res) => {
     try {
-        await Customer.create({
+        await HealthCare.create({
             nombre: req.body.name,
-            apellido: req.body.surname,
-            telefono: req.body.telephone,
-            email: req.body.email,
-            domicilio: req.body.address
+            periodoFacMeses: req.body.billingPeriod,
+            cantFacPeriodo: req.body.numberGlassesPerPeriod
         });
-        res.json({status: "OK"});
+        res.status(200).json();
     } catch (err) {
-        res.json(err);
+        res.status(400).json(err);
     }
-}; */
+}; 
 
-/* obraSocialController.editObraSocial = async (req, res) => {
+HealthCareController.editHealthCare = async (req, res) => {
     try {
-        Customer.update(req.body, {
+        await HealthCare.update({
+            nombre: req.body.name,
+            periodoFacMeses: req.body.billingPeriod,
+            cantFacPeriodo: req.body.numberGlassesPerPeriod
+        }, {
             where: {
-                idCliente: req.params.id
+                idObraSocial: req.params.healthCareID
             }
         });
-        res.json({status: "OK"});
+        res.status(200).json();
     } catch (err) {
-        res.json(err);
+        res.status(400).json(err);
     }
-}; */
+}; 
 
-HealthCareController.suspendObraSocial = async (req, res) => {
+HealthCareController.suspendHealthCare = async (req, res) => {
     try {
         await HealthCare.update({
             activo: 0
         }, {
             where: {
-                idObraSocial: req.params.id
+                idObraSocial: req.params.healthCareID
             }
         });
-        res.json({status: "OK"});
+        res.status(200).json();
     } catch (err) {
-        res.json(err);
+        res.status(400).json(err);
     }
 };
 

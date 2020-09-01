@@ -3,7 +3,7 @@
 const sequelize = require('../database/db-connection');
 const { DataTypes } = require('Sequelize');
 
-const HealthCare = require('../models/HealthCare');
+const HealthCare = require('./HealthCare');
 const Customer_HealthCare = require('./Customer_HealthCare');
 
 

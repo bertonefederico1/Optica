@@ -15,7 +15,10 @@ router.put('/suspendCustomer/:customerID', customerController.suspendCustomer);
 
 //Rutas de obras social
 router.get('/healthCares', obraSocialController.getAll);
-
+router.get('/healthCare/:healthCareID', obraSocialController.getOne);
+router.post('/newHealthCare', obraSocialController.createHealthCare);
+router.put('/editHealthCare/:healthCareID', obraSocialController.editHealthCare);
+router.put('/suspendHealthCare/:healthCareID', obraSocialController.suspendHealthCare);
 
 
 

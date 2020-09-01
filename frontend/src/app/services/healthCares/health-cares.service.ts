@@ -13,4 +13,20 @@ export class HealthCaresService {
   getAll(){
     return this.http.get<any>(`${this.URL}/healthCares`);
   }
+
+  getOne(healthCareID: number){
+    return this.http.get<any>(`${this.URL}/healthCare/${healthCareID}`);
+  }
+
+  addHealthCare(healthCare: any){
+    return this.http.post(`${this.URL}/newHealthCare`, healthCare);
+  }
+
+  editHealthCare(healthCare: any, healthCareID: number){
+    return this.http.put(`${this.URL}/editHealthCare/${healthCareID}`, healthCare);
+  }
+
+  deleteHealthCare(healthCareID: number){
+    return this.http.put(`${this.URL}/suspendHealthCare/${healthCareID}`, false);
+  }
 }
