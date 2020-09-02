@@ -3,68 +3,88 @@
 <div class="container section">
     <div class="row">
         <form class="col s12" [formGroup]="frameForm">
-          <div class="row">
-            <div class="input-field col s4">
-              Marca
-              <input placeholder="" type="text" formControlName="brand" class="validate">
+            <div class="row">
+                <div class="input-field col s4">
+                    Marca
+                    <input placeholder="" type="text" formControlName="brand" class="validate" />
+                </div>
+                <div class="input-field col s4">
+                    Modelo
+                    <input placeholder="" type="text" formControlName="model" class="validate" />
+                </div>
             </div>
-            <div class="input-field col s4">
-              Modelo
-              <input placeholder="" type="text" formControlName="model" class="validate">
-            </div>
-          </div>
-        <div class="row">
-            <div class="input-field col s4">
-                Color
-                <input placeholder="" type="text" formControlName="color" class="validate">
-            </div>
-            <div class="input-field col s7" style="margin-left: 2.2rem;">
-                Proveedor
-            </div>
-            <select *ngIf="suppliersLaboratories$ | async as suppliersLaboratories" class="browser-default col s5" style="border-color: black; margin-left: 3rem;" formControlName="supplierLaboratory">
-                <option value="" disabled selected>Seleccionar</option>
-                <option *ngFor="let supplierLaboratory of suppliersLaboratories" [ngValue]="supplierLaboratory.idProvLab">{{supplierLaboratory.nombreFantasia}}</option>
-            </select>       
-        </div>
-        <div class="row">
-            <div class="input-field col s4">
-              Cantidad en Stock
-              <input placeholder="" type="number" formControlName="quantityInStock" class="validate">
-            </div>
-        </div>
-        <div class="row">
-            <div style="margin-left: 0.5rem;">
-                <div>Diseño</div> 
-                <br>          
-                <select *ngIf="frameDesigns$ | async as frameDesigns" class="browser-default col s4" style="border-color: black;" formControlName="design">
+            <div class="row">
+                <div class="input-field col s4">
+                    Color
+                    <input placeholder="" type="text" formControlName="color" class="validate" />
+                </div>
+                <div class="input-field col s7" style="margin-left: 2.2rem">
+                    Proveedor
+                </div>
+                <select *ngIf="suppliersLaboratories$ | async as suppliersLaboratories"
+                    class="browser-default col s5 border-black" style="border-color: black; margin-left: 3rem"
+                    formControlName="supplierLaboratory">
                     <option value="" disabled selected>Seleccionar</option>
-                    <option *ngFor="let frameDesign of frameDesigns" [ngValue]="frameDesign.idDisenoArmazon">{{frameDesign.nombre}} - {{frameDesign.descripcion}}</option>
+                    <option *ngFor="let supplierLaboratory of suppliersLaboratories"
+                        [ngValue]="supplierLaboratory.idProvLab">
+                        {{ supplierLaboratory.nombreFantasia }}
+                    </option>
                 </select>
             </div>
-            
-            <div style="margin-left: 0.5rem; margin-top: -2.8rem; margin-left: 5rem;">
-                <span style="margin-left: 13rem;">Material</span>
-                <select *ngIf="frameMaterials$ | async as frameMaterials" class="browser-default col s6" 
-                style="border-color: black; margin-left: 3rem;" formControlName="material">
-                    <option value="" disabled selected>Seleccionar</option>
-                    <option *ngFor="let frameMaterial of frameMaterials" [ngValue]="frameMaterial.idMaterialArmazon">{{frameMaterial.nombre}} - {{frameMaterial.descripcion}}</option>
-                </select>
+            <div class="row">
+                <div class="input-field col s4">
+                    Cantidad en Stock
+                    <input placeholder="" type="number" formControlName="quantityInStock" class="validate" />
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div style="margin-left: 0.5rem;">
-                <div>Utilidad</div> 
-                <br>          
-                <select *ngIf="frameUtilities$ | async as frameUtilities" class="browser-default col s10" style="border-color: black;" formControlName="utility">
-                    <option value="" disabled selected>Seleccionar</option>
-                    <option *ngFor="let frameUtility of frameUtilities" [ngValue]="frameUtility.idUtilidadArmazon">{{frameUtility.nombre}} - {{frameUtility.descripcion}}</option>
-                </select>
+            <div class="row">
+                <div style="margin-left: 0.5rem">
+                    <div>Diseño</div>
+                    <br />
+                    <select *ngIf="frameDesigns$ | async as frameDesigns" class="browser-default col s4 border-black"
+                        style="border-color: black" formControlName="design">
+                        <option value="" disabled selected>Seleccionar</option>
+                        <option *ngFor="let frameDesign of frameDesigns" [ngValue]="frameDesign.idDisenoArmazon">
+                            {{ frameDesign.nombre }} - {{ frameDesign.descripcion }}
+                        </option>
+                    </select>
+                </div>
+
+                <div style="margin-left: 0.5rem; margin-top: -2.8rem; margin-left: 5rem">
+                    <span style="margin-left: 13rem">Material</span>
+                    <select *ngIf="frameMaterials$ | async as frameMaterials"
+                        class="browser-default col s6 border-black" style="border-color: black; margin-left: 2rem"
+                        formControlName="material">
+                        <option value="" disabled selected>Seleccionar</option>
+                        <option *ngFor="let frameMaterial of frameMaterials"
+                            [ngValue]="frameMaterial.idMaterialArmazon">
+                            {{ frameMaterial.nombre }} - {{ frameMaterial.descripcion }}
+                        </option>
+                    </select>
+                </div>
             </div>
-        </div>
-    </form>
-      </div>
-      <div class="row">
-        <button type="submit" class="waves-effect green btn" (click)="onSubmit()">Guardar</button>
-        <button class="waves-effect red btn" (click)="cancel()" style="margin-left: 0.2rem;">Cancelar</button>
-      </div>
+            <div class="row">
+                <div style="margin-left: 0.5rem">
+                    <div>Utilidad</div>
+                    <br />
+                    <select *ngIf="frameUtilities$ | async as frameUtilities"
+                        class="browser-default col s10 border-black" style="border-color: black"
+                        formControlName="utility">
+                        <option value="" disabled selected>Seleccionar</option>
+                        <option *ngFor="let frameUtility of frameUtilities" [ngValue]="frameUtility.idUtilidadArmazon">
+                            {{ frameUtility.nombre }} - {{ frameUtility.descripcion }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <button type="submit" class="waves-effect green btn selected" (click)="onSubmit()">
+            Guardar
+        </button>
+        <button class="waves-effect red btn selected" (click)="cancel()" style="margin-left: 0.2rem">
+            Cancelar
+        </button>
+    </div>
 </div>

@@ -48,9 +48,17 @@ export class AddFrameComponent implements OnInit {
 
   onSubmit(){
     if (this.data.edit) {
-
+      this.frameService.editFrame(this.data.frameID, this.frameForm.value)
+        .subscribe(
+          res => this.dialogRef.close(),
+          err => alert("Verifique los datos ingresados")
+        )
     } else {
-      
+      this.frameService.addFrame(this.frameForm.value)
+        .subscribe(
+          res => this.dialogRef.close(),
+          err => alert("Verifique los datos ingresados")
+        )
     }
   }
 

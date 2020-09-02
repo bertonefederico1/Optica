@@ -29,11 +29,14 @@ export class FramesComponent implements OnInit {
     this.getAll();
   }
 
-  dataFrame(frame) {
+  dataFrame(frameID: number) {
     const dialogRef = this.dialogRef.open(DataFrameComponent, {
       height: '60vw',
       width: '70vw',
-      data: frame
+      data: {
+        edit: this.edit,
+        frameID: frameID
+      }
     });
   }
 
@@ -57,7 +60,7 @@ export class FramesComponent implements OnInit {
       width: '100%',
       disableClose: true,
       data: {
-        data: this.edit
+        edit: this.edit
       }
     });
     dialogRef.afterClosed()
