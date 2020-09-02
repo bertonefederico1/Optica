@@ -37,28 +37,47 @@ export class FramesComponent implements OnInit {
     });
   }
 
-  editFrame(){
+  editFrame(frameID: number){
     this.edit = true;
     const dialogRef = this.dialogRef.open(AddFrameComponent, {
-      height: '60vw',
-      width: '70vw',
+      height: '100%',
+      width: '100%',
       disableClose: true,
-      data: this.edit
+      data: {
+        edit: this.edit,
+        frameID: frameID
+      }
     });
   }
 
   addFrame(){
     this.edit = false;
     const dialogRef = this.dialogRef.open(AddFrameComponent, {
-      height: '60vw',
-      width: '70vw',
+      height: '100%',
+      width: '100%',
       disableClose: true,
-      data: this.edit
+      data: {
+        data: this.edit
+      }
     });
     dialogRef.afterClosed()
       .subscribe(res => {
         this.getAll();
       })
+  }
+
+  changeRange() {
+    this.paginator._intl.getRangeLabel = (page, pageSize, length) => {
+      if (length == 0 || pageSize == 0) {
+          return `0 de ${length}`;
+      }
+      length = Math.max(length, 0);
+      const startIndex = page * pageSize;
+      const endIndex = startIndex < length ?
+          Math.min(startIndex + pageSize, length) :
+          startIndex + pageSize;
+      return `${startIndex + 1} – ${endIndex} de ${length}`;
+    }
   }
 
   getAll(){
@@ -68,9 +87,22 @@ export class FramesComponent implements OnInit {
           this.dataSource = new MatTableDataSource();
           this.dataSource.data = res;
           this.dataSource.paginator = this.paginator;
+          this.paginator._intl.itemsPerPageLabel = "Armazones Por Página";
+          this.changeRange();
+          this.paginator._intl.lastPageLabel = "Última Página";
+          this.paginator._intl.firstPageLabel = "Primer Página";
+          this.paginator._intl.nextPageLabel = "Siguiente";
+          this.paginator._intl.previousPageLabel = "Anterior";
         }
       )}
 
+  setupFilter(){
+    this.dataSource.filterPredicate = (data: any, filter: string) => {
+      const textToSearch = data.marca.toLowerCase() + data.modelo.toLowerCase();
+      return textToSearch.indexOf(filter) != -1;
+    }
+  }
+  
   applyFilter(filterValue: string){
     this.dataSource.filter = filterValue; 
   }

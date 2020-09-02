@@ -5,7 +5,7 @@
       class="col s3 offset-s9"
       type="search"
       (keyup)="applyFilter($event.target.value)"
-      (focus)="setupFilter('apellido')"
+      (focus)="setupFilter()"
       placeholder="Buscar"
     />
     <a class="waves-effect green btn" (click)="addCustomer()">Agregar</a>
@@ -56,5 +56,5 @@
   [length]="customers.length"
   [pageSize]="10"
   showFirstLastButtons
-  style="margin-right: 10rem !important"
+  style="margin-right: 12rem !important"
 ></mat-paginator>

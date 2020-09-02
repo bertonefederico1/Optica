@@ -123,10 +123,10 @@ export class CustomersComponent implements OnInit {
       )}
 
 
-  setupFilter(column: string) {
+  setupFilter() {
     this.dataSource.filterPredicate = (data: any, filter: string) => {
-      const textToSearch = data[column].toLowerCase();
-      return textToSearch.indexOf(filter) !== -1;
+      const textToSearch = data.apellido.toLowerCase();
+      return textToSearch.indexOf(filter) != -1;
     };
   }
   

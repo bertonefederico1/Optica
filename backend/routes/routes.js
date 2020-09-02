@@ -6,6 +6,10 @@ const router = express.Router();
 const customerController = require('../controllers/customerController');
 const obraSocialController = require('../controllers/healthCareController');
 const supplierLaboratoryController = require('../controllers/SupplierLaboratoryController')
+const frameController = require('../controllers/frameController');
+const frameMaterialController = require('../controllers/frameMaterialController');
+const frameDesignController = require('../controllers/frameDesignController');
+const frameUtilityController = require('../controllers/frameUtilityController');
 
 //Rutas de clientes
 router.get('/customers', customerController.getAll);
@@ -28,6 +32,19 @@ router.post('/newSupplierLaboratory', supplierLaboratoryController.createSupplie
 router.put('/editSupplierLaboratory/:supplierLaboratoryID', supplierLaboratoryController.editSupplierLaboratory);
 router.put('/suspendSupplierLaboratory/:supplierLaboratoryID', supplierLaboratoryController.suspendSupplierLaboratory);
 
+//Rutas de armazones
+router.get('/frames', frameController.getAll);
+router.get('/frame/:frameID', frameController.getOne);
+router.post('/newFrame', frameController.createFrame);
+
+//Ruta de Materiales de Armazones
+router.get('/frameMaterials', frameMaterialController.getAll);
+
+//Ruta de Diseños Armazones
+router.get('/frameDesigns', frameDesignController.getAll);
+
+//Ruta de Utilidades Armazones
+router.get('/frameUtilities', frameUtilityController.getAll);
 
 
 module.exports = router;

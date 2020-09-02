@@ -4,7 +4,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { SuppliersService } from './../../../services/suppliers/suppliers.service';
 import { AddSupplierComponent } from './../add-supplier/add-supplier.component';
 import { MatTableDataSource } from '@angular/material/table';
-import { CloseScrollStrategy } from '@angular/cdk/overlay';
 import { SupplierDataComponent } from '../supplier-data/supplier-data.component';
 
 @Component({
@@ -111,17 +110,14 @@ export class SuppliersComponent implements OnInit {
       )}
 
   setupFilter() {
-    const column1 = 'codigo';
-    const column2 = 'nombreFantasia';
     this.dataSource.filterPredicate = (data: any, filter: string) => {
-      console.log(data)
-      /* const textToSearch = data[column1].toLowerCase();
-      return textToSearch.indexOf(filter) !== -1; */
+      const textToSearch = data.idProvLab + data.nombreFantasia.toLowerCase();
+      return textToSearch.indexOf(filter) != -1; 
     };
   }
 
   applyFilter(filterValue: string){  
-    this.dataSource.filter = filterValue; 
+    this.dataSource.filter = filterValue.trim().toLowerCase(); 
   }
 
 }
