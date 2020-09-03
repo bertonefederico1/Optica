@@ -1,10 +1,6 @@
 'use strict'
 
 const Frame = require('../models/Frame');
-const FrameMaterial = require('../models/FrameMaterial');
-const FrameDesign = require('../models/FrameDesign');
-const FrameUtility = require('../models/FrameUtility');
-const SupplierLaboratory = require('../models/SupplierLaboratory'); 
 const frameController = { };
 
 
@@ -53,50 +49,42 @@ frameController.createFrame = async (req, res) => {
     }
 };
 
-/* customerController.editCustomer = async (req, res) => {
+frameController.editFrame = async (req, res) => {
     try {
-        if(req.body.obrasSociales.length === 0) {
-            throw new Error();
-        }; 
-        await Customer.update(req.body, {
+        await Frame.update({
+            idMaterialArmazon: req.body.material,
+            idDisenoArmazon: req.body.design,
+            idUtilidadArmazon: req.body.utility,
+            idProvLab: req.body.supplierLaboratory,
+            modelo: req.body.model,
+            marca: req.body.brand,
+            color: req.body.color,
+            cantidad: req.body.quantityInStock
+        }, {
             where: {
-                idCliente: req.params.customerID
+                codArmazon: req.params.frameID
             }
-        });
-        await Customer_ObraSocial.destroy({
-            where: {
-                idCliente: req.params.customerID
-            }
-        });
-        req.body.obrasSociales.map((os) => {
-            Customer_ObraSocial.create({
-                idObraSocial: os.obraSocial.idObraSocial,
-                idCliente: req.params.customerID,
-                nroSocio: os.nsocio
-            })
         });
         res.status(200).json();
     } catch (err) {
-        res.status(400).json({
-            message: err
-        })
+        res.status(400).json()
     }
 };
 
-customerController.suspendCustomer = async (req, res) => {
+frameController.suspendFrame = async (req, res) => {
     try {
-        await Customer.update({
+        await Frame.update({
             activo: 0
         }, {
             where: {
-                idCliente: req.params.customerID
+                codArmazon: req.params.frameID
             }
         });
         res.status(200).json();
     } catch (err) {
-        res.json(err);
+        res.status(400).json(err);
     }
-}; */
+};
 
 
 module.exports = frameController;

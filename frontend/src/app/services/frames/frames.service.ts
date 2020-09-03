@@ -22,7 +22,7 @@ export class FramesService {
     return this.http.get<any>(`${this.URL}/frame/${frameID}`)
   }
 
-  editFrame(frameID: number, frame) {
+  editFrame(frameID: number, frame: any) {
     return this.http.put(`${this.URL}/editFrame/${frameID}`, frame); 
   }
 

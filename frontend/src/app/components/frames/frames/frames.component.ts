@@ -51,6 +51,15 @@ export class FramesComponent implements OnInit {
         frameID: frameID
       }
     });
+    dialogRef.afterClosed()
+      .subscribe(res => this.getAll());
+  }
+
+  deleteFrame(frameID: number){
+    if (confirm("¿Seguro que desea eliminar el armazón?")) {
+      this.framesService.deleteFrame(frameID)
+      .subscribe(res => this.getAll());
+    }
   }
 
   addFrame(){
@@ -64,9 +73,7 @@ export class FramesComponent implements OnInit {
       }
     });
     dialogRef.afterClosed()
-      .subscribe(res => {
-        this.getAll();
-      })
+      .subscribe(res => this.getAll());
   }
 
   changeRange() {

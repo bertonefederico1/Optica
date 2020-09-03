@@ -36,6 +36,8 @@ router.put('/suspendSupplierLaboratory/:supplierLaboratoryID', supplierLaborator
 router.get('/frames', frameController.getAll);
 router.get('/frame/:frameID', frameController.getOne);
 router.post('/newFrame', frameController.createFrame);
+router.put('/editFrame/:frameID', frameController.editFrame);
+router.put('/suspendFrame/:frameID', frameController.suspendFrame);
 
 //Ruta de Materiales de Armazones
 router.get('/frameMaterials', frameMaterialController.getAll);
