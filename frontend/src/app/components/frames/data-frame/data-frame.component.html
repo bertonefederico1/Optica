@@ -1,4 +1,4 @@
-<div class="sheet">
+<div class="sheet" *ngIf="frame">
     <p>
     <h4 class="center-align title1">DATOS DEL ARMAZON</h4>
     <br><br>
@@ -16,23 +16,23 @@
 
     <p>
         <label class="black-text label1">Proveedor: </label>
-        <span class="content"></span>
+        <span class="content">{{frame.proveedor_laboratorio.nombreFantasia}}</span>
 
     <p>
         <label class="black-text label1">Cantidad en Stock: </label>
-        <span class="content"></span>
+        <span class="content">{{frame.cantidad}}</span>
 
     <p>
         <label class="black-text label1">Diseño: </label>
-        <span class="content"></span>
+        <span class="content">{{frame.diseno_armazon.nombre}}</span>
 
     <p>
         <label class="black-text label1">Material: </label>
-        <span class="content"></span>
+        <span class="content">{{frame.material_armazon.nombre}}</span>
 
     <p>
         <label class="black-text label1">Utilidad: </label>
-        <span class="content"></span>
+        <span class="content">{{frame.utilidad_armazon.nombre}}</span>
 
 </div>
 <div style="padding-bottom: 2rem">

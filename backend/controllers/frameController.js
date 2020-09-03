@@ -1,6 +1,10 @@
 'use strict'
 
 const Frame = require('../models/Frame');
+const FrameMaterial = require('../models/FrameMaterial');
+const FrameDesign = require('../models/FrameDesign');
+const FrameUtility = require('../models/FrameUtility');
+const SupplierLaboratory = require('../models/SupplierLaboratory'); 
 const frameController = { };
 
 
@@ -23,7 +27,16 @@ frameController.getOne = async (req, res) => {
             where: {
                 codArmazon: req.params.frameID,
                 activo: 1
-            }
+            },
+            include: [{
+                model: FrameMaterial
+            }, {
+                model: FrameDesign
+            }, {
+                model: FrameUtility
+            }, {
+                model: SupplierLaboratory
+            }]
         });
         res.status(200).json(frame);
     } catch(err){

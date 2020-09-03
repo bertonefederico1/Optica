@@ -95,7 +95,7 @@ FrameDesign.hasMany(Frame, {foreignKey: 'idDisenoArmazon'});
 Frame.belongsTo(FrameDesign, {foreignKey: 'idDisenoArmazon'});
 
 SupplierLaboratory.hasMany(Frame, {foreignKey: 'idProvLab'});
-Frame.hasMany(SupplierLaboratory, {foreignKey: 'idProvLab'});
+Frame.belongsTo(SupplierLaboratory, {foreignKey: 'idProvLab'});
 
 
 

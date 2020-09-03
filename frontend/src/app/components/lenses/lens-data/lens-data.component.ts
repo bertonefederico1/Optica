@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'app-lens-data',
   templateUrl: './lens-data.component.html',
-  styleUrls: ['./lens-data.component.css']
+  styleUrls: []
 })
 export class LensDataComponent implements OnInit {
 

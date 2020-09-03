@@ -9,7 +9,7 @@ import { LensesService } from './../../../services/lenses/lenses.service';
 @Component({
   selector: 'app-lenses',
   templateUrl: './lenses.component.html',
-  styleUrls: ['./lenses.component.css']
+  styleUrls: []
 })
 export class LensesComponent implements OnInit {
 

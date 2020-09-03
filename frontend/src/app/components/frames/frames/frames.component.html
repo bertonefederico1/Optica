@@ -17,7 +17,7 @@
   >
     <ng-container matColumnDef="code">
       <th mat-header-cell *matHeaderCellDef>Código</th>
-      <td mat-cell *matCellDef="let element">{{ element.codArmazon }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.codArmazon.toString().padStart(7, 0) }}</td>
     </ng-container>
     <ng-container matColumnDef="brand">
       <th mat-header-cell *matHeaderCellDef>Marca</th>

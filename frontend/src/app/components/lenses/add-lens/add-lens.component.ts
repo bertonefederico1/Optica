@@ -5,7 +5,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-add-lens',
   templateUrl: './add-lens.component.html',
-  styleUrls: ['./add-lens.component.css']
+  styleUrls: []
 })
 export class AddLensComponent implements OnInit {
 
