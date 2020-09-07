@@ -27,6 +27,11 @@ import { LensDataComponent } from './components/lenses/lens-data/lens-data.compo
 import { FramesComponent } from './components/frames/frames/frames.component';
 import { AddFrameComponent } from './components/frames/add-frame/add-frame.component';
 import { DataFrameComponent } from './components/frames/data-frame/data-frame.component';
+import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
+import { PrescriptionsComponent } from './components/prescriptions/prescriptions/prescriptions.component';
+import { AddPrescriptionComponent } from './components/prescriptions/add-prescription/add-prescription.component';
+import { PrescriptionsPerCustomerComponent } from './components/prescriptions/prescriptions-per-customer/prescriptions-per-customer.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +50,12 @@ import { DataFrameComponent } from './components/frames/data-frame/data-frame.co
     FramesComponent,
     AddFrameComponent,
     DataFrameComponent,
-    HealthCaresPerCustomerComponent
+    HealthCaresPerCustomerComponent,
+    LoginComponent,
+    HomeComponent,
+    PrescriptionsComponent,
+    AddPrescriptionComponent,
+    PrescriptionsPerCustomerComponent
   ],
   imports: [
     BrowserModule,

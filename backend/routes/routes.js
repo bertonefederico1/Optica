@@ -14,6 +14,10 @@ const lensController = require('../controllers/lensController');
 const lensMaterialController = require('../controllers/lensMaterialController');
 const lensDesignController = require('../controllers/lensDesignController');
 const lensFinishController = require('../controllers/lensFinishController');
+const logController = require('../controllers/logController');
+
+//Login y Logout
+router.post('/login', logController.logIn);
 
 //Rutas de Clientes
 router.get('/customers', customerController.getAll);

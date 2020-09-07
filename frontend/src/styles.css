@@ -2,6 +2,16 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
+
+.login-title {
+    text-align: center;
+    font-size: 1.3em !important;
+}
+
+.box {
+    margin-top: 40% !important;
+}
+
 .active {
     font-weight: bold;
 }
