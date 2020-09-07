@@ -1,96 +1,89 @@
-<h4 *ngIf="!data" class="center-align section titulo">NUEVO LENTE</h4>
-<h4 *ngIf="data" class="center-align section titulo">EDITAR LENTE</h4>
-<div class="container section">
-    <div class="row">
-        <form class="col s12" [formGroup]="lensForm">
-          <div class="row">
-            <div class="input-field col s4">
-              Valor Esférico
-              <input placeholder="" type="number" formControlName="sphericalValue" class="validate">
-            </div>
-            <div class="input-field col s4">
-              Valor Cilíndrico
-              <input placeholder="" type="number" formControlName="cilyndricalValue" class="validate">
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s4">
-              Indice de Refracción
-              <input placeholder="" type="text" formControlName="refractiveIndex" class="validate">
-            </div>
-            <div class="input-field col s4">
-              Eje
-              <input placeholder="" type="text" formControlName="axis" class="validate">
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s4">
-                Diámetro
-                <input placeholder="" type="text" formControlName="diameter" class="validate">
-            </div>
-            <div class="input-field col s4">
-                Color
-                <input placeholder="" type="text" formControlName="color" class="validate">
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s5">
-              Cantidad en Stock
-              <input placeholder="" type="number" formControlName="quantityInStock" class="validate">
-            </div>
+<h4 *ngIf="!data.edit" class="center-align section title1">NUEVO LENTE</h4>
+<h4 *ngIf="data.edit" class="center-align section title1">EDITAR LENTE</h4>
+<div class="section">
+  <div class="row">
+    <form class="col s12" [formGroup]="lensForm">
+      <div class="row">
+        <div class="input-field col s4">
+          Valor Esférico
+          <input placeholder="" type="text" formControlName="sphericalValue" class="validate">
         </div>
-        <div class="row">
-            <div style="margin-left: 0.5rem;">
-                <div>Diseño</div> 
-                <br>          
-                <select class="browser-default col s4" style="border-color: black;" formControlName="design">
-                    <option value="" disabled selected>Seleccionar</option>
-                    <option [ngValue]="1">Option 1</option>
-                    <option [ngValue]="2">Option 2</option>
-                    <option [ngValue]="3">Option 3</option>
-                </select>
-            </div>
-            
-            <div style="margin-left: 0.5rem; margin-top: -2.8rem; margin-left: 6.4rem;">
-                <span style="margin-left: 13rem;">Material</span>
-                <select class="browser-default col s5" 
-                style="border-color: black; margin-left: 3rem;" formControlName="material">
-                    <option value="" disabled selected>Seleccionar</option>
-                    <option [ngValue]="1">Option 1</option>
-                    <option [ngValue]="2">Option 2</option>
-                    <option [ngValue]="3">Option 3</option>
-                </select>
-            </div>
+        <div class="input-field col s4">
+          Valor Cilíndrico
+          <input placeholder="" type="text" formControlName="cilyndricalValue" class="validate">
         </div>
-
-        <div class="row">
-            <div style="margin-left: 0.5rem;">
-                <div>Acabado</div> 
-                <br>          
-                <select class="browser-default col s4" style="border-color: black;" formControlName="finishingTouch">
-                    <option value="" disabled selected>Seleccionar</option>
-                    <option [ngValue]="1">Option 1</option>
-                    <option [ngValue]="2">Option 2</option>
-                    <option [ngValue]="3">Option 3</option>
-                </select>
-            </div>
-            
-            <div style="margin-left: 0.5rem; margin-top: -2.8rem; margin-left: 6.4rem;">
-                <span style="margin-left: 13rem;">Proveedor</span>
-                <select class="browser-default col s5" 
-                style="border-color: black; margin-left: 3rem;" formControlName="supplier">
-                    <option value="" disabled selected>Seleccionar</option>
-                    <option [ngValue]="1">Option 1</option>
-                    <option [ngValue]="2">Option 2</option>
-                    <option [ngValue]="3">Option 3</option>
-                </select>
-            </div>
-        </div>
-
-        </form>
       </div>
       <div class="row">
-        <button type="submit" class="waves-effect green btn" [disabled]="lensForm.status === 'INVALID'" (click)="onSubmit()">Guardar</button>
-        <button class="waves-effect red btn" (click)="cancel()" style="margin-left: 0.2rem;">Cancelar</button>
+        <div class="input-field col s4">
+          Indice de Refracción
+          <input placeholder="" type="text" formControlName="refractiveIndex" class="validate">
+        </div>
+        <div class="input-field col s4">
+          Eje
+          <input placeholder="" type="text" formControlName="axis" class="validate">
+        </div>
       </div>
+      <div class="row">
+        <div class="input-field col s4">
+          Diámetro
+          <input placeholder="" type="text" formControlName="diameter" class="validate">
+        </div>
+        <div class="input-field col s4">
+          Color
+          <input placeholder="" type="text" formControlName="color" class="validate">
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s5">
+          Cantidad en Stock
+          <input placeholder="" type="number" formControlName="quantityInStock" class="validate">
+        </div>
+      </div>
+      <div class="row">
+        <div style="margin-left: 0.5rem;">
+          <div>Diseño</div>
+          <br>
+          <select *ngIf="lensDesigns$ | async as lensDesigns" class="browser-default col s4"
+            style="border-color: black;" formControlName="design">
+            <option value="" disabled selected>Seleccionar</option>
+            <option *ngFor="let lensDesign of lensDesigns" [ngValue]="lensDesign.idDisenoLente">{{lensDesign.nombre}} - {{lensDesign.descripcion}}</option>
+          </select>
+        </div>
+
+        <div style="margin-left: 0.5rem; margin-top: -2.8rem; margin-left: 7.4rem;">
+          <span style="margin-left: 13rem;">Material</span>
+          <select *ngIf="lensMaterials$ | async as lensMaterials" class="browser-default col s5" style="border-color: black; margin-left: 3rem;"
+            formControlName="material">
+            <option value="" disabled selected>Seleccionar</option>
+            <option *ngFor="let lensMaterial of lensMaterials" [ngValue]="lensMaterial.idMaterialLente">{{lensMaterial.nombre}} - {{lensMaterial.descripcion}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div style="margin-left: 0.5rem;">
+          <div>Acabado</div>
+          <br>
+          <select *ngIf="lensFinishes$ | async as lensFinishes" class="browser-default col s4" style="border-color: black;" formControlName="finish">
+            <option value="" disabled selected>Seleccionar</option>
+            <option *ngFor="let lensFinish of lensFinishes" [ngValue]="lensFinish.idAcabadoLente">{{lensFinish.nombre}} - {{lensFinish.descripcion}}</option>
+          </select>
+        </div>
+
+        <div style="margin-left: 0.5rem; margin-top: -2.8rem; margin-left: 7.4rem;">
+          <span style="margin-left: 13rem;">Proveedor</span>
+          <select *ngIf="suppliersLaboratories$ | async as suppliersLaboratories" class="browser-default col s5" style="border-color: black; margin-left: 3rem;"
+            formControlName="supplier">
+            <option value="" disabled selected>Seleccionar</option>
+            <option *ngFor="let supplierLaboratory of suppliersLaboratories" [ngValue]="supplierLaboratory.idProvLab">{{supplierLaboratory.nombreFantasia}}</option>
+          </select>
+        </div>
+      </div>
+
+    </form>
+  </div>
+  <div class="row">
+    <button type="submit" class="waves-effect green btn" (click)="onSubmit()">Guardar</button>
+    <button class="waves-effect red btn" (click)="cancel()" style="margin-left: 0.2rem;">Cancelar</button>
+  </div>
 </div>

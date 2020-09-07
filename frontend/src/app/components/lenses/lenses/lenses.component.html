@@ -1,42 +1,42 @@
 <div class="container section">
-    <h1 class="titulo">LENTES</h1>
-    <div class="row">
-        <input class="col s3 offset-s9" type="search" (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
-        <a class="waves-effect green btn" (click)="addLens()">Agregar</a>
-      </div>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 striped res centered">
-        <ng-container matColumnDef="codigo">
-          <th mat-header-cell *matHeaderCellDef> Código </th>
-          <td mat-cell *matCellDef="let lens"> {{lens.id}} </td>
-        </ng-container>
-        <ng-container matColumnDef="sphericalValue">
-          <th mat-header-cell *matHeaderCellDef> Valor Esférico </th>
-          <td mat-cell *matCellDef="let lens"> {{lens.title}} </td>
-        </ng-container>
-        <ng-container matColumnDef="cylindricalValue">
-            <th mat-header-cell *matHeaderCellDef> Valor Cilíndrico </th>
-            <td mat-cell *matCellDef="let lens"> {{lens.title}} </td>
-        </ng-container>
-        <ng-container matColumnDef="quantityInStock">
-            <th mat-header-cell *matHeaderCellDef> Cantidad en Stock </th>
-            <td mat-cell *matCellDef="let lens"> {{lens.title}} </td>
-        </ng-container>
-        <ng-container matColumnDef="lensMaterial">
-            <th mat-header-cell *matHeaderCellDef> Material </th>
-            <td mat-cell *matCellDef="let lens"> {{lens.title}} </td>
-        </ng-container>
-        <ng-container matColumnDef="acciones">
-            <th mat-header-cell *matHeaderCellDef> Acciones </th>
-            <td mat-cell *matCellDef="let lens">
-                <a style="cursor: pointer" (click)="dataLens(lens)"><i class="material-icons">visibility</i></a>
-                <a style="cursor: pointer" (click)="editLens(lens.id)"><i class="material-icons">edit</i></a>
-                <a style="cursor: pointer; color: red"><i class="material-icons">delete</i></a>
-            </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-    
-      <mat-paginator [length]= "lenses.length" [pageSize]="10" showFirstLastButtons></mat-paginator>
-    
-    </div>
+  <h1 class="title1">LENTES</h1>
+  <div class="row">
+    <input class="col s3 offset-s9" type="search" (keyup)="applyFilter($event.target.value)" (focus)="setupFilter()"
+      placeholder="Buscar">
+    <a class="waves-effect green btn" (click)="addLens()">Agregar</a>
+  </div>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 striped res centered">
+    <ng-container matColumnDef="codigo">
+      <th mat-header-cell *matHeaderCellDef> Código </th>
+      <td mat-cell *matCellDef="let element"> {{element.codLente.toString().padStart(6, 0)}} </td>
+    </ng-container>
+    <ng-container matColumnDef="sphericalValue">
+      <th mat-header-cell *matHeaderCellDef> Valor Esférico </th>
+      <td mat-cell *matCellDef="let element"> {{element.valorEsf}} </td>
+    </ng-container>
+    <ng-container matColumnDef="cylindricalValue">
+      <th mat-header-cell *matHeaderCellDef> Valor Cilíndrico </th>
+      <td mat-cell *matCellDef="let element"> {{element.valorCil}} </td>
+    </ng-container>
+    <ng-container matColumnDef="quantityInStock">
+      <th mat-header-cell *matHeaderCellDef> Cantidad en Stock </th>
+      <td mat-cell *matCellDef="let element"> {{element.cantidad}} </td>
+    </ng-container>
+    <ng-container matColumnDef="lensMaterial">
+      <th mat-header-cell *matHeaderCellDef> Material </th>
+      <td mat-cell *matCellDef="let element"> {{element.material_lente.nombre}} </td>
+    </ng-container>
+    <ng-container matColumnDef="acciones">
+      <th mat-header-cell *matHeaderCellDef> Acciones </th>
+      <td mat-cell *matCellDef="let element">
+        <a style="cursor: pointer" (click)="dataLens(element.codLente)"><i class="material-icons">visibility</i></a>
+        <a style="cursor: pointer" (click)="editLens(element.codLente)"><i class="material-icons">edit</i></a>
+        <a style="cursor: pointer; color: red"><i class="material-icons">delete</i></a>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+<mat-paginator [length]="lenses.length" [pageSize]="10" showFirstLastButtons style="margin-right: 12rem !important">
+</mat-paginator>
