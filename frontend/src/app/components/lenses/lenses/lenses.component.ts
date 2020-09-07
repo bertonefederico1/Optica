@@ -73,6 +73,15 @@ export class LensesComponent implements OnInit {
       })
   }
 
+  deleteLens(lensID: number){
+    if(confirm('¿Seguro que desea eliminar el lente?')){
+      this.lensService.deleteLens(lensID)
+      .subscribe(
+        res => this.getAll()
+      )
+    }
+  }
+
   getAll(){
     this.lensService.getAll()
       .subscribe(
@@ -105,7 +114,7 @@ export class LensesComponent implements OnInit {
 
   setupFilter(){
     this.dataSource.filterPredicate = (data: any, filter: string) => {
-      const textToSearch = data.valorEsf.toString() && data.valorCil.toString();
+      const textToSearch = data.valorEsf + data.valorCil;
       return textToSearch.indexOf(filter) != -1
     }
   }

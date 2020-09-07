@@ -1,54 +1,52 @@
-<div class="container">
-    <div class="planilla">
-        <p>
-            <h4 class="center-align titulo">DATOS DEL LENTE</h4>
-            <br><br>
+<div *ngIf="lens" class="sheet">
+    <p>
+    <h4 class="center-align title1">DATOS DEL LENTE</h4>
+    <br><br>
 
-        <p>
-            <label class="black-text etiqueta">Valor Esférico: </label>
-            <span class="contenido"></span>
-        <p>
-            <label class="black-text etiqueta">Valor Cilíndrico: </label>
-            <span class="contenido"></span>
+    <p>
+        <label class="black-text label1">Valor Esférico: </label>
+        <span class="content">{{lens.valorEsf}}</span>
+    <p>
+        <label class="black-text label1">Valor Cilíndrico: </label>
+        <span class="content">{{lens.valorCil}}</span>
 
-        <p>
-            <label class="black-text etiqueta">Indice de Refracción: </label>
-            <span class="contenido"></span>
+    <p>
+        <label class="black-text label1">Indice de Refracción: </label>
+        <span class="content">{{lens.indiceRefraccion}}</span>
 
-        <p>
-            <label class="black-text etiqueta">Eje: </label>
-            <span class="contenido"></span>
+    <p>
+        <label class="black-text label1">Eje: </label>
+        <span class="content">{{lens.eje}}</span>
 
-        <p>
-            <label class="black-text etiqueta">Diámetro: </label>
-            <span class="contenido"></span>
+    <p>
+        <label class="black-text label1">Diámetro: </label>
+        <span class="content">{{lens.diametro}}</span>
 
-        <p>
-            <label class="black-text etiqueta">Color: </label>
-            <span class="contenido"></span>
+    <p>
+        <label class="black-text label1">Color: </label>
+        <span class="content">{{lens.color}}</span>
 
-        <p>
-            <label class="black-text etiqueta">Cantidad en Stock: </label>
-            <span class="contenido"></span>
-            
-        <p>
-            <label class="black-text etiqueta">Dieseño: </label>
-            <span class="contenido"></span>
+    <p>
+        <label class="black-text label1">Cantidad en Stock: </label>
+        <span class="content">{{lens.cantidad}}</span>
 
-        <p>
-            <label class="black-text etiqueta">Material: </label>
-            <span class="contenido"></span>
+    <p>
+        <label class="black-text label1">Diseño: </label>
+        <span class="content">{{lens.diseno_lente.nombre}}</span>
 
-        <p>
-            <label class="black-text etiqueta">Acabado: </label>
-            <span class="contenido"></span>
+    <p>
+        <label class="black-text label1">Material: </label>
+        <span class="content">{{lens.material_lente.nombre}}</span>
 
-        <p>
-            <label class="black-text etiqueta">Proveedor: </label>
-            <span class="contenido"></span>
+    <p>
+        <label class="black-text label1">Acabado: </label>
+        <span class="content">{{lens.acabado_lente.nombre}}</span>
 
-    </div>
-    <div style="padding-bottom: 2rem">
-        <a (click)="close()" class="waves-effect red btn-large" style="display: block">Salir</a>
-    </div>
+    <p>
+        <label class="black-text label1">Proveedor: </label>
+        <span class="content">{{lens.proveedor_laboratorio.nombreFantasia}}</span>
+
+</div>
+<div style="padding-bottom: 2rem">
+    <a (click)="close()" class="waves-effect red btn-large" style="display: block">Salir</a>
 </div>

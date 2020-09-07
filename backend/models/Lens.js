@@ -77,6 +77,12 @@ const Lens = sequelize.define('lente', {
             notEmpty: false
         }
     },
+    cantidad: {
+        type: DataTypes.INTEGER,
+        validate: {
+            notEmpty: false
+        }
+    },
     diametro: {
         type: DataTypes.INTEGER,
         validate: {
@@ -85,12 +91,6 @@ const Lens = sequelize.define('lente', {
     },
     color: {
         type: DataTypes.STRING,
-        validate: {
-            notEmpty: false
-        }
-    },
-    cantidad: {
-        type: DataTypes.INTEGER,
         validate: {
             notEmpty: false
         }

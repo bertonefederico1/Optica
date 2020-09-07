@@ -12,7 +12,8 @@ lensController.getAll = async (req, res) => {
     try {
         const lenses = await Lens.findAll({
             where: {
-                activo: 1
+                activo: 1,
+                deStock: 1
             },
             include: {
                 model: LensMaterial
@@ -72,17 +73,21 @@ lensController.createLens = async (req, res) => {
 lensController.editLens = async (req, res) => {
     try {
         await Lens.update({
-            idMaterialArmazon: req.body.material,
-            idDisenoArmazon: req.body.design,
-            idUtilidadArmazon: req.body.utility,
-            idProvLab: req.body.supplierLaboratory,
-            modelo: req.body.model,
-            marca: req.body.brand,
+            idProvLab: req.body.supplier,
+            idDisenoLente: req.body.design,
+            idMaterialLente: req.body.material,
+            idAcabadoLente: req.body.finish,
+            valorEsf: req.body.sphericalValue,
+            valorCil: req.body.cilyndricalValue,
+            indiceRefraccion: req.body.refractiveIndex,
+            eje: req.body.axis,
+            diametro: req.body.diameter,
             color: req.body.color,
-            cantidad: req.body.quantityInStock
+            cantidad: req.body.quantityInStock,
+            deStock: 1
         }, {
             where: {
-                codArmazon: req.params.frameID
+                codLente: req.params.lensID
             }
         });
         res.status(200).json();
@@ -97,7 +102,7 @@ lensController.suspendLens = async (req, res) => {
             activo: 0
         }, {
             where: {
-                codArmazon: req.params.frameID
+                codLente: req.params.lensID
             }
         });
         res.status(200).json();
