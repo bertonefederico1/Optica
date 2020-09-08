@@ -2,23 +2,24 @@
 <div class="container section">
     <fieldset>
         <legend><b>Datos Personales</b></legend>
-        <div class="row">
-            <div class="input-field col s5">
-                Nombre y Apellido
-                <input type="text" class="validate">
+        <form class="col s12" [formGroup]="customerForm">
+            <div class="row">
+                <div class="col s5">
+                    Nombre y Apellido
+                    <input type="text" class="validate" formControlName="nameAndSurname">
+                </div>
+                <div class="col s4 offset-s1">
+                    Teléfono
+                    <input type="text" class="validate" formControlName="telephone">
+                </div>
             </div>
-            <div class="input-field col s4 offset-s1">
-                Teléfono
-                <input type="text" class="validate">
+            <div class="row">
+                <div class="col s5">
+                    Dirección
+                    <input type="text" class="validate" formControlName="address" disabled>
+                </div>
+                <button class="waves-effect waves-light btn-small col offset-s9" (click)="addCustomer()">Buscar Cliente</button>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s5">
-                Dirección
-                <input type="text" class="validate">
-            </div>
-            <button class="waves-effect waves-light btn-small col offset-s9">Buscar Cliente</button>
-        </div>
-       
+        </form>      
     </fieldset>
 </div>

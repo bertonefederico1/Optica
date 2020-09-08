@@ -4,6 +4,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from "@angular/material/input";
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
 
 
 @NgModule({
@@ -12,14 +13,16 @@ import { MatSelectModule } from '@angular/material/select';
         MatPaginatorModule,
         MatInputModule,
         MatDialogModule,
-        MatSelectModule
+        MatSelectModule,
+        MatRadioModule
     ],
     exports: [
         MatTableModule,
         MatPaginatorModule,
         MatInputModule,
         MatDialogModule,
-        MatSelectModule
+        MatSelectModule,
+        MatRadioModule
     ]
 })
 

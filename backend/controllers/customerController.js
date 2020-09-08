@@ -9,7 +9,7 @@ const customerController = { };
 customerController.getAll = async (req, res) => {
     try {
         const customers = await Customer.findAll({
-            attributes: ['idCliente', 'nombre', 'apellido', 'telefono'],
+            attributes: ['idCliente', 'nombre', 'apellido', 'telefono', 'domicilio'],
             where: {
                 activo: 1
             }
