@@ -15,6 +15,7 @@ const lensMaterialController = require('../controllers/lensMaterialController');
 const lensDesignController = require('../controllers/lensDesignController');
 const lensFinishController = require('../controllers/lensFinishController');
 const logController = require('../controllers/logController');
+const prescriptionController = require('../controllers/prescriptionController');
 
 //Login y Logout
 router.post('/login', logController.logIn);
@@ -71,5 +72,8 @@ router.get('/designsLens', lensDesignController.getAll);
 
 //Ruta de Utilidades Lentes
 router.get('/finishesLens', lensFinishController.getAll);
+
+//Ruta de recetas
+router.get('/prescriptionsById/:customerID', prescriptionController.getAllById);
 
 module.exports = router;

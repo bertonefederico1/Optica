@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-prescriptions-per-customer',
   templateUrl: './prescriptions-per-customer.component.html',
   styleUrls: []
 })
-export class PrescriptionsPerCustomerComponent implements OnInit {
+export class PrescriptionsPerCustomerComponent implements OnChanges {
+
+  @Input('customerID') customerID;
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnChanges(){
+    console.log(this.customerID)
   }
 
 }

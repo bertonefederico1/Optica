@@ -28,6 +28,10 @@ export class SelectCustomerComponent implements OnInit {
     this.dialogRef.close(this.customerID);
   }
 
+  close(){
+    this.dialogRef.close();
+  }
+
   setupFilter(){
     this.dataSource.filterPredicate = (data: any, filter: string) => {
       const textToSearch = data.nombre.toLowerCase() + data.apellido.toLowerCase();

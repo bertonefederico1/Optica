@@ -23,9 +23,9 @@ export class PrescriptionsComponent implements OnInit {
 
 
   customerForm = new FormGroup({
-    nameAndSurname: new FormControl('', Validators.required),
-    telephone: new FormControl('', Validators.required),
-    address: new FormControl('', Validators.required)
+    nameAndSurname: new FormControl({value: '', disabled: true}),
+    telephone: new FormControl({value: '', disabled: true}),
+    address: new FormControl({value: '', disabled: true})
   })
 
   ngOnInit(): void {
@@ -47,7 +47,7 @@ export class PrescriptionsComponent implements OnInit {
 
   setData(){
     this.customerForm.patchValue({
-      nameAndSurname: this.customer.nombre + this.customer.apellido,
+      nameAndSurname: this.customer.nombre + ' ' + this.customer.apellido,
       telephone: this.customer.telefono,
       address: this.customer.domicilio
     })
@@ -56,9 +56,10 @@ export class PrescriptionsComponent implements OnInit {
   addCustomer(){
     this.dialogConfig.height = '100%';
     this.dialogConfig.width = '100%';
+    this.dialogConfig.autoFocus = true;
     const dialogRef = this.dialogRef.open(SelectCustomerComponent, this.dialogConfig);
     dialogRef.afterClosed()
-      .subscribe(res => this.getOne(res))
+      .subscribe(res => res ? this.getOne(res) : res)
   }
 
 }

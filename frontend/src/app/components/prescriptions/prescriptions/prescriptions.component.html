@@ -16,10 +16,11 @@
             <div class="row">
                 <div class="col s5">
                     Dirección
-                    <input type="text" class="validate" formControlName="address" disabled>
+                    <input type="text" class="validate" formControlName="address">
                 </div>
                 <button class="waves-effect waves-light btn-small col offset-s9" (click)="addCustomer()">Buscar Cliente</button>
             </div>
         </form>      
     </fieldset>
+    <app-prescriptions-per-customer *ngIf="customer" [customerID]="customer.idCliente"></app-prescriptions-per-customer>
 </div>
