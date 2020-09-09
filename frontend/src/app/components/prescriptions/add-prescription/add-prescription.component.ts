@@ -28,20 +28,51 @@ export class AddPrescriptionComponent implements OnInit {
     axisLE: new FormControl('', Validators.required),
     farValueDIP: new FormControl('', Validators.required),
     nearValueDIP: new FormControl('', Validators.required),
-    addValue: new FormControl('', Validators.required),
-  })
+    addValue: new FormControl('', Validators.required)
+  });
+  prescription: any;
 
   ngOnInit(): void {
+    if(this.data.edit){
+      this.prescriptionsService.getOne(this.data.prescriptionNumber)
+        .subscribe(res => {
+          this.prescription = res;
+          this.setData();
+        })
+    }
+  }
+
+  setData(){
+    this.prescriptionForm.patchValue({
+      doctorName: this.prescription.nombreMedico,
+      prescriptionObs: this.prescription.obsReceta,
+      sphericalValueRE: this.prescription.valorEsfOD,
+      cylindricalValueRE: this.prescription.valorCilOD,
+      axisRE: this.prescription.ejeOD,
+      sphericalValueLE: this.prescription.valorEsfOI,
+      cylindricalValueLE: this.prescription.valorCilOI,
+      axisLE: this.prescription.ejeOI,
+      farValueDIP: this.prescription.valorDIPLejos,
+      nearValueDIP: this.prescription.valorDIPCerca,
+      addValue: this.prescription.valorADD
+    })
   }
 
   onSubmit(){
-    this.prescriptionsService.addPrescription(this.prescriptionForm.value)
-      .subscribe(res => this.dialogRef.close());
+    if(this.data.edit){
+      this.prescriptionsService.editPrescription(this.prescriptionForm.value, this.data.prescriptionNumber)
+      .subscribe(
+        res => this.dialogRef.close(),
+        err => alert("Verifique los datos ingresados")
+        );
+    } else {
+      this.prescriptionsService.addPrescription(this.prescriptionForm.value)
+      .subscribe(
+        res => this.dialogRef.close(),
+        err => alert("Verifique los datos ingresados"));
+    }
   }
 
-  cancel(){
-
-  }
   
 
 }

@@ -13,7 +13,7 @@ import { CustomersService } from './../../../services/customers/customers.servic
 export class PrescriptionsComponent implements OnInit {
 
   dialogConfig = new MatDialogConfig();
-  openModalselectCliente$ = fromEvent<KeyboardEvent>(document, 'keyup');
+  openModalSelectCliente$ = fromEvent<KeyboardEvent>(document, 'keyup');
   customer: any;
 
   constructor(
@@ -29,7 +29,7 @@ export class PrescriptionsComponent implements OnInit {
   })
 
   ngOnInit(): void {
-    this.openModalselectCliente$
+    this.openModalSelectCliente$
       .subscribe(res => {
         if(res.key === '+'){
           this.addCustomer();

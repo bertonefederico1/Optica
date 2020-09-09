@@ -11,6 +11,22 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     height: 5rem;
 }
 
+.text-area2{
+    width: 25rem;
+    height: 5rem;
+}
+
+.description{
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-bottom: .5em;
+}
+
+legend{
+    font-size: 18px !important;
+}
+
 .ml10 {
     margin-left: 10px !important;
 }
@@ -81,7 +97,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .content {
     color:#0A034F;
     margin-left: 30px;
-    font-size: 1rem;
     font-size: 2em;
+    text-shadow: 1px 1px;
+}
+
+.content1 {
+    color:#0A034F;
+    margin-left: 10px;
+    font-size: 1rem;
     text-shadow: 1px 1px;
 }

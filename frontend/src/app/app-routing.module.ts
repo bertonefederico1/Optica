@@ -10,7 +10,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { PrescriptionsComponent } from './components/prescriptions/prescriptions/prescriptions.component';
 
-import { AddPrescriptionComponent } from './components/prescriptions/add-prescription/add-prescription.component';
+import { DataPrescriptionComponent } from './components/prescriptions/data-prescription/data-prescription.component';
 
 
 const routes: Routes = [{
@@ -19,7 +19,7 @@ const routes: Routes = [{
     pathMatch: 'full' 
 },{
   path: 'new',
-  component: AddPrescriptionComponent
+  component: DataPrescriptionComponent
 },{
   path: 'recetas',
   component: PrescriptionsComponent

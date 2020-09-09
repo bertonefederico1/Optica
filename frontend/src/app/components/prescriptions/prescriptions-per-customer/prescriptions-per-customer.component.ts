@@ -3,6 +3,7 @@ import { PrescriptionsService } from './../../../services/prescriptions/prescrip
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddPrescriptionComponent } from './../add-prescription/add-prescription.component';
+import { DataPrescriptionComponent } from './../data-prescription/data-prescription.component';
 
 @Component({
   selector: 'app-prescriptions-per-customer',
@@ -21,7 +22,7 @@ export class PrescriptionsPerCustomerComponent implements OnInit, OnChanges {
   displayedColumns: string[] = ['prescriptionNumber', 'prescriptionDate', 'doctorName', 'actions'];
   dataSource = null;
   dialogConfig = new MatDialogConfig();
-  edit: boolean = false;
+  edit: boolean;
   
   ngOnInit(){
     this.dialogConfig.width = '100%';
@@ -41,11 +42,41 @@ export class PrescriptionsPerCustomerComponent implements OnInit, OnChanges {
       });
   }
 
-  addPrescription(){
+  dataPrescription(prescriptionNumber: number){
     this.dialogConfig.data = {
-      customerID: this.customerID
+      prescriptionNumber: prescriptionNumber
     }
-    this.dialogRef.open(AddPrescriptionComponent, this.dialogConfig);
+    this.dialogRef.open(DataPrescriptionComponent, this.dialogConfig);
+  }
+
+  addPrescription(){
+    this.edit = false;
+    this.dialogConfig.data = {
+      customerID: this.customerID,
+      edit: this.edit
+    }
+    const dialogRef = this.dialogRef.open(AddPrescriptionComponent, this.dialogConfig);
+    dialogRef.afterClosed()
+      .subscribe(res => this.getPrescriptionsBycustomerID());
+  }
+
+  editPrescription(prescriptionNumber: number){
+    this.edit = true;
+    this.dialogConfig.data = {
+      customerID: this.customerID,
+      edit: this.edit,
+      prescriptionNumber: prescriptionNumber
+    }
+    const dialogRef = this.dialogRef.open(AddPrescriptionComponent, this.dialogConfig)
+    dialogRef.afterClosed()
+      .subscribe(res => this.getPrescriptionsBycustomerID());
+  }
+
+  deletePrescription(prescriptionNumber: number){
+    if(confirm("¿Seguro que desea eliminar la receta?")){
+      this.prescriptionsService.deletePrescription(prescriptionNumber)
+      .subscribe(res => this.getPrescriptionsBycustomerID());
+    }
   }
 
 }

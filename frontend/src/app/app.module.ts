@@ -33,6 +33,7 @@ import { PrescriptionsComponent } from './components/prescriptions/prescriptions
 import { AddPrescriptionComponent } from './components/prescriptions/add-prescription/add-prescription.component';
 import { PrescriptionsPerCustomerComponent } from './components/prescriptions/prescriptions-per-customer/prescriptions-per-customer.component';
 import { SelectCustomerComponent } from './components/customers/select-customer/select-customer.component';
+import { DataPrescriptionComponent } from './components/prescriptions/data-prescription/data-prescription.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { SelectCustomerComponent } from './components/customers/select-customer/
     PrescriptionsComponent,
     AddPrescriptionComponent,
     PrescriptionsPerCustomerComponent,
-    SelectCustomerComponent
+    SelectCustomerComponent,
+    DataPrescriptionComponent
   ],
   imports: [
     BrowserModule,
