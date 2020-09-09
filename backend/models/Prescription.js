@@ -34,10 +34,7 @@ const Prescription = sequelize.define('receta', {
         }
     },
     obsReceta: {
-        type: DataTypes.TEXT,
-        validate: {
-            notEmpty: false
-        }
+        type: DataTypes.TEXT
     },
     valorEsfOD: {
         type: DataTypes.STRING,

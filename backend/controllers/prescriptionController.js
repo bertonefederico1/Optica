@@ -4,7 +4,7 @@ const Prescription = require('../models/Prescription');
 const prescriptionController = { };
 
 
-prescriptionController.getAllById = async (req, res) => {
+prescriptionController.getAllByCustomer = async (req, res) => {
     try {
         const prescriptions = await Prescription.findAll({
             where: {
@@ -31,36 +31,31 @@ prescriptionController.getAllById = async (req, res) => {
     } catch(err){
         res.json(err);
     }
-}
+} */
 
-customerController.createCustomer = async (req, res) => {
+prescriptionController.createPrescription = async (req, res) => {
     try {
-        if(req.body.obrasSociales.length === 0) {
-            throw new Error();
-        }; 
-        const customer = await Customer.create({
-            nombre: req.body.nombre,
-            apellido: req.body.apellido,
-            telefono: req.body.telefono,
-            email: req.body.email,
-            domicilio: req.body.domicilio
-        });
-        req.body.obrasSociales.map(os => {
-            Customer_ObraSocial.create({
-                idCliente: customer.idCliente,
-                idObraSocial: os.obraSocial.idObraSocial,
-                nroSocio: os.nsocio
-            })
+        const customer = await Prescription.create({
+            idCliente: req.body.customerID,
+            nombreMedico: req.body.doctorName,
+            obsReceta: req.body.prescriptionObs,
+            valorEsfOD: req.body.sphericalValueRE,
+            valorCilOD: req.body.cylindricalValueRE,
+            ejeOD: req.body.axisRE,
+            valorEsfOI: req.body.sphericalValueLE,
+            valorCilOI: req.body.cylindricalValueLE,
+            ejeOI: req.body.axisLE,
+            valorDIPLejos: req.body.farValueDIP,
+            valorDIPCerca: req.body.nearValueDIP,
+            valorADD: req.body.addValue
         });
         res.status(200).json();
     } catch (err) {
-        res.status(400).json({
-            message: err
-        })
+        res.status(400).json()
     }
 };
 
-customerController.editCustomer = async (req, res) => {
+/* customerController.editCustomer = async (req, res) => {
     try {
         if(req.body.obrasSociales.length === 0) {
             throw new Error();
@@ -103,7 +98,7 @@ customerController.suspendCustomer = async (req, res) => {
     } catch (err) {
         res.json(err);
     }
-}; */
-
+};
+ */
 
 module.exports = prescriptionController;

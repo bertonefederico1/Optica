@@ -13,4 +13,20 @@ export class PrescriptionsService {
   getPrescriptionsBycustomerID(customerID: number){
     return this.http.get(`${this.URL}/prescriptionsById/${customerID}`);
   }
+
+  getOne(prescritionID: number){
+    return this.http.get(`${this.URL}/prescription/${prescritionID}`);
+  }
+
+  addPrescription(prescription: any){
+    return this.http.post(`${this.URL}/newPrescription`, prescription);
+  }
+
+  editPrescription(prescription: any, prescriptionID: number){
+    return this.http.put(`${this.URL}/editPrescription/${prescriptionID}`, prescription);
+  }
+
+  deletePrescription(prescriptionID: number){
+    return this.http.put(`${this.URL}/deletePrescription/${prescriptionID}`, false);
+  }
 }

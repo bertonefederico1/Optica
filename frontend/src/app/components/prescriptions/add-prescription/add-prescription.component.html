@@ -1,1 +1,95 @@
-<p>add-prescription works!</p>
+<h4 class="section title1">DATOS DE LA RECETA</h4>
+<div class="row container">
+    <form class="col m12" [formGroup]="prescriptionForm">
+        <div class="row">
+            <div class="col m4">
+                Médico
+                <input placeholder="" type="text" class="validate" formControlName="doctorName">
+            </div>
+        </div>
+        <div class="row center-align">
+            <div class="col s6 subtitle">OJO DERECHO</div>
+            <div class="col s6 subtitle">OJO IZQUIERDO</div>
+        </div>
+
+        <div class="row">
+            <div class="center-align">
+                <div class="col m6">
+                    <span><u>Valor Esférico:</u></span>
+                    <div class="input-field inline">
+                        <input type="text" class="validate ml10" formControlName="sphericalValueRE">
+                    </div>
+                </div>
+                <div class="col m6">
+                    <span><u>Valor Esférico:</u></span>
+                    <div class="input-field inline">
+                        <input type="text" class="validate ml10" formControlName="sphericalValueLE">
+                    </div>
+                </div>
+                <div class="col m6">
+                    <span><u>Valor Cilíndrico:</u></span>
+                    <div class="input-field inline">
+                        <input type="text" class="validate ml10" formControlName="cylindricalValueRE">
+                    </div>
+                </div>
+                <div class="col m6">
+                    <span><u>Valor Cilíndrico:</u></span>
+                    <div class="input-field inline">
+                        <input type="text" class="validate ml10" formControlName="cylindricalValueLE">
+                    </div>
+                </div>
+                <div class="col m6">
+                    <span><u>Eje (En grados):</u></span>
+                    <div class="input-field inline">
+                        <input type="text" class="validate ml10" formControlName="axisRE">
+                    </div>
+                </div>
+                <div class="col m6">
+                    <span><u>Eje (En grados):</u></span>
+                    <div class="input-field inline">
+                        <input type="text" class="validate ml10" formControlName="axisLE">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="center-align">
+            <div class="row">
+                <div class="col m6">
+                    <span><u>D.I Cerca:</u></span>
+                    <div class="input-field inline">
+                        <input type="text" class="validate ml10" formControlName="nearValueDIP">
+                    </div>
+                </div>
+                <div class="col m6">
+                    <span><u>Valor ADD:</u></span>
+                    <div class="input-field inline">
+                        <input type="text" class="validate ml10" formControlName="addValue">
+                    </div>
+                </div>
+                <div class="col m6">
+                    <span><u>D.I Lejos:</u></span>
+                    <div class="input-field inline">
+                        <input type="text" class="validate ml10" formControlName="farValueDIP">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col m12">
+                  <u>Observaciones:</u>
+                  <div class="input-field inline">
+                    <textarea class="text-area1" formControlName="prescriptionObs"></textarea>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="row right-align">
+            <button class="waves-effect green btn selected" (click)="onSubmit()">
+              Guardar
+            </button>
+            <button class="waves-effect red btn selected" mat-dialog-close style="margin-left: 0.2rem;">
+              Cancelar
+            </button>
+          </div>
+    </form>
+</div>

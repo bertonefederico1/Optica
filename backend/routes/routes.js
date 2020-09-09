@@ -74,6 +74,8 @@ router.get('/designsLens', lensDesignController.getAll);
 router.get('/finishesLens', lensFinishController.getAll);
 
 //Ruta de recetas
-router.get('/prescriptionsById/:customerID', prescriptionController.getAllById);
+router.get('/prescriptionsById/:customerID', prescriptionController.getAllByCustomer);
+router.post('/newPrescription', prescriptionController.createPrescription);
+/* router.put('/editPrescription/:prescriptionID') */
 
 module.exports = router;

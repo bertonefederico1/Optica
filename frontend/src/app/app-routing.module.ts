@@ -10,11 +10,16 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { PrescriptionsComponent } from './components/prescriptions/prescriptions/prescriptions.component';
 
+import { AddPrescriptionComponent } from './components/prescriptions/add-prescription/add-prescription.component';
+
 
 const routes: Routes = [{
     path: '',   
     redirectTo: '/home', 
     pathMatch: 'full' 
+},{
+  path: 'new',
+  component: AddPrescriptionComponent
 },{
   path: 'recetas',
   component: PrescriptionsComponent
