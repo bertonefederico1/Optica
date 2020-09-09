@@ -9,6 +9,7 @@ import { FramesComponent } from './components/frames/frames/frames.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { PrescriptionsComponent } from './components/prescriptions/prescriptions/prescriptions.component';
+import { OrdersComponent } from './components/orders/orders/orders.component';
 
 import { DataPrescriptionComponent } from './components/prescriptions/data-prescription/data-prescription.component';
 
@@ -21,6 +22,10 @@ const routes: Routes = [{
   path: 'new',
   component: DataPrescriptionComponent
 },{
+  path: 'pedidos',
+  component: OrdersComponent
+},
+{
   path: 'recetas',
   component: PrescriptionsComponent
 },{
