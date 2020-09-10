@@ -6,6 +6,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     margin-top: initial;
 }
 
+.inline{
+    width: 60%;
+}
+
+
 .text-area1{
     width: 30rem;
     height: 5rem;

@@ -1,1 +1,80 @@
-<p>add-order works!</p>
+<h4 mat-dialog-title class="section title1">DATOS DEL PEDIDO</h4>
+<form [formGroup]="orderForm">
+    <div class="section">
+        <fieldset>
+            <legend><b>Datos Personales</b></legend>
+                <div class="row">
+                    <div class="col m7">
+                        <span class="description">Nombre y Apellido:</span>
+                        <div class="input-field inline">
+                          <input type="text" class="validate col m12" formControlName="nameAndSurname">
+                        </div>
+                    </div>
+                    <div class="col m5">
+                        <span class="description">Teléfono:</span>
+                        <div class="input-field inline">
+                          <input type="text" class="validate" formControlName="telephone">
+                        </div>
+                    </div>
+                    <div class="col m9">
+                        <span class="description">Domicilio:</span>
+                        <div class="input-field inline">
+                          <input type="text" class="validate" formControlName="address">
+                        </div>
+                    </div>
+                    <button class="waves-effect waves-light btn-small col offset-m9">Buscar Cliente</button>
+                </div>   
+        </fieldset>
+
+        <fieldset>
+            <legend><b>Datos Laboratorio</b></legend>
+                <div class="row">
+                    <div class="col m9">
+                        <span class="description">Laboratorio:</span>
+                        <div class="input-field inline">
+                          <input type="text" class="validate" formControlName="supplierLaboratory">
+                        </div>
+                    </div>
+                    <button class="waves-effect waves-light btn-small col offset-m9" 
+                    style="position: relative; margin-top: -4rem">Buscar Laboratorio</button>
+                </div>
+        </fieldset>
+
+        <fieldset>
+            <legend><b>Datos Pedido</b></legend>
+                <div class="row">
+                    <div class="col m4">
+                        <span class="description">Fecha:</span>
+                        <div class="input-field inline">
+                          <input type="text" class="validate col m8" formControlName="currentDate">
+                        </div>
+                    </div>
+                    <div class="col m8">
+                        <span class="description">Fecha Entrega Esperada:</span>
+                        <div class="input-field inline">
+                          <input type="date" class="validate col m10" formControlName="expectedDeliveryDate">
+                        </div>
+                    </div>
+                </div>
+        </fieldset>
+
+        <fieldset>
+            <legend><b>Datos Lentes</b></legend>
+                <div class="row">
+                    <div class="col m4">
+                        <span class="description">Fecha:</span>
+                        <div class="input-field inline">
+                          <input type="text" class="validate col m8" formControlName="currentDate">
+                        </div>
+                    </div>
+                    <div class="col m8">
+                        <span class="description">Fecha Entrega Esperada:</span>
+                        <div class="input-field inline">
+                          <input type="date" class="validate col m10" formControlName="expectedDeliveryDate">
+                        </div>
+                    </div>
+                </div>
+        </fieldset>
+    </div>
+</form>
+
