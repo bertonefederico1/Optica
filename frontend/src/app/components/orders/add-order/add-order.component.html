@@ -3,78 +3,189 @@
     <div class="section">
         <fieldset>
             <legend><b>Datos Personales</b></legend>
-                <div class="row">
-                    <div class="col m7">
-                        <span class="description">Nombre y Apellido:</span>
-                        <div class="input-field inline">
-                          <input type="text" class="validate col m12" formControlName="nameAndSurname">
-                        </div>
+            <div class="row">
+                <div class="col m7">
+                    <span class="description">Nombre y Apellido:</span>
+                    <div class="input-field inline">
+                        <input type="text" class="validate col m12" formControlName="nameAndSurname">
                     </div>
-                    <div class="col m5">
-                        <span class="description">Teléfono:</span>
-                        <div class="input-field inline">
-                          <input type="text" class="validate" formControlName="telephone">
-                        </div>
+                </div>
+                <div class="col m5">
+                    <span class="description">Teléfono:</span>
+                    <div class="input-field inline">
+                        <input type="text" class="validate" formControlName="telephone">
                     </div>
-                    <div class="col m9">
-                        <span class="description">Domicilio:</span>
-                        <div class="input-field inline">
-                          <input type="text" class="validate" formControlName="address">
-                        </div>
+                </div>
+                <div class="col m9">
+                    <span class="description">Domicilio:</span>
+                    <div class="input-field inline">
+                        <input type="text" class="validate" formControlName="address">
                     </div>
-                    <button class="waves-effect waves-light btn-small col offset-m9">Buscar Cliente</button>
-                </div>   
+                </div>
+                <button class="waves-effect waves-light btn-small col offset-m9"><i
+                        class="material-icons left">search</i>Buscar Cliente</button>
+            </div>
         </fieldset>
 
         <fieldset>
             <legend><b>Datos Laboratorio</b></legend>
-                <div class="row">
-                    <div class="col m9">
-                        <span class="description">Laboratorio:</span>
-                        <div class="input-field inline">
-                          <input type="text" class="validate" formControlName="supplierLaboratory">
-                        </div>
+            <div class="row">
+                <div class="col m9">
+                    <span class="description">Laboratorio:</span>
+                    <div class="input-field inline">
+                        <input type="text" class="validate" formControlName="supplierLaboratory">
                     </div>
-                    <button class="waves-effect waves-light btn-small col offset-m9" 
-                    style="position: relative; margin-top: -4rem">Buscar Laboratorio</button>
                 </div>
+                <button class="waves-effect waves-light btn-small col offset-m9"
+                    style="position: relative; margin-top: -2.5rem"><i class="material-icons left">search</i>Buscar
+                    Laboratorio</button>
+            </div>
         </fieldset>
 
         <fieldset>
             <legend><b>Datos Pedido</b></legend>
-                <div class="row">
-                    <div class="col m4">
-                        <span class="description">Fecha:</span>
-                        <div class="input-field inline">
-                          <input type="text" class="validate col m8" formControlName="currentDate">
-                        </div>
-                    </div>
-                    <div class="col m8">
-                        <span class="description">Fecha Entrega Esperada:</span>
-                        <div class="input-field inline">
-                          <input type="date" class="validate col m10" formControlName="expectedDeliveryDate">
-                        </div>
+            <div class="row">
+                <div class="col m4">
+                    <span class="description">Fecha:</span>
+                    <div class="input-field inline">
+                        <input type="text" class="validate col m8" formControlName="currentDate">
                     </div>
                 </div>
+                <div class="col m8">
+                    <span class="description">Fecha Entrega Esperada:</span>
+                    <div class="input-field inline">
+                        <input type="date" class="validate col m10" formControlName="expectedDeliveryDate">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col m12">
+                    <span class="description">Observaciones:</span>
+                    <div class="input-field inline">
+                        <textarea class="text-area1 mt3"></textarea>
+                    </div>
+                </div>
+            </div>
         </fieldset>
 
         <fieldset>
             <legend><b>Datos Lentes</b></legend>
-                <div class="row">
-                    <div class="col m4">
-                        <span class="description">Fecha:</span>
+            <div class="row">
+                <div class="col m3 push-m1 subtitle">OJO DERECHO</div>
+                <div class="col m2">
+                    <mat-checkbox color="primary" checked="checked">Pedir</mat-checkbox>
+                </div>
+                <div class="col m3 push-m2 subtitle">OJO IZQUIERDO</div>
+                <div class="col push-m1">
+                    <mat-checkbox class="col m2" color="primary" checked="checked">Pedir</mat-checkbox>
+                </div>
+            </div>
+            <div class="row">
+                <div class="center-align">
+                    <div class="col m6">
+                        <span class="description">Valor Esférico:</span>
                         <div class="input-field inline">
-                          <input type="text" class="validate col m8" formControlName="currentDate">
+                            <input type="text" class="validate ml10 col s5">
                         </div>
                     </div>
-                    <div class="col m8">
-                        <span class="description">Fecha Entrega Esperada:</span>
+                    <div class="col m6">
+                        <span class="description">Valor Esférico:</span>
                         <div class="input-field inline">
-                          <input type="date" class="validate col m10" formControlName="expectedDeliveryDate">
+                            <input type="text" class="validate ml10 col s5">
+                        </div>
+                    </div>
+                    <div class="col m6">
+                        <span class="description">Valor Cilíndrico:</span>
+                        <div class="input-field inline">
+                            <input type="text" class="validate ml10 col s5">
+                        </div>
+                    </div>
+                    <div class="col m6">
+                        <span class="description">Valor Cilíndrico:</span>
+                        <div class="input-field inline">
+                            <input type="text" class="validate ml10 col s5">
+                        </div>
+                    </div>
+                    <div class="col m6">
+                        <span class="description">Eje (En grados):</span>
+                        <div class="input-field inline">
+                            <input type="text" class="validate ml10 col s5">
+                        </div>
+                    </div>
+                    <div class="col m6">
+                        <span class="description">Eje (En grados):</span>
+                        <div class="input-field inline">
+                            <input type="text" class="validate ml10 col s5">
+                        </div>
+                    </div>
+                    <div class="col m6">
+                        <span class="description">Índice de Refracción:</span>
+                        <div class="input-field inline">
+                            <input type="text" class="validate ml10 col s5">
+                        </div>
+                    </div>
+                    <div class="col m6">
+                        <span class="description">Índice de Refracción:</span>
+                        <div class="input-field inline">
+                            <input type="text" class="validate ml10 col s5">
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="row">
+                <div class="col m4">
+                    <span class="description">Color:</span>
+                    <div class="input-field inline">
+                        <input type="text" class="validate ml10">
+                    </div>
+                </div>
+                <div class="col m4">
+                    <span class="description">Diseño:</span>
+                    <div class="input-field inline">
+                        <select class="browser-default border-black"
+                            style="border-color: black; height: 40px; margin-top: 1rem;">
+                            <option value="" disabled selected>Seleccionar</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col m4">
+                    <span class="description">Material:</span>
+                    <div class="input-field inline">
+                        <select class="browser-default border-black"
+                            style="border-color: black; height: 40px; margin-top: 1rem;">
+                            <option value="" disabled selected>Seleccionar</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col m4">
+                    <span class="description">Diámetro (mm):</span>
+                    <div class="input-field inline">
+                        <input type="text" class="validate ml10 col m4">
+                    </div>
+                </div>
+                <div class="col m4">
+                    <span class="description">Acabado:</span>
+                    <div class="input-field inline">
+                        <select class="browser-default border-black"
+                            style="border-color: black; height: 40px; margin-top: 1rem;">
+                            <option value="" disabled selected>Seleccionar</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="waves-effect waves-light btn-small col offset-m9"><i
+                        class="material-icons left">search</i>Buscar Receta</button>
+            </div>
         </fieldset>
+        <div class="row right-align mt1">
+            <button type="submit" class="waves-effect green btn selected">
+                Guardar
+            </button>
+            <button class="waves-effect red btn selected" mat-dialog-close style="margin-left: 0.2rem">
+                Cancelar
+            </button>
+        </div>
     </div>
 </form>
-

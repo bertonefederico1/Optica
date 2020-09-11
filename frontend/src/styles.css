@@ -3,7 +3,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
 .input-field{
-    margin-top: initial;
+    margin-top: initial !important;
+}
+
+.input-field > input{
+    margin-top: 0rem !important;
+    margin-bottom: -.5rem !important;
 }
 
 .inline{
@@ -34,6 +39,18 @@ legend{
 
 .ml10 {
     margin-left: 10px !important;
+}
+
+.mt3 {
+    margin-top: 3rem !important;
+}
+
+.mt2 {
+    margin-top: 2rem !important;
+}
+
+.mt1 {
+    margin-top: 3px !important;
 }
 
 
