@@ -1,7 +1,7 @@
 'use strict'
 
 const sequelize = require('../database/db-connection');
-const { DataTypes } = require('Sequelize');
+const { DataTypes, Sequelize } = require('Sequelize');
 
 const Lens = require('./Lens');
 const SupplierLaboratory = require('./SupplierLaboratory');
@@ -16,9 +16,6 @@ const Order = sequelize.define('pedido', {
         references: {
             model: Lens,
             key: 'codLente'
-        },
-        validate: {
-            notEmpty: false
         }
     },
     codLenteOD: {
@@ -26,9 +23,6 @@ const Order = sequelize.define('pedido', {
         references: {
             model: Lens,
             key: 'codLente'
-        },
-        validate: {
-            notEmpty: false
         }
     },
     idProvLab: {
@@ -42,7 +36,8 @@ const Order = sequelize.define('pedido', {
         }
     },
     fechaPedido: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATE, 
+        defaultValue: Sequelize.NOW,
         references: {
             model: SupplierLaboratory,
             key: 'idProvLab'
@@ -58,22 +53,13 @@ const Order = sequelize.define('pedido', {
         }
     },
     fechaRecibido: {
-        type: DataTypes.DATE,
-        validate: {
-            notEmpty: false
-        }
+        type: DataTypes.DATE
     },
     fechaEntregaEsperada: {
-        type: DataTypes.DATE,
-        validate: {
-            notEmpty: false
-        }
+        type: DataTypes.DATE
     },
     obsPedido: {
-        type: DataTypes.TEXT,
-        validate: {
-            notEmpty: false
-        }
+        type: DataTypes.TEXT
     },
     pedirLenteOI: {
         type: DataTypes.BOOLEAN

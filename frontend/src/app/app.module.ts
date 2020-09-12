@@ -37,6 +37,7 @@ import { DataPrescriptionComponent } from './components/prescriptions/data-presc
 import { OrdersComponent } from './components/orders/orders/orders.component';
 import { AddOrderComponent } from './components/orders/add-order/add-order.component';
 import { OrderDataComponent } from './components/orders/order-data/order-data.component';
+import { SelectSupplierComponent } from './components/suppliers/select-supplier/select-supplier.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { OrderDataComponent } from './components/orders/order-data/order-data.co
     DataPrescriptionComponent,
     OrdersComponent,
     AddOrderComponent,
-    OrderDataComponent
+    OrderDataComponent,
+    SelectSupplierComponent
   ],
   imports: [
     BrowserModule,

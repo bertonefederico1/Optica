@@ -22,7 +22,7 @@
                         <input type="text" class="validate" formControlName="address">
                     </div>
                 </div>
-                <button class="waves-effect waves-light btn-small col offset-m9"><i
+                <button class="waves-effect waves-light btn-small col offset-m9" (click)="searchCustomer()"><i
                         class="material-icons left">search</i>Buscar Cliente</button>
             </div>
         </fieldset>
@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <button class="waves-effect waves-light btn-small col offset-m9"
-                    style="position: relative; margin-top: -2.5rem"><i class="material-icons left">search</i>Buscar
+                    style="position: relative; margin-top: -2.5rem" (click)="searchSupplierLaboratory()"><i class="material-icons left">search</i>Buscar
                     Laboratorio</button>
             </div>
         </fieldset>
@@ -62,7 +62,7 @@
                 <div class="col m12">
                     <span class="description">Observaciones:</span>
                     <div class="input-field inline">
-                        <textarea class="text-area1 mt3"></textarea>
+                        <textarea class="text-area1 mt3" formControlName="prescriptionObs"></textarea>
                     </div>
                 </div>
             </div>
@@ -71,13 +71,17 @@
         <fieldset>
             <legend><b>Datos Lentes</b></legend>
             <div class="row">
-                <div class="col m3 push-m1 subtitle">OJO DERECHO</div>
+                <div class="col m3 push-m1 subtitle">OJO IZQUIERDO</div>
                 <div class="col m2">
-                    <mat-checkbox color="primary" checked="checked">Pedir</mat-checkbox>
+                    <mat-checkbox color="primary" formControlName="orderLensLE">
+                        <b class="black-text">Pedir</b>
+                    </mat-checkbox>
                 </div>
-                <div class="col m3 push-m2 subtitle">OJO IZQUIERDO</div>
-                <div class="col push-m1">
-                    <mat-checkbox class="col m2" color="primary" checked="checked">Pedir</mat-checkbox>
+                <div class="col m3 push-m2 subtitle">OJO DERECHO</div>
+                <div class="col push-m1" style="margin-left: -1.7rem;">
+                    <mat-checkbox class="col m2" color="primary" formControlName="orderLensRE">
+                        <b class="black-text">Pedir</b>
+                    </mat-checkbox>
                 </div>
             </div>
             <div class="row">
@@ -85,49 +89,49 @@
                     <div class="col m6">
                         <span class="description">Valor Esférico:</span>
                         <div class="input-field inline">
-                            <input type="text" class="validate ml10 col s5">
+                            <input type="text" class="validate ml10 col s5" formControlName="sphericalValueLE">
                         </div>
                     </div>
                     <div class="col m6">
                         <span class="description">Valor Esférico:</span>
                         <div class="input-field inline">
-                            <input type="text" class="validate ml10 col s5">
+                            <input type="text" class="validate ml10 col s5" formControlName="sphericalValueRE">
                         </div>
                     </div>
                     <div class="col m6">
                         <span class="description">Valor Cilíndrico:</span>
                         <div class="input-field inline">
-                            <input type="text" class="validate ml10 col s5">
+                            <input type="text" class="validate ml10 col s5" formControlName="cilyndricalValueLE">
                         </div>
                     </div>
                     <div class="col m6">
                         <span class="description">Valor Cilíndrico:</span>
                         <div class="input-field inline">
-                            <input type="text" class="validate ml10 col s5">
+                            <input type="text" class="validate ml10 col s5" formControlName="cilyndricalValueRE">
                         </div>
                     </div>
                     <div class="col m6">
                         <span class="description">Eje (En grados):</span>
                         <div class="input-field inline">
-                            <input type="text" class="validate ml10 col s5">
+                            <input type="text" class="validate ml10 col s5" formControlName="axisLE">
                         </div>
                     </div>
                     <div class="col m6">
                         <span class="description">Eje (En grados):</span>
                         <div class="input-field inline">
-                            <input type="text" class="validate ml10 col s5">
+                            <input type="text" class="validate ml10 col s5" formControlName="axisRE">
                         </div>
                     </div>
                     <div class="col m6">
                         <span class="description">Índice de Refracción:</span>
                         <div class="input-field inline">
-                            <input type="text" class="validate ml10 col s5">
+                            <input type="text" class="validate ml10 col s5" formControlName="refractionIndexLE">
                         </div>
                     </div>
                     <div class="col m6">
                         <span class="description">Índice de Refracción:</span>
                         <div class="input-field inline">
-                            <input type="text" class="validate ml10 col s5">
+                            <input type="text" class="validate ml10 col s5" formControlName="refractionIndexRE">
                         </div>
                     </div>
                 </div>
@@ -139,39 +143,45 @@
                 <div class="col m4">
                     <span class="description">Color:</span>
                     <div class="input-field inline">
-                        <input type="text" class="validate ml10">
+                        <input type="text" class="validate ml10" formControlName="lensColor">
                     </div>
                 </div>
                 <div class="col m4">
                     <span class="description">Diseño:</span>
                     <div class="input-field inline">
-                        <select class="browser-default border-black"
-                            style="border-color: black; height: 40px; margin-top: 1rem;">
+                        <select class="browser-default border-black" *ngIf="lensDesigns$ | async as lensDesigns"
+                            style="border-color: black; height: 40px; margin-top: 1rem;" formControlName="lensDesign">
                             <option value="" disabled selected>Seleccionar</option>
+                            <option *ngFor="let lensDesign of lensDesigns" [ngValue]="lensDesign.idDisenoLente">
+                                {{lensDesign.nombre}} - {{lensDesign.descripcion}}</option>
                         </select>
                     </div>
                 </div>
                 <div class="col m4">
                     <span class="description">Material:</span>
                     <div class="input-field inline">
-                        <select class="browser-default border-black"
-                            style="border-color: black; height: 40px; margin-top: 1rem;">
+                        <select class="browser-default border-black" *ngIf="lensMaterials$ | async as lensMaterials"
+                            style="border-color: black; height: 40px; margin-top: 1rem;" formControlName="lensMaterial">
                             <option value="" disabled selected>Seleccionar</option>
+                            <option *ngFor="let lensMaterial of lensMaterials" [ngValue]="lensMaterial.idMaterialLente">
+                                {{lensMaterial.nombre}} - {{lensMaterial.descripcion}}</option>
                         </select>
                     </div>
                 </div>
                 <div class="col m4">
                     <span class="description">Diámetro (mm):</span>
                     <div class="input-field inline">
-                        <input type="text" class="validate ml10 col m4">
+                        <input type="text" class="validate ml10 col m4" formControlName="lensDiameter">
                     </div>
                 </div>
                 <div class="col m4">
                     <span class="description">Acabado:</span>
                     <div class="input-field inline">
-                        <select class="browser-default border-black"
-                            style="border-color: black; height: 40px; margin-top: 1rem;">
+                        <select class="browser-default border-black" *ngIf="lensFinishes$ | async as lensFinishes"
+                            style="border-color: black; height: 40px; margin-top: 1rem;" formControlName="finishLens">
                             <option value="" disabled selected>Seleccionar</option>
+                            <option *ngFor="let lensFinish of lensFinishes" [ngValue]="lensFinish.idAcabadoLente">
+                                {{lensFinish.nombre}} - {{lensFinish.descripcion}}</option>
                         </select>
                     </div>
                 </div>

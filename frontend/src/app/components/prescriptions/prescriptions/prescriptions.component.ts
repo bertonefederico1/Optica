@@ -37,14 +37,6 @@ export class PrescriptionsComponent implements OnInit {
       })
   }
 
-  getOne(customerID: number){
-    this.customersService.getOne(customerID)
-      .subscribe(res => {
-        this.customer = res;
-        this.setData();
-      })
-  }
-
   setData(){
     this.customerForm.patchValue({
       nameAndSurname: this.customer.nombre + ' ' + this.customer.apellido,
@@ -57,9 +49,13 @@ export class PrescriptionsComponent implements OnInit {
     this.dialogConfig.height = '100%';
     this.dialogConfig.width = '100%';
     this.dialogConfig.autoFocus = true;
+    this.dialogConfig.disableClose = true;
     const dialogRef = this.dialogRef.open(SelectCustomerComponent, this.dialogConfig);
     dialogRef.afterClosed()
-      .subscribe(res => res ? this.getOne(res) : res)
+      .subscribe(res => {
+        this.customer = res;
+        this.setData();
+      });
   }
 
 }

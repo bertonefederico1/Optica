@@ -18,18 +18,14 @@ export class SelectCustomerComponent implements OnInit {
 
   displayedColumns: string[] = ['action', 'nameAndSurname', 'telephone', 'address'];
   dataSource = null;
-  customerID: number;
+  customer: any;
 
   ngOnInit(): void {
     this.getAll();
   }
 
   accept(){
-    this.dialogRef.close(this.customerID);
-  }
-
-  close(){
-    this.dialogRef.close();
+    this.dialogRef.close(this.customer);
   }
 
   setupFilter(){

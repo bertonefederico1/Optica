@@ -36,6 +36,7 @@ export class OrdersComponent implements OnInit {
   }
 
   addOrder(){
+    this.dialogConfig.disableClose = true;
     this.dialogRef.open(AddOrderComponent, this.dialogConfig)
   }
 

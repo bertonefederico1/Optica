@@ -52,19 +52,20 @@ orderController.getAll = async (req, res) => {
     } catch(err){
         res.json(err);
     }
-}
+} */
 
-frameController.createFrame = async (req, res) => {
+orderController.createOrder = async (req, res) => {
     try { 
-        const frame = await Frame.create({
-            idMaterialArmazon: req.body.material,
-            idDisenoArmazon: req.body.design,
-            idUtilidadArmazon: req.body.utility,
+        await Order.create({
+            codLenteOI: req.body.design,
+            codLenteOD: req.body.utility,
             idProvLab: req.body.supplierLaboratory,
-            modelo: req.body.model,
-            marca: req.body.brand,
-            color: req.body.color,
-            cantidad: req.body.quantityInStock
+            fechaPedido: req.body.model,
+            estadoPedido: req.body.brand,
+            fechaEntregaEsperada: req.body.color,
+            obsPedido: req.body.quantityInStock,
+            pedirLenteOI: req.body.quantityInStock,
+            pedirLenteOD: req.body.quantityInStock
         });
         res.status(200).json();
     } catch (err) {
@@ -72,7 +73,7 @@ frameController.createFrame = async (req, res) => {
     }
 };
 
-frameController.editFrame = async (req, res) => {
+/* frameController.editFrame = async (req, res) => {
     try {
         await Frame.update({
             idMaterialArmazon: req.body.material,
