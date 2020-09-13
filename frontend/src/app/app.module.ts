@@ -38,6 +38,9 @@ import { OrdersComponent } from './components/orders/orders/orders.component';
 import { AddOrderComponent } from './components/orders/add-order/add-order.component';
 import { OrderDataComponent } from './components/orders/order-data/order-data.component';
 import { SelectSupplierComponent } from './components/suppliers/select-supplier/select-supplier.component';
+import { GlassesComponent } from './components/glasses/glasses/glasses.component';
+import { AddGlassesComponent } from './components/glasses/add-glasses/add-glasses.component';
+import { DataGlassesComponent } from './components/glasses/data-glasses/data-glasses.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +70,10 @@ import { SelectSupplierComponent } from './components/suppliers/select-supplier/
     OrdersComponent,
     AddOrderComponent,
     OrderDataComponent,
-    SelectSupplierComponent
+    SelectSupplierComponent,
+    GlassesComponent,
+    AddGlassesComponent,
+    DataGlassesComponent
   ],
   imports: [
     BrowserModule,
