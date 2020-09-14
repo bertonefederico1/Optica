@@ -22,7 +22,7 @@ const orderController = require('../controllers/orderController');
 router.post('/login', logController.logIn);
 
 //Rutas de Clientes
-router.get('/customers', customerController.getAll);
+router.get('/customers/:select?', customerController.getAll);
 router.get('/customer/:customerID', customerController.getOne);
 router.post('/newCustomer', customerController.createCustomer);
 router.put('/editCustomer/:customerID', customerController.editCustomer);
@@ -36,13 +36,13 @@ router.put('/editHealthCare/:healthCareID', obraSocialController.editHealthCare)
 router.put('/suspendHealthCare/:healthCareID', obraSocialController.suspendHealthCare);
 
 //Rutas de Proveedores/Laboratorios
-router.get('/suppliersLaboratories', supplierLaboratoryController.getAll);
+router.get('/suppliersLaboratories/:select?', supplierLaboratoryController.getAll);
 router.get('/supplierLaboratory/:supplierLaboratoryID', supplierLaboratoryController.getOne);
 router.post('/newSupplierLaboratory', supplierLaboratoryController.createSupplierLaboratory);
 router.put('/editSupplierLaboratory/:supplierLaboratoryID', supplierLaboratoryController.editSupplierLaboratory);
 router.put('/suspendSupplierLaboratory/:supplierLaboratoryID', supplierLaboratoryController.suspendSupplierLaboratory);
 
-//Rutas de Lrmazones
+//Rutas de Armazones
 router.get('/frames', frameController.getAll);
 router.get('/frame/:frameID', frameController.getOne);
 router.post('/newFrame', frameController.createFrame);

@@ -10,8 +10,12 @@ export class SuppliersService {
 
   readonly URL: string= "http://localhost:3000"
 
-  getAll(){
-    return this.http.get<any>(`${this.URL}/suppliersLaboratories`);
+  getAll(select?: string){
+    if(select){
+      return this.http.get<any>(`${this.URL}/suppliersLaboratories/${select}`);
+    } else {
+      return this.http.get<any>(`${this.URL}/suppliersLaboratories`);
+    }
   }
 
   addSupplier(supplier: any){

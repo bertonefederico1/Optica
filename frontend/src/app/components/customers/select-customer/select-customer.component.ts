@@ -40,7 +40,7 @@ export class SelectCustomerComponent implements OnInit {
   }
 
   getAll(){
-    this.customerService.getAll()
+    this.customerService.getAll('select')
       .subscribe(
         res => {
           this.dataSource = new MatTableDataSource();

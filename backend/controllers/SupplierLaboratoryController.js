@@ -5,12 +5,22 @@ const SupplierLaboratoryController = { };
 
 SupplierLaboratoryController.getAll = async (req, res) => {
     try {
-        const suppliers_Laboratories = await Supplier_Laboratory.findAll({
-            where: {
-                activo: 1
-            }
-        });
-        res.status(200).json(suppliers_Laboratories);
+        let suppliers_laboratories = null;
+        if(req.params.select){
+            suppliers_laboratories = await Supplier_Laboratory.findAll({
+                order: [['razonSocial', 'ASC']],
+                where: {
+                    activo: 1
+                }
+            });
+        } else {
+            suppliers_laboratories = await Supplier_Laboratory.findAll({
+                where: {
+                    activo: 1
+                }
+            });
+        }
+        res.status(200).json(suppliers_laboratories);
     } catch (err) {
         res.status(400).json(err);
     }

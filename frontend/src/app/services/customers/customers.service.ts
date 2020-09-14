@@ -10,8 +10,12 @@ export class CustomersService {
 
   readonly URL: string= "http://localhost:3000"
 
-  getAll(){
-    return this.http.get<any>(`${this.URL}/customers`);
+  getAll(select?: string){
+    if(select){
+      return this.http.get<any>(`${this.URL}/customers/${select}`);
+    } else {
+      return this.http.get<any>(`${this.URL}/customers`);
+    } 
   }
 
   getOne(customerID: number){

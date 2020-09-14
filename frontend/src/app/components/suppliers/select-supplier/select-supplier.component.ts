@@ -16,7 +16,7 @@ export class SelectSupplierComponent implements OnInit {
     private dialogRef: MatDialogRef<SelectSupplierComponent>
   ) { }
 
-  displayedColumns: string[] = ['action', 'supplierID', 'businessName', 'fantasyName', 'address'];
+  displayedColumns: string[] = ['action', 'businessName', 'fantasyName', 'address', 'telephone'];
   dataSource = null;
   supplier: any;
 
@@ -25,7 +25,7 @@ export class SelectSupplierComponent implements OnInit {
   }
 
   getAll(){
-    this.supplierService.getAll()
+    this.supplierService.getAll('select')
       .subscribe(res => {
         this.dataSource = new MatTableDataSource();
         this.dataSource.data = res;

@@ -41,6 +41,7 @@ import { SelectSupplierComponent } from './components/suppliers/select-supplier/
 import { GlassesComponent } from './components/glasses/glasses/glasses.component';
 import { AddGlassesComponent } from './components/glasses/add-glasses/add-glasses.component';
 import { DataGlassesComponent } from './components/glasses/data-glasses/data-glasses.component';
+import { SelectPrescriptionsComponent } from './components/prescriptions/select-prescriptions/select-prescriptions.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { DataGlassesComponent } from './components/glasses/data-glasses/data-gla
     SelectSupplierComponent,
     GlassesComponent,
     AddGlassesComponent,
-    DataGlassesComponent
+    DataGlassesComponent,
+    SelectPrescriptionsComponent
   ],
   imports: [
     BrowserModule,

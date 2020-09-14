@@ -8,12 +8,23 @@ const customerController = { };
 
 customerController.getAll = async (req, res) => {
     try {
-        const customers = await Customer.findAll({
-            attributes: ['idCliente', 'nombre', 'apellido', 'telefono', 'domicilio'],
-            where: {
-                activo: 1
-            }
-        });
+        let customers = null;
+        if(req.params.select){
+            customers = await Customer.findAll({
+                order: [['apellido', 'ASC']],
+                attributes: ['idCliente', 'nombre', 'apellido', 'telefono', 'domicilio'],
+                where: {
+                    activo: 1
+                }
+            });
+        } else {
+            customers = await Customer.findAll({
+                attributes: ['idCliente', 'nombre', 'apellido', 'telefono', 'domicilio'],
+                where: {
+                    activo: 1
+                }
+            });
+        };
         res.status(200).json(customers);
     } catch (err) {
         res.json(err);
