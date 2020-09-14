@@ -37,7 +37,8 @@
                     </div>
                 </div>
                 <button class="waves-effect waves-light btn-small col offset-m9"
-                    style="position: relative; margin-top: -2.5rem" (click)="searchSupplierLaboratory()"><i class="material-icons left">search</i>Buscar
+                    style="position: relative; margin-top: -2.5rem" (click)="searchSupplierLaboratory()"><i
+                        class="material-icons left">search</i>Buscar
                     Laboratorio</button>
             </div>
         </fieldset>
@@ -62,7 +63,7 @@
                 <div class="col m12">
                     <span class="description">Observaciones:</span>
                     <div class="input-field inline">
-                        <textarea class="text-area1 mt3" formControlName="prescriptionObs"></textarea>
+                        <textarea class="text-area1 mt3" formControlName="orderObs"></textarea>
                     </div>
                 </div>
             </div>
@@ -185,7 +186,7 @@
                         </select>
                     </div>
                 </div>
-                <button class="waves-effect waves-light btn-small col offset-m9"><i
+                <button class="waves-effect waves-light btn-small col offset-m9" (click)="searchPrescription()"><i
                         class="material-icons left">search</i>Buscar Receta</button>
             </div>
         </fieldset>

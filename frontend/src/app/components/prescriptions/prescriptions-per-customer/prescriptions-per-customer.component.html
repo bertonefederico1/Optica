@@ -11,7 +11,7 @@
     
         <ng-container matColumnDef="prescriptionDate">
             <th mat-header-cell *matHeaderCellDef> Fecha de Receta </th>
-            <td mat-cell *matCellDef="let element"> {{element.fechaReceta | date: 'M/d/yy'}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.fechaReceta | date: 'd/M/yy'}} </td>
         </ng-container>
     
         <ng-container matColumnDef="doctorName">

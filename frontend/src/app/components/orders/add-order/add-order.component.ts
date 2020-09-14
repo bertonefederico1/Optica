@@ -5,6 +5,8 @@ import { LensesService } from './../../../services/lenses/lenses.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { SelectCustomerComponent } from './../../customers/select-customer/select-customer.component';
 import { SelectSupplierComponent } from './../../suppliers/select-supplier/select-supplier.component';
+import { SelectPrescriptionsComponent } from './../../prescriptions/select-prescriptions/select-prescriptions.component';
+import * as moment from 'moment'
 
 @Component({
   selector: 'app-add-order',
@@ -24,24 +26,28 @@ export class AddOrderComponent implements OnInit {
   lensFinishes$: Observable<any[]>;
   customer: any = '';
   supplierLaboratory: any;
+  prescription: any;
   dialogConfig = new MatDialogConfig();
+  currentDate = new Date();
+  today = moment().format('DD/MM/yyyy');
+
 
   orderForm = new FormGroup({
     nameAndSurname: new FormControl({value: '', disabled: true}, Validators.required),
     telephone: new FormControl({value: '', disabled: true}, Validators.required),
     address: new FormControl({value: '', disabled: true}, Validators.required),
     supplierLaboratory: new FormControl({value: '', disabled: true}, Validators.required),
-    currentDate: new FormControl({value: '', disabled: true}, Validators.required),
+    currentDate: new FormControl({value: this.today, disabled: true}, Validators.required),
     expectedDeliveryDate: new FormControl('', Validators.required),
-    prescriptionObs: new FormControl('', Validators.required),
+    orderObs: new FormControl('', Validators.required),
     orderLensLE: new FormControl(true, Validators.required),
     orderLensRE: new FormControl(true, Validators.required),
-    sphericalValueLE: new FormControl('', Validators.required),
-    sphericalValueRE: new FormControl('', Validators.required),
-    cilyndricalValueLE: new FormControl('', Validators.required),
-    cilyndricalValueRE: new FormControl('', Validators.required),
-    axisLE: new FormControl('', Validators.required),
-    axisRE: new FormControl('', Validators.required),
+    sphericalValueLE: new FormControl({value: '', disabled: true}, Validators.required),
+    sphericalValueRE: new FormControl({value: '', disabled: true}, Validators.required),
+    cilyndricalValueLE: new FormControl({value: '', disabled: true}, Validators.required),
+    cilyndricalValueRE: new FormControl({value: '', disabled: true}, Validators.required),
+    axisLE: new FormControl({value: '', disabled: true}, Validators.required),
+    axisRE: new FormControl({value: '', disabled: true}, Validators.required),
     refractionIndexLE: new FormControl('', Validators.required),
     refractionIndexRE: new FormControl('', Validators.required),
     lensColor: new FormControl('', Validators.required),
@@ -73,6 +79,17 @@ export class AddOrderComponent implements OnInit {
     })
   }
 
+  setPrescriptionData(){
+    this.orderForm.patchValue({
+      sphericalValueLE: this.prescription.valorEsfOI,
+      sphericalValueRE: this.prescription.valorEsfOD,
+      cilyndricalValueLE: this.prescription.valorCilOI,
+      cilyndricalValueRE: this.prescription.valorCilOD,
+      axisLE: this.prescription.ejeOI,
+      axisRE: this.prescription.ejeOD
+    })
+  }
+
   searchCustomer(){
     const dialogRef = this.dialogRef.open(SelectCustomerComponent, this.dialogConfig);
     dialogRef.afterClosed()
@@ -88,9 +105,30 @@ export class AddOrderComponent implements OnInit {
     const dialogRef = this.dialogRef.open(SelectSupplierComponent, this.dialogConfig);
     dialogRef.afterClosed()
       .subscribe(res => {
-        this.supplierLaboratory = res;
-        this.setSupplierData();
+        if(res){
+          this.supplierLaboratory = res;
+          this.setSupplierData();
+        }
       })
+  }
+
+  searchPrescription(){
+    if(this.customer !== '') {
+      this.dialogConfig.data = {
+        customer: this.customer
+      };
+      const dialogRef = this.dialogRef.open(SelectPrescriptionsComponent, this.dialogConfig);
+      dialogRef.afterClosed()
+        .subscribe(res => {
+          if(res){
+            this.prescription = res;
+            this.setPrescriptionData();
+          }
+        })
+    } else {
+      alert("Primero debe seleccionar un cliente");
+    }
+    
   }
 
   onSubmit(){

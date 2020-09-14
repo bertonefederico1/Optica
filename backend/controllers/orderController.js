@@ -60,7 +60,6 @@ orderController.createOrder = async (req, res) => {
             codLenteOI: req.body.design,
             codLenteOD: req.body.utility,
             idProvLab: req.body.supplierLaboratory,
-            fechaPedido: req.body.model,
             estadoPedido: req.body.brand,
             fechaEntregaEsperada: req.body.color,
             obsPedido: req.body.quantityInStock,

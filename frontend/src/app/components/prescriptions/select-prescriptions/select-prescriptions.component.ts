@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { PrescriptionsService } from './../../../services/prescriptions/prescriptions.service';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-select-prescriptions',
@@ -8,9 +11,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SelectPrescriptionsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private prescriptionService: PrescriptionsService,
+    public dialogRef: MatDialogRef<SelectPrescriptionsComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) { }
+
+  displayedColumns: string[] = ['action', 'prescriptionNumber', 'prescriptionDate', 'doctorName'];
+  dataSource = null;
+  prescription: any;
 
   ngOnInit(): void {
+    this.getAll();
+  }
+
+  getAll(){
+    this.prescriptionService.getPrescriptionsBycustomerID(this.data.customer.idCliente)
+      .subscribe(
+        res => {
+          this.dataSource = new MatTableDataSource();
+          this.dataSource.data = res;
+        })
+  }
+
+  accept(){
+    this.dialogRef.close(this.prescription);
   }
 
 }
