@@ -7,19 +7,19 @@
                 <div class="col m7">
                     <span class="description">Nombre y Apellido:</span>
                     <div class="input-field inline">
-                        <input type="text" class="validate col m12" formControlName="nameAndSurname">
+                        <input type="text" class="col m12" readonly formControlName="nameAndSurname">
                     </div>
                 </div>
                 <div class="col m5">
                     <span class="description">Teléfono:</span>
                     <div class="input-field inline">
-                        <input type="text" class="validate" formControlName="telephone">
+                        <input type="text" readonly formControlName="telephone">
                     </div>
                 </div>
                 <div class="col m9">
                     <span class="description">Domicilio:</span>
                     <div class="input-field inline">
-                        <input type="text" class="validate" formControlName="address">
+                        <input type="text" readonly formControlName="address">
                     </div>
                 </div>
                 <button class="waves-effect waves-light btn-small col offset-m9" (click)="searchCustomer()"><i
@@ -33,7 +33,7 @@
                 <div class="col m9">
                     <span class="description">Laboratorio:</span>
                     <div class="input-field inline">
-                        <input type="text" class="validate" formControlName="supplierLaboratory">
+                        <input type="text" readonly formControlName="supplierLaboratoryBusinessName">
                     </div>
                 </div>
                 <button class="waves-effect waves-light btn-small col offset-m9"
@@ -49,7 +49,7 @@
                 <div class="col m4">
                     <span class="description">Fecha:</span>
                     <div class="input-field inline">
-                        <input type="text" class="validate col m8" formControlName="currentDate">
+                        <input type="text" class="col m8" readonly formControlName="currentDate">
                     </div>
                 </div>
                 <div class="col m8">
@@ -90,37 +90,37 @@
                     <div class="col m6">
                         <span class="description">Valor Esférico:</span>
                         <div class="input-field inline">
-                            <input type="text" class="validate ml10 col s5" formControlName="sphericalValueLE">
+                            <input type="text" class="ml10 col s5" readonly formControlName="sphericalValueLE">
                         </div>
                     </div>
                     <div class="col m6">
                         <span class="description">Valor Esférico:</span>
                         <div class="input-field inline">
-                            <input type="text" class="validate ml10 col s5" formControlName="sphericalValueRE">
+                            <input type="text" class="ml10 col s5" readonly formControlName="sphericalValueRE">
                         </div>
                     </div>
                     <div class="col m6">
                         <span class="description">Valor Cilíndrico:</span>
                         <div class="input-field inline">
-                            <input type="text" class="validate ml10 col s5" formControlName="cilyndricalValueLE">
+                            <input type="text" class="ml10 col s5" readonly formControlName="cilyndricalValueLE">
                         </div>
                     </div>
                     <div class="col m6">
                         <span class="description">Valor Cilíndrico:</span>
                         <div class="input-field inline">
-                            <input type="text" class="validate ml10 col s5" formControlName="cilyndricalValueRE">
+                            <input type="text" class="ml10 col s5" readonly formControlName="cilyndricalValueRE">
                         </div>
                     </div>
                     <div class="col m6">
                         <span class="description">Eje (En grados):</span>
                         <div class="input-field inline">
-                            <input type="text" class="validate ml10 col s5" formControlName="axisLE">
+                            <input type="text" class="ml10 col s5" readonly formControlName="axisLE">
                         </div>
                     </div>
                     <div class="col m6">
                         <span class="description">Eje (En grados):</span>
                         <div class="input-field inline">
-                            <input type="text" class="validate ml10 col s5" formControlName="axisRE">
+                            <input type="text" class="ml10 col s5" readonly formControlName="axisRE">
                         </div>
                     </div>
                     <div class="col m6">
@@ -179,7 +179,7 @@
                     <span class="description">Acabado:</span>
                     <div class="input-field inline">
                         <select class="browser-default border-black" *ngIf="lensFinishes$ | async as lensFinishes"
-                            style="border-color: black; height: 40px; margin-top: 1rem;" formControlName="finishLens">
+                            style="border-color: black; height: 40px; margin-top: 1rem;" formControlName="lensFinish">
                             <option value="" disabled selected>Seleccionar</option>
                             <option *ngFor="let lensFinish of lensFinishes" [ngValue]="lensFinish.idAcabadoLente">
                                 {{lensFinish.nombre}} - {{lensFinish.descripcion}}</option>

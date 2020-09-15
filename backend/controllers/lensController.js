@@ -50,7 +50,7 @@ lensController.getOne = async (req, res) => {
 
 lensController.createLens = async (req, res) => {
     try { 
-        const lens = await Lens.create({
+        await Lens.create({
             idProvLab: req.body.supplier,
             idDisenoLente: req.body.design,
             idMaterialLente: req.body.material,

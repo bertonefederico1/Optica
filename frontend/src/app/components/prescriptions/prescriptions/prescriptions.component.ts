@@ -23,9 +23,9 @@ export class PrescriptionsComponent implements OnInit {
 
 
   customerForm = new FormGroup({
-    nameAndSurname: new FormControl({value: '', disabled: true}),
-    telephone: new FormControl({value: '', disabled: true}),
-    address: new FormControl({value: '', disabled: true})
+    nameAndSurname: new FormControl(''),
+    telephone: new FormControl(''),
+    address: new FormControl('')
   })
 
   ngOnInit(): void {

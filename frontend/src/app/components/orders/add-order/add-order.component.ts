@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { LensesService } from './../../../services/lenses/lenses.service';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { SelectCustomerComponent } from './../../customers/select-customer/select-customer.component';
 import { SelectSupplierComponent } from './../../suppliers/select-supplier/select-supplier.component';
 import { SelectPrescriptionsComponent } from './../../prescriptions/select-prescriptions/select-prescriptions.component';
 import * as moment from 'moment'
+import { OrdersService } from './../../../services/orders/orders.service';
 
 @Component({
   selector: 'app-add-order',
@@ -18,7 +19,9 @@ export class AddOrderComponent implements OnInit {
 
   constructor(
     private lensService: LensesService,
-    private dialogRef: MatDialog
+    private orderService: OrdersService,
+    private dialogRef: MatDialog,
+    private dialogRefAdd: MatDialogRef<AddOrderComponent>
   ) { }
 
   lensDesigns$: Observable<any[]>;
@@ -33,28 +36,29 @@ export class AddOrderComponent implements OnInit {
 
 
   orderForm = new FormGroup({
-    nameAndSurname: new FormControl({value: '', disabled: true}, Validators.required),
-    telephone: new FormControl({value: '', disabled: true}, Validators.required),
-    address: new FormControl({value: '', disabled: true}, Validators.required),
-    supplierLaboratory: new FormControl({value: '', disabled: true}, Validators.required),
-    currentDate: new FormControl({value: this.today, disabled: true}, Validators.required),
+    nameAndSurname: new FormControl('', Validators.required),
+    telephone: new FormControl('', Validators.required),
+    address: new FormControl('', Validators.required),
+    supplierLaboratoryBusinessName: new FormControl('', Validators.required),
+    supplierLaboratoryID: new FormControl('', Validators.required),
+    currentDate: new FormControl(this.today, Validators.required),
     expectedDeliveryDate: new FormControl('', Validators.required),
     orderObs: new FormControl('', Validators.required),
     orderLensLE: new FormControl(true, Validators.required),
     orderLensRE: new FormControl(true, Validators.required),
-    sphericalValueLE: new FormControl({value: '', disabled: true}, Validators.required),
-    sphericalValueRE: new FormControl({value: '', disabled: true}, Validators.required),
-    cilyndricalValueLE: new FormControl({value: '', disabled: true}, Validators.required),
-    cilyndricalValueRE: new FormControl({value: '', disabled: true}, Validators.required),
-    axisLE: new FormControl({value: '', disabled: true}, Validators.required),
-    axisRE: new FormControl({value: '', disabled: true}, Validators.required),
+    sphericalValueLE: new FormControl('', Validators.required),
+    sphericalValueRE: new FormControl('', Validators.required),
+    cilyndricalValueLE: new FormControl('', Validators.required),
+    cilyndricalValueRE: new FormControl('', Validators.required),
+    axisLE: new FormControl('', Validators.required),
+    axisRE: new FormControl('', Validators.required),
     refractionIndexLE: new FormControl('', Validators.required),
     refractionIndexRE: new FormControl('', Validators.required),
     lensColor: new FormControl('', Validators.required),
     lensDesign: new FormControl('', Validators.required),
     lensMaterial: new FormControl('', Validators.required),
     lensDiameter: new FormControl('', Validators.required),
-    finishLens: new FormControl('', Validators.required)
+    lensFinish: new FormControl('', Validators.required)
   })
 
   ngOnInit(): void {
@@ -75,7 +79,8 @@ export class AddOrderComponent implements OnInit {
 
   setSupplierData(){
     this.orderForm.patchValue({
-      supplierLaboratory: this.supplierLaboratory.nombreFantasia
+      supplierLaboratoryBusinessName: this.supplierLaboratory.nombreFantasia,
+      supplierLaboratoryID: this.supplierLaboratory.idProvLab
     })
   }
 
@@ -128,11 +133,19 @@ export class AddOrderComponent implements OnInit {
     } else {
       alert("Primero debe seleccionar un cliente");
     }
-    
   }
 
   onSubmit(){
     console.log(this.orderForm.value);
+    if(this.orderForm.value.orderLensLE || this.orderForm.value.orderLensRE){
+      this.orderService.addOrder(this.orderForm.value)
+      .subscribe(
+        res => this.dialogRefAdd.close(),
+        err => alert("Verifique los datos ingresados")
+        )
+    } else {
+      alert("Debe seleccionar al menos un lente para pedir");
+    }
   }
 
 }

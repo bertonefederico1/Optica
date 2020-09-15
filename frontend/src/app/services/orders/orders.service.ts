@@ -18,13 +18,13 @@ export class OrdersService {
 
   /* getOne(lensID: number){
     return this.http.get<any>(`${this.URL}/lens/${lensID}`)
+  } */
+
+  addOrder(order: any){
+    return this.http.post(`${this.URL}/newOrder`, order);
   }
 
-  addLens(lens: any){
-    return this.http.post(`${this.URL}/newLens`, lens);
-  }
-
-  editLens(lensID: number, lens) {
+  /* editLens(lensID: number, lens) {
     return this.http.put(`${this.URL}/editLens/${lensID}`, lens); 
   }
 

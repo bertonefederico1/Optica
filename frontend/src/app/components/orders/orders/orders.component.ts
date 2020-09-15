@@ -37,7 +37,9 @@ export class OrdersComponent implements OnInit {
 
   addOrder(){
     this.dialogConfig.disableClose = true;
-    this.dialogRef.open(AddOrderComponent, this.dialogConfig)
+    const dialogRef = this.dialogRef.open(AddOrderComponent, this.dialogConfig);
+    dialogRef.afterClosed()
+      .subscribe(res => this.getAll());
   }
 
   setupFilter() {
