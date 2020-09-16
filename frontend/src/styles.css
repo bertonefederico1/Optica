@@ -15,6 +15,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     width: 60%;
 }
 
+.divider-horizontal {
+    border-left: 1px solid #e0e0e0 !important;
+}
 
 .text-area1{
     width: 30rem;
@@ -49,7 +52,7 @@ legend{
     margin-top: 2rem !important;
 }
 
-.mt1 {
+.mt3 {
     margin-top: 3px !important;
 }
 
