@@ -20,6 +20,7 @@ export class OrdersComponent implements OnInit {
   displayedColumns: string[] = ['orderNumber', 'nameAndSurname', 'prescriptionNumber', 'expectedDeliveryDate', 'Laboratory', 'actions'];
   dataSource = null;
   dialogConfig = new MatDialogConfig();
+  edit: boolean;
 
   ngOnInit(): void {
     this.dialogConfig.width = '100%';
@@ -36,10 +37,23 @@ export class OrdersComponent implements OnInit {
   }
 
   addOrder(){
+    this.edit = false;
     this.dialogConfig.disableClose = true;
+    this.dialogConfig.data = {
+      edit: this.edit
+    }
     const dialogRef = this.dialogRef.open(AddOrderComponent, this.dialogConfig);
     dialogRef.afterClosed()
       .subscribe(res => this.getAll());
+  }
+
+  editOrder(orderNumber: number){
+    this.edit = true;
+    this.dialogConfig.disableClose = true;
+    this.dialogConfig.data = {
+      edit: this.edit
+    };
+    const dialogRef = this.dialogRef.open(AddOrderComponent, this.dialogConfig);
   }
 
   setupFilter() {

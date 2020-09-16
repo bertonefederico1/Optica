@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { LensesService } from './../../../services/lenses/lenses.service';
-import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SelectCustomerComponent } from './../../customers/select-customer/select-customer.component';
 import { SelectSupplierComponent } from './../../suppliers/select-supplier/select-supplier.component';
 import { SelectPrescriptionsComponent } from './../../prescriptions/select-prescriptions/select-prescriptions.component';
@@ -21,7 +21,8 @@ export class AddOrderComponent implements OnInit {
     private lensService: LensesService,
     private orderService: OrdersService,
     private dialogRef: MatDialog,
-    private dialogRefAdd: MatDialogRef<AddOrderComponent>
+    private dialogRefAdd: MatDialogRef<AddOrderComponent>,
+    @Inject(MAT_DIALOG_DATA) public data
   ) { }
 
   lensDesigns$: Observable<any[]>;
@@ -136,13 +137,16 @@ export class AddOrderComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.orderForm.value);
     if(this.orderForm.value.orderLensLE || this.orderForm.value.orderLensRE){
-      this.orderService.addOrder(this.orderForm.value)
-      .subscribe(
+      if(this.data.edit){
+        
+      } else {
+        this.orderService.addOrder(this.orderForm.value)
+          .subscribe(
         res => this.dialogRefAdd.close(),
         err => alert("Verifique los datos ingresados")
         )
+      }
     } else {
       alert("Debe seleccionar al menos un lente para pedir");
     }

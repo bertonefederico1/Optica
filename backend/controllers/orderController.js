@@ -4,6 +4,7 @@ const Order = require('../models/Order');
 const FrameMaterial = require('../models/FrameMaterial');
 const SupplierLaboratory = require('../models/SupplierLaboratory'); 
 const Lens = require('../models/Lens');
+const orderValidators = require('../validators/orderValidators');
 const orderController = { };
 
 
@@ -54,41 +55,16 @@ orderController.getAll = async (req, res) => {
     }
 } */
 
-/* const validatorLens = (lens) => {
-    if(
-        lens.supplierLaboratoryID !== null ||
-        lens.lensDesign !== null ||
-        lens.lensMaterial !== null ||
-        lens.lensFinish !== null ||
-        lens.sphericalValueLE !== null ||
-        lens.cilyndricalValueLE !== null ||
-        lens.refractionIndexLE !== null ||
-        lens.axisLE !== null ||
-        lens.sphericalValueRE !== null ||
-        lens.cilyndricalValueRE !== null ||
-        lens.refractionIndexRE !== null ||
-        lens.axisRE !== null ||
-        lens.lensDiameter!== null ||
-        lens.lensColor
-    ){
-        throw new Error();
-    }
-} */
-
-const validatorOrder = (order) => {
-    if(!order.supplierLaboratoryID || !order.expectedDeliveryDate){ 
-        throw new Error();
-    } else {
-        return;
-    }
-}
 
 orderController.createOrder = async (req, res) => {
     try { 
-        let lensLE;
-        let lensRE;
-        validatorOrder(req.body);
-        if(req.body.orderLensLE || req.body.orderLensRE){
+        let lensLE = {
+            codLente: null
+        };
+        let lensRE = {
+            codLente: null
+        };;
+        orderValidators.validatorOrder(req.body);
             if (req.body.orderLensLE){
                 lensLE = await Lens.create({
                     idProvLab: req.body.supplierLaboratoryID,
@@ -105,8 +81,8 @@ orderController.createOrder = async (req, res) => {
                     deStock: 0
                 })
             };
-            /* if (req.body.orderLensRE){
-                lensRE = await Lens.save({
+            if (req.body.orderLensRE){
+                lensRE = await Lens.create({
                     idProvLab: req.body.supplierLaboratoryID,
                     idDisenoLente: req.body.lensDesign,
                     idMaterialLente: req.body.lensMaterial,
@@ -120,8 +96,8 @@ orderController.createOrder = async (req, res) => {
                     cantidad: 1,
                     deStock: 0
                 })
-            }; */
-            /* await Order.save({
+            };
+            await Order.create({
                 codLenteOI: lensLE.codLente,
                 codLenteOD: lensRE.codLente,
                 idProvLab: req.body.supplierLaboratoryID,
@@ -130,10 +106,7 @@ orderController.createOrder = async (req, res) => {
                 obsPedido: req.body.orderObs,
                 pedirLenteOI: req.body.orderLensLE,
                 pedirLenteOD: req.body.orderLensRE
-            }); */
-        } else {
-            throw new Error();
-        }
+            });
         res.status(200).json();
     } catch (err) {
         res.status(400).json()
