@@ -5,7 +5,7 @@ const router = express.Router();
 
 const customerController = require('../controllers/customerController');
 const obraSocialController = require('../controllers/healthCareController');
-const supplierLaboratoryController = require('../controllers/SupplierLaboratoryController')
+const supplierLaboratoryController = require('../controllers/supplierLaboratoryController')
 const frameController = require('../controllers/frameController');
 const frameMaterialController = require('../controllers/frameMaterialController');
 const frameDesignController = require('../controllers/frameDesignController');
@@ -17,6 +17,7 @@ const lensFinishController = require('../controllers/lensFinishController');
 const logController = require('../controllers/logController');
 const prescriptionController = require('../controllers/prescriptionController');
 const orderController = require('../controllers/orderController');
+const glassesController = require('../controllers/glassesController');
 
 //Login y Logout
 router.post('/login', logController.logIn);
@@ -86,5 +87,8 @@ router.get('/orders', orderController.getAll);
 router.post('/newOrder', orderController.createOrder);
 router.put('/editOrder');
 router.put('/suspendOrder');
+
+//Rutas de Anteojos
+router.get('/glasses', glassesController.getAll);
 
 module.exports = router;

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { GlassesService } from './../../../services/glasses/glasses.service';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-glasses',
@@ -8,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GlassesComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private glassesService: GlassesService
+  ) { }
+
+  displayedColumns: string[] = ['nameAndSurname', 'prescriptionNumber', 'expectedDeliveryDate', 'remainingAmount', 'actions'];
+  dataSource = null;
 
   ngOnInit(): void {
+    this.getAll();
+  }
+
+  getAll(){
+    this.glassesService.getAll()
+      .subscribe(
+        res => {
+          this.dataSource = new MatTableDataSource();
+          this.dataSource.data = res;
+        }
+      )
   }
 
 }

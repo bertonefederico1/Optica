@@ -2,43 +2,26 @@
 
 const Customer = require('../models/Customer');
 const HealthCare = require('../models/HealthCare');
-const Customer_HealthCare = require('../models/Customer_HealthCare');
-const customerController = { };
+const glassesController = { };
 
 
-customerController.getAll = async (req, res) => {
+glassesController.getAll = async (req, res) => {
     try {
-        let customers = null;
-        if(req.params.select){
-            customers = await Customer.findAll({
-                order: [['apellido', 'ASC']],
-                attributes: ['idCliente', 'nombre', 'apellido', 'telefono', 'domicilio'],
-                where: {
-                    activo: 1
-                }
-            });
-        } else {
-            customers = await Customer.findAll({
-                attributes: ['idCliente', 'nombre', 'apellido', 'telefono', 'domicilio'],
-                where: {
-                    activo: 1
-                }
-            });
-        };
+         
         res.status(200).json(customers);
     } catch (err) {
         res.json(err);
     }
 };
 
-customerController.getOne = async (req, res) => {
+/* customerController.getOne = async (req, res) => {
     try {
         const customer = await Customer.findOne({
             where: {
                 idCliente: req.params.customerID,
                 activo: 1
             },
-            include: HealthCare
+            include: ObraSocial
         });
         res.status(200).json(customer);
     } catch(err){
@@ -59,7 +42,7 @@ customerController.createCustomer = async (req, res) => {
             domicilio: req.body.domicilio
         });
         req.body.obrasSociales.map(os => {
-            Customer_HealthCare.create({
+            Customer_ObraSocial.create({
                 idCliente: customer.idCliente,
                 idObraSocial: os.obraSocial.idObraSocial,
                 nroSocio: os.nsocio
@@ -83,13 +66,13 @@ customerController.editCustomer = async (req, res) => {
                 idCliente: req.params.customerID
             }
         });
-        await Customer_HealthCare.destroy({
+        await Customer_ObraSocial.destroy({
             where: {
                 idCliente: req.params.customerID
             }
         });
         req.body.obrasSociales.map((os) => {
-            Customer_HealthCare.create({
+            Customer_ObraSocial.create({
                 idObraSocial: os.obraSocial.idObraSocial,
                 idCliente: req.params.customerID,
                 nroSocio: os.nsocio
@@ -117,6 +100,6 @@ customerController.suspendCustomer = async (req, res) => {
         res.json(err);
     }
 };
+ */
 
-
-module.exports = customerController;
+module.exports = glassesController;
