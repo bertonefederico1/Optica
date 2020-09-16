@@ -1,7 +1,6 @@
 'use strict'
 
 const Order = require('../models/Order');
-const FrameMaterial = require('../models/FrameMaterial');
 const SupplierLaboratory = require('../models/SupplierLaboratory'); 
 const Lens = require('../models/Lens');
 const orderValidators = require('../validators/orderValidators');
@@ -23,8 +22,7 @@ orderController.getAll = async (req, res) => {
                     as: 'LensOD'
                 },{
                     model: SupplierLaboratory
-                }
-            ]
+                }]
         });
         res.status(200).json(orders);
     } catch (err) {

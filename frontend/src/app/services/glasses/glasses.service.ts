@@ -11,15 +11,15 @@ export class GlassesService {
   readonly URL: string= "http://localhost:3000"
 
   getAll(){
-    return this.http.get<any>(`${this.URL}/customers`);
+    return this.http.get<any>(`${this.URL}/glasses`);
   }
 
   getOne(customerID: number){
     return this.http.get<any>(`${this.URL}/customer/${customerID}`)
   }
 
-  addCustomer(customer) {
-    return this.http.post(`${this.URL}/newCustomer`, customer); 
+  addGlasses(glasses) {
+    return this.http.post(`${this.URL}/newGlasses`, glasses); 
   }
 
   editCustomer(customerID: number, customer) {

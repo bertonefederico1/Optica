@@ -2,15 +2,35 @@
 
 const Customer = require('../models/Customer');
 const HealthCare = require('../models/HealthCare');
+const Glasses = require('../models/Glasses');
+const Lens = require('../models/Lens');
+const Prescription = require('../models/Prescription');
 const glassesController = { };
 
 
 glassesController.getAll = async (req, res) => {
     try {
-         
-        res.status(200).json(customers);
+        const glasses = await Glasses.findAll({
+            where: {
+                activo: 1,
+                estadoAnteojo: ['Pendiente', 'En taller']
+            },
+            include: [{
+                    model: Lens,
+                    as: 'LensLE'
+                }, {
+                    model: Lens,
+                    as: 'LensRE'
+                }, {
+                    model: Prescription,
+                    include: {
+                        model: Customer
+                    }
+                }]
+        }) 
+        res.status(200).json(glasses);
     } catch (err) {
-        res.json(err);
+        res.status(400).json(err);
     }
 };
 
@@ -27,10 +47,10 @@ glassesController.getAll = async (req, res) => {
     } catch(err){
         res.json(err);
     }
-}
+} */
 
-customerController.createCustomer = async (req, res) => {
-    try {
+glassesController.createGlasses = async (req, res) => {
+    /* try {
         if(req.body.obrasSociales.length === 0) {
             throw new Error();
         }; 
@@ -53,10 +73,10 @@ customerController.createCustomer = async (req, res) => {
         res.status(400).json({
             message: err
         })
-    }
+    } */
 };
 
-customerController.editCustomer = async (req, res) => {
+/* customerController.editCustomer = async (req, res) => {
     try {
         if(req.body.obrasSociales.length === 0) {
             throw new Error();
@@ -99,7 +119,7 @@ customerController.suspendCustomer = async (req, res) => {
     } catch (err) {
         res.json(err);
     }
-};
- */
+}; */
+
 
 module.exports = glassesController;

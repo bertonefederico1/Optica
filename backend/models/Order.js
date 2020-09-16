@@ -38,10 +38,6 @@ const Order = sequelize.define('pedido', {
     fechaPedido: {
         type: DataTypes.DATE, 
         defaultValue: Sequelize.NOW,
-        references: {
-            model: SupplierLaboratory,
-            key: 'idProvLab'
-        },
         validate: {
             notEmpty: false
         }

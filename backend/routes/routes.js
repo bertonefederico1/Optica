@@ -90,5 +90,6 @@ router.put('/suspendOrder');
 
 //Rutas de Anteojos
 router.get('/glasses', glassesController.getAll);
+router.post('/newGlasses', glassesController.createGlasses);
 
 module.exports = router;
