@@ -25,7 +25,7 @@ export class GlassesComponent implements OnInit {
     this.getAll();
     this.dialogConfig.width = '100%';
     this.dialogConfig.height = '100%';
-    this.dialogConfig.disableClose = false;
+    this.dialogConfig.disableClose = true;
   }
 
   getAll(){

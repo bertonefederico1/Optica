@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-add-glasses',
@@ -9,6 +10,26 @@ import { Component, OnInit } from '@angular/core';
 export class AddGlassesComponent implements OnInit {
 
   constructor() { }
+
+  glassesForm = new FormGroup({
+
+  })
+
+  addCustomer(){
+
+  }
+
+  addPrescription(){
+
+  }
+
+  addFrame(){
+    
+  }
+
+  onSubmit(){
+
+  }
 
   ngOnInit(): void {
   }

@@ -1,33 +1,33 @@
 <h4 class="section title1">NUEVO ANTEOJO</h4>
 <div class="row">
-    <form class="col m12" [formGroup]="prescriptionForm">
+    <form class="col m12" [formGroup]="glassesForm">
         <fieldset>
             <legend><b>Datos Personales</b></legend>
-            <form class="col s12" [formGroup]="customerForm">
-                <div class="row">
-                    <div class="col m9">
-                        <span class="description">Nombre y Apellido:</span>
-                        <div class="input-field inline">
-                            <input type="text" class="validate ml10 col m12" formControlName="nameAndSurname">
-                        </div>
+            <div class="row">
+                <div class="col m9">
+                    <span class="description">Nombre y Apellido:</span>
+                    <div class="input-field inline">
+                        <input type="text" class="validate ml10 col m12" readonly formControlName="nameAndSurname">
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col m5">
-                        <span class="description">Teléfono:</span>
-                        <div class="input-field inline">
-                            <input type="text" class="validate ml10" formControlName="nameAndSurname">
-                        </div>
-                    </div>
-                    <div class="col m7">
-                        <span class="description">Domicilio:</span>
-                        <div class="input-field inline">
-                            <input type="text" class="validate ml10" formControlName="nameAndSurname">
-                        </div>
+            </div>
+            <div class="row">
+                <div class="col m5">
+                    <span class="description">Teléfono:</span>
+                    <div class="input-field inline">
+                        <input type="text" class="validate ml10" readonly formControlName="telephone">
                     </div>
                 </div>
-                <button class="waves-effect waves-light btn-small col offset-m9" (click)="addCustomer()">Buscar Cliente</button>
-            </form>      
+                <div class="col m7">
+                    <span class="description">Domicilio:</span>
+                    <div class="input-field inline">
+                        <input type="text" class="validate ml10" readonly formControlName="address">
+                    </div>
+                </div>
+            </div>
+            <button class="waves-effect waves-light btn-small col offset-m9" (click)="addCustomer()"><i
+                class="material-icons left">search</i>Buscar
+                Cliente</button>
         </fieldset>
         <fieldset>
             <legend><b>Datos Lentes</b></legend>
@@ -40,7 +40,7 @@
                     <div class="col m6">
                         <span class="description">Valor Esférico:</span>
                         <div class="input-field inline">
-                            <input type="text" class="validate ml10 col m5" formControlName="sphericalValueLE">
+                            <input type="text" class="validate ml10 col m5" readonly formControlName="sphericalValueLE">
                         </div>
                     </div>
                     <div class="col m6">
@@ -81,26 +81,129 @@
                     <div class="col m6">
                         <span class="description">Lente Izquierdo:</span>
                         <div class="input-field inline">
-                            <input type="text" class="validate ml10 col m6" formControlName="axisRE">
+                            <input type="text" class="validate ml10 col m6" formControlName="leftLens">
                         </div>
                         <div style="margin-top: -3rem">
-                            <button class="waves-effect waves-light btn-small col offset-m9" style="margin-bottom: 5px;">De Stock</button>
-                            <button class="waves-effect waves-light btn-small col offset-m9">De Pedido</button>
+                            <button class="waves-effect grey lighten-2 black-text border-button-solid btn-small col offset-m9"
+                                style="margin-bottom: 5px;" (click)="searchLensFromStock()"><i
+                                class="material-icons left">search</i>Stock</button>
+                            <button class="waves-effect grey lighten-2 black-text border-button-solid btn-small col offset-m9"
+                            (click)="searchLensFromOrder()"><i
+                                class="material-icons left">search</i>Pedido</button>
                         </div>
                     </div>
                     <div class="divider-horizontal col m6">
                         <span class="description">Lente Derecho:</span>
                         <div class="input-field inline">
-                            <input type="text" class="validate ml10 col m6" formControlName="axisRE">
+                            <input type="text" class="validate ml10 col m6" formControlName="rightLens">
                         </div>
                         <div style="margin-top: -3rem">
-                            <button class="waves-effect waves-light btn-small col offset-m9" style="margin-bottom: 5px;">De Stock</button>
-                            <button class="waves-effect waves-light btn-small col offset-m9">De Pedido</button>
+                            <button class="waves-effect grey lighten-2 black-text border-button-solid btn-small col offset-m9"
+                                style="margin-bottom: 5px;" (click)="searchLensFromStock()"><i
+                                class="material-icons left">search</i>Stock</button>
+                            <button class="waves-effect grey lighten-2 black-text border-button-solid btn-small col offset-m9"
+                            (click)="searchLensFromOrder()"><i
+                                class="material-icons left">search</i>Pedido</button>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="divider"></div>
+            <div class="row">
+                <div class="center-align">
+                    <div class="col m6">
+                        <span class="description">Valor DIP Cerca:</span>
+                        <div class="input-field inline">
+                            <input type="text" class="validate ml10 col m5" formControlName="nearValueDIP">
+                        </div>
+                    </div>
+                    <div class="col m6">
+                        <span class="description">Valor ADD:</span>
+                        <div class="input-field inline">
+                            <input type="text" class="validate ml10 col m5" formControlName="AddValue">
+                        </div>
+                    </div>
+                    <div class="col m6">
+                        <span class="description">Valor DIP Lejos:</span>
+                        <div class="input-field inline">
+                            <input type="text" class="validate ml10 col m5" formControlName="farValueDIP">
+                        </div>
+                    </div>
+                    <div class="col m6">
+                        <span class="description">Valor Altura:</span>
+                        <div class="input-field inline">
+                            <input type="text" class="validate ml10 col m5" formControlName="heightValue">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col m4">
+                <div class="center-align">
+                    <span class="description">Utilidad Anteojo:</span>
+                    <div class="input-field inline">
+                        <select class="browser-default border-black"
+                            style="border-color: black; height: 40px; margin-top: 1rem;" formControlName="lensUtility">
+                            <option value="" disabled selected>Seleccionar</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <button class="waves-effect waves-light btn-small col offset-m9" (click)="addPrescription()"><i
+                class="material-icons left">search</i>Buscar Receta</button>
+        </fieldset>
+        <fieldset>
+            <legend><b>Datos Armazón</b></legend>
+            <div class="row">
+                <div class="col m5">
+                    <span class="description">Armazón:</span>
+                    <div class="input-field inline">
+                        <input type="text" readonly formControlName="frameDescription">
+                    </div>
+                </div>
+                <button class="waves-effect waves-light btn-small col offset-m5"
+                    style="position: relative; margin-top: -2.5rem" (click)="addFrame()"><i
+                        class="material-icons left">search</i>Buscar
+                    Armazón</button>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend><b>Datos Facturación</b></legend>
+            <div class="row">
+                <div class="center-align">
+                    <div class="col m6">
+                        <span class="description">Total:</span>
+                        <div class="input-field inline">
+                            <input type="text" class="validate ml10 col m5" formControlName="totalAmount">
+                        </div>
+                    </div>
+                    <div class="col m6">
+                        <span class="description">Fecha Entrega Estimada:</span>
+                        <div class="input-field inline">
+                            <input type="date" class="validate ml10 col m9" formControlName="expectedDeliveryDate">
+                        </div>
+                    </div>
+                </div>
+                <div class="col m10 ml5r">
+                    <span class="description">Seña:</span>
+                    <div class="input-field inline">
+                        <input type="text" class="validate ml10 col m3" formControlName="sign">
+                    </div>
+                </div>
+                <div class="center-align">
+                    <div class="col m6">
+                        <span class="description">Saldo:</span>
+                        <div class="input-field inline">
+                            <input type="text" class="validate ml10 col m5" formControlName="sphericalValueLE">
+                        </div>
+                    </div>
+                    <div class="col m2">
+                        <mat-checkbox color="primary" formControlName="orderLensLE">
+                            <b class="black-text description">Facturado Obra Social</b>
+                        </mat-checkbox>
+                    </div>
+                </div>
+                
+            </div>
         </fieldset>
     </form>
 </div>
