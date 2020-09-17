@@ -8,6 +8,7 @@ const prescriptionController = { };
 prescriptionController.getAllByCustomer = async (req, res) => {
     try {
         const prescriptions = await Prescription.findAll({
+            order: [['fechaReceta', 'DESC']], 
             where: {
                 idCliente: req.params.customerID,
                 activo: 1

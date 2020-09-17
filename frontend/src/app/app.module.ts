@@ -42,6 +42,9 @@ import { GlassesComponent } from './components/glasses/glasses/glasses.component
 import { AddGlassesComponent } from './components/glasses/add-glasses/add-glasses.component';
 import { DataGlassesComponent } from './components/glasses/data-glasses/data-glasses.component';
 import { SelectPrescriptionsComponent } from './components/prescriptions/select-prescriptions/select-prescriptions.component';
+import { SelectFrameComponent } from './components/frames/select-frame/select-frame.component';
+import { SelectLensStockComponent } from './components/lenses/select-lens-stock/select-lens-stock.component';
+import { SelectLensOrderComponent } from './components/orders/select-lens-order/select-lens-order.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +78,10 @@ import { SelectPrescriptionsComponent } from './components/prescriptions/select-
     GlassesComponent,
     AddGlassesComponent,
     DataGlassesComponent,
-    SelectPrescriptionsComponent
+    SelectPrescriptionsComponent,
+    SelectFrameComponent,
+    SelectLensStockComponent,
+    SelectLensOrderComponent
   ],
   imports: [
     BrowserModule,

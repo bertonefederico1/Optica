@@ -30,6 +30,10 @@ orderController.getAll = async (req, res) => {
     }
 };
 
+orderController.getOrdersByPrescription = async (req, res) => {
+
+}
+
 /* frameController.getOne = async (req, res) => {
     try {
         const frame = await Frame.findOne({
