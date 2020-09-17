@@ -46,31 +46,31 @@
                     <div class="col m6">
                         <span class="description">Valor Esférico:</span>
                         <div class="input-field inline">
-                            <input type="text" class="validate ml10 col m5" formControlName="sphericalValueRE">
+                            <input type="text" class="validate ml10 col m5" readonly formControlName="sphericalValueRE">
                         </div>
                     </div>
                     <div class="col m6">
                         <span class="description">Valor Cilíndrico:</span>
                         <div class="input-field inline">
-                            <input type="text" class="validate ml10 col m5" formControlName="cylindricalValueLE">
+                            <input type="text" class="validate ml10 col m5" readonly formControlName="cylindricalValueLE">
                         </div>
                     </div>
                     <div class="col m6">
                         <span class="description">Valor Cilíndrico:</span>
                         <div class="input-field inline">
-                            <input type="text" class="validate ml10 col m5" formControlName="cylindricalValueRE">
+                            <input type="text" class="validate ml10 col m5" readonly formControlName="cylindricalValueRE">
                         </div>
                     </div>
                     <div class="col m6">
                         <span class="description">Eje (En grados):</span>
                         <div class="input-field inline">
-                            <input type="text" class="validate ml10 col m5" formControlName="axisLE">
+                            <input type="text" class="validate ml10 col m5" readonly formControlName="axisLE">
                         </div>
                     </div>
                     <div class="col m6">
                         <span class="description">Eje (En grados):</span>
                         <div class="input-field inline">
-                            <input type="text" class="validate ml10 col m5" formControlName="axisRE">
+                            <input type="text" class="validate ml10 col m5" readonly formControlName="axisRE">
                         </div>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                     <div class="col m6">
                         <span class="description">Lente Izquierdo:</span>
                         <div class="input-field inline">
-                            <input type="text" class="validate ml10 col m6" formControlName="leftLens">
+                            <input type="text" class="validate ml10 col m6" readonly formControlName="leftLens">
                         </div>
                         <div style="margin-top: -3rem">
                             <button class="waves-effect grey lighten-2 black-text border-button-solid btn-small col offset-m9"
@@ -95,7 +95,7 @@
                     <div class="divider-horizontal col m6">
                         <span class="description">Lente Derecho:</span>
                         <div class="input-field inline">
-                            <input type="text" class="validate ml10 col m6" formControlName="rightLens">
+                            <input type="text" class="validate ml10 col m6" readonly formControlName="rightLens">
                         </div>
                         <div style="margin-top: -3rem">
                             <button class="waves-effect grey lighten-2 black-text border-button-solid btn-small col offset-m9"
@@ -114,19 +114,19 @@
                     <div class="col m6">
                         <span class="description">Valor DIP Cerca:</span>
                         <div class="input-field inline">
-                            <input type="text" class="validate ml10 col m5" formControlName="nearValueDIP">
+                            <input type="text" class="validate ml10 col m5" readonly formControlName="nearValueDIP">
                         </div>
                     </div>
                     <div class="col m6">
                         <span class="description">Valor ADD:</span>
                         <div class="input-field inline">
-                            <input type="text" class="validate ml10 col m5" formControlName="AddValue">
+                            <input type="text" class="validate ml10 col m5" readonly formControlName="AddValue">
                         </div>
                     </div>
                     <div class="col m6">
                         <span class="description">Valor DIP Lejos:</span>
                         <div class="input-field inline">
-                            <input type="text" class="validate ml10 col m5" formControlName="farValueDIP">
+                            <input type="text" class="validate ml10 col m5" readonly formControlName="farValueDIP">
                         </div>
                     </div>
                     <div class="col m6">
@@ -186,18 +186,18 @@
                 <div class="col m10 ml5r">
                     <span class="description">Seña:</span>
                     <div class="input-field inline">
-                        <input type="text" class="validate ml10 col m3" formControlName="sign">
+                        <input type="text" class="validate ml10 col m3" formControlName="amountSign">
                     </div>
                 </div>
                 <div class="center-align">
                     <div class="col m6">
                         <span class="description">Saldo:</span>
                         <div class="input-field inline">
-                            <input type="text" class="validate ml10 col m5" formControlName="sphericalValueLE">
+                            <input type="text" class="validate ml10 col m5" readonly formControlName="amountRemainder">
                         </div>
                     </div>
                     <div class="col m2">
-                        <mat-checkbox color="primary" formControlName="orderLensLE">
+                        <mat-checkbox color="primary" formControlName="receiptHealthCare">
                             <b class="black-text description">Facturado Obra Social</b>
                         </mat-checkbox>
                     </div>
