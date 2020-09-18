@@ -10,8 +10,12 @@ export class FramesService {
 
   readonly URL: string= "http://localhost:3000"
 
-  getAll(){
-    return this.http.get<any>(`${this.URL}/frames`);
+  getAll(select?: string){
+    if(select){
+      return this.http.get<any>(`${this.URL}/frames/${select}`);
+    } else {
+      return this.http.get<any>(`${this.URL}/frames`);
+    }
   }
 
   addFrame(frame: any){

@@ -3,7 +3,6 @@
 const sequelize = require('../database/db-connection');
 const { DataTypes } = require('Sequelize');
 const Prescription = require('../models/Prescription');
-const Order = require('../models/Order');
 const Lens = require('../models/Lens');
 const Frame = require('../models/Frame');
 const HealthCare = require('../models/HealthCare');
@@ -21,13 +20,6 @@ const Glasses = sequelize.define('anteojo_receta', {
         references: {
             model: Prescription,
             key: 'numReceta'
-        }
-    },
-    numPedido: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: Order,
-            key: 'numPedido'
         }
     },
     codLenteOI: {
@@ -135,9 +127,6 @@ Glasses.belongsTo(HealthCare, {foreignKey: 'idObraSocial'});
 
 Frame.hasMany(Glasses, {foreignKey: 'codArmazon'});
 Glasses.belongsTo(Frame, {foreignKey: 'codArmazon'});
-
-Order.hasMany(Glasses, {foreignKey: 'numPedido'});
-Glasses.belongsTo(Order, {foreignKey: 'numPedido'});
 
 Lens.hasMany(Glasses, {foreignKey: 'codLenteOI', as: 'LensLE'});
 Glasses.belongsTo(Lens, {foreignKey: 'codLenteOI', as: 'LensLE'});

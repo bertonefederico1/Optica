@@ -3,6 +3,7 @@
 const Order = require('../models/Order');
 const SupplierLaboratory = require('../models/SupplierLaboratory'); 
 const Lens = require('../models/Lens');
+const Glasses = require('../models/Glasses');
 const orderValidators = require('../validators/orderValidators');
 const orderController = { };
 
@@ -22,6 +23,8 @@ orderController.getAll = async (req, res) => {
                     as: 'LensOD'
                 },{
                     model: SupplierLaboratory
+                },{
+                    model: Glasses
                 }]
         });
         res.status(200).json(orders);
@@ -31,7 +34,15 @@ orderController.getAll = async (req, res) => {
 };
 
 orderController.getOrdersByPrescription = async (req, res) => {
-
+    try {
+        const orders = await Order.findAll({
+            where: {
+                
+            }
+        })
+    } catch (err) {
+        res.status(400).json();
+    }
 }
 
 /* frameController.getOne = async (req, res) => {

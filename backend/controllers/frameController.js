@@ -4,17 +4,30 @@ const Frame = require('../models/Frame');
 const FrameMaterial = require('../models/FrameMaterial');
 const FrameDesign = require('../models/FrameDesign');
 const FrameUtility = require('../models/FrameUtility');
-const SupplierLaboratory = require('../models/SupplierLaboratory'); 
+const SupplierLaboratory = require('../models/SupplierLaboratory');
+const { Op } = require("sequelize"); 
 const frameController = { };
 
 
 frameController.getAll = async (req, res) => {
     try {
-        const frames = await Frame.findAll({
-            where: {
-                activo: 1
-            }
-        });
+        let frames;
+        if(req.params.select){
+            frames = await Frame.findAll({
+                where: {
+                    activo: 1,
+                    cantidad: {
+                        [Op.gt]: 0
+                    }
+                }
+            });
+        } else {
+            frames = await Frame.findAll({
+                where: {
+                    activo: 1
+                }
+            });
+        }
         res.status(200).json(frames);
     } catch (err) {
         res.json(err);

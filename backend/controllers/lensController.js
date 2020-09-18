@@ -5,20 +5,37 @@ const LensMaterial = require('../models/LensMaterial');
 const LensDesign = require('../models/LensDesign');
 const LensFinish = require('../models/LensFinish');
 const SupplierLaboratory = require('../models/SupplierLaboratory'); 
+const { Op } = require("sequelize");
 const lensController = { };
 
 
 lensController.getAll = async (req, res) => {
     try {
-        const lenses = await Lens.findAll({
-            where: {
-                activo: 1,
-                deStock: 1
-            },
-            include: {
-                model: LensMaterial
-            }
-        });
+        let lenses;
+        if(req.params.select){
+            lenses = await Lens.findAll({
+                where: {
+                    activo: 1,
+                    deStock: 1,
+                    cantidad: {
+                        [Op.gt]: 0
+                    }
+                },
+                include: {
+                    model: LensMaterial
+                }
+            });
+        } else {
+            lenses = await Lens.findAll({
+                where: {
+                    activo: 1,
+                    deStock: 1
+                },
+                include: {
+                    model: LensMaterial
+                }
+            });
+        }
         res.status(200).json(lenses);
     } catch (err) {
         res.json(err);

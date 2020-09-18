@@ -10,8 +10,13 @@ export class LensesService {
 
   readonly URL: string= "http://localhost:3000"
 
-  getAll(){
-    return this.http.get<any>(`${this.URL}/lenses`);
+  getAll(select?: string){
+    if(select){
+      return this.http.get<any>(`${this.URL}/lenses/${select}`);
+    } else {
+      return this.http.get<any>(`${this.URL}/lenses`);
+    }
+    
   }
 
   getOne(lensID: number){

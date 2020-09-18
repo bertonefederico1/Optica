@@ -16,7 +16,7 @@ export class SelectFrameComponent implements OnInit {
     private frameService: FramesService
   ) { }
 
-  displayedColumns: string[] = ['action', 'frameID', 'brand', 'model'];
+  displayedColumns: string[] = ['action', 'frameID', 'brand', 'model', 'stock'];
   dataSource = null;
   frame: any;
 
@@ -40,7 +40,7 @@ export class SelectFrameComponent implements OnInit {
   }
 
   getAll(){
-    this.frameService.getAll()
+    this.frameService.getAll('Select')
       .subscribe(
         res => {
           this.dataSource = new MatTableDataSource();

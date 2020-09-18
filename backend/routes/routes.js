@@ -44,7 +44,7 @@ router.put('/editSupplierLaboratory/:supplierLaboratoryID', supplierLaboratoryCo
 router.put('/suspendSupplierLaboratory/:supplierLaboratoryID', supplierLaboratoryController.suspendSupplierLaboratory);
 
 //Rutas de Armazones
-router.get('/frames', frameController.getAll);
+router.get('/frames/:select?', frameController.getAll);
 router.get('/frame/:frameID', frameController.getOne);
 router.post('/newFrame', frameController.createFrame);
 router.put('/editFrame/:frameID', frameController.editFrame);
@@ -60,7 +60,7 @@ router.get('/frameDesigns', frameDesignController.getAll);
 router.get('/frameUtilities', frameUtilityController.getAll);
 
 //Rutas de Lentes
-router.get('/lenses', lensController.getAll);
+router.get('/lenses/:select?', lensController.getAll);
 router.get('/lens/:lensID', lensController.getOne);
 router.post('/newLens', lensController.createLens);
 router.put('/editLens/:lensID', lensController.editLens);

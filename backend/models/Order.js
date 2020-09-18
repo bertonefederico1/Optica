@@ -5,6 +5,7 @@ const { DataTypes, Sequelize } = require('Sequelize');
 
 const Lens = require('./Lens');
 const SupplierLaboratory = require('./SupplierLaboratory');
+const Glasses = require('./Glasses');
 
 
 const Order = sequelize.define('pedido', {
@@ -33,6 +34,13 @@ const Order = sequelize.define('pedido', {
         },
         validate: {
             notEmpty: false
+        }
+    },
+    numAnteojo: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: Glasses,
+            key: 'numAnteojo'
         }
     },
     fechaPedido: {
@@ -79,6 +87,9 @@ Order.belongsTo(Lens, {foreignKey: 'codLenteOD', as: 'LensOD'});
 
 SupplierLaboratory.hasMany(Order, {foreignKey: 'idProvLab'});
 Order.belongsTo(SupplierLaboratory, {foreignKey: 'idProvLab'});
+
+Glasses.hasMany(Order, {foreignKey: 'numAnteojo'});
+Order.belongsTo(Glasses, {foreignKey: 'numAnteojo'});
 
 
 

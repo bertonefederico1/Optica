@@ -46,7 +46,8 @@ export class AddGlassesComponent implements OnInit {
     expectedDeliveryDate: new FormControl('', Validators.required),
     tokenPayment: new FormControl('', Validators.required),
     amountRemainder: new FormControl('', Validators.required),
-    receiptHealthCare: new FormControl('', Validators.required)
+    receiptHealthCare: new FormControl('', Validators.required),
+    healthCare: new FormControl('', Validators.required)
   })
   customer: any;
   prescription: any;
@@ -55,11 +56,15 @@ export class AddGlassesComponent implements OnInit {
   lensRE: any;
   lensLoaded: string;
   dialogConfig = new MatDialogConfig();
-  glassesUtilities: string[] = ['Lejos', 'Cerca', 'Ambos'];
+  glassesUtilities: string[] = ['Lejos', 'Cerca', 'Ambos']; 
 
   ngOnInit(): void {
     this.dialogConfig.height = '100%';
     this.dialogConfig.width = '100%';
+  }
+
+  onSubmit(){
+    console.log(this.glassesForm.value);
   }
 
   setCustomerData(){
@@ -119,6 +124,10 @@ export class AddGlassesComponent implements OnInit {
       )
   }
 
+  HealthCareForReceiptSelected(){
+    console.log(this.glassesForm.get('receiptHealthCare'))
+  }
+
   searchPrescription(){
     if(this.customer){
       this.dialogConfig.data = {
@@ -172,10 +181,6 @@ export class AddGlassesComponent implements OnInit {
 
   searchLensFromStockRE(){
     this.lensLoaded = "Right";
-  }
-
-  onSubmit(){
-    console.log("Save Glasses");
   }
 
   

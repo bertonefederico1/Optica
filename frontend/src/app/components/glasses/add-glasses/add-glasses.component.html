@@ -76,7 +76,7 @@
                 </div>
             </div>
             <div class="divider"></div>
-            <div class="row mt3">
+            <div class="row mt3" style="margin-bottom: 4rem">
                 <div class="center-align">
                     <div class="col m6">
                         <span class="description">Lente Izquierdo:</span>
@@ -87,12 +87,9 @@
                             <button class="waves-effect grey lighten-2 black-text border-button-solid btn-small col offset-m9"
                                 style="margin-bottom: 5px;" (click)="searchLensFromStockLE()"><i
                                 class="material-icons left">search</i>Stock</button>
-                            <button class="waves-effect grey lighten-2 black-text border-button-solid btn-small col offset-m9"
-                            (click)="searchLensFromOrder()"><i
-                                class="material-icons left">search</i>Pedido</button>
                         </div>
                     </div>
-                    <div class="divider-horizontal col m6">
+                    <div class="col m6">
                         <span class="description">Lente Derecho:</span>
                         <div class="input-field inline">
                             <input type="text" class="ml10 col m6" readonly formControlName="descriptionRightLens">
@@ -101,9 +98,6 @@
                             <button class="waves-effect grey lighten-2 black-text border-button-solid btn-small col offset-m9"
                                 style="margin-bottom: 5px;" (click)="searchLensFromStockRE()"><i
                                 class="material-icons left">search</i>Stock</button>
-                            <button class="waves-effect grey lighten-2 black-text border-button-solid btn-small col offset-m9"
-                            (click)="searchLensFromOrder()"><i
-                                class="material-icons left">search</i>Pedido</button>
                         </div>
                     </div>
                 </div>
@@ -172,7 +166,7 @@
             <div class="row">
                 <div class="center-align">
                     <div class="col m6">
-                        <span class="description">Total:</span>
+                        <span class="description">Total ($):</span>
                         <div class="input-field inline">
                             <input type="text" class="validate ml10 col m5" formControlName="totalAmount">
                         </div>
@@ -185,25 +179,33 @@
                     </div>
                 </div>
                 <div class="col m10 ml5r">
-                    <span class="description">Seña:</span>
+                    <span class="description">Seña ($):</span>
                     <div class="input-field inline">
                         <input type="text" class="validate ml10 col m3" formControlName="tokenPayment">
                     </div>
                 </div>
                 <div class="center-align">
                     <div class="col m6">
-                        <span class="description">Saldo:</span>
+                        <span class="description">Saldo ($):</span>
                         <div class="input-field inline">
                             <input type="text" class="ml10 col m5" readonly formControlName="amountRemainder">
                         </div>
                     </div>
-                    <div class="col m2">
-                        <mat-checkbox color="primary" formControlName="receiptHealthCare">
+                    <div class="col m3">
+                        <mat-checkbox color="primary" formControlName="receiptHealthCare" (change)="HealthCareForReceiptSelected()">
                             <b class="black-text description">Facturado Obra Social</b>
                         </mat-checkbox>
+                        <div class="col m12">
+                            <div class="input-field">
+                                <select class="browser-default border-black" formControlName="healthCare"
+                                    style="border-color: black; height: 40px;">
+                                    <option value="" disabled selected>Seleccionar</option>
+                                    <option [ngValue]="">asdsadsa</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
             </div>
         </fieldset>
     </form>

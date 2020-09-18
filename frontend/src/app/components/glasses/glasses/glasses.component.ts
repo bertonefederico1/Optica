@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { GlassesService } from './../../../services/glasses/glasses.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -17,15 +17,21 @@ export class GlassesComponent implements OnInit {
     private dialogRef: MatDialog
   ) { }
 
-  displayedColumns: string[] = ['nameAndSurname', 'prescriptionNumber', 'expectedDeliveryDate', 'remainingAmount', 'actions'];
+  displayedColumns: string[] = ['nameAndSurname', 'prescriptionNumber', 'expectedDeliveryDate', 'remainingAmount', 'status', 'actions'];
   dataSource = null;
   dialogConfig = new MatDialogConfig();
+  filterSelect: string = '';
+  statements: string[] = ['Pendiente', 'Todos', 'En taller', 'Entregado'];
 
   ngOnInit(): void {
     this.getAll();
     this.dialogConfig.width = '100%';
     this.dialogConfig.height = '100%';
     this.dialogConfig.disableClose = true;
+  }
+
+  filter(){
+    this.filterSelect === 'Todos' ? this.dataSource.filter = null : this.dataSource.filter = this.filterSelect;
   }
 
   getAll(){

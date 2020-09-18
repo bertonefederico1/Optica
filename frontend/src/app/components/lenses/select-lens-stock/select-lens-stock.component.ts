@@ -40,7 +40,7 @@ export class SelectLensStockComponent implements OnInit {
   }
 
   getAll(){
-    this.lensService.getAll()
+    this.lensService.getAll('Select')
       .subscribe(
         res => {
           this.dataSource = new MatTableDataSource();
