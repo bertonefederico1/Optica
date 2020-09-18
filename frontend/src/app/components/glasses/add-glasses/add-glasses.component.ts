@@ -5,6 +5,8 @@ import { SelectCustomerComponent } from '../../customers/select-customer/select-
 import { SelectPrescriptionsComponent } from './../../prescriptions/select-prescriptions/select-prescriptions.component';
 import { SelectFrameComponent } from './../../frames/select-frame/select-frame.component';
 import { SelectLensStockComponent } from './../../lenses/select-lens-stock/select-lens-stock.component';
+import { Observable } from 'rxjs';
+import { CustomerHealthCareService } from './../../../services/customerHealthCare/customer-health-care.service';
 
 @Component({
   selector: 'app-add-glasses',
@@ -15,6 +17,7 @@ import { SelectLensStockComponent } from './../../lenses/select-lens-stock/selec
 export class AddGlassesComponent implements OnInit {
 
   constructor(
+    private customerHealthCareService: CustomerHealthCareService,
     private dialogRef: MatDialog,
     private dialogRefAdd: MatDialogRef<AddGlassesComponent>
   ) { }
@@ -57,6 +60,7 @@ export class AddGlassesComponent implements OnInit {
   lensLoaded: string;
   dialogConfig = new MatDialogConfig();
   glassesUtilities: string[] = ['Lejos', 'Cerca', 'Ambos']; 
+  healthCares$: Observable<any[]>;
 
   ngOnInit(): void {
     this.dialogConfig.height = '100%';
@@ -68,11 +72,16 @@ export class AddGlassesComponent implements OnInit {
   }
 
   setCustomerData(){
+    this.healthCares$ = this.customerHealthCareService.getAllByCustomer(this.customer.idCliente);
     this.glassesForm.patchValue({
       nameAndSurname: this.customer.nombre + ' ' + this.customer.apellido,
       telephone: this.customer.telefono,
       address: this.customer.domicilio
     })
+  }
+
+  calculateAmountRemainder(event){
+    console.log("Calcular monto saldo")
   }
 
   setPrescriptionData(){
@@ -124,9 +133,6 @@ export class AddGlassesComponent implements OnInit {
       )
   }
 
-  HealthCareForReceiptSelected(){
-    console.log(this.glassesForm.get('receiptHealthCare'))
-  }
 
   searchPrescription(){
     if(this.customer){

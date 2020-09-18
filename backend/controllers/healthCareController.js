@@ -1,9 +1,9 @@
 'use strict'
 
 const HealthCare = require('../models/HealthCare');
-const HealthCareController = { };
+const healthCareController = { };
 
-HealthCareController.getAll = async (req, res) => {
+healthCareController.getAll = async (req, res) => {
     try {
         const healthCares = await HealthCare.findAll({
             where: {
@@ -16,7 +16,7 @@ HealthCareController.getAll = async (req, res) => {
     }
 };
 
-HealthCareController.getOne = async (req, res) => {
+healthCareController.getOne = async (req, res) => {
     try {
         const healthCare = await HealthCare.findOne({
             where: {
@@ -30,7 +30,7 @@ HealthCareController.getOne = async (req, res) => {
     }
 }
 
-HealthCareController.createHealthCare = async (req, res) => {
+healthCareController.createHealthCare = async (req, res) => {
     try {
         await HealthCare.create({
             nombre: req.body.name,
@@ -43,7 +43,7 @@ HealthCareController.createHealthCare = async (req, res) => {
     }
 }; 
 
-HealthCareController.editHealthCare = async (req, res) => {
+healthCareController.editHealthCare = async (req, res) => {
     try {
         await HealthCare.update({
             nombre: req.body.name,
@@ -60,7 +60,7 @@ HealthCareController.editHealthCare = async (req, res) => {
     }
 }; 
 
-HealthCareController.suspendHealthCare = async (req, res) => {
+healthCareController.suspendHealthCare = async (req, res) => {
     try {
         await HealthCare.update({
             activo: 0
@@ -76,4 +76,4 @@ HealthCareController.suspendHealthCare = async (req, res) => {
 };
 
 
-module.exports = HealthCareController;
+module.exports = healthCareController;

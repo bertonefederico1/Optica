@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 
 const customerController = require('../controllers/customerController');
-const obraSocialController = require('../controllers/healthCareController');
+const healthCarelController = require('../controllers/healthCareController');
 const supplierLaboratoryController = require('../controllers/supplierLaboratoryController')
 const frameController = require('../controllers/frameController');
 const frameMaterialController = require('../controllers/frameMaterialController');
@@ -18,6 +18,7 @@ const logController = require('../controllers/logController');
 const prescriptionController = require('../controllers/prescriptionController');
 const orderController = require('../controllers/orderController');
 const glassesController = require('../controllers/glassesController');
+const customerHealthCareController = require('../controllers/customerHealthCareController');
 
 //Login y Logout
 router.post('/login', logController.logIn);
@@ -29,12 +30,15 @@ router.post('/newCustomer', customerController.createCustomer);
 router.put('/editCustomer/:customerID', customerController.editCustomer);
 router.put('/suspendCustomer/:customerID', customerController.suspendCustomer);
 
-//Rutas de Obras Social
-router.get('/healthCares', obraSocialController.getAll);
-router.get('/healthCare/:healthCareID', obraSocialController.getOne);
-router.post('/newHealthCare', obraSocialController.createHealthCare);
-router.put('/editHealthCare/:healthCareID', obraSocialController.editHealthCare);
-router.put('/suspendHealthCare/:healthCareID', obraSocialController.suspendHealthCare);
+//Rutas de Obras Sociales
+router.get('/healthCares', healthCarelController.getAll);
+router.get('/healthCare/:healthCareID', healthCarelController.getOne);
+router.post('/newHealthCare', healthCarelController.createHealthCare);
+router.put('/editHealthCare/:healthCareID', healthCarelController.editHealthCare);
+router.put('/suspendHealthCare/:healthCareID', healthCarelController.suspendHealthCare);
+
+//Rutas de Clientes - Obras Sociales
+router.get('/healthCaresByCustomer/:customerID', customerHealthCareController.getAllByCustomer);
 
 //Rutas de Proveedores/Laboratorios
 router.get('/suppliersLaboratories/:select?', supplierLaboratoryController.getAll);

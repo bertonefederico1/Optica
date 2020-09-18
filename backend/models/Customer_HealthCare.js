@@ -3,7 +3,7 @@
 const sequelize = require('../database/db-connection');
 const { DataTypes } = require('Sequelize');
 const Customer = require('./Customer');
-const HealthCare = require('./Customer_HealthCare')
+const HealthCare = require('./HealthCare');
 
 const Customer_HealthCare = sequelize.define('cliente_obra_social', {
     idCliente_ObraSocial: { 
@@ -39,5 +39,10 @@ const Customer_HealthCare = sequelize.define('cliente_obra_social', {
     createdAt: false,
     updatedAt: false
 });
+
+
+HealthCare.hasMany(Customer_HealthCare, {foreignKey: 'idObraSocial'});
+Customer_HealthCare.belongsTo(HealthCare, {foreignKey: 'idObraSocial'});
+
 
 module.exports = Customer_HealthCare;

@@ -168,7 +168,7 @@
                     <div class="col m6">
                         <span class="description">Total ($):</span>
                         <div class="input-field inline">
-                            <input type="text" class="validate ml10 col m5" formControlName="totalAmount">
+                            <input type="text" class="validate ml10 col m5" (change)="calculateAmountRemainder($event.target.value)" formControlName="totalAmount">
                         </div>
                     </div>
                     <div class="col m6">
@@ -181,7 +181,7 @@
                 <div class="col m10 ml5r">
                     <span class="description">Seña ($):</span>
                     <div class="input-field inline">
-                        <input type="text" class="validate ml10 col m3" formControlName="tokenPayment">
+                        <input type="text" class="validate ml10 col m3" (change)="calculateAmountRemainder($event.target.value)" formControlName="tokenPayment">
                     </div>
                 </div>
                 <div class="center-align">
@@ -192,15 +192,15 @@
                         </div>
                     </div>
                     <div class="col m3">
-                        <mat-checkbox color="primary" formControlName="receiptHealthCare" (change)="HealthCareForReceiptSelected()">
+                        <mat-checkbox color="primary" formControlName="receiptHealthCare">
                             <b class="black-text description">Facturado Obra Social</b>
                         </mat-checkbox>
                         <div class="col m12">
                             <div class="input-field">
-                                <select class="browser-default border-black" formControlName="healthCare"
+                                <select class="browser-default border-black" *ngIf="healthCares$ | async as healthCares" formControlName="healthCare"
                                     style="border-color: black; height: 40px;">
                                     <option value="" disabled selected>Seleccionar</option>
-                                    <option [ngValue]="">asdsadsa</option>
+                                    <option *ngFor="let healthCare of healthCares" [ngValue]="healthCare.idObraSocial">{{healthCare.obra_social.nombre}}</option>
                                 </select>
                             </div>
                         </div>
