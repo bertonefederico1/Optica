@@ -68,18 +68,6 @@ const Glasses = sequelize.define('anteojo_receta', {
             notEmpty: false
         }
     },
-    abonoSena: {
-        type: DataTypes.BOOLEAN,
-        validate: {
-            notEmpty: false
-        }
-    },
-    abonoSaldo: {
-        type: DataTypes.BOOLEAN,
-        validate: {
-            notEmpty: false
-        }
-    },
     montoTotal: {
         type: DataTypes.DECIMAL(10,2),
         validate: {
@@ -87,8 +75,7 @@ const Glasses = sequelize.define('anteojo_receta', {
         }
     },
     montoSena: {
-        type: DataTypes.DECIMAL(10,2),
-        defaultValue: 0
+        type: DataTypes.DECIMAL(10,2)
     },
     valorAltura: {
         type: DataTypes.INTEGER,

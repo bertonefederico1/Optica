@@ -14,8 +14,8 @@ export class GlassesService {
     return this.http.get<any>(`${this.URL}/glasses`);
   }
 
-  getOne(customerID: number){
-    return this.http.get<any>(`${this.URL}/customer/${customerID}`)
+  getOne(glassesNumber: number){
+    return this.http.get<any>(`${this.URL}/glasses/${glassesNumber}`)
   }
 
   addGlasses(glasses) {

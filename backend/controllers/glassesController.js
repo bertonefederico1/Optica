@@ -1,7 +1,8 @@
 'use strict'
 
+
+const sequelize = require('../database/db-connection');
 const Customer = require('../models/Customer');
-const HealthCare = require('../models/HealthCare');
 const Glasses = require('../models/Glasses');
 const Lens = require('../models/Lens');
 const Prescription = require('../models/Prescription');
@@ -34,46 +35,87 @@ glassesController.getAll = async (req, res) => {
     }
 };
 
-/* customerController.getOne = async (req, res) => {
+glassesController.getOne = async (req, res) => {
     try {
-        const customer = await Customer.findOne({
+        const glasses = await Glasses.findOne({
             where: {
                 idCliente: req.params.customerID,
                 activo: 1
             },
             include: ObraSocial
         });
-        res.status(200).json(customer);
+        res.status(200).json(glasses);
     } catch(err){
-        res.json(err);
+        res.status(400).json(err);
     }
-} */
+}
 
 glassesController.createGlasses = async (req, res) => {
-    /* try {
-        if(req.body.obrasSociales.length === 0) {
-            throw new Error();
+    const t = await sequelize.transaction();
+    try {
+        if(!req.body.receiptHealthCare) {
+            req.body.healthCareID = null;
         }; 
-        const customer = await Customer.create({
-            nombre: req.body.nombre,
-            apellido: req.body.apellido,
-            telefono: req.body.telefono,
-            email: req.body.email,
-            domicilio: req.body.domicilio
-        });
-        req.body.obrasSociales.map(os => {
-            Customer_ObraSocial.create({
-                idCliente: customer.idCliente,
-                idObraSocial: os.obraSocial.idObraSocial,
-                nroSocio: os.nsocio
-            })
-        });
+        if(!req.body.leftLensID){
+            req.body.leftLensID = null;
+        } else {
+            const lens = await Lens.findByPk(req.body.leftLensID);
+            const stock = lens.cantidad;
+            if(stock > 0){
+                await Lens.update({
+                    cantidad: stock - 1
+                }, {
+                    where: {
+                        codLente: req.body.leftLensID
+                    }
+                }, { transaction: t })
+            } else {
+                throw new Error();
+            }
+        };
+        if(!req.body.rightLensID){
+            req.body.rightLensID = null;
+        } else {
+            const lens = await Lens.findByPk(req.body.rightLensID);
+            const stock = lens.cantidad;
+            if(stock > 0){
+                await Lens.update({
+                    cantidad: stock - 1
+                }, {
+                    where: {
+                        codLente: req.body.rightLensID
+                    }
+                }, { transaction: t })
+            } else {
+                throw new Error();
+            }
+        };
+        if(req.body.tokenPayment == ''){
+            req.body.tokenPayment = 0;
+        };
+        if(req.body.receiptHealthCare && req.body.healthCareID == null){
+            throw new Error();
+        };
+        await Glasses.create({
+            numReceta: req.body.prescriptionNumber,
+            codLenteOI: req.body.leftLensID,
+            codLenteOD: req.body.rightLensID,
+            codArmazon: req.body.frameID,
+            idObraSocial: req.body.healthCareID,
+            fechaPrometido: req.body.expectedDeliveryDate,
+            estadoAnteojo: 'Pendiente',
+            montoTotal: req.body.totalAmount,
+            montoSena: req.body.tokenPayment,
+            valorAltura: req.body.heightValue,
+            utilidadAnteojo: req.body.glassesUtility,
+            esFacObraSocial: req.body.receiptHealthCare
+        }, { transaction: t });
+        await t.commit();
         res.status(200).json();
     } catch (err) {
-        res.status(400).json({
-            message: err
-        })
-    } */
+        await t.rollback();
+        res.status(400).json()
+    }
 };
 
 /* customerController.editCustomer = async (req, res) => {

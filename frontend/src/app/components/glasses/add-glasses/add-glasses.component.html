@@ -87,6 +87,8 @@
                             <button class="waves-effect grey lighten-2 black-text border-button-solid btn-small col offset-m9"
                                 style="margin-bottom: 5px;" (click)="searchLensFromStockLE()"><i
                                 class="material-icons left">search</i>Stock</button>
+                                <button class="waves-effect red btn-small col offset-m9"
+                                (click)="deleteLoadedLensLE()">Eliminar</button>
                         </div>
                     </div>
                     <div class="col m6">
@@ -96,8 +98,10 @@
                         </div>
                         <div style="margin-top: -3rem">
                             <button class="waves-effect grey lighten-2 black-text border-button-solid btn-small col offset-m9"
-                                style="margin-bottom: 5px;" (click)="searchLensFromStockRE()"><i
+                                style="margin-bottom: 5px;" (click)="searchLensFromOrderRE()"><i
                                 class="material-icons left">search</i>Stock</button>
+                                <button class="waves-effect red btn-small col offset-m9"
+                                (click)="deleteLoadedLensRE()">Eliminar</button>
                         </div>
                     </div>
                 </div>
@@ -136,7 +140,7 @@
                     <span class="description">Utilidad Anteojo:</span>
                     <div class="input-field inline">
                         <select class="browser-default border-black"
-                            style="border-color: black; height: 40px; margin-top: 1rem;" formControlName="lensUtility">
+                            style="border-color: black; height: 40px; margin-top: 1rem;" formControlName="glassesUtility">
                             <option value="" disabled selected>Seleccionar</option>
                             <option *ngFor="let glassesUtility of glassesUtilities" [ngValue]="glassesUtility">{{glassesUtility}}</option>
                         </select>
@@ -168,7 +172,7 @@
                     <div class="col m6">
                         <span class="description">Total ($):</span>
                         <div class="input-field inline">
-                            <input type="text" class="validate ml10 col m5" (change)="calculateAmountRemainder($event.target.value)" formControlName="totalAmount">
+                            <input type="number" class="ml10 col m5" (keyup)="calculateAmountRemainder($event.target.value)" formControlName="totalAmount">
                         </div>
                     </div>
                     <div class="col m6">
@@ -181,14 +185,14 @@
                 <div class="col m10 ml5r">
                     <span class="description">Seña ($):</span>
                     <div class="input-field inline">
-                        <input type="text" class="validate ml10 col m3" (change)="calculateAmountRemainder($event.target.value)" formControlName="tokenPayment">
+                        <input type="number" class="ml10 col m3" (keyup)="calculateAmountRemainder($event.target.value)" formControlName="tokenPayment">
                     </div>
                 </div>
                 <div class="center-align">
                     <div class="col m6">
                         <span class="description">Saldo ($):</span>
                         <div class="input-field inline">
-                            <input type="text" class="ml10 col m5" readonly formControlName="amountRemainder">
+                            <input type="number" class="ml10 col m5" readonly formControlName="amountRemainder">
                         </div>
                     </div>
                     <div class="col m3">
@@ -197,7 +201,7 @@
                         </mat-checkbox>
                         <div class="col m12">
                             <div class="input-field">
-                                <select class="browser-default border-black" *ngIf="healthCares$ | async as healthCares" formControlName="healthCare"
+                                <select class="browser-default border-black" *ngIf="healthCares$ | async as healthCares" formControlName="healthCareID"
                                     style="border-color: black; height: 40px;">
                                     <option value="" disabled selected>Seleccionar</option>
                                     <option *ngFor="let healthCare of healthCares" [ngValue]="healthCare.idObraSocial">{{healthCare.obra_social.nombre}}</option>

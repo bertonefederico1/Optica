@@ -9,7 +9,6 @@
                 <select class="browser-default col m3 border-black" 
                 style="border-color: black; height: 2.5rem; margin-top: 1rem" name="filterSelect" 
                 [(ngModel)]="filterSelect" (change)="filter()">
-                    <option value="" disabled selected>Seleccionar</option>
                     <option *ngFor="let status of statements" [value]="status">{{ status }}</option>
                 </select>
             </div>
@@ -43,7 +42,7 @@
             <th mat-header-cell *matHeaderCellDef>Acciones</th>
             <td mat-cell *matCellDef="let element">
                 <a style="cursor: pointer"><i class="material-icons">visibility</i></a>
-                <a style="cursor: pointer"><i class="material-icons">edit</i></a>
+                <a style="cursor: pointer" (click)="editGlasses(element.codAnteojo)"><i class="material-icons">edit</i></a>
                 <a style="cursor: pointer; color: red"><i class="material-icons">delete</i></a>
             </td>
         </ng-container>

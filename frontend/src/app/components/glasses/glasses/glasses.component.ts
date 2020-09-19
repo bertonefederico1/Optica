@@ -20,7 +20,7 @@ export class GlassesComponent implements OnInit {
   displayedColumns: string[] = ['nameAndSurname', 'prescriptionNumber', 'expectedDeliveryDate', 'remainingAmount', 'status', 'actions'];
   dataSource = null;
   dialogConfig = new MatDialogConfig();
-  filterSelect: string = '';
+  filterSelect: string = 'Todos';
   statements: string[] = ['Pendiente', 'Todos', 'En taller', 'Entregado'];
 
   ngOnInit(): void {
@@ -45,6 +45,10 @@ export class GlassesComponent implements OnInit {
 
   addGlasses(){
     this.dialogRef.open(AddGlassesComponent, this.dialogConfig);
+  }
+
+  editGlasses(){
+    
   }
 
   setupFilter() {

@@ -7,6 +7,7 @@ import { SelectFrameComponent } from './../../frames/select-frame/select-frame.c
 import { SelectLensStockComponent } from './../../lenses/select-lens-stock/select-lens-stock.component';
 import { Observable } from 'rxjs';
 import { CustomerHealthCareService } from './../../../services/customerHealthCare/customer-health-care.service';
+import { GlassesService } from './../../../services/glasses/glasses.service';
 
 @Component({
   selector: 'app-add-glasses',
@@ -18,6 +19,7 @@ export class AddGlassesComponent implements OnInit {
 
   constructor(
     private customerHealthCareService: CustomerHealthCareService,
+    private glassesService: GlassesService,
     private dialogRef: MatDialog,
     private dialogRefAdd: MatDialogRef<AddGlassesComponent>
   ) { }
@@ -33,7 +35,7 @@ export class AddGlassesComponent implements OnInit {
     cylindricalValueRE: new FormControl('', Validators.required),
     axisLE: new FormControl('', Validators.required),
     axisRE: new FormControl('', Validators.required),
-    prescriptionID: new FormControl('', Validators.required),
+    prescriptionNumber: new FormControl('', Validators.required),
     descriptionLeftLens: new FormControl('', Validators.required),
     leftLensID: new FormControl('', Validators.required),
     descriptionRightLens: new FormControl('', Validators.required),
@@ -42,15 +44,15 @@ export class AddGlassesComponent implements OnInit {
     addValue: new FormControl('', Validators.required),
     farValueDIP: new FormControl('', Validators.required),
     heightValue: new FormControl('', Validators.required),
-    lensUtility: new FormControl('', Validators.required),
+    glassesUtility: new FormControl('', Validators.required),
     frameDescription: new FormControl('', Validators.required),
     frameID: new FormControl('', Validators.required),
     totalAmount: new FormControl('', Validators.required),
     expectedDeliveryDate: new FormControl('', Validators.required),
     tokenPayment: new FormControl('', Validators.required),
     amountRemainder: new FormControl('', Validators.required),
-    receiptHealthCare: new FormControl('', Validators.required),
-    healthCare: new FormControl('', Validators.required)
+    receiptHealthCare: new FormControl(false, Validators.required),
+    healthCareID: new FormControl('', Validators.required)
   })
   customer: any;
   prescription: any;
@@ -69,6 +71,11 @@ export class AddGlassesComponent implements OnInit {
 
   onSubmit(){
     console.log(this.glassesForm.value);
+    this.glassesService.addGlasses(this.glassesForm.value)
+      .subscribe(
+        res => console.log("Guardado"),
+        err => alert('Verifique los datos ingresados')
+      )
   }
 
   setCustomerData(){
@@ -81,12 +88,21 @@ export class AddGlassesComponent implements OnInit {
   }
 
   calculateAmountRemainder(event){
-    console.log("Calcular monto saldo")
+    const totalAmount = this.glassesForm.get('totalAmount').value;
+    const tokenPayment = this.glassesForm.get('tokenPayment').value;
+    this.glassesForm.patchValue({
+      amountRemainder: totalAmount - tokenPayment
+    })
+    if(totalAmount){
+      this.glassesForm.patchValue({
+        amountRemainder: totalAmount - tokenPayment
+      })
+    }    
   }
 
   setPrescriptionData(){
     this.glassesForm.patchValue({
-      prescriptionID: this.prescription.numReceta,
+      prescriptionNumber: this.prescription.numReceta,
       sphericalValueLE: this.prescription.valorEsfOI, 
       sphericalValueRE: this.prescription.valorEsfOD,
       cylindricalValueLE: this.prescription.valorCilOI,
@@ -102,7 +118,47 @@ export class AddGlassesComponent implements OnInit {
   setFrameData(){
     this.glassesForm.patchValue({
       frameDescription: this.frame.marca + ' - ' + this.frame.modelo,
-      frameID: this.frame.idArmazon
+      frameID: this.frame.codArmazon
+    })
+  }
+
+  searchLensFromOrderRE(){
+    this.lensLoaded = 'Right';
+    const dialogRef = this.dialogRef.open(SelectLensStockComponent, this.dialogConfig);
+    dialogRef.afterClosed()
+      .subscribe(
+        res => {
+          this.lensRE = res;
+          if(res){
+            this.setLensData();
+          }
+        })
+  }
+
+  searchLensFromStockLE(){
+    this.lensLoaded = 'Left';
+    const dialogRef = this.dialogRef.open(SelectLensStockComponent, this.dialogConfig);
+    dialogRef.afterClosed()
+      .subscribe(
+        res => {
+          this.lensLE = res;
+          if(res){
+            this.setLensData();
+          }
+        })
+  }
+
+  deleteLoadedLensLE(){
+    this.glassesForm.patchValue({
+      leftLensID: '',
+      descriptionLeftLens: ''
+    })
+  }
+
+  deleteLoadedLensRE(){
+    this.glassesForm.patchValue({
+      rightLensID: '',
+      descriptionRightLens: ''
     })
   }
 
@@ -112,10 +168,15 @@ export class AddGlassesComponent implements OnInit {
         this.glassesForm.patchValue({
           leftLensID: this.lensLE.codLente,
           descriptionLeftLens: this.lensLE.codLente.toString().padStart(6,0)
-        })
+        });
+        break; 
       }
       case 'Right': {
-        
+        this.glassesForm.patchValue({
+          rightLensID: this.lensRE.codLente,
+          descriptionRightLens: this.lensRE.codLente.toString().padStart(6,0)
+        });
+        break; 
       }
     }
   }
@@ -132,7 +193,6 @@ export class AddGlassesComponent implements OnInit {
         } 
       )
   }
-
 
   searchPrescription(){
     if(this.customer){
@@ -165,28 +225,6 @@ export class AddGlassesComponent implements OnInit {
           }
         }
       )
-  }
-
-  searchLensFromOrder(){
-    
-  }
-
-  searchLensFromStockLE(){
-    this.lensLoaded = 'Left';
-    const dialogRef = this.dialogRef.open(SelectLensStockComponent, this.dialogConfig);
-    dialogRef.afterClosed()
-      .subscribe(
-        res => {
-          this.lensLE = res;
-          if(res){
-            this.setLensData();
-          }
-        }
-      )
-  }
-
-  searchLensFromStockRE(){
-    this.lensLoaded = "Right";
   }
 
   
