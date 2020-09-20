@@ -1,11 +1,11 @@
 'use strict'
 
 
-const sequelize = require('../database/db-connection');
 const Customer = require('../models/Customer');
 const Glasses = require('../models/Glasses');
 const Lens = require('../models/Lens');
 const Prescription = require('../models/Prescription');
+const Validators = require('../validators/validators');
 const glassesController = { };
 
 
@@ -51,50 +51,47 @@ glassesController.getOne = async (req, res) => {
 }
 
 glassesController.createGlasses = async (req, res) => {
-    const t = await sequelize.transaction();
     try {
-        if(!req.body.receiptHealthCare) {
-            req.body.healthCareID = null;
-        }; 
+        Validators.validatorGlasses(req.body);
+        let stock;
+        if(req.body.leftLensID == req.body.rightLensID){
+            const lens = await Lens.findByPk(req.body.leftLensID);
+            stock = lens.cantidad;
+            if(stock - 1 < 0) {
+                throw new Error('No hay stock disponible');
+            };
+            if((stock - 2) < 0){
+                throw new Error('No hay stock disponible');
+            };
+        };
         if(!req.body.leftLensID){
             req.body.leftLensID = null;
         } else {
             const lens = await Lens.findByPk(req.body.leftLensID);
-            const stock = lens.cantidad;
-            if(stock > 0){
-                await Lens.update({
-                    cantidad: stock - 1
-                }, {
-                    where: {
-                        codLente: req.body.leftLensID
-                    }
-                }, { transaction: t })
-            } else {
-                throw new Error();
-            }
+            stock = lens.cantidad;
+            if(stock - 1 < 0) {
+                throw new Error('No hay stock disponible');
+            };
+            await Lens.update({
+                cantidad: stock - 1
+            },{
+                where: {
+                    codLente: req.body.leftLensID
+                }
+            })
         };
         if(!req.body.rightLensID){
             req.body.rightLensID = null;
         } else {
             const lens = await Lens.findByPk(req.body.rightLensID);
-            const stock = lens.cantidad;
-            if(stock > 0){
-                await Lens.update({
-                    cantidad: stock - 1
-                }, {
-                    where: {
-                        codLente: req.body.rightLensID
-                    }
-                }, { transaction: t })
-            } else {
-                throw new Error();
-            }
-        };
-        if(req.body.tokenPayment == ''){
-            req.body.tokenPayment = 0;
-        };
-        if(req.body.receiptHealthCare && req.body.healthCareID == null){
-            throw new Error();
+            stock = lens.cantidad;
+            await Lens.update({
+                cantidad: stock - 1
+            },{
+                where: {
+                    codLente: req.body.rightLensID
+                }
+            })
         };
         await Glasses.create({
             numReceta: req.body.prescriptionNumber,
@@ -109,12 +106,12 @@ glassesController.createGlasses = async (req, res) => {
             valorAltura: req.body.heightValue,
             utilidadAnteojo: req.body.glassesUtility,
             esFacObraSocial: req.body.receiptHealthCare
-        }, { transaction: t });
-        await t.commit();
+        });
         res.status(200).json();
     } catch (err) {
-        await t.rollback();
-        res.status(400).json()
+        res.status(400).json({
+            msg: err.message
+        })
     }
 };
 

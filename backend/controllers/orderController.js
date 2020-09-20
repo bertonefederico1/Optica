@@ -4,7 +4,7 @@ const Order = require('../models/Order');
 const SupplierLaboratory = require('../models/SupplierLaboratory'); 
 const Lens = require('../models/Lens');
 const Glasses = require('../models/Glasses');
-const orderValidators = require('../validators/orderValidators');
+const validators = require('../validators/validators');
 const orderController = { };
 
 
@@ -76,8 +76,8 @@ orderController.createOrder = async (req, res) => {
         };
         let lensRE = {
             codLente: null
-        };;
-        orderValidators.validatorOrder(req.body);
+        };
+        validators.validatorOrder(req.body);
             if (req.body.orderLensLE){
                 lensLE = await Lens.create({
                     idProvLab: req.body.supplierLaboratoryID,

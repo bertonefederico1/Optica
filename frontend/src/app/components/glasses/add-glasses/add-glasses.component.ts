@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SelectCustomerComponent } from '../../customers/select-customer/select-customer.component';
 import { SelectPrescriptionsComponent } from './../../prescriptions/select-prescriptions/select-prescriptions.component';
 import { SelectFrameComponent } from './../../frames/select-frame/select-frame.component';
@@ -21,6 +21,7 @@ export class AddGlassesComponent implements OnInit {
     private customerHealthCareService: CustomerHealthCareService,
     private glassesService: GlassesService,
     private dialogRef: MatDialog,
+    @Inject (MAT_DIALOG_DATA) public data,
     private dialogRefAdd: MatDialogRef<AddGlassesComponent>
   ) { }
 
@@ -65,16 +66,18 @@ export class AddGlassesComponent implements OnInit {
   healthCares$: Observable<any[]>;
 
   ngOnInit(): void {
+    if(this.data.edit){
+      console.log("EDIT")
+    };
     this.dialogConfig.height = '100%';
     this.dialogConfig.width = '100%';
   }
 
   onSubmit(){
-    console.log(this.glassesForm.value);
     this.glassesService.addGlasses(this.glassesForm.value)
       .subscribe(
-        res => console.log("Guardado"),
-        err => alert('Verifique los datos ingresados')
+        res => this.dialogRefAdd.close(),
+        err => alert(err.error.msg)
       )
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GlassesService } from './../../../services/glasses/glasses.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -22,6 +22,7 @@ export class GlassesComponent implements OnInit {
   dialogConfig = new MatDialogConfig();
   filterSelect: string = 'Todos';
   statements: string[] = ['Pendiente', 'Todos', 'En taller', 'Entregado'];
+  edit: boolean;
 
   ngOnInit(): void {
     this.getAll();
@@ -44,11 +45,24 @@ export class GlassesComponent implements OnInit {
   }
 
   addGlasses(){
-    this.dialogRef.open(AddGlassesComponent, this.dialogConfig);
+    this.edit = false;
+    this.dialogConfig.data = {
+      edit: this.edit
+    };
+    const dialogRef = this.dialogRef.open(AddGlassesComponent, this.dialogConfig);
+    dialogRef.afterClosed()
+      .subscribe(res => this.getAll());
   }
 
-  editGlasses(){
-    
+  editGlasses(glassesID: number){
+    this.edit = true;
+    this.dialogConfig.data = {
+      edit: this.edit,
+      glassesID: glassesID
+    };
+    const dialogRef = this.dialogRef.open(AddGlassesComponent, this.dialogConfig);
+    dialogRef.afterClosed()
+      .subscribe(res => this.getAll());
   }
 
   setupFilter() {

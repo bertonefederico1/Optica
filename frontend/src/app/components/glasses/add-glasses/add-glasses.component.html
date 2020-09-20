@@ -1,4 +1,5 @@
-<h4 class="section title1">NUEVO ANTEOJO</h4>
+<h4 *ngIf="!data.edit" class="section title1">NUEVO ANTEOJO</h4>
+<h4 *ngIf="data.edit" class="section title1">EDITAR ANTEOJO</h4>
 <div class="row">
     <form class="col m12" [formGroup]="glassesForm">
         <fieldset>
