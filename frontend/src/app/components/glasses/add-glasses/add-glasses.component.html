@@ -183,7 +183,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col m10 ml5r">
+                <div class="col m10 ml4r">
                     <span class="description">Seña ($):</span>
                     <div class="input-field inline">
                         <input type="number" class="ml10 col m3" (keyup)="calculateAmountRemainder($event.target.value)" formControlName="tokenPayment">
@@ -208,6 +208,26 @@
                                     <option *ngFor="let healthCare of healthCares" [ngValue]="healthCare.idObraSocial">{{healthCare.obra_social.nombre}}</option>
                                 </select>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="center-align">
+                    <div class="col m4">
+                        <span class="description">Estado:</span>
+                        <div class="input-field inline">
+                            <select class="browser-default border-black"
+                                style="border-color: black; height: 40px; margin-top: 1rem;" formControlName="glassesStatus">
+                                <option value="" disabled selected>Seleccionar</option>
+                                <option *ngFor="let status of statusArray" [ngValue]="status">{{ status }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col m6 push-m2">
+                        <span class="description">Fecha Entrega:</span>
+                        <div class="input-field inline">
+                            <input type="date" class="validate ml10 col m9" formControlName="deliveryDate">
                         </div>
                     </div>
                 </div>

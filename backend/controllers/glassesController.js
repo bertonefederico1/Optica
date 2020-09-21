@@ -4,6 +4,8 @@
 const Customer = require('../models/Customer');
 const Glasses = require('../models/Glasses');
 const Lens = require('../models/Lens');
+const Frame = require('../models/Frame');
+const HealthCare = require('../models/HealthCare');
 const Prescription = require('../models/Prescription');
 const Validators = require('../validators/validators');
 const glassesController = { };
@@ -39,10 +41,25 @@ glassesController.getOne = async (req, res) => {
     try {
         const glasses = await Glasses.findOne({
             where: {
-                idCliente: req.params.customerID,
+                numAnteojo: req.params.glassesNumber,
                 activo: 1
             },
-            include: ObraSocial
+            include: [{
+                model: HealthCare
+            }, {
+                model: Prescription,
+                include: {
+                    model: Customer
+                }
+            }, {
+                model: Lens,
+                as: 'LensLE'
+            }, {
+                model: Lens,
+                as: 'LensRE'
+            }, {
+                model: Frame
+            }]
         });
         res.status(200).json(glasses);
     } catch(err){

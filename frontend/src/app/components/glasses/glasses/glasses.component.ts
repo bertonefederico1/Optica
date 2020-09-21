@@ -21,7 +21,7 @@ export class GlassesComponent implements OnInit {
   dataSource = null;
   dialogConfig = new MatDialogConfig();
   filterSelect: string = 'Todos';
-  statements: string[] = ['Pendiente', 'Todos', 'En taller', 'Entregado'];
+  statusArray: string[] = ['Pendiente', 'Todos', 'En taller', 'Entregado'];
   edit: boolean;
 
   ngOnInit(): void {
@@ -54,11 +54,11 @@ export class GlassesComponent implements OnInit {
       .subscribe(res => this.getAll());
   }
 
-  editGlasses(glassesID: number){
+  editGlasses(glassesNumber: number){
     this.edit = true;
     this.dialogConfig.data = {
       edit: this.edit,
-      glassesID: glassesID
+      glassesNumber: glassesNumber
     };
     const dialogRef = this.dialogRef.open(AddGlassesComponent, this.dialogConfig);
     dialogRef.afterClosed()

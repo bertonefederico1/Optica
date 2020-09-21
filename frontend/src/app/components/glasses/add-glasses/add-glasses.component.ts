@@ -50,6 +50,8 @@ export class AddGlassesComponent implements OnInit {
     frameID: new FormControl('', Validators.required),
     totalAmount: new FormControl('', Validators.required),
     expectedDeliveryDate: new FormControl('', Validators.required),
+    deliveryDate: new FormControl('', Validators.required),
+    glassesStatus: new FormControl('', Validators.required),
     tokenPayment: new FormControl('', Validators.required),
     amountRemainder: new FormControl('', Validators.required),
     receiptHealthCare: new FormControl(false, Validators.required),
@@ -64,10 +66,12 @@ export class AddGlassesComponent implements OnInit {
   dialogConfig = new MatDialogConfig();
   glassesUtilities: string[] = ['Lejos', 'Cerca', 'Ambos']; 
   healthCares$: Observable<any[]>;
+  glasses: any;
+  statusArray: any[] = ['Pendiente', 'En Taller', 'Entregado'];
 
   ngOnInit(): void {
     if(this.data.edit){
-      console.log("EDIT")
+      this.getOne();
     };
     this.dialogConfig.height = '100%';
     this.dialogConfig.width = '100%';
@@ -79,6 +83,61 @@ export class AddGlassesComponent implements OnInit {
         res => this.dialogRefAdd.close(),
         err => alert(err.error.msg)
       )
+  }
+
+  getOne(){
+    this.glassesService.getOne(this.data.glassesNumber)
+      .subscribe(res => {
+        this.glasses = res;
+        console.log(res);
+        this.setGlassesData();
+      });
+  }
+
+  convertDate(date){
+    const arrayConverted = date.split('T', date.length);
+    return arrayConverted[0];
+  }
+
+  setGlassesData(){
+    this.healthCares$ = this.customerHealthCareService.getAllByCustomer(this.glasses.recetum.cliente.idCliente);
+    this.glassesForm.patchValue({
+        nameAndSurname: this.glasses.recetum.cliente.nombre + ' ' + this.glasses.recetum.cliente.apellido,
+        telephone: this.glasses.recetum.cliente.telefono,
+        address: this.glasses.recetum.cliente.domicilio,
+        sphericalValueLE: this.glasses.recetum.valorEsfOI, 
+        sphericalValueRE: this.glasses.recetum.valorEsfOD,
+        cylindricalValueLE: this.glasses.recetum.valorCilOI,
+        cylindricalValueRE: this.glasses.recetum.valorCilOD,
+        axisLE: this.glasses.recetum.ejeOI,
+        axisRE: this.glasses.recetum.ejeOD,
+        prescriptionNumber: this.glasses.recetum.numReceta,
+        descriptionLeftLens: this.glasses.LensLE.codLente.toString().padStart(6, 0),
+        leftLensID: this.glasses.LensLE.codLente,
+        descriptionRightLens: this.glasses.LensRE.codLente.toString().padStart(6, 0),
+        rightLensID: this.glasses.LensRE.codLente,
+        nearValueDIP: this.glasses.recetum.valorDIPCerca,
+        addValue: this.glasses.recetum.valorADD,
+        farValueDIP: this.glasses.recetum.valorDIPLejos,
+        heightValue: this.glasses.valorAltura,
+        glassesUtility: this.glasses.utilidadAnteojo,
+        frameDescription: this.glasses.armazon.marca + ' - ' + this.glasses.armazon.modelo,
+        frameID: this.glasses.armazon.codArmazon,
+        totalAmount: this.glasses.montoTotal,
+        expectedDeliveryDate: this.convertDate(this.glasses.fechaPrometido),
+        tokenPayment: this.glasses.montoSena,
+        amountRemainder: this.glasses.montoTotal - this.glasses.montoSena,
+        receiptHealthCare: this.glasses.esFacObraSocial
+    })
+    if(this.glasses.esFacObraSocial){
+      this.glassesForm.patchValue({
+        healthCareID: this.glasses.obra_social.idObraSocial
+      });
+    } else {
+      this.glassesForm.patchValue({
+        healthCareID: ''
+      });
+    }
   }
 
   setCustomerData(){
