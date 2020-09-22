@@ -8,6 +8,7 @@ import { SelectLensStockComponent } from './../../lenses/select-lens-stock/selec
 import { Observable } from 'rxjs';
 import { CustomerHealthCareService } from './../../../services/customerHealthCare/customer-health-care.service';
 import { GlassesService } from './../../../services/glasses/glasses.service';
+import * as moment from 'moment'
 
 @Component({
   selector: 'app-add-glasses',
@@ -51,7 +52,7 @@ export class AddGlassesComponent implements OnInit {
     totalAmount: new FormControl('', Validators.required),
     expectedDeliveryDate: new FormControl('', Validators.required),
     deliveryDate: new FormControl('', Validators.required),
-    glassesStatus: new FormControl('', Validators.required),
+    glassesStatus: new FormControl('Pendiente', Validators.required),
     tokenPayment: new FormControl('', Validators.required),
     amountRemainder: new FormControl('', Validators.required),
     receiptHealthCare: new FormControl(false, Validators.required),
@@ -68,6 +69,7 @@ export class AddGlassesComponent implements OnInit {
   healthCares$: Observable<any[]>;
   glasses: any;
   statusArray: any[] = ['Pendiente', 'En Taller', 'Entregado'];
+  today = moment().format('DD/MM/yyyy');
 
   ngOnInit(): void {
     if(this.data.edit){
@@ -78,20 +80,39 @@ export class AddGlassesComponent implements OnInit {
   }
 
   onSubmit(){
-    this.glassesService.addGlasses(this.glassesForm.value)
+    if(this.data.edit){
+      console.log(this.glassesForm.value)
+      /* this.glassesService.editGlasses(this.data.glassesNumber, this.glassesForm.value)
+      .subscribe(
+        res => this.dialogRefAdd.close(),
+        err => alert(err.error.msg) */
+    } else {
+      this.glassesService.addGlasses(this.glassesForm.value)
       .subscribe(
         res => this.dialogRefAdd.close(),
         err => alert(err.error.msg)
-      )
+      );
+    }
   }
 
   getOne(){
     this.glassesService.getOne(this.data.glassesNumber)
       .subscribe(res => {
         this.glasses = res;
-        console.log(res);
         this.setGlassesData();
       });
+  }
+
+  setDeliveryDate(event){
+    if(event === '3: Entregado'){
+      this.glassesForm.patchValue({
+        deliveryDate: this.today
+      });
+    } else {
+      this.glassesForm.patchValue({
+        deliveryDate: ''
+      });
+    };
   }
 
   convertDate(date){
@@ -121,6 +142,7 @@ export class AddGlassesComponent implements OnInit {
         farValueDIP: this.glasses.recetum.valorDIPLejos,
         heightValue: this.glasses.valorAltura,
         glassesUtility: this.glasses.utilidadAnteojo,
+        glassesStatus: this.glasses.estadoAnteojo,
         frameDescription: this.glasses.armazon.marca + ' - ' + this.glasses.armazon.modelo,
         frameID: this.glasses.armazon.codArmazon,
         totalAmount: this.glasses.montoTotal,
@@ -184,6 +206,25 @@ export class AddGlassesComponent implements OnInit {
     })
   }
 
+  setLensData(){
+    switch(this.lensLoaded){
+      case 'Left': {
+        this.glassesForm.patchValue({
+          leftLensID: this.lensLE.codLente,
+          descriptionLeftLens: this.lensLE.codLente.toString().padStart(6,0)
+        });
+        break; 
+      }
+      case 'Right': {
+        this.glassesForm.patchValue({
+          rightLensID: this.lensRE.codLente,
+          descriptionRightLens: this.lensRE.codLente.toString().padStart(6,0)
+        });
+        break; 
+      }
+    }
+  }
+
   searchLensFromOrderRE(){
     this.lensLoaded = 'Right';
     const dialogRef = this.dialogRef.open(SelectLensStockComponent, this.dialogConfig);
@@ -222,25 +263,6 @@ export class AddGlassesComponent implements OnInit {
       rightLensID: '',
       descriptionRightLens: ''
     })
-  }
-
-  setLensData(){
-    switch(this.lensLoaded){
-      case 'Left': {
-        this.glassesForm.patchValue({
-          leftLensID: this.lensLE.codLente,
-          descriptionLeftLens: this.lensLE.codLente.toString().padStart(6,0)
-        });
-        break; 
-      }
-      case 'Right': {
-        this.glassesForm.patchValue({
-          rightLensID: this.lensRE.codLente,
-          descriptionRightLens: this.lensRE.codLente.toString().padStart(6,0)
-        });
-        break; 
-      }
-    }
   }
 
   searchCustomer(){

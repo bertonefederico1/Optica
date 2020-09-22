@@ -70,27 +70,24 @@ glassesController.getOne = async (req, res) => {
 glassesController.createGlasses = async (req, res) => {
     try {
         Validators.validatorGlasses(req.body);
-        let stock;
         if(req.body.leftLensID == req.body.rightLensID){
             const lens = await Lens.findByPk(req.body.leftLensID);
-            stock = lens.cantidad;
-            if(stock - 1 < 0) {
-                throw new Error('No hay stock disponible');
+            if(lens.cantidad - 1 < 0) {
+                throw new Error('No hay stock disponible del lente seleccionado');
             };
-            if((stock - 2) < 0){
-                throw new Error('No hay stock disponible');
+            if((lens.cantidad - 2) < 0){
+                throw new Error('No hay stock disponible del lente seleccionado');
             };
         };
         if(!req.body.leftLensID){
             req.body.leftLensID = null;
         } else {
             const lens = await Lens.findByPk(req.body.leftLensID);
-            stock = lens.cantidad;
-            if(stock - 1 < 0) {
-                throw new Error('No hay stock disponible');
+            if(lens.cantidad - 1 < 0) {
+                throw new Error('No hay stock disponible del lente seleccionado');
             };
             await Lens.update({
-                cantidad: stock - 1
+                cantidad: lens.cantidad - 1
             },{
                 where: {
                     codLente: req.body.leftLensID
@@ -101,15 +98,26 @@ glassesController.createGlasses = async (req, res) => {
             req.body.rightLensID = null;
         } else {
             const lens = await Lens.findByPk(req.body.rightLensID);
-            stock = lens.cantidad;
             await Lens.update({
-                cantidad: stock - 1
+                cantidad: lens.cantidad - 1
             },{
                 where: {
                     codLente: req.body.rightLensID
                 }
             })
         };
+        const frame = await Frame.findByPk(req.body.frameID);
+        if(frame.cantidad <= 0){
+            throw new Error('No hay stock disponible del armazón seleccionado');
+        } else {
+            await Frame.update({
+                cantidad: frame.cantidad - 1
+            },{
+                where: {
+                    codArmazon: req.body.frameID
+                }
+            });
+        }
         await Glasses.create({
             numReceta: req.body.prescriptionNumber,
             codLenteOI: req.body.leftLensID,
@@ -117,7 +125,7 @@ glassesController.createGlasses = async (req, res) => {
             codArmazon: req.body.frameID,
             idObraSocial: req.body.healthCareID,
             fechaPrometido: req.body.expectedDeliveryDate,
-            estadoAnteojo: 'Pendiente',
+            estadoAnteojo: req.body.glassesStatus,
             montoTotal: req.body.totalAmount,
             montoSena: req.body.tokenPayment,
             valorAltura: req.body.heightValue,
@@ -132,50 +140,93 @@ glassesController.createGlasses = async (req, res) => {
     }
 };
 
-/* customerController.editCustomer = async (req, res) => {
+glassesController.editGlasses = async (req, res) => {
     try {
-        if(req.body.obrasSociales.length === 0) {
-            throw new Error();
-        }; 
-        await Customer.update(req.body, {
-            where: {
-                idCliente: req.params.customerID
-            }
-        });
-        await Customer_ObraSocial.destroy({
-            where: {
-                idCliente: req.params.customerID
-            }
-        });
-        req.body.obrasSociales.map((os) => {
-            Customer_ObraSocial.create({
-                idObraSocial: os.obraSocial.idObraSocial,
-                idCliente: req.params.customerID,
-                nroSocio: os.nsocio
-            })
+        Validators.validatorGlasses(req.body);
+        if(req.body.leftLensID == req.body.rightLensID){
+            const lens = await Lens.findByPk(req.body.leftLensID);
+            if(lens.cantidad - 1 < 0) {
+                throw new Error('No hay stock disponible del lente seleccionado');
+            };
+            if((lens.cantidad - 2) < 0){
+                throw new Error('No hay stock disponible del lente seleccionado');
+            };
+        };
+        if(req.body.leftLensID && req.body.rightLensID){
+            Validators.normalizeStock(req.body);
+        } else {
+            if(!req.body.leftLensID){
+                req.body.leftLensID = null;
+            } else {
+                const lens = await Lens.findByPk(req.body.leftLensID);
+                if(lens.cantidad - 1 < 0) {
+                    throw new Error('No hay stock disponible del lente seleccionado');
+                };
+                await Lens.update({
+                    cantidad: lens.cantidad - 1
+                },{
+                    where: {
+                        codLente: req.body.leftLensID
+                    }
+                });
+                Validators.normalizeStock(req.body);
+            };
+            if(!req.body.rightLensID){
+                req.body.rightLensID = null;
+            } else {
+                const lens = await Lens.findByPk(req.body.rightLensID);
+                await Lens.update({
+                    cantidad: lens.cantidad - 1
+                },{
+                    where: {
+                        codLente: req.body.rightLensID
+                    }
+                });
+                Validators.normalizeStock(req.body);
+            };
+            const frame = await Frame.findByPk(req.body.frameID);
+            if(frame.cantidad <= 0){
+                throw new Error('No hay stock disponible del armazón seleccionado');
+            } else {
+                await Frame.update({
+                    cantidad: frame.cantidad - 1
+                },{
+                    where: {
+                        codArmazon: req.body.frameID
+                    }
+                });
+            };
+        }
+        
+        await Glasses.create({
+            numReceta: req.body.prescriptionNumber,
+            codLenteOI: req.body.leftLensID,
+            codLenteOD: req.body.rightLensID,
+            codArmazon: req.body.frameID,
+            idObraSocial: req.body.healthCareID,
+            fechaPrometido: req.body.expectedDeliveryDate,
+            estadoAnteojo: req.body.glassesStatus,
+            montoTotal: req.body.totalAmount,
+            montoSena: req.body.tokenPayment,
+            valorAltura: req.body.heightValue,
+            utilidadAnteojo: req.body.glassesUtility,
+            esFacObraSocial: req.body.receiptHealthCare
         });
         res.status(200).json();
     } catch (err) {
         res.status(400).json({
-            message: err
+            msg: err.message
         })
     }
 };
 
-customerController.suspendCustomer = async (req, res) => {
+glassesController.suspendGlasses = async (req, res) => {
     try {
-        await Customer.update({
-            activo: 0
-        }, {
-            where: {
-                idCliente: req.params.customerID
-            }
-        });
-        res.status(200).json();
+       
     } catch (err) {
-        res.json(err);
+       
     }
-}; */
+};
 
 
 module.exports = glassesController;

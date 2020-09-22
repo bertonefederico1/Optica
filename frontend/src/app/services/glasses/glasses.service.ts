@@ -22,11 +22,11 @@ export class GlassesService {
     return this.http.post(`${this.URL}/newGlasses`, glasses); 
   }
 
-  editCustomer(customerID: number, customer) {
-    return this.http.put(`${this.URL}/editCustomer/${customerID}`, customer); 
+  editGlasses(glassesNumber: number, glasses) {
+    return this.http.put(`${this.URL}/editGlasses/${glassesNumber}`, glasses); 
   }
 
-  deleteCustomer(customerID: number) {
-    return this.http.put(`${this.URL}/suspendCustomer/${customerID}`, false);
+  deleteGlasses(glassesNumber: number) {
+    return this.http.put(`${this.URL}/suspendGlasses/${glassesNumber}`, false);
   }
 }

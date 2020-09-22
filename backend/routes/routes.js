@@ -97,5 +97,7 @@ router.put('/suspendOrder');
 router.get('/glasses', glassesController.getAll);
 router.get('/glasses/:glassesNumber', glassesController.getOne);
 router.post('/newGlasses', glassesController.createGlasses);
+router.put('/editGlasses', glassesController.editGlasses);
+router.put('/suspendGlasses', glassesController.suspendGlasses);
 
 module.exports = router;

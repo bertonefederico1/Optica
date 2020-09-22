@@ -212,22 +212,16 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" *ngIf="data.edit">
                 <div class="center-align">
                     <div class="col m4">
                         <span class="description">Estado:</span>
                         <div class="input-field inline">
-                            <select class="browser-default border-black"
+                            <select class="browser-default border-black" (change)="setDeliveryDate($event.target.value)"
                                 style="border-color: black; height: 40px; margin-top: 1rem;" formControlName="glassesStatus">
                                 <option value="" disabled selected>Seleccionar</option>
                                 <option *ngFor="let status of statusArray" [ngValue]="status">{{ status }}</option>
                             </select>
-                        </div>
-                    </div>
-                    <div class="col m6 push-m2">
-                        <span class="description">Fecha Entrega:</span>
-                        <div class="input-field inline">
-                            <input type="date" class="validate ml10 col m9" formControlName="deliveryDate">
                         </div>
                     </div>
                 </div>
