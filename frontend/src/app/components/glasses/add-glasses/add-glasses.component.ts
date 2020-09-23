@@ -88,7 +88,6 @@ export class AddGlassesComponent implements OnInit {
         err => alert(err.error.msg)
       );
     } else {
-      console.log(this.glassesForm.value)
       this.glassesService.addGlasses(this.glassesForm.value)
       .subscribe(
         res => this.dialogRefAdd.close(),
@@ -105,7 +104,7 @@ export class AddGlassesComponent implements OnInit {
       });
   }
 
-  setDeliveryDate(event){
+  /* setDeliveryDate(event){
     if(event === '3: Entregado'){
       this.glassesForm.patchValue({
         deliveryDate: this.today
@@ -115,11 +114,13 @@ export class AddGlassesComponent implements OnInit {
         deliveryDate: ''
       });
     };
-  }
+  } */
 
   convertDate(date){
-    const arrayConverted = date.split('T', date.length);
-    return arrayConverted[0];
+    if(date){
+      const arrayConverted = date.split('T', date.length);
+      return arrayConverted[0];
+    }
   }
 
   setGlassesData(){
@@ -139,7 +140,8 @@ export class AddGlassesComponent implements OnInit {
         addValue: this.glasses.recetum.valorADD,
         farValueDIP: this.glasses.recetum.valorDIPLejos,
         heightValue: this.glasses.valorAltura,
-        deliveryDate: null,
+        deliveryDate: this.convertDate(this.glasses.fechaEntrega),
+        payRemainder: this.glasses.abonoSaldo,
         glassesUtility: this.glasses.utilidadAnteojo,
         glassesStatus: this.glasses.estadoAnteojo,
         frameDescription: this.glasses.armazon.marca + ' - ' + this.glasses.armazon.modelo,
@@ -189,7 +191,21 @@ export class AddGlassesComponent implements OnInit {
       nameAndSurname: this.customer.nombre + ' ' + this.customer.apellido,
       telephone: this.customer.telefono,
       address: this.customer.domicilio
-    })
+    });
+    this.deletePrescriptionData();
+  }
+
+  deletePrescriptionData(){
+    this.glassesForm.patchValue({
+      sphericalValueLE: '', 
+      sphericalValueRE: '',
+      cylindricalValueLE: '',
+      cylindricalValueRE: '',
+      axisLE: '',
+      axisRE: '',
+      prescriptionNumber: '',
+      nearValueDIP: ''
+    });
   }
 
   calculateAmountRemainder(event){

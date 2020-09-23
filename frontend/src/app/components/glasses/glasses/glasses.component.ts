@@ -3,6 +3,7 @@ import { GlassesService } from './../../../services/glasses/glasses.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddGlassesComponent } from './../add-glasses/add-glasses.component';
+import { DataGlassesComponent } from './../data-glasses/data-glasses.component';
 
 @Component({
   selector: 'app-glasses',
@@ -44,6 +45,14 @@ export class GlassesComponent implements OnInit {
         })
   }
 
+  dataGlasses(glassesNumber: number){
+    this.dialogConfig.data = {
+      glassesNumber: glassesNumber
+    };
+    this.dialogConfig.disableClose = false;
+    const dialogRef = this.dialogRef.open(DataGlassesComponent, this.dialogConfig);
+  }
+
   addGlasses(){
     this.edit = false;
     this.dialogConfig.data = {
@@ -63,6 +72,13 @@ export class GlassesComponent implements OnInit {
     const dialogRef = this.dialogRef.open(AddGlassesComponent, this.dialogConfig);
     dialogRef.afterClosed()
       .subscribe(res => this.getAll());
+  }
+
+  deleteGlasses(glassesNumber: number){
+    if(confirm("¿Seguro que desea eliminar el anteojo?")){
+      this.glassesService.deleteGlasses(glassesNumber)
+      .subscribe(res => this.getAll());
+    };
   }
 
   setupFilter() {

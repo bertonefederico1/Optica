@@ -8,7 +8,7 @@
                 <div class="col m9 direction">
                     <span class="description">Nombre y Apellido:</span>
                     <div class="input-field inline">
-                        <input type="text" class="ml10 col" readonly formControlName="nameAndSurname">
+                        <input type="text" class="ml10 col m9" readonly formControlName="nameAndSurname">
                     </div>
                 </div>
             </div>
@@ -181,7 +181,7 @@
                     <div class="col m6">
                         <span class="description">Fecha Entrega Estimada:</span>
                         <div class="input-field inline">
-                            <input type="date" class="validate ml10 col m9" formControlName="expectedDeliveryDate">
+                            <input type="date" class="validate ml10 col m8" formControlName="expectedDeliveryDate">
                         </div>
                     </div>
                 </div>
@@ -192,7 +192,7 @@
                             <input type="number" class="ml10 col m5" (keyup)="calculateAmountRemainder($event.target.value)" formControlName="tokenPayment">
                         </div>
                     </div>
-                    <div class="col m6">
+                    <div class="col m6" *ngIf="this.data.edit">
                         <span class="description">Fecha Entrega Real:</span>
                         <div class="input-field inline">
                             <input type="date" class="validate ml10 col m9" formControlName="deliveryDate">
@@ -232,7 +232,7 @@
                         <div class="col m4 push-m2">
                             <span class="description">Estado:</span>
                             <div class="input-field inline">
-                                <select class="browser-default border-black" (change)="setDeliveryDate($event.target.value)"
+                                <select class="browser-default border-black" 
                                     style="border-color: black; height: 40px; margin-top: 1rem;" formControlName="glassesStatus">
                                     <option value="" disabled selected>Seleccionar</option>
                                     <option *ngFor="let status of statusArray" [ngValue]="status">{{ status }}</option>

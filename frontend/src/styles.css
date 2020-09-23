@@ -42,6 +42,10 @@ legend{
     font-size: 18px !important;
 }
 
+.pb1 {
+    padding-bottom: 20px;
+}
+
 .direction{
     display: flex; 
     flex-direction: row; 
@@ -64,7 +68,7 @@ legend{
     margin-top: 2rem !important;
 }
 
-.mt3 {
+.mt3p {
     margin-top: 3px !important;
 }
 
@@ -110,6 +114,13 @@ legend{
     text-decoration: underline;
     font-weight: bold !important;
     font-size: 2rem !important;
+    text-align: center;
+}
+
+.title2 {
+    text-decoration: underline;
+    font-weight: bold !important;
+    font-size: 1.5rem !important;
     text-align: center;
 }
 

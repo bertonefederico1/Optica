@@ -99,6 +99,6 @@ router.get('/glasses', glassesController.getAll);
 router.get('/glasses/:glassesNumber', glassesController.getOne);
 router.post('/newGlasses', glassesController.createGlasses);
 router.put('/editGlasses/:glassesNumber', glassesController.editGlasses);
-router.put('/suspendGlasses', glassesController.suspendGlasses);
+router.put('/suspendGlasses/:glassesNumber', glassesController.suspendGlasses);
 
 module.exports = router;
