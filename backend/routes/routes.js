@@ -69,6 +69,7 @@ router.get('/lens/:lensID', lensController.getOne);
 router.post('/newLens', lensController.createLens);
 router.put('/editLens/:lensID', lensController.editLens);
 router.put('/suspendLens/:lensID', lensController.suspendLens);
+/* router.put('/restoreLens/:lensID', lensController.restoreLens); */
 
 //Ruta de Materiales de Lentes
 router.get('/materialsLens', lensMaterialController.getAll);
@@ -97,7 +98,7 @@ router.put('/suspendOrder');
 router.get('/glasses', glassesController.getAll);
 router.get('/glasses/:glassesNumber', glassesController.getOne);
 router.post('/newGlasses', glassesController.createGlasses);
-router.put('/editGlasses', glassesController.editGlasses);
+router.put('/editGlasses/:glassesNumber', glassesController.editGlasses);
 router.put('/suspendGlasses', glassesController.suspendGlasses);
 
 module.exports = router;

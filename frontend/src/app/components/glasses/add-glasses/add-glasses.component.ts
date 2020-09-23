@@ -39,9 +39,9 @@ export class AddGlassesComponent implements OnInit {
     axisRE: new FormControl('', Validators.required),
     prescriptionNumber: new FormControl('', Validators.required),
     descriptionLeftLens: new FormControl('', Validators.required),
-    leftLensID: new FormControl('', Validators.required),
+    leftLensID: new FormControl(null, Validators.required),
     descriptionRightLens: new FormControl('', Validators.required),
-    rightLensID: new FormControl('', Validators.required),
+    rightLensID: new FormControl(null, Validators.required),
     nearValueDIP: new FormControl('', Validators.required),
     addValue: new FormControl('', Validators.required),
     farValueDIP: new FormControl('', Validators.required),
@@ -53,6 +53,7 @@ export class AddGlassesComponent implements OnInit {
     expectedDeliveryDate: new FormControl('', Validators.required),
     deliveryDate: new FormControl('', Validators.required),
     glassesStatus: new FormControl('Pendiente', Validators.required),
+    payRemainder: new FormControl(false, Validators.required),
     tokenPayment: new FormControl('', Validators.required),
     amountRemainder: new FormControl('', Validators.required),
     receiptHealthCare: new FormControl(false, Validators.required),
@@ -81,12 +82,13 @@ export class AddGlassesComponent implements OnInit {
 
   onSubmit(){
     if(this.data.edit){
-      console.log(this.glassesForm.value)
-      /* this.glassesService.editGlasses(this.data.glassesNumber, this.glassesForm.value)
+      this.glassesService.editGlasses(this.data.glassesNumber, this.glassesForm.value)
       .subscribe(
         res => this.dialogRefAdd.close(),
-        err => alert(err.error.msg) */
+        err => alert(err.error.msg)
+      );
     } else {
+      console.log(this.glassesForm.value)
       this.glassesService.addGlasses(this.glassesForm.value)
       .subscribe(
         res => this.dialogRefAdd.close(),
@@ -133,14 +135,11 @@ export class AddGlassesComponent implements OnInit {
         axisLE: this.glasses.recetum.ejeOI,
         axisRE: this.glasses.recetum.ejeOD,
         prescriptionNumber: this.glasses.recetum.numReceta,
-        descriptionLeftLens: this.glasses.LensLE.codLente.toString().padStart(6, 0),
-        leftLensID: this.glasses.LensLE.codLente,
-        descriptionRightLens: this.glasses.LensRE.codLente.toString().padStart(6, 0),
-        rightLensID: this.glasses.LensRE.codLente,
         nearValueDIP: this.glasses.recetum.valorDIPCerca,
         addValue: this.glasses.recetum.valorADD,
         farValueDIP: this.glasses.recetum.valorDIPLejos,
         heightValue: this.glasses.valorAltura,
+        deliveryDate: null,
         glassesUtility: this.glasses.utilidadAnteojo,
         glassesStatus: this.glasses.estadoAnteojo,
         frameDescription: this.glasses.armazon.marca + ' - ' + this.glasses.armazon.modelo,
@@ -160,6 +159,28 @@ export class AddGlassesComponent implements OnInit {
         healthCareID: ''
       });
     }
+    if(this.glasses.codLenteOD === null){
+      this.glassesForm.patchValue({
+        descriptionRightLens: '',
+        rightLensID: null
+      });
+    } else {
+      this.glassesForm.patchValue({
+        descriptionRightLens: this.glasses.codLenteOD.toString().padStart(6, 0),
+        rightLensID: this.glasses.codLenteOD
+      });
+    };
+    if(this.glasses.codLenteOI === null){
+      this.glassesForm.patchValue({
+        descriptionLeftLens: '',
+        leftLensID: null
+      });
+    } else {
+      this.glassesForm.patchValue({
+        descriptionLeftLens: this.glasses.codLenteOI.toString().padStart(6, 0),
+        leftLensID: this.glasses.codLenteOI
+      });  
+    };
   }
 
   setCustomerData(){
@@ -253,14 +274,14 @@ export class AddGlassesComponent implements OnInit {
 
   deleteLoadedLensLE(){
     this.glassesForm.patchValue({
-      leftLensID: '',
+      leftLensID: null,
       descriptionLeftLens: ''
     })
   }
 
   deleteLoadedLensRE(){
     this.glassesForm.patchValue({
-      rightLensID: '',
+      rightLensID: null,
       descriptionRightLens: ''
     })
   }

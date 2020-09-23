@@ -12,11 +12,12 @@ Validators.validatorOrder = (order) => {
     }
 };
 
+
 Validators.validatorGlasses = (glasses) => {
     if(!glasses.receiptHealthCare) {
         glasses.healthCareID = null;
     } else {
-        if(glasses.healthCareID === ''){
+        if(glasses.healthCareID === null){
             throw new Error('Verifique los datos ingresados');
         };
     }; 
@@ -42,44 +43,75 @@ Validators.validatorGlasses = (glasses) => {
         glasses.glassesUtility === null ||
         glasses.glassesStatus === null
     ) {
-        throw new Error('Verifique los datos ingresados')
+        throw new Error('Verifique los datos ingresados');
     };
 };
 
-Validators.normalizeStock = async (glasses) => {
+Validators.validatorIfExistsStockEqualsLenses = async (glasses) => {
+    const lens = await Lens.findByPk(glasses.leftLensID);
+    if((lens.cantidad - 2) < 0){
+        throw new Error('No hay stock disponible del lente seleccionado');
+    };
+};
+
+Validators.validatorIfExistsStockLE = async (glasses) => {
+    const lens = await Lens.findByPk(glasses.leftLensID);
+    if((lens.cantidad - 1) < 0) {
+        throw new Error('No hay stock disponible del lente seleccionado');
+    };
+};
+
+Validators.validatorIfExistsStockRE = async (glasses) => {
+    const lens = await Lens.findByPk(glasses.rightLensID);
+    if((lens.cantidad - 1) < 0) {
+        throw new Error('No hay stock disponible del lente seleccionado');
+    };
+};
+
+
+Validators.normalizeStockLensLE = async (currentGlasses) => {
+    try {
+        const lens = await Lens.findByPk(currentGlasses.codLenteOI);
+        await Lens.update({
+            cantidad: lens.cantidad + 1
+        }, {
+            where: {
+                codLente: currentGlasses.codLenteOI
+            }
+        });
+    } catch (err) {
+        throw new Error('Verifique los datos ingresados')
+    }
+};
+
+Validators.normalizeStockLensRE = async (currentGlasses) => {
+    try {
+        const lens = await Lens.findByPk(currentGlasses.codLenteOD);
+        await Lens.update({
+            cantidad: lens.cantidad + 1
+        }, {
+            where: {
+                codLente: currentGlasses.codLenteOD
+            }
+        });
+    } catch (err) {
+        throw new Error('Verifique los datos ingresados')
+    }
+};
+
+
+Validators.normalizeStockFrame = async (frameID) => {
     try{
-        let lens;
-        let frame;
-        if(!glasses.rightLensID){
-            lens = await Lens.findByPk(glasses.rightLensID);
-            await Lens.update({
-                cantidad: lens.cantidad + 1
-            }, {
-                where: {
-                    codLente: glasses.rightLensID
-                }
-            });
-        };
-        if(!glasses.leftLensID){
-            lens = await Lens.findByPk(glasses.leftLensID);
-            await Lens.update({
-                cantidad: lens.cantidad + 1
-            }, {
-                where: {
-                    codLente: glasses.leftLensID
-                }
-            });
-        };
-        frame = await Frame.findByPk(glasses.frameID);
+        const frame = await Frame.findByPk(frameID);
         await Frame.update({
             cantidad: frame.cantidad + 1
         }, {
             where: {
-                codArmazon: glasses.frameID
+                codArmazon: frame.codArmazon
             }
-        })
+        });
     } catch(err) {
-        res.status(400).json();
+        throw new Error('Verifique los datos ingresados')
     }
 };
 

@@ -32,7 +32,7 @@ export class GlassesComponent implements OnInit {
   }
 
   filter(){
-    this.filterSelect === 'Todos' ? this.dataSource.filter = null : this.dataSource.filter = this.filterSelect;
+    this.filterSelect === 'Todos' ? this.dataSource.filter = '' : this.dataSource.filter = this.filterSelect;
   }
 
   getAll(){

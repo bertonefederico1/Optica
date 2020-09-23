@@ -42,6 +42,12 @@ legend{
     font-size: 18px !important;
 }
 
+.direction{
+    display: flex; 
+    flex-direction: row; 
+    align-items: flex-end;
+}
+
 .ml10 {
     margin-left: 10px !important;
 }
