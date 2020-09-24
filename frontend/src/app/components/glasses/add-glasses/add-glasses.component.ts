@@ -8,7 +8,9 @@ import { SelectLensStockComponent } from './../../lenses/select-lens-stock/selec
 import { Observable } from 'rxjs';
 import { CustomerHealthCareService } from './../../../services/customerHealthCare/customer-health-care.service';
 import { GlassesService } from './../../../services/glasses/glasses.service';
-import * as moment from 'moment'
+import * as moment from 'moment';
+import { jsPDF } from "jspdf";
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-add-glasses',
@@ -24,8 +26,19 @@ export class AddGlassesComponent implements OnInit {
     private dialogRef: MatDialog,
     @Inject (MAT_DIALOG_DATA) public data,
     private dialogRefAdd: MatDialogRef<AddGlassesComponent>
-  ) { }
+  ) {  }
 
+  /* download(){
+    let element = document.getElementById('pdf');
+    html2canvas(element).then((canvas) => {
+      console.log(canvas);
+      let imgData = canvas.toDataURL('image/png')
+      let doc = new jsPDF();
+      let imgHeight = canvas.height * 208 / canvas.width;
+      doc.addImage(imgData, 0, 0, 208, imgHeight);
+      doc.save("image.pdf")
+    })
+  } */
 
   glassesForm = new FormGroup({
     nameAndSurname: new FormControl('', Validators.required),
@@ -73,6 +86,7 @@ export class AddGlassesComponent implements OnInit {
   today = moment().format('DD/MM/yyyy');
 
   ngOnInit(): void {
+    this.generatePdfGlasses();
     if(this.data.edit){
       this.getOne();
     };
@@ -84,16 +98,27 @@ export class AddGlassesComponent implements OnInit {
     if(this.data.edit){
       this.glassesService.editGlasses(this.data.glassesNumber, this.glassesForm.value)
       .subscribe(
-        res => this.dialogRefAdd.close(),
+        res => {
+          this.dialogRefAdd.close();
+          
+          /* const dialogRef = this.dialogRef.open(SupportingDocumentComponent, this.dialogConfig); */
+        },
         err => alert(err.error.msg)
       );
     } else {
       this.glassesService.addGlasses(this.glassesForm.value)
       .subscribe(
-        res => this.dialogRefAdd.close(),
+        res => {
+          this.dialogRefAdd.close();
+          /* const dialogRef = this.dialogRef.open(SupportingDocumentComponent, this.dialogConfig); */
+        },
         err => alert(err.error.msg)
       );
     }
+  }
+
+  generatePdfGlasses(){
+  
   }
 
   getOne(){

@@ -47,6 +47,12 @@ Validators.validatorGlasses = (glasses) => {
     };
 };
 
+Validators.validatorIfIsReceiptedHealthCare = (glasses) => {
+    if(glasses.receiptHealthCare && (glasses.healthCareID === '' || glasses.healthCareID === null)){
+        throw new Error('Debe elegir una obra social');
+    }
+};
+
 Validators.validatorIfExistsStockEqualsLenses = async (glasses) => {
     const lens = await Lens.findByPk(glasses.leftLensID);
     if((lens.cantidad - 2) < 0){

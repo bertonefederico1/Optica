@@ -69,17 +69,13 @@ glassesController.getOne = async (req, res) => {
 glassesController.createGlasses = async (req, res) => {
     try {
         Validators.validatorGlasses(req.body);
-        if(req.body.leftLensID == req.body.rightLensID){
-            const lens = await Lens.findByPk(req.body.leftLensID);
-            if((lens.cantidad - 2) < 0){
-                throw new Error('No hay stock disponible del lente seleccionado');
-            };
+        Validators.validatorIfIsReceiptedHealthCare(req.body);
+        if(req.body.leftLensID === req.body.rightLensID && req.body.leftLensID !== null && req.body.rightLensID !== null){
+            await Validators.validatorIfExistsStockEqualsLenses(req.body);
         };
         if(req.body.leftLensID !== null){
+            await Validators.validatorIfExistsStockLE(req.body);
             const lens = await Lens.findByPk(req.body.leftLensID);
-            if(lens.cantidad - 1 < 0) {
-                throw new Error('No hay stock disponible del lente seleccionado');
-            };
             await Lens.update({
                 cantidad: lens.cantidad - 1
             },{
@@ -124,7 +120,7 @@ glassesController.createGlasses = async (req, res) => {
             abonoSaldo: req.body.payRemainder,
             utilidadAnteojo: req.body.glassesUtility,
             esFacObraSocial: req.body.receiptHealthCare
-        });
+        });  
         res.status(200).json();
     } catch (err) {
         res.status(400).json({
@@ -138,8 +134,6 @@ glassesController.editGlasses = async (req, res) => {
         const date = new Date();
         const today = date.getFullYear() + '/' + (date.getMonth()+1).toString().padStart(2,0) + '/' + date.getDate();
         Validators.validatorGlasses(req.body);
-        let existsLeftLens = false;
-        let existsRightLens = false;
         if(req.body.deliveryDate === ''){
             req.body.deliveryDate = null;
         };
@@ -249,6 +243,7 @@ glassesController.suspendGlasses = async (req, res) => {
         })
     }
 };
+
 
 
 module.exports = glassesController;

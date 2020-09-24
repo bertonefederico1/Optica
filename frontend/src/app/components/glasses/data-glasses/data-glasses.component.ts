@@ -24,10 +24,7 @@ export class DataGlassesComponent implements OnInit {
 
   getOne(glassesNumber: number){
     this.glassesService.getOne(glassesNumber)
-      .subscribe(res => {
-        this.glasses = res;
-        console.log(this.glasses);
-      });
+      .subscribe(res => this.glasses = res);
   }
 
 }
