@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddGlassesComponent } from './../add-glasses/add-glasses.component';
 import { DataGlassesComponent } from './../data-glasses/data-glasses.component';
+import { SupportingDocumentComponent } from '../supporting-document/supporting-document.component';
 
 @Component({
   selector: 'app-glasses',
@@ -22,8 +23,9 @@ export class GlassesComponent implements OnInit {
   dataSource = null;
   dialogConfig = new MatDialogConfig();
   filterSelect: string = 'Todos';
-  statusArray: string[] = ['Pendiente', 'Todos', 'En taller', 'Entregado'];
+  statusArray: string[] = ['Todos', 'Pendiente', 'En taller', 'Entregado'];
   edit: boolean;
+  glasses: any;
 
   ngOnInit(): void {
     this.getAll();
@@ -43,6 +45,13 @@ export class GlassesComponent implements OnInit {
           this.dataSource = new MatTableDataSource();
           this.dataSource.data = res;
         })
+  }
+
+  printerSupportingDocument(glassesNumber: number){
+    this.dialogConfig.data = {
+      glassesNumber: glassesNumber
+    };
+    this.dialogRef.open(SupportingDocumentComponent, this.dialogConfig);
   }
 
   dataGlasses(glassesNumber: number){
@@ -83,7 +92,7 @@ export class GlassesComponent implements OnInit {
 
   setupFilter() {
     this.dataSource.filterPredicate = (data: any, filter: string) => {
-      const textToSearch = data.recetum.cliente.nombre.toLowerCase() + data.recetum.cliente.apellido.toLowerCase();
+      const textToSearch = data.recetum.cliente.nombre.toLowerCase() + ' ' + data.recetum.cliente.apellido.toLowerCase();
       return textToSearch.indexOf(filter) != -1;
     };
   }

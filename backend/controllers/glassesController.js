@@ -106,7 +106,7 @@ glassesController.createGlasses = async (req, res) => {
                 }
             });
         };
-        await Glasses.create({
+        const glassesCreated = await Glasses.create({
             numReceta: req.body.prescriptionNumber,
             codLenteOI: req.body.leftLensID,
             codLenteOD: req.body.rightLensID,
@@ -121,7 +121,7 @@ glassesController.createGlasses = async (req, res) => {
             utilidadAnteojo: req.body.glassesUtility,
             esFacObraSocial: req.body.receiptHealthCare
         });  
-        res.status(200).json();
+        res.status(200).json(glassesCreated.numAnteojo);
     } catch (err) {
         res.status(400).json({
             msg: err.message

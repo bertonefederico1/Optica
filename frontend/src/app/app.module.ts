@@ -45,6 +45,7 @@ import { SelectPrescriptionsComponent } from './components/prescriptions/select-
 import { SelectFrameComponent } from './components/frames/select-frame/select-frame.component';
 import { SelectLensStockComponent } from './components/lenses/select-lens-stock/select-lens-stock.component';
 import { SelectLensOrderComponent } from './components/orders/select-lens-order/select-lens-order.component';
+import { SupportingDocumentComponent } from './components/glasses/supporting-document/supporting-document.component';
 
 
 
@@ -83,7 +84,8 @@ import { SelectLensOrderComponent } from './components/orders/select-lens-order/
     SelectPrescriptionsComponent,
     SelectFrameComponent,
     SelectLensStockComponent,
-    SelectLensOrderComponent
+    SelectLensOrderComponent,
+    SupportingDocumentComponent
   ],
   imports: [
     BrowserModule,

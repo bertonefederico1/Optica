@@ -114,6 +114,8 @@ legend{
     font-weight: bold !important;
     font-size: 2rem !important;
     text-align: center;
+    margin-top: 10px !important;
+    margin-bottom: 40px !important;
 }
 
 .title2 {
@@ -133,9 +135,26 @@ legend{
     box-shadow: 10px 10px 5px grey;
 }
 
+.sheet1 {
+    margin: 2em;
+    border-radius: 5px;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
+}
+
 .label1 {
     padding-left: 1.5rem;
     font-size: 2rem;
+    font-style: italic;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.label2 {
+    padding-left: 1.5rem;
+    font-size: 1.5rem;
     font-style: italic;
     font-weight: bold;
     text-decoration: underline;
@@ -154,4 +173,10 @@ legend{
     margin-left: 10px;
     font-size: 1rem;
     text-shadow: 1px 1px;
+}
+
+.content2 {
+    color:#0A034F;
+    margin-left: 10px;
+    font-size: 1.5rem;
 }

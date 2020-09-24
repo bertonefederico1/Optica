@@ -1,0 +1,55 @@
+<div class="container" *ngIf="glasses">
+    <div class="sheet1" id="supportingDocument">
+        <h3 class="title1">COMPROBANTE DE ANTEOJO</h3>
+    
+        <div class="row">
+            <label class="black-text label2">Cliente: </label>
+            <span class="content2">{{ glasses.recetum.cliente.nombre }} {{ glasses.recetum.cliente.apellido }}</span>
+        </div>
+        <br>
+        <div class="row">
+            <label class="black-text label2">N° de Anteojo: </label>
+            <span class="content2">{{ glasses.numAnteojo.toString().padStart(7, 0) }}</span>
+        </div>
+        <br>
+        <div class="row">
+            <label class="black-text label2">N° de Receta:</label>
+            <span class="content2">{{ glasses.numReceta.toString().padStart(7, 0) }}</span>
+        </div>
+        <div class="row">
+            <label class="black-text label2">Fecha:</label>
+            <span class="content2">{{ today }}</span>
+        </div>
+        <br>
+        <div class="row">
+            <label class="black-text label2">Fecha de entrega estimada:</label>
+            <span class="content2">{{ glasses.fechaPrometido | date: 'dd/MM/yyyy'}}</span>
+        </div>
+        <div class="row">
+            <label class="black-text label2">Facturado por Obra Social: </label>
+            <span class="content2" *ngIf="glasses.esFacObraSocial">Si</span>
+            <span class="content2" *ngIf="!glasses.esFacObraSocial">No</span>
+        </div>
+        <div class="row">
+            <label class="black-text label2">Obra Social: </label>
+            <span class="content2" *ngIf="glasses.esFacObraSocial">{{ glasses.obra_social.nombre }}</span>
+            <span class="content2" *ngIf="!glasses.esFacObraSocial">Ninguna</span>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <label class="black-text label2">Total:</label>
+            <span class="content2">$ {{ glasses.montoTotal }}</span>
+        </div>
+        <div class="row">
+            <label class="black-text label2">Seña:</label>
+            <span class="content2">$ {{ glasses.montoSena }}</span>
+        </div>
+        <div class="row">
+            <label class="black-text label2">Saldo: </label>
+            <span class="content2">$ {{ glasses.montoTotal - glasses.montoSena }}</span>
+        </div>
+    </div>
+    <button (click)="generateSupportingDocument()" class="waves-effect waves-light btn">Generar Comprobante</button>
+    <button mat-dialog-close class="waves-effect red btn right">Salir</button>
+</div>
