@@ -14,6 +14,10 @@ export class PrescriptionsService {
     return this.http.get(`${this.URL}/prescriptionsById/${customerID}`);
   }
 
+  getPrescriptionByGlasses(glassesNumber: number){
+    return this.http.get(`${this.URL}/prescriptionByGlasses/${glassesNumber}`);
+  }
+
   getOne(prescritionID: number){
     return this.http.get(`${this.URL}/prescription/${prescritionID}`);
   }

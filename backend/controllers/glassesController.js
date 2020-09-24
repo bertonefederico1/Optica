@@ -64,7 +64,7 @@ glassesController.getOne = async (req, res) => {
     } catch(err){
         res.status(400).json(err);
     }
-}
+};
 
 glassesController.createGlasses = async (req, res) => {
     try {
@@ -242,6 +242,45 @@ glassesController.suspendGlasses = async (req, res) => {
             msg: err.message
         })
     }
+};
+
+glassesController.getGlassesPending = async (req, res) => {
+    try {
+        const glassesPending = await Glasses.findAll({
+            where: {
+                estadoAnteojo: 'Pendiente'
+            },
+            include: [{
+                model: Prescription,
+                include: {
+                    model: Customer
+                }
+            }]
+        })
+        res.status(200).json(glassesPending);
+    } catch (err) {
+        res.status(400).json();
+    }
+};
+
+glassesController.getPrescriptionByGlasses = async (req, res) => {
+    try {
+        const glasses = await Glasses.findAll({
+            where: {
+                numAnteojo: req.params.glassesNumber
+            },
+            include: [{
+                model: Prescription,
+                include: {
+                    model: Customer
+                }
+            }]
+        });
+        res.status(200).json(glasses);
+    } catch (err) {
+        res.status(400).json();
+    }   
+    
 };
 
 

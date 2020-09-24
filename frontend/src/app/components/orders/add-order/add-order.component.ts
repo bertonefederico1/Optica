@@ -118,10 +118,10 @@ export class AddOrderComponent implements OnInit {
       })
   }
 
-  /* searchPrescription(){
-    if(this.customer !== '') {
+  searchPrescription(){
+    if(this.glasses) {
       this.dialogConfig.data = {
-        customer: this.customer
+        glassesNumber: this.glasses.numAnteojo
       };
       const dialogRef = this.dialogRef.open(SelectPrescriptionsComponent, this.dialogConfig);
       dialogRef.afterClosed()
@@ -132,9 +132,9 @@ export class AddOrderComponent implements OnInit {
           }
         })
     } else {
-      alert("Primero debe seleccionar un cliente");
+      alert("Primero debe seleccionar un anteojo");
     }
-  } */
+  }
 
   onSubmit(){
     if(this.orderForm.value.orderLensLE || this.orderForm.value.orderLensRE){

@@ -1,7 +1,7 @@
 'use strict'
 
 const sequelize = require('../database/db-connection');
-const { DataTypes } = require('Sequelize');
+const { DataTypes, Sequelize } = require('Sequelize');
 const Prescription = require('../models/Prescription');
 const Lens = require('../models/Lens');
 const Frame = require('../models/Frame');
@@ -61,6 +61,10 @@ const Glasses = sequelize.define('anteojo_receta', {
     },
     fechaEntrega: {
         type: DataTypes.DATE
+    },
+    fechaCreacion: {
+        type: DataTypes.DATE,
+        defaultValue: Sequelize.NOW
     },
     estadoAnteojo: {
         type: DataTypes.STRING,

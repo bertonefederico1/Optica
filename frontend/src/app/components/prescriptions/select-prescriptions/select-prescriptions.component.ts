@@ -22,11 +22,11 @@ export class SelectPrescriptionsComponent implements OnInit {
   prescription: any;
 
   ngOnInit(): void {
-    this.getAll();
+    this.getPrescriptionsByGlasses(this.data.glassesNumber);
   }
 
-  getAll(){
-    this.prescriptionService.getPrescriptionsBycustomerID(this.data.customer.idCliente)
+  getPrescriptionsByGlasses(glassesNumber: number){
+    this.prescriptionService.getPrescriptionByGlasses(glassesNumber)
       .subscribe(
         res => {
           this.dataSource = new MatTableDataSource();
