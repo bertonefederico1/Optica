@@ -47,7 +47,8 @@ export class GlassesComponent implements OnInit {
         })
   }
 
-  printerSupportingDocument(glassesNumber: number){
+  generateSupportingDocument(glassesNumber: number){
+    this.dialogConfig.disableClose = false;
     this.dialogConfig.data = {
       glassesNumber: glassesNumber
     };

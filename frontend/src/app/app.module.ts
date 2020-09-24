@@ -46,6 +46,7 @@ import { SelectFrameComponent } from './components/frames/select-frame/select-fr
 import { SelectLensStockComponent } from './components/lenses/select-lens-stock/select-lens-stock.component';
 import { SelectLensOrderComponent } from './components/orders/select-lens-order/select-lens-order.component';
 import { SupportingDocumentComponent } from './components/glasses/supporting-document/supporting-document.component';
+import { SelectGlassesPendingComponent } from './components/glasses/select-glasses-pending/select-glasses-pending.component';
 
 
 
@@ -85,7 +86,8 @@ import { SupportingDocumentComponent } from './components/glasses/supporting-doc
     SelectFrameComponent,
     SelectLensStockComponent,
     SelectLensOrderComponent,
-    SupportingDocumentComponent
+    SupportingDocumentComponent,
+    SelectGlassesPendingComponent
   ],
   imports: [
     BrowserModule,

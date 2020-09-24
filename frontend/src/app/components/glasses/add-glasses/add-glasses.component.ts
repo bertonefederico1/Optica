@@ -83,6 +83,7 @@ export class AddGlassesComponent implements OnInit {
   }
 
   onSubmit(){
+    this.dialogConfig.disableClose = false;
     if(this.data.edit){
       this.glassesService.editGlasses(this.data.glassesNumber, this.glassesForm.value)
       .subscribe(

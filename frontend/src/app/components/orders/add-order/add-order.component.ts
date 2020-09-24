@@ -3,11 +3,11 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { LensesService } from './../../../services/lenses/lenses.service';
 import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { SelectCustomerComponent } from './../../customers/select-customer/select-customer.component';
 import { SelectSupplierComponent } from './../../suppliers/select-supplier/select-supplier.component';
 import { SelectPrescriptionsComponent } from './../../prescriptions/select-prescriptions/select-prescriptions.component';
 import * as moment from 'moment'
 import { OrdersService } from './../../../services/orders/orders.service';
+import { SelectGlassesPendingComponent } from './../../glasses/select-glasses-pending/select-glasses-pending.component';
 
 @Component({
   selector: 'app-add-order',
@@ -28,7 +28,7 @@ export class AddOrderComponent implements OnInit {
   lensDesigns$: Observable<any[]>;
   lensMaterials$: Observable<any[]>;
   lensFinishes$: Observable<any[]>;
-  customer: any = '';
+  glasses: any;
   supplierLaboratory: any;
   prescription: any;
   dialogConfig = new MatDialogConfig();
@@ -38,8 +38,8 @@ export class AddOrderComponent implements OnInit {
 
   orderForm = new FormGroup({
     nameAndSurname: new FormControl('', Validators.required),
-    telephone: new FormControl('', Validators.required),
-    address: new FormControl('', Validators.required),
+    glassesNumber: new FormControl('', Validators.required),
+    glassesNumberDescription: new FormControl('', Validators.required),
     supplierLaboratoryBusinessName: new FormControl('', Validators.required),
     supplierLaboratoryID: new FormControl('', Validators.required),
     currentDate: new FormControl(this.today, Validators.required),
@@ -70,12 +70,12 @@ export class AddOrderComponent implements OnInit {
     this.dialogConfig.height = '100%';
   }
 
-  setCustomerData(){
+  setDataGlassesPending(){
     this.orderForm.patchValue({
-      nameAndSurname: this.customer.nombre + ' ' + this.customer.apellido,
-      telephone: this.customer.telefono,
-      address: this.customer.domicilio
-    })
+      nameAndSurname: this.glasses.recetum.cliente.nombre + ' ' + this.glasses.recetum.cliente.apellido,
+      glassesNumberDescription: this.glasses.numAnteojo.toString().padStart(7, 0),
+      glassesNumber: this.glasses.numAnteojo
+    });
   }
 
   setSupplierData(){
@@ -96,13 +96,13 @@ export class AddOrderComponent implements OnInit {
     })
   }
 
-  searchCustomer(){
-    const dialogRef = this.dialogRef.open(SelectCustomerComponent, this.dialogConfig);
+  searchGlassesPending(){
+    const dialogRef = this.dialogRef.open(SelectGlassesPendingComponent, this.dialogConfig);
     dialogRef.afterClosed()
       .subscribe(res => {
         if(res){
-          this.customer = res;
-          this.setCustomerData();
+          this.glasses = res;
+          this.setDataGlassesPending();
         }
       });
   }
@@ -118,7 +118,7 @@ export class AddOrderComponent implements OnInit {
       })
   }
 
-  searchPrescription(){
+  /* searchPrescription(){
     if(this.customer !== '') {
       this.dialogConfig.data = {
         customer: this.customer
@@ -134,7 +134,7 @@ export class AddOrderComponent implements OnInit {
     } else {
       alert("Primero debe seleccionar un cliente");
     }
-  }
+  } */
 
   onSubmit(){
     if(this.orderForm.value.orderLensLE || this.orderForm.value.orderLensRE){

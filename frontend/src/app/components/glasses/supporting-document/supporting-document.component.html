@@ -3,6 +3,10 @@
         <h3 class="title1">COMPROBANTE DE ANTEOJO</h3>
     
         <div class="row">
+            <label class="black-text label2">Fecha de Creación: </label>
+            <span class="content2">{{ glasses.fechaCreacion | date: 'dd/MM/yyyy'}}</span>
+        </div>
+        <div class="row">
             <label class="black-text label2">Cliente: </label>
             <span class="content2">{{ glasses.recetum.cliente.nombre }} {{ glasses.recetum.cliente.apellido }}</span>
         </div>

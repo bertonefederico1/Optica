@@ -19,6 +19,10 @@ export class GlassesService {
     return this.http.get<any>(`${this.URL}/glasses/${glassesNumber}`)
   }
 
+  getGlassesPending(){
+    return this.http.get<any>(`${this.URL}/glassesPending`);
+  }
+
   addGlasses(glasses) {
     return this.http.post(`${this.URL}/newGlasses`, glasses); 
   }

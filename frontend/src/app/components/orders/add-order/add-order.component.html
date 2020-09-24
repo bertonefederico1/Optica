@@ -2,28 +2,22 @@
 <form [formGroup]="orderForm">
     <div class="section">
         <fieldset>
-            <legend><b>Datos Personales</b></legend>
+            <legend><b>Datos Anteojo</b></legend>
             <div class="row">
-                <div class="col m7">
+                <div class="col m12">
                     <span class="description">Nombre y Apellido:</span>
                     <div class="input-field inline">
-                        <input type="text" class="col m12" readonly formControlName="nameAndSurname">
-                    </div>
-                </div>
-                <div class="col m5">
-                    <span class="description">Teléfono:</span>
-                    <div class="input-field inline">
-                        <input type="text" readonly formControlName="telephone">
+                        <input type="text" class="col m8" readonly formControlName="nameAndSurname">
                     </div>
                 </div>
                 <div class="col m9">
-                    <span class="description">Domicilio:</span>
+                    <span class="description">N° de Anteojo:</span>
                     <div class="input-field inline">
-                        <input type="text" readonly formControlName="address">
+                        <input type="text" class="col m4" readonly formControlName="glassesNumberDescription">
                     </div>
                 </div>
-                <button class="waves-effect waves-light btn-small col offset-m9" (click)="searchCustomer()"><i
-                        class="material-icons left">search</i>Buscar Cliente</button>
+                <button class="waves-effect waves-light btn-small col offset-m9" (click)="searchGlassesPending()"><i
+                        class="material-icons left">search</i>Buscar Anteojo</button>
             </div>
         </fieldset>
 
@@ -71,6 +65,10 @@
 
         <fieldset>
             <legend><b>Datos Lentes</b></legend>
+            <div class="row">
+                <button class="waves-effect waves-light btn-small col offset-m9"><i
+                    class="material-icons left">search</i>Buscar Receta</button>
+            </div>
             <div class="row">
                 <div class="col m3 push-m1 subtitle">OJO IZQUIERDO</div>
                 <div class="col m2">
@@ -186,11 +184,9 @@
                         </select>
                     </div>
                 </div>
-                <button class="waves-effect waves-light btn-small col offset-m9" (click)="searchPrescription()"><i
-                        class="material-icons left">search</i>Buscar Receta</button>
             </div>
         </fieldset>
-        <div class="row right-align mt1">
+        <div class="row right-align mt3p">
             <button type="submit" (click)="onSubmit()" class="waves-effect green btn selected">
                 Guardar
             </button>
