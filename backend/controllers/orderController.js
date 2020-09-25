@@ -5,6 +5,8 @@ const SupplierLaboratory = require('../models/SupplierLaboratory');
 const Lens = require('../models/Lens');
 const Glasses = require('../models/Glasses');
 const validators = require('../validators/validators');
+const Prescription = require('../models/Prescription');
+const Customer = require('../models/Customer');
 const orderController = { };
 
 
@@ -24,12 +26,18 @@ orderController.getAll = async (req, res) => {
                 },{
                     model: SupplierLaboratory
                 },{
-                    model: Glasses
+                    model: Glasses,
+                    include: {
+                        model: Prescription,
+                        include: {
+                            model: Customer
+                        }
+                    }
                 }]
         });
         res.status(200).json(orders);
     } catch (err) {
-        res.json(err);
+        res.status(400).json(err);
     }
 };
 
@@ -90,7 +98,7 @@ orderController.createOrder = async (req, res) => {
                     eje:req.body.axisLE,
                     diametro: req.body.lensDiameter,
                     color: req.body.lensColor,
-                    cantidad: 1,
+                    cantidad: -1,
                     deStock: 0
                 })
             };
@@ -106,13 +114,14 @@ orderController.createOrder = async (req, res) => {
                     eje: req.body.axisRE,
                     diametro: req.body.lensDiameter,
                     color: req.body.lensColor,
-                    cantidad: 1,
+                    cantidad: -1,
                     deStock: 0
                 })
             };
             await Order.create({
                 codLenteOI: lensLE.codLente,
                 codLenteOD: lensRE.codLente,
+                numAnteojo: req.body.glassesNumber,
                 idProvLab: req.body.supplierLaboratoryID,
                 estadoPedido: 'Pendiente',
                 fechaEntregaEsperada: req.body.expectedDeliveryDate,
@@ -122,7 +131,9 @@ orderController.createOrder = async (req, res) => {
             });
         res.status(200).json();
     } catch (err) {
-        res.status(400).json()
+        res.status(400).json({
+            msg: err.message
+        })
     }
 };
 

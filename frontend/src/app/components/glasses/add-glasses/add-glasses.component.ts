@@ -76,7 +76,7 @@ export class AddGlassesComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.data.edit){
-      this.getOne();
+      this.getOne(this.data.glassesNumber);
     };
     this.dialogConfig.height = '100%';
     this.dialogConfig.width = '100%';
@@ -111,10 +111,11 @@ export class AddGlassesComponent implements OnInit {
     }
   }
 
-  getOne(){
-    this.glassesService.getOne(this.data.glassesNumber)
+  getOne(glassesNumber: number){
+    this.glassesService.getOne(glassesNumber)
       .subscribe(res => {
         this.glasses = res;
+        this.customer = res.recetum.cliente;
         this.setGlassesData();
       });
   }
@@ -321,7 +322,8 @@ export class AddGlassesComponent implements OnInit {
   searchPrescription(){
     if(this.customer){
       this.dialogConfig.data = {
-        customer: this.customer
+        customer: this.customer,
+        type: 'newGlasses'
       }
       const dialogRef = this.dialogRef.open(SelectPrescriptionsComponent, this.dialogConfig);
       dialogRef.afterClosed()

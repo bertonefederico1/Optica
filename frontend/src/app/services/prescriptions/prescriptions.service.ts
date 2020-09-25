@@ -11,7 +11,7 @@ export class PrescriptionsService {
   readonly URL: string= "http://localhost:3000"
 
   getPrescriptionsBycustomerID(customerID: number){
-    return this.http.get(`${this.URL}/prescriptionsById/${customerID}`);
+    return this.http.get(`${this.URL}/prescriptionsByCustomerId/${customerID}`);
   }
 
   getPrescriptionByGlasses(glassesNumber: number){

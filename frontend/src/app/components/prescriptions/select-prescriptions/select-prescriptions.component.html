@@ -13,17 +13,27 @@
 
             <ng-container matColumnDef="prescriptionNumber">
                 <th mat-header-cell *matHeaderCellDef> N° de Receta </th>
-                <td mat-cell *matCellDef="let element">{{element.numReceta}}</td>
+                <td mat-cell *matCellDef="let element">{{element.numReceta.toString().padStart(7,0)}}</td>
             </ng-container>
 
-            <ng-container matColumnDef="prescriptionDate">
+            <ng-container matColumnDef="prescriptionDate" *ngIf="this.data.type === 'newGlasses'">
                 <th mat-header-cell *matHeaderCellDef> Fecha de Receta </th>
                 <td mat-cell *matCellDef="let element">{{element.fechaReceta | date: 'd/M/yy'}}</td>
             </ng-container>
 
-            <ng-container matColumnDef="doctorName">
+            <ng-container matColumnDef="doctorName" *ngIf="this.data.type === 'newGlasses'">
                 <th mat-header-cell *matHeaderCellDef> Nombre Médico </th>
                 <td mat-cell *matCellDef="let element">{{element.nombreMedico}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="prescriptionDate" *ngIf="this.data.type === 'newOrder'">
+                <th mat-header-cell *matHeaderCellDef> Fecha de Receta </th>
+                <td mat-cell *matCellDef="let element">{{element.recetum.fechaReceta | date: 'd/M/yy'}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="doctorName" *ngIf="this.data.type === 'newOrder'">
+                <th mat-header-cell *matHeaderCellDef> Nombre Médico </th>
+                <td mat-cell *matCellDef="let element">{{element.recetum.nombreMedico}}</td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

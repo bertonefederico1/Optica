@@ -267,7 +267,8 @@ glassesController.getPrescriptionByGlasses = async (req, res) => {
     try {
         const glasses = await Glasses.findAll({
             where: {
-                numAnteojo: req.params.glassesNumber
+                numAnteojo: req.params.glassesNumber,
+                activo: 1
             },
             include: [{
                 model: Prescription,

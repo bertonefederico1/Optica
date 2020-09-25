@@ -12,11 +12,11 @@
         </ng-container>
         <ng-container matColumnDef="nameAndSurname">
             <th mat-header-cell *matHeaderCellDef>Nombre y Apellido</th>
-            <td mat-cell *matCellDef="let element">FALTA RELACION CON ANTEOJO</td>
+            <td mat-cell *matCellDef="let element">{{ element.anteojo_recetum.recetum.cliente.nombre }} {{ element.anteojo_recetum.recetum.cliente.apellido }}</td>
         </ng-container>
         <ng-container matColumnDef="prescriptionNumber">
             <th mat-header-cell *matHeaderCellDef>N° de Receta</th>
-            <td mat-cell *matCellDef="let element">FALTA HACER RELACION CON ANTEOJO</td>
+            <td mat-cell *matCellDef="let element">{{ element.anteojo_recetum.recetum.numReceta.toString().padStart(7,0) }}</td>
         </ng-container>
         <ng-container matColumnDef="expectedDeliveryDate">
             <th mat-header-cell *matHeaderCellDef>Fecha Entrega Esperada</th>

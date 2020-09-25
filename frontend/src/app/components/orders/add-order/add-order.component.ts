@@ -121,7 +121,8 @@ export class AddOrderComponent implements OnInit {
   searchPrescription(){
     if(this.glasses) {
       this.dialogConfig.data = {
-        glassesNumber: this.glasses.numAnteojo
+        glassesNumber: this.glasses.numAnteojo,
+        type: 'newOrder'
       };
       const dialogRef = this.dialogRef.open(SelectPrescriptionsComponent, this.dialogConfig);
       dialogRef.afterClosed()
@@ -137,19 +138,16 @@ export class AddOrderComponent implements OnInit {
   }
 
   onSubmit(){
-    if(this.orderForm.value.orderLensLE || this.orderForm.value.orderLensRE){
       if(this.data.edit){
         
       } else {
+        console.log(this.orderForm.value)
         this.orderService.addOrder(this.orderForm.value)
           .subscribe(
-        res => this.dialogRefAdd.close(),
-        err => alert("Verifique los datos ingresados")
-        )
+        res => console.log(res),
+        err => alert(err.error.msg)
+        );
       }
-    } else {
-      alert("Debe seleccionar al menos un lente para pedir");
-    }
   }
 
 }

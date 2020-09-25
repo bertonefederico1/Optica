@@ -3,7 +3,7 @@
         <h3 class="title1">COMPROBANTE DE ANTEOJO</h3>
     
         <div class="row">
-            <label class="black-text label2">Fecha de Creación: </label>
+            <label class="black-text label2">Fecha: </label>
             <span class="content2">{{ glasses.fechaCreacion | date: 'dd/MM/yyyy'}}</span>
         </div>
         <div class="row">
@@ -19,10 +19,6 @@
         <div class="row">
             <label class="black-text label2">N° de Receta:</label>
             <span class="content2">{{ glasses.numReceta.toString().padStart(7, 0) }}</span>
-        </div>
-        <div class="row">
-            <label class="black-text label2">Fecha:</label>
-            <span class="content2">{{ today }}</span>
         </div>
         <br>
         <div class="row">

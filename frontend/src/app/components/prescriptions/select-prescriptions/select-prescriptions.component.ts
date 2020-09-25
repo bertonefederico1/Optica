@@ -22,7 +22,23 @@ export class SelectPrescriptionsComponent implements OnInit {
   prescription: any;
 
   ngOnInit(): void {
-    this.getPrescriptionsByGlasses(this.data.glassesNumber);
+    switch(this.data.type){
+      case 'newGlasses': {
+        this.getPrescriptionByCustomer(this.data.customer.idCliente);
+        break;
+      }
+      case 'newOrder': {
+        this.getPrescriptionsByGlasses(this.data.glassesNumber);
+      }
+    };
+  }
+
+  getPrescriptionByCustomer(customerID: number){
+    this.prescriptionService.getPrescriptionsBycustomerID(customerID)
+      .subscribe(res => {
+          this.dataSource = new MatTableDataSource();
+          this.dataSource.data = res;
+      });
   }
 
   getPrescriptionsByGlasses(glassesNumber: number){
@@ -31,11 +47,21 @@ export class SelectPrescriptionsComponent implements OnInit {
         res => {
           this.dataSource = new MatTableDataSource();
           this.dataSource.data = res;
-        })
+        });
   }
 
   accept(){
-    this.dialogRef.close(this.prescription);
+    switch(this.data.type){
+      case 'newGlasses': {
+        this.dialogRef.close(this.prescription);
+        break;
+      }
+      case 'newOrder': {
+        this.dialogRef.close(this.prescription.recetum);
+        break;
+      }
+    }
+   
   }
 
 }
