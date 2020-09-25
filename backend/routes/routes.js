@@ -89,6 +89,7 @@ router.put('/deletePrescription/:prescriptionNumber', prescriptionController.sus
 
 //Rutas de Pedidos
 router.get('/orders', orderController.getAll);
+router.get('/order/:orderNumber', orderController.getOne);
 router.get('/ordersByPrescription/:prescriptionNumber', orderController.getOrdersByPrescription);
 router.post('/newOrder', orderController.createOrder);
 router.put('/editOrder');

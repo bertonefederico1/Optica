@@ -14,8 +14,7 @@ orderController.getAll = async (req, res) => {
     try {
         const orders = await Order.findAll({
             where: {
-                activo: 1,
-                estadoPedido: 'Pendiente'
+                activo: 1
             },
             include: [{
                     model: Lens,
@@ -51,31 +50,38 @@ orderController.getOrdersByPrescription = async (req, res) => {
     } catch (err) {
         res.status(400).json();
     }
-}
+};
 
-/* frameController.getOne = async (req, res) => {
+orderController.getOne = async (req, res) => {
     try {
-        const frame = await Frame.findOne({
+        const order = await Order.findOne({
             where: {
-                codArmazon: req.params.frameID,
+                numAnteojo: req.params.orderNumber,
                 activo: 1
             },
             include: [{
-                model: FrameMaterial
-            }, {
-                model: FrameDesign
-            }, {
-                model: FrameUtility
+                model: Glasses,
+                include: {
+                    model:Prescription,
+                    include: {
+                        model: Customer
+                    }
+                }
             }, {
                 model: SupplierLaboratory
+            }, {
+                model: Lens,
+                as: 'LensOI'
+            }, {
+                model: Lens,
+                as: 'LensOD'
             }]
         });
-        res.status(200).json(frame);
-    } catch(err){
-        res.json(err);
+        res.status(200).json(order);
+    } catch (err) {
+        res.status(400).json();
     }
-} */
-
+};
 
 orderController.createOrder = async (req, res) => {
     try { 
@@ -137,9 +143,9 @@ orderController.createOrder = async (req, res) => {
     }
 };
 
-/* frameController.editFrame = async (req, res) => {
+orderController.editOrder = async (req, res) => {
     try {
-        await Frame.update({
+        await Order.update({
             idMaterialArmazon: req.body.material,
             idDisenoArmazon: req.body.design,
             idUtilidadArmazon: req.body.utility,
@@ -155,11 +161,13 @@ orderController.createOrder = async (req, res) => {
         });
         res.status(200).json();
     } catch (err) {
-        res.status(400).json()
+        res.status(400).json({
+            msg: err
+        })
     }
 };
 
-frameController.suspendFrame = async (req, res) => {
+/* frameController.suspendFrame = async (req, res) => {
     try {
         await Frame.update({
             activo: 0

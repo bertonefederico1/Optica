@@ -17,10 +17,12 @@ export class OrdersComponent implements OnInit {
     private dialogRef: MatDialog
   ) { }
 
-  displayedColumns: string[] = ['orderNumber', 'nameAndSurname', 'prescriptionNumber', 'expectedDeliveryDate', 'Laboratory', 'actions'];
+  displayedColumns: string[] = ['orderNumber', 'nameAndSurname', 'prescriptionNumber', 'expectedDeliveryDate', 'laboratory', 'status', 'actions'];
   dataSource = null;
   dialogConfig = new MatDialogConfig();
   edit: boolean;
+  filterSelect: string = 'Todos';
+  statusArray: string[] = ['Todos', 'Pendiente', 'Entregado'];
 
   ngOnInit(): void {
     this.dialogConfig.width = '100%';
@@ -51,14 +53,23 @@ export class OrdersComponent implements OnInit {
     this.edit = true;
     this.dialogConfig.disableClose = true;
     this.dialogConfig.data = {
-      edit: this.edit
+      edit: this.edit,
+      orderNumber: orderNumber
     };
     const dialogRef = this.dialogRef.open(AddOrderComponent, this.dialogConfig);
   }
 
+  filter(){
+    this.dataSource.filterPredicate = (data: any, filter: string) => {
+      const textToSearch = data.estadoPedido;
+      return textToSearch.indexOf(filter) != -1;
+    };
+    this.filterSelect === 'Todos' ? this.dataSource.filter = '' : this.dataSource.filter = this.filterSelect;
+  }
+
   setupFilter() {
     this.dataSource.filterPredicate = (data: any, filter: string) => {
-      const textToSearch = data.apellido.toLowerCase();
+      const textToSearch = data.anteojo_recetum.recetum.cliente.nombre.toLowerCase() + ' ' + data.anteojo_recetum.recetum.cliente.apellido.toLowerCase();
       return textToSearch.indexOf(filter) != -1;
     };
   }

@@ -16,19 +16,19 @@ export class OrdersService {
     return this.http.get<any>(`${this.URL}/orders`);
   }
 
-  /* getOne(lensID: number){
-    return this.http.get<any>(`${this.URL}/lens/${lensID}`)
-  } */
+  getOne(orderNumber: number){
+    return this.http.get<any>(`${this.URL}/order/${orderNumber}`)
+  }
 
   addOrder(order: any){
     return this.http.post(`${this.URL}/newOrder`, order);
   }
 
-  /* editLens(lensID: number, lens) {
-    return this.http.put(`${this.URL}/editLens/${lensID}`, lens); 
+  editOrder(orderNumber: number, order) {
+    return this.http.put(`${this.URL}/editLens/${orderNumber}`, order); 
   }
 
-  deleteLens(lensID: number) {
-    return this.http.put(`${this.URL}/suspendLens/${lensID}`, false);
-  } */
+  deleteOrder(orderNumber: number) {
+    return this.http.put(`${this.URL}/suspendOrder/${orderNumber}`, false);
+  }
 }

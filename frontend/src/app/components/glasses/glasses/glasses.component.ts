@@ -23,7 +23,7 @@ export class GlassesComponent implements OnInit {
   dataSource = null;
   dialogConfig = new MatDialogConfig();
   filterSelect: string = 'Todos';
-  statusArray: string[] = ['Todos', 'Pendiente', 'En taller', 'Entregado'];
+  statusArray: string[] = ['Todos', 'Pendiente', 'En Taller', 'Entregado'];
   edit: boolean;
   glasses: any;
 
@@ -32,10 +32,6 @@ export class GlassesComponent implements OnInit {
     this.dialogConfig.width = '100%';
     this.dialogConfig.height = '100%';
     this.dialogConfig.disableClose = true;
-  }
-
-  filter(){
-    this.filterSelect === 'Todos' ? this.dataSource.filter = '' : this.dataSource.filter = this.filterSelect;
   }
 
   getAll(){
@@ -89,6 +85,14 @@ export class GlassesComponent implements OnInit {
       this.glassesService.deleteGlasses(glassesNumber)
       .subscribe(res => this.getAll());
     };
+  }
+
+  filter(){
+    this.dataSource.filterPredicate = (data: any, filter: string) => {
+      const textToSearch = data.estadoAnteojo;
+      return textToSearch.indexOf(filter) != -1;
+    };
+    this.filterSelect === 'Todos' ? this.dataSource.filter = '' : this.dataSource.filter = this.filterSelect;
   }
 
   setupFilter() {
