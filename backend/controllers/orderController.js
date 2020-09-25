@@ -3,6 +3,9 @@
 const Order = require('../models/Order');
 const SupplierLaboratory = require('../models/SupplierLaboratory'); 
 const Lens = require('../models/Lens');
+const LensMaterial = require('../models/LensMaterial');
+const LensDesign = require('../models/LensDesign');
+const LensFinish = require('../models/LensFinish');
 const Glasses = require('../models/Glasses');
 const validators = require('../validators/validators');
 const Prescription = require('../models/Prescription');
@@ -72,10 +75,24 @@ orderController.getOne = async (req, res) => {
                 model: SupplierLaboratory
             }, {
                 model: Lens,
-                as: 'LensOI'
+                as: 'LensOI',
+                include: [{
+                    model: LensMaterial
+                }, {
+                    model: LensDesign
+                }, {
+                    model: LensFinish
+                }]
             }, {
                 model: Lens,
-                as: 'LensOD'
+                as: 'LensOD',
+                include: [{
+                    model: LensMaterial
+                }, {
+                    model: LensDesign
+                }, {
+                    model: LensFinish
+                }]
             }]
         });
         res.status(200).json(order);

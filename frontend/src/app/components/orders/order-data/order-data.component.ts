@@ -23,7 +23,10 @@ export class OrderDataComponent implements OnInit {
 
   getOne(orderNumber: number){
     this.orderService.getOne(orderNumber)
-      .subscribe(res => this.order = res);
+      .subscribe(res => {
+        this.order = res;
+        console.log(res)
+      });
   }
 
 }
