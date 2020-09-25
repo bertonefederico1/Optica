@@ -7,6 +7,7 @@ const Glasses = require('../models/Glasses');
 const validators = require('../validators/validators');
 const Prescription = require('../models/Prescription');
 const Customer = require('../models/Customer');
+const Validators = require('../validators/validators');
 const orderController = { };
 
 
@@ -56,7 +57,7 @@ orderController.getOne = async (req, res) => {
     try {
         const order = await Order.findOne({
             where: {
-                numAnteojo: req.params.orderNumber,
+                numPedido: req.params.orderNumber,
                 activo: 1
             },
             include: [{
@@ -145,42 +146,143 @@ orderController.createOrder = async (req, res) => {
 
 orderController.editOrder = async (req, res) => {
     try {
+        let lensLE = {
+            codLente: null
+        };
+        let lensRE = {
+            codLente: null
+        };
+        const currentOrder = await Order.findByPk(req.params.orderNumber);
+        Validators.validatorOrderEdit(req.body);
+        if(req.body.orderLensLE){
+            Validators.validatorOrderLE(req.body);
+        };
+        if(req.body.orderLensRE){
+            Validators.validatorOrderRE(req.body);
+        };
+        if(req.body.orderLensRE && req.body.orderLensLE){
+            Validators.validatorOrder(req.body);
+        };
+        if(currentOrder.pedirLenteOI && !req.body.orderLensLE){
+            await Validators.normalizeOrderLens(currentOrder.codLenteOI);
+        } else if (!currentOrder.pedirLenteOI && req.body.orderLensLE){
+            lensLE = await Lens.create({
+                idProvLab: req.body.supplierLaboratoryID,
+                idDisenoLente: req.body.lensDesign,
+                idMaterialLente: req.body.lensMaterial,
+                idAcabadoLente: req.body.lensFinish,
+                valorEsf: req.body.sphericalValueLE,
+                valorCil: req.body.cilyndricalValueLE,
+                indiceRefraccion: req.body.refractionIndexLE,
+                eje:req.body.axisLE,
+                diametro: req.body.lensDiameter,
+                color: req.body.lensColor,
+                cantidad: -1,
+                deStock: 0
+            })
+        } else {
+            lensLE.codLente = currentOrder.codLenteOI;
+            await Lens.update({
+                idProvLab: req.body.supplierLaboratoryID,
+                idDisenoLente: req.body.lensDesign,
+                idMaterialLente: req.body.lensMaterial,
+                idAcabadoLente: req.body.lensFinish,
+                indiceRefraccion: req.body.refractionIndexLE
+            }, {
+                where: {
+                    codLente: currentOrder.codLenteOI
+                }
+            });
+        };
+        if(currentOrder.pedirLenteOD && !req.body.orderLensRE){
+            await Validators.normalizeOrderLens(currentOrder.codLenteOD);
+        } else if (!currentOrder.pedirLenteOD && req.body.orderLensRE){
+            lensRE = await Lens.create({
+                idProvLab: req.body.supplierLaboratoryID,
+                idDisenoLente: req.body.lensDesign,
+                idMaterialLente: req.body.lensMaterial,
+                idAcabadoLente: req.body.lensFinish,
+                valorEsf: req.body.sphericalValueLE,
+                valorCil: req.body.cilyndricalValueLE,
+                indiceRefraccion: req.body.refractionIndexLE,
+                eje:req.body.axisLE,
+                diametro: req.body.lensDiameter,
+                color: req.body.lensColor,
+                cantidad: -1,
+                deStock: 0
+            })
+        } else {
+            lensRE.codLente = currentOrder.codLenteOD;
+            await Lens.update({
+                idProvLab: req.body.supplierLaboratoryID,
+                idDisenoLente: req.body.lensDesign,
+                idMaterialLente: req.body.lensMaterial,
+                idAcabadoLente: req.body.lensFinish,
+                indiceRefraccion: req.body.refractionIndexRE
+            }, {
+                where: {
+                    codLente: currentOrder.codLenteOD
+                }
+            });
+        };
         await Order.update({
-            idMaterialArmazon: req.body.material,
-            idDisenoArmazon: req.body.design,
-            idUtilidadArmazon: req.body.utility,
-            idProvLab: req.body.supplierLaboratory,
-            modelo: req.body.model,
-            marca: req.body.brand,
-            color: req.body.color,
-            cantidad: req.body.quantityInStock
+            codLenteOI: lensLE.codLente,
+            codLenteOD: lensRE.codLente,
+            numAnteojo: req.body.glassesNumber,
+            idProvLab: req.body.supplierLaboratoryID,
+            fechaEntregaEsperada: req.body.expectedDeliveryDate,
+            obsPedido: req.body.orderObs,
+            estadoPedido: req.body.orderStatus,
+            pedirLenteOI: req.body.orderLensLE,
+            pedirLenteOD: req.body.orderLensRE
         }, {
             where: {
-                codArmazon: req.params.frameID
+                numPedido: req.params.orderNumber
             }
         });
         res.status(200).json();
     } catch (err) {
         res.status(400).json({
-            msg: err
+            msg: err.message
         })
     }
 };
 
-/* frameController.suspendFrame = async (req, res) => {
+orderController.suspendOrder = async (req, res) => {
     try {
-        await Frame.update({
+        const order = await Order.findByPk(req.params.orderNumber);
+        if(order.codLenteOI){
+            await Lens.update({
+                activo: 0
+            }, {
+                where: {
+                    codLente: order.codLenteOI
+                }
+            })
+        };
+        if(order.codLenteOD){
+            await Lens.update({
+                activo: 0
+            }, {
+                where: {
+                    codLente: order.codLenteOD
+                }
+            })
+        };
+        await Order.update({
             activo: 0
         }, {
             where: {
-                codArmazon: req.params.frameID
+                numPedido: req.params.orderNumber
             }
         });
         res.status(200).json();
     } catch (err) {
-        res.status(400).json(err);
+        res.status(400).json({
+            msg: err.message
+        });
     }
-}; */
+};
 
 
 module.exports = orderController;

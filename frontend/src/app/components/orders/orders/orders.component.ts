@@ -3,6 +3,7 @@ import { OrdersService } from './../../../services/orders/orders.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddOrderComponent } from './../add-order/add-order.component';
+import { OrderDataComponent } from './../order-data/order-data.component';
 
 @Component({
   selector: 'app-orders',
@@ -38,6 +39,16 @@ export class OrdersComponent implements OnInit {
       })
   }
 
+  orderData(orderNumber: number){
+    this.dialogConfig.disableClose = false;
+    this.dialogConfig.data = {
+      orderNumber: orderNumber
+    };
+    const dialogRef = this.dialogRef.open(OrderDataComponent, this.dialogConfig);
+    dialogRef.afterClosed()
+      .subscribe(res => this.getAll());
+  }
+
   addOrder(){
     this.edit = false;
     this.dialogConfig.disableClose = true;
@@ -57,6 +68,13 @@ export class OrdersComponent implements OnInit {
       orderNumber: orderNumber
     };
     const dialogRef = this.dialogRef.open(AddOrderComponent, this.dialogConfig);
+  }
+
+  deleteOrder(orderNumber: number){
+    if(confirm("¿Seguro que desea eliminar el pedido?")){
+      this.orderService.deleteOrder(orderNumber)
+      .subscribe(res => this.getAll());
+    }
   }
 
   filter(){

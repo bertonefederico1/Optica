@@ -184,6 +184,17 @@
                         </select>
                     </div>
                 </div>
+                <div class="col m12" *ngIf="this.data.edit">
+                    <span class="description">Estado:</span>
+                    <div class="input-field inline">
+                        <select class="browser-default border-black col m3"
+                            style="border-color: black; height: 40px; margin-top: 1rem;" formControlName="orderStatus">
+                            <option value="" disabled selected>Seleccionar</option>
+                            <option *ngFor="let status of statusArray" [ngValue]="status">
+                                {{ status }}</option>
+                        </select>
+                    </div>
+                </div>
             </div>
         </fieldset>
         <div class="row right-align mt3p">

@@ -248,7 +248,8 @@ glassesController.getGlassesPending = async (req, res) => {
     try {
         const glassesPending = await Glasses.findAll({
             where: {
-                estadoAnteojo: 'Pendiente'
+                estadoAnteojo: 'Pendiente',
+                activo: 1
             },
             include: [{
                 model: Prescription,

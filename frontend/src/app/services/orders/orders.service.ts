@@ -24,8 +24,8 @@ export class OrdersService {
     return this.http.post(`${this.URL}/newOrder`, order);
   }
 
-  editOrder(orderNumber: number, order) {
-    return this.http.put(`${this.URL}/editLens/${orderNumber}`, order); 
+  editOrder(orderNumber: number, order: any) {
+    return this.http.put(`${this.URL}/editOrder/${orderNumber}`, order); 
   }
 
   deleteOrder(orderNumber: number) {

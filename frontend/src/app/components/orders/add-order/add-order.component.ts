@@ -35,6 +35,7 @@ export class AddOrderComponent implements OnInit {
   currentDate = new Date();
   order: any;
   today = moment().format('DD/MM/yyyy');
+  statusArray = ['Pendiente', 'Entregado'];
 
 
   orderForm = new FormGroup({
@@ -60,7 +61,8 @@ export class AddOrderComponent implements OnInit {
     lensDesign: new FormControl('', Validators.required),
     lensMaterial: new FormControl('', Validators.required),
     lensDiameter: new FormControl('', Validators.required),
-    lensFinish: new FormControl('', Validators.required)
+    lensFinish: new FormControl('', Validators.required),
+    orderStatus: new FormControl('')
   })
 
   ngOnInit(): void {
@@ -73,6 +75,23 @@ export class AddOrderComponent implements OnInit {
       this.getOne(this.data.orderNumber)
     };
   }
+
+  onSubmit(){
+    if(this.data.edit){
+      console.log(this.orderForm.value);
+      this.orderService.editOrder(this.data.orderNumber, this.orderForm.value)
+        .subscribe(
+          res => this.dialogRefAdd.close(),
+          err => alert(err.error.msg)
+        );
+    } else {
+      this.orderService.addOrder(this.orderForm.value)
+        .subscribe(
+          res => this.dialogRefAdd.close(),
+          err => alert(err.error.msg)
+        );
+    }
+}
 
   getOne(orderNumber: number){
     this.orderService.getOne(orderNumber)
@@ -99,7 +118,8 @@ export class AddOrderComponent implements OnInit {
       cilyndricalValueLE: this.order.anteojo_recetum.recetum.valorCilOI,
       cilyndricalValueRE: this.order.anteojo_recetum.recetum.valorCilOD,
       axisLE: this.order.anteojo_recetum.recetum.ejeOI,
-      axisRE: this.order.anteojo_recetum.recetum.ejeOD
+      axisRE: this.order.anteojo_recetum.recetum.ejeOD,
+      orderStatus: this.order.estadoPedido
     })
     if(this.order.LensOI){
       this.orderForm.patchValue({
@@ -121,21 +141,32 @@ export class AddOrderComponent implements OnInit {
         lensFinish: this.order.LensOD.idAcabadoLente
       })
     };
-    console.log(this.orderForm.value)
   }
 
-  setDataGlassesPending(){
+  setGlassesDataPending(){
     this.orderForm.patchValue({
       nameAndSurname: this.glasses.recetum.cliente.nombre + ' ' + this.glasses.recetum.cliente.apellido,
       glassesNumberDescription: this.glasses.numAnteojo.toString().padStart(7, 0),
       glassesNumber: this.glasses.numAnteojo
     });
+    this.deletePrescriptionData();
   }
 
   setSupplierData(){
     this.orderForm.patchValue({
-      supplierLaboratoryBusinessName: this.supplierLaboratory.nombreFantasia,
+      supplierLaboratoryFantasyName: this.supplierLaboratory.nombreFantasia,
       supplierLaboratoryID: this.supplierLaboratory.idProvLab
+    });
+  }
+
+  deletePrescriptionData(){
+    this.orderForm.patchValue({
+      sphericalValueLE: '',
+      sphericalValueRE: '',
+      cilyndricalValueLE: '',
+      cilyndricalValueRE: '',
+      axisLE: '',
+      axisRE: ''
     })
   }
 
@@ -156,7 +187,7 @@ export class AddOrderComponent implements OnInit {
       .subscribe(res => {
         if(res){
           this.glasses = res;
-          this.setDataGlassesPending();
+          this.setGlassesDataPending();
         }
       });
   }
@@ -189,22 +220,6 @@ export class AddOrderComponent implements OnInit {
     } else {
       alert("Primero debe seleccionar un anteojo");
     }
-  }
-
-  onSubmit(){
-      if(this.data.edit){
-        this.orderService.editOrder(this.orderForm.value, this.data.orderNumber)
-          .subscribe(
-            res => console.log("Order Edited"),
-            err => alert(err.error.msg)
-          )
-      } else {
-        this.orderService.addOrder(this.orderForm.value)
-          .subscribe(
-            res => this.dialogRefAdd.close(),
-            err => alert(err.error.msg)
-          );
-      }
   }
 
 }

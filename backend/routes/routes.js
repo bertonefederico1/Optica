@@ -92,8 +92,8 @@ router.get('/orders', orderController.getAll);
 router.get('/order/:orderNumber', orderController.getOne);
 router.get('/ordersByPrescription/:prescriptionNumber', orderController.getOrdersByPrescription);
 router.post('/newOrder', orderController.createOrder);
-router.put('/editOrder');
-router.put('/suspendOrder');
+router.put('/editOrder/:orderNumber', orderController.editOrder);
+router.put('/suspendOrder/:orderNumber', orderController.suspendOrder);
 
 //Rutas de Anteojos
 router.get('/glasses', glassesController.getAll);

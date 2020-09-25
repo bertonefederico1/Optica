@@ -12,12 +12,46 @@ Validators.validatorOrder = (order) => {
                 order.lensDesign === '' || order.lensMaterial === '' || 
                 order.lensFinish === '' || order.refractionIndexLE === '' || 
                 order.refractionIndexRE === '' || order.lensDiameter === '' || 
-                order.lensColor === '' || order.refractionIndexLE === '' || 
-                order.refractionIndexRE === '' || order.sphericalValueLE === '' ||
-                order.sphericalValueRE === '' || order.cilyndricalValueLE === '' || 
-                order.cilyndricalValueRE === '' || order.glassesNumber === '') {
+                order.lensColor === ''  || order.refractionIndexRE === '' || 
+                order.sphericalValueLE === '' || order.sphericalValueRE === '' ||
+                 order.cilyndricalValueLE === '' || order.cilyndricalValueRE === '' || 
+                 order.glassesNumber === '' || order.axisLE === '' || order.axisRE === '') {
                     throw new Error('Verifique los datos ingresados');
     }
+};
+
+Validators.validatorOrderEdit = (order) => {
+    if(!order.orderLensLE && !order.orderLensRE){
+        throw new Error('Debe seleccionar al menos un lente para pedir');
+    } else if (order.supplierLaboratoryID === '' || order.expectedDeliveryDate === '' || 
+                order.lensDesign === '' || order.lensMaterial === '' || 
+                order.lensFinish === '' || order.lensDiameter === '' || 
+                order.lensColor === ''  || order.glassesNumber === '' ||
+                order.orderStatus === '') {
+        throw new Error('Verifique los datos ingresados');
+    }
+};
+
+Validators.validatorOrderLE = (order) => {
+    if (order.refractionIndexLE === '' || order.sphericalValueLE === '' ||
+        order.cilyndricalValueLE === '' || order.axisLE === ''){
+        throw new Error('Verifique los datos ingresados');
+    };
+};
+
+Validators.validatorOrderRE = (order) => {
+    if (order.refractionIndexRE === '' || order.sphericalValueRE === '' ||
+        order.cilyndricalValueRE === '' || order.axisRE === ''){
+        throw new Error('Verifique los datos ingresados');
+    };
+};
+
+Validators.normalizeOrderLens = async (lensNumber) => {
+    await Lens.destroy({
+        where: {
+            codLente: lensNumber
+        }
+    })
 };
 
 
