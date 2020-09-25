@@ -141,10 +141,9 @@ export class AddOrderComponent implements OnInit {
       if(this.data.edit){
         
       } else {
-        console.log(this.orderForm.value)
         this.orderService.addOrder(this.orderForm.value)
           .subscribe(
-        res => console.log(res),
+        res => this.dialogRefAdd.close(),
         err => alert(err.error.msg)
         );
       }
