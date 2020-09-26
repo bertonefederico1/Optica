@@ -1,16 +1,18 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoginService } from './../../services/login/login.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: []
+  styles: [ ]
 })
 export class LoginComponent {
-
+  
   constructor(
-    private loginService: LoginService
+    private loginService: LoginService,
+    private router: Router
   ){}
 
   loginForm = new FormGroup({
@@ -22,11 +24,11 @@ export class LoginComponent {
     this.loginService.login(this.loginForm.value)
       .subscribe(
         res => {
-          console.log(res)
           localStorage.setItem('password', JSON.stringify(res));
+          this.loginService.isLogged();
+          this.router.navigate(['/inicio']);
         },
         err => alert(err.error.msg)
       );
   }
-
 }

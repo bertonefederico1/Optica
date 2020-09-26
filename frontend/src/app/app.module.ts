@@ -27,8 +27,6 @@ import { LensDataComponent } from './components/lenses/lens-data/lens-data.compo
 import { FramesComponent } from './components/frames/frames/frames.component';
 import { AddFrameComponent } from './components/frames/add-frame/add-frame.component';
 import { DataFrameComponent } from './components/frames/data-frame/data-frame.component';
-import { LoginComponent } from './components/login/login.component';
-import { HomeComponent } from './components/home/home.component';
 import { PrescriptionsComponent } from './components/prescriptions/prescriptions/prescriptions.component';
 import { AddPrescriptionComponent } from './components/prescriptions/add-prescription/add-prescription.component';
 import { PrescriptionsPerCustomerComponent } from './components/prescriptions/prescriptions-per-customer/prescriptions-per-customer.component';
@@ -48,7 +46,8 @@ import { SelectLensOrderComponent } from './components/orders/select-lens-order/
 import { SupportingDocumentComponent } from './components/glasses/supporting-document/supporting-document.component';
 import { SelectGlassesPendingComponent } from './components/glasses/select-glasses-pending/select-glasses-pending.component';
 import { ReportHealthCareComponent } from './components/prescriptions/report-health-care/report-health-care.component';
-
+import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 @NgModule({
@@ -69,8 +68,6 @@ import { ReportHealthCareComponent } from './components/prescriptions/report-hea
     AddFrameComponent,
     DataFrameComponent,
     HealthCaresPerCustomerComponent,
-    LoginComponent,
-    HomeComponent,
     PrescriptionsComponent,
     AddPrescriptionComponent,
     PrescriptionsPerCustomerComponent,
@@ -89,10 +86,12 @@ import { ReportHealthCareComponent } from './components/prescriptions/report-hea
     SelectLensOrderComponent,
     SupportingDocumentComponent,
     SelectGlassesPendingComponent,
-    ReportHealthCareComponent
+    ReportHealthCareComponent,
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
-    BrowserModule,
+  BrowserModule,
     AppRoutingModule,
     MaterialModule,
     HttpClientModule,

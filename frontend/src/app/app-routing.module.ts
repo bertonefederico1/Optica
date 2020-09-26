@@ -7,23 +7,22 @@ import { HealthCaresComponent } from "./components/healthCares/health-cares/heal
 import { LensesComponent } from './components/lenses/lenses/lenses.component';
 import { FramesComponent } from './components/frames/frames/frames.component';
 import { LoginComponent } from './components/login/login.component';
-import { HomeComponent } from './components/home/home.component';
 import { PrescriptionsComponent } from './components/prescriptions/prescriptions/prescriptions.component';
 import { OrdersComponent } from './components/orders/orders/orders.component';
 import { GlassesComponent } from './components/glasses/glasses/glasses.component';
 import { ReportHealthCareComponent } from './components/prescriptions/report-health-care/report-health-care.component';
-
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [{
-    path: '',   
-    redirectTo: '/home', 
+    path: '',  
+    redirectTo: '/inicio', 
     pathMatch: 'full' 
-},{
-  path: 'home',
-  component: HomeComponent
 },{
   path: 'reportHealthCare',
   component: ReportHealthCareComponent
+},{
+  path: 'inicio',
+  component: HomeComponent
 },{
   path: 'anteojos',
   component: GlassesComponent
