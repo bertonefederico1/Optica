@@ -109,7 +109,15 @@ orderController.createOrder = async (req, res) => {
         let lensRE = {
             codLente: null
         };
-        validators.validatorOrder(req.body);
+        if(req.body.orderLensRE){
+            validators.validatorOrderRE(req.body)
+        };
+        if(req.body.orderLensLE){
+            validators.validatorOrderLE(req.body);
+        };
+        if(req.body.orderLensRE && req.body.orderLensLE){
+            validators.validatorOrder(req.body);
+        };
             if (req.body.orderLensLE){
                 lensLE = await Lens.create({
                     idProvLab: req.body.supplierLaboratoryID,
@@ -164,6 +172,73 @@ orderController.createOrder = async (req, res) => {
 orderController.editOrder = async (req, res) => {
     try {
         let lensLE = {
+            codLente: null
+        };
+        let lensRE = {
+            codLente: null
+        };
+        const currentOrder = await Order.findByPk(req.params.orderNumber);
+        Validators.validatorOrderEdit(req.body);
+        if(req.body.orderLensLE){
+            Validators.validatorOrderLE(req.body);
+        };
+        if(req.body.orderLensRE){
+            Validators.validatorOrderRE(req.body);
+        };
+        if(currentOrder.codLenteOI){
+            Validators.normalizeOrderLens(currentOrder.codLenteOI)
+        };
+        if(currentOrder.codLenteOD){
+            Validators.normalizeOrderLens(currentOrder.codLenteOD);
+        };
+        if(req.body.orderLensLE){
+            lensLE = await Lens.create({
+                idProvLab: req.body.supplierLaboratoryID,
+                idDisenoLente: req.body.lensDesign,
+                idMaterialLente: req.body.lensMaterial,
+                idAcabadoLente: req.body.lensFinish,
+                valorEsf: req.body.sphericalValueLE,
+                valorCil: req.body.cilyndricalValueLE,
+                indiceRefraccion: req.body.refractionIndexLE,
+                eje:req.body.axisLE,
+                diametro: req.body.lensDiameter,
+                color: req.body.lensColor,
+                cantidad: -1,
+                deStock: 0
+            })
+        };
+        if(req.body.orderLensRE){
+            lensRE = await Lens.create({
+                idProvLab: req.body.supplierLaboratoryID,
+                idDisenoLente: req.body.lensDesign,
+                idMaterialLente: req.body.lensMaterial,
+                idAcabadoLente: req.body.lensFinish,
+                valorEsf: req.body.sphericalValueRE,
+                valorCil: req.body.cilyndricalValueRE,
+                indiceRefraccion: req.body.refractionIndexRE,
+                eje:req.body.axisRE,
+                diametro: req.body.lensDiameter,
+                color: req.body.lensColor,
+                cantidad: -1,
+                deStock: 0
+            })
+        };
+        await Order.update({
+            codLenteOI: lensLE.codLente,
+            codLenteOD: lensRE.codLente,
+            numAnteojo: req.body.glassesNumber,
+            idProvLab: req.body.supplierLaboratoryID,
+            fechaEntregaEsperada: req.body.expectedDeliveryDate,
+            obsPedido: req.body.orderObs,
+            estadoPedido: req.body.orderStatus,
+            pedirLenteOI: req.body.orderLensLE,
+            pedirLenteOD: req.body.orderLensRE
+        }, {
+            where: {
+                numPedido: req.params.orderNumber
+            }
+        });
+       /*  let lensLE = {
             codLente: null
         };
         let lensRE = {
@@ -256,7 +331,7 @@ orderController.editOrder = async (req, res) => {
             where: {
                 numPedido: req.params.orderNumber
             }
-        });
+        }); */
         res.status(200).json();
     } catch (err) {
         res.status(400).json({

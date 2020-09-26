@@ -25,7 +25,6 @@ export class OrderDataComponent implements OnInit {
     this.orderService.getOne(orderNumber)
       .subscribe(res => {
         this.order = res;
-        console.log(res)
       });
   }
 

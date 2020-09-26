@@ -78,7 +78,6 @@ export class AddOrderComponent implements OnInit {
 
   onSubmit(){
     if(this.data.edit){
-      console.log(this.orderForm.value);
       this.orderService.editOrder(this.data.orderNumber, this.orderForm.value)
         .subscribe(
           res => this.dialogRefAdd.close(),
@@ -204,9 +203,9 @@ export class AddOrderComponent implements OnInit {
   }
 
   searchPrescription(){
-    if(this.glasses) {
+    if(this.orderForm.get('glassesNumber').value) {
       this.dialogConfig.data = {
-        glassesNumber: this.glasses.numAnteojo,
+        glassesNumber: this.orderForm.get('glassesNumber').value,
         type: 'newOrder'
       };
       const dialogRef = this.dialogRef.open(SelectPrescriptionsComponent, this.dialogConfig);
