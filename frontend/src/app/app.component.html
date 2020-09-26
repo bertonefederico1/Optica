@@ -1,6 +1,13 @@
 <nav class="teal lighten-2">
   <div class="nav-wrapper">
-    <a class="black-text brand-logo right" routerLink="/">OpticaVLA</a>
+    <a class="black-text brand-logo" style="margin-left: 82%" routerLink="/">OpticaVLA</a>
+    <a class="black-text brand-logo right">
+      <i class="material-icons md-35" mat-button [matMenuTriggerFor]="loginMenu">person
+        <mat-menu #loginMenu="matMenu" xPosition="after">
+          <a mat-menu-item>Cerrar Sesión</a>
+        </mat-menu>
+      </i>
+    </a>
     <ul id="nav-mobile" class="left hide-on-med-and-down">
       <li><a class="black-text" routerLink="clientes" routerLinkActive="active">Clientes</a></li>
       <li><a class="black-text" routerLink="recetas" routerLinkActive="active">Recetas</a></li>
@@ -9,8 +16,15 @@
       <li><a class="black-text" routerLink="lentes" routerLinkActive="active">Lentes</a></li>
       <li><a class="black-text" routerLink="armazones" routerLinkActive="active">Armazones</a></li>
       <li><a class="black-text" routerLink="proveedores" routerLinkActive="active">Proveedores/Laboratorios</a></li>
-      <li><a class="black-text" routerLink="obrasSociales" routerLinkActive="active">Obras Sociales</a></li>
+      <li>
+        <a class="black-text" mat-button [matMenuTriggerFor]="healthCareMenu"><i class="material-icons right">arrow_drop_down</i>Obras Sociales</a>
+          <mat-menu #healthCareMenu="matMenu" xPosition="after">
+            <a mat-menu-item routerLink="obrasSociales">Obras Sociales</a>
+            <a mat-menu-item routerLink="reportHealthCare">Generar Reporte</a>
+          </mat-menu>
+      </li>
     </ul>
   </div>
 </nav>
+
 <router-outlet></router-outlet>

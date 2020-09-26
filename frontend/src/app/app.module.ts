@@ -47,6 +47,7 @@ import { SelectLensStockComponent } from './components/lenses/select-lens-stock/
 import { SelectLensOrderComponent } from './components/orders/select-lens-order/select-lens-order.component';
 import { SupportingDocumentComponent } from './components/glasses/supporting-document/supporting-document.component';
 import { SelectGlassesPendingComponent } from './components/glasses/select-glasses-pending/select-glasses-pending.component';
+import { ReportHealthCareComponent } from './components/prescriptions/report-health-care/report-health-care.component';
 
 
 
@@ -87,7 +88,8 @@ import { SelectGlassesPendingComponent } from './components/glasses/select-glass
     SelectLensStockComponent,
     SelectLensOrderComponent,
     SupportingDocumentComponent,
-    SelectGlassesPendingComponent
+    SelectGlassesPendingComponent,
+    ReportHealthCareComponent
   ],
   imports: [
     BrowserModule,

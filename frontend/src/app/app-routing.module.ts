@@ -11,30 +11,28 @@ import { HomeComponent } from './components/home/home.component';
 import { PrescriptionsComponent } from './components/prescriptions/prescriptions/prescriptions.component';
 import { OrdersComponent } from './components/orders/orders/orders.component';
 import { GlassesComponent } from './components/glasses/glasses/glasses.component';
+import { ReportHealthCareComponent } from './components/prescriptions/report-health-care/report-health-care.component';
 
-
-import { AddGlassesComponent } from './components/glasses/add-glasses/add-glasses.component';
 
 const routes: Routes = [{
     path: '',   
     redirectTo: '/home', 
     pathMatch: 'full' 
 },{
-  path: 'new',
-  component: AddGlassesComponent
+  path: 'home',
+  component: HomeComponent
+},{
+  path: 'reportHealthCare',
+  component: ReportHealthCareComponent
 },{
   path: 'anteojos',
   component: GlassesComponent
 },{
   path: 'pedidos',
   component: OrdersComponent
-},
-{
+},{
   path: 'recetas',
   component: PrescriptionsComponent
-},{
-  path: 'home',
-  component: HomeComponent
 },{
   path: 'login',
   component: LoginComponent
