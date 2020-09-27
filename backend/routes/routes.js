@@ -31,7 +31,7 @@ router.put('/editCustomer/:customerID', customerController.editCustomer);
 router.put('/suspendCustomer/:customerID', customerController.suspendCustomer);
 
 //Rutas de Obras Sociales
-router.get('/healthCares', healthCarelController.getAll);
+router.get('/healthCares', logController.verifyToken, healthCarelController.getAll);
 router.get('/healthCare/:healthCareID', healthCarelController.getOne);
 router.post('/newHealthCare', healthCarelController.createHealthCare);
 router.put('/editHealthCare/:healthCareID', healthCarelController.editHealthCare);

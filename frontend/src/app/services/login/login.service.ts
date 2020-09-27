@@ -1,4 +1,4 @@
-import { Injectable, ɵallowSanitizationBypassAndThrow } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -16,11 +16,12 @@ export class LoginService {
     return this.http.post(`${this.URL}/login`, user);
   }
 
-  isLogged(){
-    let isLogged: Boolean;
-    if(localStorage.getItem('password')){
-      isLogged = true;
-    };
-    return isLogged;
+  isLogged(): Boolean{
+    return !!localStorage.getItem('token');
   }
+
+  getToken(){
+    return localStorage.getItem('token');
+  }
+
 }

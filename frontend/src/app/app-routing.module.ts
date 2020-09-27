@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { CustomersComponent } from './components/customers/customers/customers.component';
@@ -12,44 +12,59 @@ import { OrdersComponent } from './components/orders/orders/orders.component';
 import { GlassesComponent } from './components/glasses/glasses/glasses.component';
 import { ReportHealthCareComponent } from './components/prescriptions/report-health-care/report-health-care.component';
 import { HomeComponent } from './components/home/home.component';
+import { AuthGuard } from "./guards/auth.guard";
 
 const routes: Routes = [{
-    path: '',  
-    redirectTo: '/inicio', 
-    pathMatch: 'full' 
-},{
+  path: '',  
+  redirectTo: '/inicio', 
+  pathMatch: 'full' 
+}/* ,{
+  path: '**',
+  redirectTo: '/inicio',
+  pathMatch: 'full'
+} */,{
   path: 'reportHealthCare',
-  component: ReportHealthCareComponent
+  component: ReportHealthCareComponent,
+  canActivate: [AuthGuard]
 },{
   path: 'inicio',
-  component: HomeComponent
+  component: HomeComponent,
+  canActivate: [AuthGuard]
 },{
   path: 'anteojos',
-  component: GlassesComponent
+  component: GlassesComponent,
+  canActivate: [AuthGuard]
 },{
   path: 'pedidos',
-  component: OrdersComponent
+  component: OrdersComponent,
+  canActivate: [AuthGuard]
 },{
   path: 'recetas',
-  component: PrescriptionsComponent
+  component: PrescriptionsComponent,
+  canActivate: [AuthGuard]
 },{
   path: 'login',
   component: LoginComponent
 },{
   path: 'clientes',
-  component: CustomersComponent
+  component: CustomersComponent,
+  canActivate: [AuthGuard]
 },{
   path: 'proveedores',
-  component: SuppliersComponent
+  component: SuppliersComponent,
+  canActivate: [AuthGuard]
 },{
   path: 'obrasSociales',
-  component: HealthCaresComponent
+  component: HealthCaresComponent,
+  canActivate: [AuthGuard]
 },{
   path: 'lentes',
-  component: LensesComponent
+  component: LensesComponent,
+  canActivate: [AuthGuard]
 },{
   path: 'armazones',
-  component: FramesComponent
+  component: FramesComponent,
+  canActivate: [AuthGuard]
 }];
 
 @NgModule({

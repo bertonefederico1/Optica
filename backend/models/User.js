@@ -16,6 +16,12 @@ const Usuario = sequelize.define('usuario', {
     contrasena: {
         type: DataTypes.STRING
     },
+    nivelUsuario: {
+        type: DataTypes.INTEGER,
+        validate: {
+            notEmpty: false
+        }
+    },
     rol: {
         type: DataTypes.STRING
     }

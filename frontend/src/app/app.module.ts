@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MaterialModule } from "./material.module";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -48,7 +48,8 @@ import { SelectGlassesPendingComponent } from './components/glasses/select-glass
 import { ReportHealthCareComponent } from './components/prescriptions/report-health-care/report-health-care.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
-
+import { AuthGuard } from "./guards/auth.guard";
+import { TokenInterceptorService } from "./services/token-interceptor/token-interceptor.service";
 
 @NgModule({
   declarations: [
@@ -99,7 +100,14 @@ import { HomeComponent } from './components/home/home.component';
     BrowserAnimationsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

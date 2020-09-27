@@ -17,7 +17,7 @@ export class AppComponent {
   title = 'OpticaVLA';
 
   logout(){
-    localStorage.removeItem('password');
+    localStorage.removeItem('token');
     this.router.navigate(['/login']);
   }
 }

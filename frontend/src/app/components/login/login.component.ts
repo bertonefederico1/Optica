@@ -24,7 +24,7 @@ export class LoginComponent {
     this.loginService.login(this.loginForm.value)
       .subscribe(
         res => {
-          localStorage.setItem('password', JSON.stringify(res));
+          localStorage.setItem('token', res['token']);
           this.loginService.isLogged();
           this.router.navigate(['/inicio']);
         },
