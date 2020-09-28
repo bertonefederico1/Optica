@@ -1,0 +1,91 @@
+<div class="container section">
+    <form class="col m12" [formGroup]="reportForm">
+        <fieldset>
+            <div class="row">
+                <div class=" col m4">
+                    <span class="description">Año:</span>
+                    <div class="input-field inline">
+                        <select class="browser-default border-black" formControlName="year"
+                            style="border-color: black; height: 40px; margin-top: 1rem;">
+                            <option value="" disabled selected>Seleccionar</option>
+                            <option *ngFor="let year of years" [ngValue]="year">{{ year }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col m6">
+                    <span class="description">Mes:</span>
+                    <div class="input-field inline">
+                        <select class="browser-default border-black" formControlName="month"
+                            style="border-color: black; height: 40px; margin-top: 1rem;">
+                            <option value="" disabled selected>Seleccionar</option>
+                            <option *ngFor="let month of months" [ngValue]="month">{{ month }}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col m6" *ngIf="healthCares$ | async as healthCares">
+                    <span class="description">Obra Social:</span>
+                    <div class="input-field inline">
+                        <select class="browser-default border-black" formControlName="healthCareID"
+                            style="border-color: black; height: 40px; margin-top: 1rem;">
+                            <option value="" disabled selected>Seleccionar</option>
+                            <option *ngFor="let healthCare of healthCares" [ngValue]="healthCare.idObraSocial">
+                                {{ healthCare.nombre }}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col push-m10">
+                    <a class="waves-effect waves-light btn"><i class="material-icons left">search</i>Buscar</a>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+    <div id="report" class="section">
+        <table class="responsive-table">
+            <thead>
+                <tr>
+                    <th scope="col" colspan="2" rowspan="2"></th>
+                    <th class="center" scope="col" colspan="6">Cerca</th>
+                    <th class="center" scope="col" colspan="6">Lejos</th>
+                    <th scope="col" colspan="2" rowspan="2"></th>
+                </tr>
+                <tr>
+                    <th class="center" scope="col" colspan="3">Ojo Izquierdo</th>
+                    <th class="center" scope="col" colspan="3">Ojo Derecho</th>
+                    <th class="center" scope="col" colspan="3">Ojo Izquierdo</th>
+                    <th class="center" scope="col" colspan="3">Ojo Derecho</th>
+                    <th style="border: none" scope="col"></th>
+                </tr>
+              <tr>
+                  <th>Nombre y apellido</th>
+                  <th>Nº Afiliado</th>
+                  <th>Esf</th>
+                  <th>Cil</th>
+                  <th>Eje</th>
+                  <th>Esf</th>
+                  <th>Cil</th>
+                  <th>Eje</th>
+
+                  <th>Esf</th>
+                  <th>Cil</th>
+                  <th>Eje</th>
+                  <th>Esf</th>
+                  <th>Cil</th>
+                  <th>Eje</th>
+                  <th>Total</th>
+              </tr>
+            </thead>
+    
+            <tbody>
+              <tr>
+                <td *ngFor="">Alvin</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+
+</div>

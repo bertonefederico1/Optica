@@ -8,6 +8,7 @@ const Frame = require('../models/Frame');
 const HealthCare = require('../models/HealthCare');
 const Prescription = require('../models/Prescription');
 const Validators = require('../validators/validators');
+const Customer_HealthCare = require('../models/Customer_HealthCare');
 const glassesController = { };
 
 
@@ -58,6 +59,27 @@ glassesController.getOne = async (req, res) => {
                 as: 'LensRE'
             }, {
                 model: Frame
+            }]
+        });
+        res.status(200).json(glasses);
+    } catch(err){
+        res.status(400).json(err);
+    }
+};
+
+glassesController.getAllByHealthCareAndDate = async (req, res) => {
+    try {
+        const glasses = await Glasses.findAll({
+            where: {
+                activo: 1
+            },
+            include: [{
+                model: HealthCare
+            }, {
+                model: Prescription,
+                include: {
+                    model: Customer
+                }
             }]
         });
         res.status(200).json(glasses);

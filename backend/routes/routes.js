@@ -25,84 +25,85 @@ router.post('/login', logController.signIn);
 router.post('/signup', logController.signUp);
 
 //Rutas de Clientes
-router.get('/customers/:select?', customerController.getAll);
-router.get('/customer/:customerID', customerController.getOne);
-router.post('/newCustomer', customerController.createCustomer);
-router.put('/editCustomer/:customerID', customerController.editCustomer);
-router.put('/suspendCustomer/:customerID', customerController.suspendCustomer);
+router.get('/customers/:select?', logController.verifyTokenUserLvl3, customerController.getAll);
+router.get('/customer/:customerID', logController.verifyTokenUserLvl3, customerController.getOne);
+router.post('/newCustomer', logController.verifyTokenUserLvl5, customerController.createCustomer);
+router.put('/editCustomer/:customerID', logController.verifyTokenUserLvl5, customerController.editCustomer);
+router.put('/suspendCustomer/:customerID', logController.verifyTokenUserLvl5, customerController.suspendCustomer);
 
 //Rutas de Obras Sociales
-router.get('/healthCares', healthCarelController.getAll);
-router.get('/healthCare/:healthCareID', healthCarelController.getOne);
+router.get('/healthCares', logController.verifyTokenUserLvl3, healthCarelController.getAll);
+router.get('/healthCare/:healthCareID', logController.verifyTokenUserLvl3, healthCarelController.getOne);
 router.post('/newHealthCare', healthCarelController.createHealthCare);
-router.put('/editHealthCare/:healthCareID', healthCarelController.editHealthCare);
-router.put('/suspendHealthCare/:healthCareID', healthCarelController.suspendHealthCare);
+router.put('/editHealthCare/:healthCareID', logController.verifyTokenUserLvl5, healthCarelController.editHealthCare);
+router.put('/suspendHealthCare/:healthCareID', logController.verifyTokenUserLvl5, healthCarelController.suspendHealthCare);
+
 
 //Rutas de Clientes - Obras Sociales
-router.get('/healthCaresByCustomer/:customerID', customerHealthCareController.getAllByCustomer);
+router.get('/healthCaresByCustomer/:customerID', logController.verifyTokenUserLvl3, customerHealthCareController.getAllByCustomer);
 
 //Rutas de Proveedores/Laboratorios
-router.get('/suppliersLaboratories/:select?', supplierLaboratoryController.getAll);
-router.get('/supplierLaboratory/:supplierLaboratoryID', supplierLaboratoryController.getOne);
-router.post('/newSupplierLaboratory', supplierLaboratoryController.createSupplierLaboratory);
-router.put('/editSupplierLaboratory/:supplierLaboratoryID', supplierLaboratoryController.editSupplierLaboratory);
-router.put('/suspendSupplierLaboratory/:supplierLaboratoryID', supplierLaboratoryController.suspendSupplierLaboratory);
+router.get('/suppliersLaboratories/:select?', logController.verifyTokenUserLvl3, supplierLaboratoryController.getAll);
+router.get('/supplierLaboratory/:supplierLaboratoryID', logController.verifyTokenUserLvl3, supplierLaboratoryController.getOne);
+router.post('/newSupplierLaboratory', logController.verifyTokenUserLvl5, supplierLaboratoryController.createSupplierLaboratory);
+router.put('/editSupplierLaboratory/:supplierLaboratoryID', logController.verifyTokenUserLvl5, supplierLaboratoryController.editSupplierLaboratory);
+router.put('/suspendSupplierLaboratory/:supplierLaboratoryID', logController.verifyTokenUserLvl5, supplierLaboratoryController.suspendSupplierLaboratory);
 
 //Rutas de Armazones
-router.get('/frames/:select?', frameController.getAll);
-router.get('/frame/:frameID', frameController.getOne);
-router.post('/newFrame', frameController.createFrame);
-router.put('/editFrame/:frameID', frameController.editFrame);
-router.put('/suspendFrame/:frameID', frameController.suspendFrame);
+router.get('/frames/:select?', logController.verifyTokenUserLvl3, frameController.getAll);
+router.get('/frame/:frameID', logController.verifyTokenUserLvl3, frameController.getOne);
+router.post('/newFrame', logController.verifyTokenUserLvl5, frameController.createFrame);
+router.put('/editFrame/:frameID', logController.verifyTokenUserLvl5, frameController.editFrame);
+router.put('/suspendFrame/:frameID', logController.verifyTokenUserLvl5, frameController.suspendFrame);
 
 //Ruta de Materiales de Armazones
-router.get('/frameMaterials', frameMaterialController.getAll);
+router.get('/frameMaterials', logController.verifyTokenUserLvl3, frameMaterialController.getAll);
 
 //Ruta de Diseños Armazones
-router.get('/frameDesigns', frameDesignController.getAll);
+router.get('/frameDesigns', logController.verifyTokenUserLvl3, frameDesignController.getAll);
 
 //Ruta de Utilidades Armazones
-router.get('/frameUtilities', frameUtilityController.getAll);
+router.get('/frameUtilities', logController.verifyTokenUserLvl3, frameUtilityController.getAll);
 
 //Rutas de Lentes
-router.get('/lenses/:select?', lensController.getAll);
-router.get('/lens/:lensID', lensController.getOne);
-router.post('/newLens', lensController.createLens);
-router.put('/editLens/:lensID', lensController.editLens);
-router.put('/suspendLens/:lensID', lensController.suspendLens);
-/* router.put('/restoreLens/:lensID', lensController.restoreLens); */
+router.get('/lenses/:select?', logController.verifyTokenUserLvl3, lensController.getAll);
+router.get('/lens/:lensID', logController.verifyTokenUserLvl3, lensController.getOne);
+router.post('/newLens', logController.verifyTokenUserLvl5, lensController.createLens);
+router.put('/editLens/:lensID', logController.verifyTokenUserLvl5, lensController.editLens);
+router.put('/suspendLens/:lensID', logController.verifyTokenUserLvl5, lensController.suspendLens);
 
 //Ruta de Materiales de Lentes
-router.get('/materialsLens', lensMaterialController.getAll);
+router.get('/materialsLens', logController.verifyTokenUserLvl3, lensMaterialController.getAll);
 
 //Ruta de Diseños Lentes
-router.get('/designsLens', lensDesignController.getAll);
+router.get('/designsLens', logController.verifyTokenUserLvl3, lensDesignController.getAll);
 
 //Ruta de Utilidades Lentes
-router.get('/finishesLens', lensFinishController.getAll);
+router.get('/finishesLens', logController.verifyTokenUserLvl3, lensFinishController.getAll);
 
 //Rutas de recetas
-router.get('/prescriptionsByCustomerId/:customerID', prescriptionController.getAllByCustomer);
-router.get('/prescription/:prescriptionNumber', prescriptionController.getOne);
-router.post('/newPrescription', prescriptionController.createPrescription);
-router.put('/editPrescription/:prescriptionNumber', prescriptionController.editPrescription);
-router.put('/deletePrescription/:prescriptionNumber', prescriptionController.suspendPrescription);
+router.get('/prescriptionsByCustomerId/:customerID', logController.verifyTokenUserLvl3, prescriptionController.getAllByCustomer);
+router.get('/prescription/:prescriptionNumber', logController.verifyTokenUserLvl3, prescriptionController.getOne);
+router.post('/newPrescription', logController.verifyTokenUserLvl5, prescriptionController.createPrescription);
+router.put('/editPrescription/:prescriptionNumber', logController.verifyTokenUserLvl5, prescriptionController.editPrescription);
+router.put('/deletePrescription/:prescriptionNumber', logController.verifyTokenUserLvl5, prescriptionController.suspendPrescription);
 
 //Rutas de Pedidos
-router.get('/orders', orderController.getAll);
-router.get('/order/:orderNumber', orderController.getOne);
-router.get('/ordersByPrescription/:prescriptionNumber', orderController.getOrdersByPrescription);
-router.post('/newOrder', orderController.createOrder);
-router.put('/editOrder/:orderNumber', orderController.editOrder);
-router.put('/suspendOrder/:orderNumber', orderController.suspendOrder);
+router.get('/orders', logController.verifyTokenUserLvl3, orderController.getAll);
+router.get('/order/:orderNumber', logController.verifyTokenUserLvl3, orderController.getOne);
+router.get('/ordersByPrescription/:prescriptionNumber', logController.verifyTokenUserLvl3, orderController.getOrdersByPrescription);
+router.post('/newOrder', logController.verifyTokenUserLvl5, orderController.createOrder);
+router.put('/editOrder/:orderNumber', logController.verifyTokenUserLvl5, orderController.editOrder);
+router.put('/suspendOrder/:orderNumber', logController.verifyTokenUserLvl5, orderController.suspendOrder);
 
 //Rutas de Anteojos
-router.get('/glasses', glassesController.getAll);
-router.get('/glasses/:glassesNumber', glassesController.getOne);
-router.get('/prescriptionByGlasses/:glassesNumber', glassesController.getPrescriptionByGlasses);
-router.get('/glassesPending', glassesController.getGlassesPending);
-router.post('/newGlasses', glassesController.createGlasses);
-router.put('/editGlasses/:glassesNumber', glassesController.editGlasses);
-router.put('/suspendGlasses/:glassesNumber', glassesController.suspendGlasses);
+router.get('/glassesByHealthCareAndDate', glassesController.getAllByHealthCareAndDate);
+router.get('/glasses', logController.verifyTokenUserLvl3, glassesController.getAll);
+router.get('/glasses/:glassesNumber', logController.verifyTokenUserLvl3, glassesController.getOne);
+router.get('/prescriptionByGlasses/:glassesNumber', logController.verifyTokenUserLvl3, glassesController.getPrescriptionByGlasses);
+router.get('/glassesPending', logController.verifyTokenUserLvl3, glassesController.getGlassesPending);
+router.post('/newGlasses', logController.verifyTokenUserLvl5, glassesController.createGlasses);
+router.put('/editGlasses/:glassesNumber', logController.verifyTokenUserLvl5, glassesController.editGlasses);
+router.put('/suspendGlasses/:glassesNumber', logController.verifyTokenUserLvl5, glassesController.suspendGlasses);
 
 module.exports = router;

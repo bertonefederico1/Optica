@@ -45,11 +45,11 @@ import { SelectLensStockComponent } from './components/lenses/select-lens-stock/
 import { SelectLensOrderComponent } from './components/orders/select-lens-order/select-lens-order.component';
 import { SupportingDocumentComponent } from './components/glasses/supporting-document/supporting-document.component';
 import { SelectGlassesPendingComponent } from './components/glasses/select-glasses-pending/select-glasses-pending.component';
-import { ReportHealthCareComponent } from './components/prescriptions/report-health-care/report-health-care.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from "./guards/auth.guard";
-import { TokenInterceptorService } from "./services/token-interceptor/token-interceptor.service";
+import { TokenInterceptorService } from './services/token-interceptor/token-interceptor.service';
+import { ReportHealthCareComponent } from './components/healthCares/report-health-care/report-health-care.component';
 
 @NgModule({
   declarations: [

@@ -10,7 +10,7 @@ import { LoginComponent } from './components/login/login.component';
 import { PrescriptionsComponent } from './components/prescriptions/prescriptions/prescriptions.component';
 import { OrdersComponent } from './components/orders/orders/orders.component';
 import { GlassesComponent } from './components/glasses/glasses/glasses.component';
-import { ReportHealthCareComponent } from './components/prescriptions/report-health-care/report-health-care.component';
+import { ReportHealthCareComponent } from "./components/healthCares/report-health-care/report-health-care.component";
 import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from "./guards/auth.guard";
 

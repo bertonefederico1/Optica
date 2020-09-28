@@ -186,7 +186,9 @@ export class AddOrderComponent implements OnInit {
       .subscribe(res => {
         if(res){
           this.glasses = res;
+          this.prescription = res.recetum;
           this.setGlassesDataPending();
+          this.setPrescriptionData();
         }
       });
   }
@@ -202,7 +204,7 @@ export class AddOrderComponent implements OnInit {
       })
   }
 
-  searchPrescription(){
+  /* searchPrescription(){
     if(this.orderForm.get('glassesNumber').value) {
       this.dialogConfig.data = {
         glassesNumber: this.orderForm.get('glassesNumber').value,
@@ -219,6 +221,6 @@ export class AddOrderComponent implements OnInit {
     } else {
       alert("Primero debe seleccionar un anteojo");
     }
-  }
+  } */
 
 }
