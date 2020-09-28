@@ -18,11 +18,7 @@ const routes: Routes = [{
   path: '',  
   redirectTo: '/inicio', 
   pathMatch: 'full' 
-}/* ,{
-  path: '**',
-  redirectTo: '/inicio',
-  pathMatch: 'full'
-} */,{
+},{
   path: 'reportHealthCare',
   component: ReportHealthCareComponent,
   canActivate: [AuthGuard]
@@ -65,6 +61,10 @@ const routes: Routes = [{
   path: 'armazones',
   component: FramesComponent,
   canActivate: [AuthGuard]
+},{
+  path: '**',
+  redirectTo: '/inicio',
+  pathMatch: 'full'
 }];
 
 @NgModule({

@@ -14,7 +14,10 @@ const Usuario = sequelize.define('usuario', {
         }
     },
     contrasena: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        validate: {
+            notEmpty: false
+        }
     },
     nivelUsuario: {
         type: DataTypes.INTEGER,
@@ -23,7 +26,10 @@ const Usuario = sequelize.define('usuario', {
         }
     },
     rol: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        validate: {
+            notEmpty: false
+        }
     }
 },{
     createdAt: false,

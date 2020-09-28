@@ -11,17 +11,20 @@ export class TokenInterceptorService implements HttpInterceptor {
     private loginService: LoginService
   ) { }
 
+   
+
+
   intercept(req, next){
 
-    /* const headers = new HttpHeaders({
-      Authorization: `Bearer ${this.loginService.getToken()}`
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.loginService.getToken()}` 
     });
 
     const reqClone = req.clone({
       headers
-    }); */
+    });
 
-    return next.handle(req);
+    return next.handle(reqClone);
   }
     
 

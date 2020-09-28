@@ -6,14 +6,9 @@ const jwt = require('jsonwebtoken');
 const saltRounds = 10;
 const logController = {};
 
-logController.logIn = async (req, res) => {
+
+logController.signIn = async (req, res) => {
     try {
-        /* bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
-            // Generate password hash
-            res.send(hash);
-        }); */
-
-
         const user = await User.findOne({
             where: {
                 usuario: req.body.username
@@ -33,6 +28,30 @@ logController.logIn = async (req, res) => {
             msg: err.message
         });
     };
+}
+
+logController.signUp = async (req, res) => {
+    try {
+        let user = null;
+        bcrypt.hash(req.body.password, saltRounds, async (err, hash) => {
+            user = await User.create({
+                usuario: req.body.username,
+                contrasena: hash,
+                rol: 'Administrador',
+                nivelUsuario: 5
+            });
+            res.status(200).json({
+                msg: 'User created',
+                user: user
+            })
+        });
+    } catch (err) {
+        res.status(400).json({
+            msg: err.message
+        });
+    }
+   
+    
 }
 
 logController.verifyToken = (req, res, next) => {
