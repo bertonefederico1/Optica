@@ -28,7 +28,7 @@
         </ng-container>
         <ng-container matColumnDef="expectedDeliveryDate">
             <th mat-header-cell *matHeaderCellDef>Fecha Entrega Esperada</th>
-            <td mat-cell *matCellDef="let element">{{element.fechaPrometido | date: 'd/M/yy'}}</td>
+            <td mat-cell *matCellDef="let element">{{element.fechaPrometido | date: 'dd/MM/yyyy'}}</td>
         </ng-container>
         <ng-container matColumnDef="remainingAmount">
             <th mat-header-cell *matHeaderCellDef>Monto del Saldo</th>

@@ -1,5 +1,6 @@
 'use strict'
 
+const moment = require('moment');
 const Order = require('../models/Order');
 const SupplierLaboratory = require('../models/SupplierLaboratory'); 
 const Lens = require('../models/Lens');
@@ -109,6 +110,7 @@ orderController.createOrder = async (req, res) => {
         let lensRE = {
             codLente: null
         };
+        validators.validatorAddOrder(req.body);
         if(req.body.orderLensRE){
             validators.validatorOrderRE(req.body)
         };
@@ -116,7 +118,7 @@ orderController.createOrder = async (req, res) => {
             validators.validatorOrderLE(req.body);
         };
         if(req.body.orderLensRE && req.body.orderLensLE){
-            validators.validatorOrder(req.body);
+            validators.validatorAddOrder(req.body);
         };
             if (req.body.orderLensLE){
                 lensLE = await Lens.create({
@@ -171,6 +173,7 @@ orderController.createOrder = async (req, res) => {
 
 orderController.editOrder = async (req, res) => {
     try {
+        let currentDate = null;
         let lensLE = {
             codLente: null
         };
@@ -223,12 +226,18 @@ orderController.editOrder = async (req, res) => {
                 deStock: 0
             })
         };
+        if(req.body.orderStatus === 'Recibido'){
+            currentDate = moment().format('yyyy-MM-DD');
+        } else {
+            currentDate = null;
+        };
         await Order.update({
             codLenteOI: lensLE.codLente,
             codLenteOD: lensRE.codLente,
             numAnteojo: req.body.glassesNumber,
             idProvLab: req.body.supplierLaboratoryID,
             fechaEntregaEsperada: req.body.expectedDeliveryDate,
+            fechaRecibido: currentDate,
             obsPedido: req.body.orderObs,
             estadoPedido: req.body.orderStatus,
             pedirLenteOI: req.body.orderLensLE,

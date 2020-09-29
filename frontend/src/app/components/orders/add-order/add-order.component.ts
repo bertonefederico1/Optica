@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { LensesService } from './../../../services/lenses/lenses.service';
 import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SelectSupplierComponent } from './../../suppliers/select-supplier/select-supplier.component';
-import { SelectPrescriptionsComponent } from './../../prescriptions/select-prescriptions/select-prescriptions.component';
 import * as moment from 'moment'
 import { OrdersService } from './../../../services/orders/orders.service';
 import { SelectGlassesPendingComponent } from './../../glasses/select-glasses-pending/select-glasses-pending.component';
@@ -35,7 +34,7 @@ export class AddOrderComponent implements OnInit {
   currentDate = new Date();
   order: any;
   today = moment().format('DD/MM/yyyy');
-  statusArray = ['Pendiente', 'Entregado'];
+  statusArray = ['Pendiente', 'Recibido'];
 
 
   orderForm = new FormGroup({

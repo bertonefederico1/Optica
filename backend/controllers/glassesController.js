@@ -15,6 +15,7 @@ const glassesController = { };
 glassesController.getAll = async (req, res) => {
     try {
         const glasses = await Glasses.findAll({
+            order: [['fechaPrometido', 'DESC']],
             where: {
                 activo: 1
             },

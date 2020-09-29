@@ -30,7 +30,7 @@
         </ng-container>
         <ng-container matColumnDef="expectedDeliveryDate">
             <th mat-header-cell *matHeaderCellDef>Fecha Entrega Esperada</th>
-            <td mat-cell *matCellDef="let element">{{element.fechaEntregaEsperada | date: 'M/d/yy'}}</td>
+            <td mat-cell *matCellDef="let element">{{element.fechaEntregaEsperada | date: 'dd/MM/yyyy'}}</td>
         </ng-container>
         <ng-container matColumnDef="laboratory">
             <th mat-header-cell *matHeaderCellDef>Laboratorio</th>

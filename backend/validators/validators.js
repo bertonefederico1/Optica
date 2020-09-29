@@ -5,17 +5,13 @@ const Validators = {};
 const Lens = require('../models/Lens');
 const Frame = require('../models/Frame');
 
-Validators.validatorOrder = (order) => {
+Validators.validatorAddOrder = (order) => {
     if(!order.orderLensLE && !order.orderLensRE){ 
         throw new Error('Debe seleccionar al menos un lente para pedir');
     } else if (order.supplierLaboratoryID === '' || order.expectedDeliveryDate === '' || 
                 order.lensDesign === '' || order.lensMaterial === '' || 
-                order.lensFinish === '' || order.refractionIndexLE === '' || 
-                order.refractionIndexRE === '' || order.lensDiameter === '' || 
-                order.lensColor === ''  || order.refractionIndexRE === '' || 
-                order.sphericalValueLE === '' || order.sphericalValueRE === '' ||
-                 order.cilyndricalValueLE === '' || order.cilyndricalValueRE === '' || 
-                 order.glassesNumber === '' || order.axisLE === '' || order.axisRE === '') {
+                order.lensFinish === '' || order.lensDiameter === '' || 
+                order.lensColor === ''  || order.glassesNumber === '') {
                     throw new Error('Verifique los datos ingresados');
     }
 };

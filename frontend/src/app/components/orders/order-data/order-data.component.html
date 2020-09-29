@@ -28,7 +28,7 @@
             <div class="center-align col m12">
                 <div class="col m6">
                     <span class="description">Valor Esférico:</span>
-                    <span class="content1" *ngIf="order.LensOI">{{ order.LensOI.valorCil }}</span>
+                    <span class="content1" *ngIf="order.LensOI">{{ order.LensOI.valorEsf }}</span>
                     <span class="content1" *ngIf="!order.LensOI"></span>
                 </div>
                 <div class="col m6">
@@ -38,7 +38,7 @@
                 </div>
                 <div class="col m6">
                     <span class="description">Valor Cilíndrico:</span>
-                    <span class="content1" *ngIf="order.LensOI">{{ order.LensOI.valorEsf }}</span>
+                    <span class="content1" *ngIf="order.LensOI">{{ order.LensOI.valorCil }}</span>
                     <span class="content1" *ngIf="!order.LensOI"></span>
                 </div>
                 <div class="col m6">
@@ -88,6 +88,12 @@
                     <span class="content1" *ngIf="order.LensOI && !order.LensOD">{{ order.LensOI.acabado_lente.nombre }}</span>
                     <span class="content1" *ngIf="order.LensOD && !order.LensOI">{{ order.LensOD.acabado_lente.nombre }}</span>
                     <span class="content1" *ngIf="order.LensOD && order.LensOI">{{ order.LensOD.acabado_lente.nombre }}</span>
+                </div>
+                <div class="col m5">
+                    <span class="description">Diámetro Lente:</span>
+                    <span class="content1" *ngIf="order.LensOI && !order.LensOD">{{ order.LensOI.diametro }}</span>
+                    <span class="content1" *ngIf="order.LensOD && !order.LensOI">{{ order.LensOD.diametro }}</span>
+                    <span class="content1" *ngIf="order.LensOD && order.LensOI">{{ order.LensOD.diametro }}</span>
                 </div>
             </div>
         </div>
