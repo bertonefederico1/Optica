@@ -50,7 +50,6 @@ Validators.normalizeOrderLens = async (lensNumber) => {
     })
 };
 
-
 Validators.validatorGlasses = (glasses) => {
     if(!glasses.receiptHealthCare) {
         glasses.healthCareID = null;
@@ -82,6 +81,13 @@ Validators.validatorGlasses = (glasses) => {
         glasses.glassesStatus === null
     ) {
         throw new Error('Verifique los datos ingresados');
+    };
+};
+
+Validators.validatorReport = (report) => {
+    if(report.year === '' ||  report.healthCare === '' || 
+        report.monthNumber === '' || report.receiptNumber === ''){
+        throw new Error("Verifique los datos ingresados");
     };
 };
 

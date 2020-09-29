@@ -97,12 +97,12 @@ router.put('/editOrder/:orderNumber', logController.verifyTokenUserLvl5, orderCo
 router.put('/suspendOrder/:orderNumber', logController.verifyTokenUserLvl5, orderController.suspendOrder);
 
 //Rutas de Anteojos
-router.get('/glassesByHealthCareAndDate', glassesController.getAllByHealthCareAndDate);
 router.get('/glasses', logController.verifyTokenUserLvl3, glassesController.getAll);
 router.get('/glasses/:glassesNumber', logController.verifyTokenUserLvl3, glassesController.getOne);
 router.get('/prescriptionByGlasses/:glassesNumber', logController.verifyTokenUserLvl3, glassesController.getPrescriptionByGlasses);
 router.get('/glassesPending', logController.verifyTokenUserLvl3, glassesController.getGlassesPending);
 router.post('/newGlasses', logController.verifyTokenUserLvl5, glassesController.createGlasses);
+router.post('/glassesByHealthCareAndDate', glassesController.getAllByHealthCareAndDate);
 router.put('/editGlasses/:glassesNumber', logController.verifyTokenUserLvl5, glassesController.editGlasses);
 router.put('/suspendGlasses/:glassesNumber', logController.verifyTokenUserLvl5, glassesController.suspendGlasses);
 

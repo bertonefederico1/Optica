@@ -14,6 +14,11 @@ export class HealthCaresService {
     return this.http.get<any>(`${this.URL}/healthCares`);
   }
 
+  getGlassesByHealthCareAndDate(data: any){
+    return this.http.post<any>(`${this.URL}/glassesByHealthCareAndDate`, data);
+  };
+  
+
   getOne(healthCareID: number){
     return this.http.get<any>(`${this.URL}/healthCare/${healthCareID}`);
   }

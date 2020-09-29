@@ -1,6 +1,6 @@
 'use strict'
 
-
+const connection = require('../database/db-connection');
 const Customer = require('../models/Customer');
 const Glasses = require('../models/Glasses');
 const Lens = require('../models/Lens');
@@ -8,7 +8,6 @@ const Frame = require('../models/Frame');
 const HealthCare = require('../models/HealthCare');
 const Prescription = require('../models/Prescription');
 const Validators = require('../validators/validators');
-const Customer_HealthCare = require('../models/Customer_HealthCare');
 const glassesController = { };
 
 
@@ -70,22 +69,16 @@ glassesController.getOne = async (req, res) => {
 
 glassesController.getAllByHealthCareAndDate = async (req, res) => {
     try {
-        const glasses = await Glasses.findAll({
-            where: {
-                activo: 1
-            },
-            include: [{
-                model: HealthCare
-            }, {
-                model: Prescription,
-                include: {
-                    model: Customer
-                }
-            }]
+        Validators.validatorReport(req.body);
+        const query = 'call reporte_obra_social(?, ?, ?)';
+        const glasses = await connection.query(query, {
+            replacements: [req.body.year, req.body.monthNumber, req.body.healthCare]
         });
         res.status(200).json(glasses);
     } catch(err){
-        res.status(400).json(err);
+        res.status(400).json({
+            msg: err.message
+        });
     }
 };
 

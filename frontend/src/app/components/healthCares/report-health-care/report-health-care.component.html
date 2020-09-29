@@ -1,3 +1,4 @@
+<h1 class="title1">REPORTE PARA OBRA SOCIAL</h1>
 <div class="container section">
     <form class="col m12" [formGroup]="reportForm">
         <fieldset>
@@ -27,65 +28,95 @@
                 <div class="col m6" *ngIf="healthCares$ | async as healthCares">
                     <span class="description">Obra Social:</span>
                     <div class="input-field inline">
-                        <select class="browser-default border-black" formControlName="healthCareID"
+                        <select class="browser-default border-black" formControlName="healthCare"
                             style="border-color: black; height: 40px; margin-top: 1rem;">
                             <option value="" disabled selected>Seleccionar</option>
-                            <option *ngFor="let healthCare of healthCares" [ngValue]="healthCare.idObraSocial">
+                            <option *ngFor="let healthCare of healthCares" [ngValue]="healthCare.nombre">
                                 {{ healthCare.nombre }}</option>
                         </select>
+                    </div>
+                </div>
+                <div class="col m6">
+                    <span class="description">Nº de Factura:</span>
+                    <div class="input-field inline">
+                        <input type="text" class="col m6" formControlName="receiptNumber">
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col push-m10">
-                    <a class="waves-effect waves-light btn"><i class="material-icons left">search</i>Buscar</a>
+                    <a class="waves-effect waves-light btn" (click)="searchReport()"><i class="material-icons left">search</i>Generar</a>
                 </div>
             </div>
         </fieldset>
     </form>
 
-    <div id="report" class="section">
-        <table class="responsive-table">
-            <thead>
-                <tr>
-                    <th scope="col" colspan="2" rowspan="2"></th>
-                    <th class="center" scope="col" colspan="6">Cerca</th>
-                    <th class="center" scope="col" colspan="6">Lejos</th>
-                    <th scope="col" colspan="2" rowspan="2"></th>
-                </tr>
-                <tr>
-                    <th class="center" scope="col" colspan="3">Ojo Izquierdo</th>
-                    <th class="center" scope="col" colspan="3">Ojo Derecho</th>
-                    <th class="center" scope="col" colspan="3">Ojo Izquierdo</th>
-                    <th class="center" scope="col" colspan="3">Ojo Derecho</th>
-                    <th style="border: none" scope="col"></th>
-                </tr>
-              <tr>
-                  <th>Nombre y apellido</th>
-                  <th>Nº Afiliado</th>
-                  <th>Esf</th>
-                  <th>Cil</th>
-                  <th>Eje</th>
-                  <th>Esf</th>
-                  <th>Cil</th>
-                  <th>Eje</th>
-
-                  <th>Esf</th>
-                  <th>Cil</th>
-                  <th>Eje</th>
-                  <th>Esf</th>
-                  <th>Cil</th>
-                  <th>Eje</th>
-                  <th>Total</th>
-              </tr>
-            </thead>
+    <div id="report">
+        <div class="section" *ngIf="glasses">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col" colspan="2" rowspan="2"></th>
+                        <th class="center" scope="col" colspan="6">Cerca</th>
+                        <th class="center" scope="col" colspan="6">Lejos</th>
+                        <th scope="col" colspan="2" rowspan="2"></th>
+                    </tr>
+                    <tr>
+                        <th class="center" scope="col" colspan="3">Ojo Izquierdo</th>
+                        <th class="center" scope="col" colspan="3">Ojo Derecho</th>
+                        <th class="center" scope="col" colspan="3">Ojo Izquierdo</th>
+                        <th class="center" scope="col" colspan="3">Ojo Derecho</th>
+                        <th style="border: none" scope="col"></th>
+                    </tr>
+                  <tr>
+                      <th>Nombre y apellido</th>
+                      <th>Nº Afiliado</th>
+                      <th>Esf</th>
+                      <th>Cil</th>
+                      <th>Eje</th>
+                      <th>Esf</th>
+                      <th>Cil</th>
+                      <th>Eje</th>
     
-            <tbody>
-              <tr>
-                <td *ngFor="">Alvin</td>
-              </tr>
-            </tbody>
-          </table>
+                      <th>Esf</th>
+                      <th>Cil</th>
+                      <th>Eje</th>
+                      <th>Esf</th>
+                      <th>Cil</th>
+                      <th>Eje</th>
+                      <th>Total</th>
+                  </tr>
+                </thead>
+        
+                <tbody>
+                  <tr *ngFor="let element of glasses">
+                    <td>{{ element.nombre }} {{ element.apellido }}</td>
+                    <td>{{ element.nroSocio }}</td>
+                                <!-- CERCA -->
+                    <td>{{ element.valorEsfOI }}</td>
+                    <td>{{ element.valorCilOI }}</td>
+                    <td>{{ element.ejeOI }}º</td>
+                    <td>{{ element.valorEsfOD }}</td>
+                    <td>{{ element.valorCilOD }}</td>
+                    <td>{{ element.ejeOD }}º</td>
+                                <!-- LEJOS -->
+                    <td>{{ calculateFarValue(element.valorLejosOI) }}</td>
+                    <td>{{ element.valorCilOI }}</td>
+                    <td>{{ element.ejeOI }}º</td>
+                    <td>{{ calculateFarValue(element.valorLejosOD) }}</td>
+                    <td>{{ element.valorCilOD }}</td>
+                    <td>{{ element.ejeOD }}º</td>
+                    <td>$ {{ element.montoTotal }}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+    
+    <div class="row" *ngIf="glasses">
+        <div class="col push-m9">
+            <a class="waves-effect waves-light btn" (click)="generateReport()"><i class="material-icons left">search</i>Generar Reporte</a>
+        </div>
     </div>
 
 </div>
