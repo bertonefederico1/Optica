@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-        <a *ngIf="userRole !== 'EmpleadoTaller'" class="waves-effect green btn" (click)="addGlasses()">Agregar</a>
+        <a *ngIf="userRole === 'Administrador' || userRole === 'Optico'" class="waves-effect green btn" (click)="addGlasses()">Agregar</a>
     </div>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 striped res centered">
         <ng-container matColumnDef="nameAndSurname">

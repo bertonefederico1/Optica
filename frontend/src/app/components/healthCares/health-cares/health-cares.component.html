@@ -3,7 +3,7 @@
   <div class="row">
     <input class="col s3 offset-s9" type="search" (keyup)="applyFilter($event.target.value)"
       (focus)="setupFilter('nombre')" placeholder="Buscar" />
-    <a *ngIf="userRole !== 'EmpleadoTaller'" class="waves-effect green btn" (click)="addHealthCare()">Agregar</a>
+    <a *ngIf="userRole === 'Administrador' || userRole === 'Optico'" class="waves-effect green btn" (click)="addHealthCare()">Agregar</a>
   </div>
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 striped res centered">
     <ng-container matColumnDef="codigo">

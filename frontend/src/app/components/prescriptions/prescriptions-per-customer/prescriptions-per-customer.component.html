@@ -23,7 +23,7 @@
             <th mat-header-cell *matHeaderCellDef> Acción </th>
             <td mat-cell *matCellDef="let element">
                 <a style="cursor: pointer" (click)="dataPrescription(element.numReceta)"><i class="material-icons">visibility</i></a>
-                <a *ngIf="userRole === 'Administrador' || userRole === 'Optico'" style="cursor: pointer" (click)="editPrescription(element.numReceta)"><i class="material-icons">edit</i></a>
+                <a *ngIf="userRole === 'Administrador' || userRole === 'Optico' || userRole === 'EmpleadoLocalComercial'" style="cursor: pointer" (click)="editPrescription(element.numReceta)"><i class="material-icons">edit</i></a>
                 <a *ngIf="userRole === 'Administrador' || userRole === 'Optico'" style="cursor: pointer; color: red" (click)="deletePrescription(element.numReceta)"><i class="material-icons">delete</i></a>
             </td>
         </ng-container>
