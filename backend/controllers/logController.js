@@ -21,7 +21,7 @@ logController.signIn = async (req, res) => {
         if(!match) {
             throw new Error('Usuario y/o contraseña incorrectos');
         };
-        const token = jwt.sign({userLevel: user.nivelUsuario, role: user.rol}, 'wordKey');
+        const token = jwt.sign({username: user.usuario, userLevel: user.nivelUsuario, role: user.rol}, 'wordKey');
         res.status(200).json({token});
     } catch (err) {
         res.status(400).json({
@@ -136,19 +136,5 @@ logController.getUserRole = (req, res) => {
     const payload = jwt.verify(token, 'wordKey');
     res.status(200).json({payload})
 };
-
-/* logController.verifyUserLevel = (req, res, next) => {
-    if(!req.headers.authorization){
-        res.status(401).json();
-    };
-    const token = req.headers.authorization.split(' ')[1];
-    if(token === null){
-        res.status(401).json();
-    };
-    const payload = jwt.verify(token, 'wordKey');
-    req.userLevel = payload.userLevel;
-    console.log(req.userLevel)
-    next()
-}; */
 
 module.exports = logController;

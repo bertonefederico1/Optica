@@ -29,13 +29,15 @@ export class LoginService {
   }
 
   getNameUserRole(){
-    let userRole: string;
-    this.getUserRole()
-      .subscribe(res => {
-        userRole = res.payload.role;
-        return userRole;
-      },
-      err => console.log(err))
+    if(localStorage.getItem('role')){
+      return localStorage.getItem('role');
+    }
+  }
+
+  getUsername(){
+    if(localStorage.getItem('username')){
+      return localStorage.getItem('username');
+    }
   }
 
 }
