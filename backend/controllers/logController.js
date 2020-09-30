@@ -75,6 +75,29 @@ logController.verifyTokenUserLvl3 = (req, res, next) => {
     };
 };
 
+logController.verifyTokenUserLvl4 = (req, res, next) => {
+    if(!req.headers.authorization){
+        res.status(401).json({
+            msg: 'Debe inciar sesion'
+        });
+    };
+    const token = req.headers.authorization.split(' ')[1];
+    if(token === null){
+        res.status(401).json({
+            msg: 'Debe inciar sesion'
+        });
+    };
+    const payload = jwt.verify(token, 'wordKey');
+    req.userLevel = payload.userLevel;
+    if (req.userLevel < 4) {
+        res.status(401).json({
+            msg: 'No tiene los permisos suficientes para acceder a este recurso'
+        });
+    } else {
+        next();
+    };
+};
+
 logController.verifyTokenUserLvl5 = (req, res, next) => {
     if(!req.headers.authorization){
         res.status(401).json({

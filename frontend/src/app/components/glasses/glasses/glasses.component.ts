@@ -5,6 +5,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddGlassesComponent } from './../add-glasses/add-glasses.component';
 import { DataGlassesComponent } from './../data-glasses/data-glasses.component';
 import { SupportingDocumentComponent } from '../supporting-document/supporting-document.component';
+import { LoginService } from './../../../services/login/login.service';
 
 @Component({
   selector: 'app-glasses',
@@ -16,7 +17,8 @@ export class GlassesComponent implements OnInit {
 
   constructor(
     private glassesService: GlassesService,
-    private dialogRef: MatDialog
+    private dialogRef: MatDialog,
+    private loginService: LoginService
   ) { }
 
   displayedColumns: string[] = ['nameAndSurname', 'prescriptionNumber', 'expectedDeliveryDate', 'remainingAmount', 'status', 'actions'];
@@ -26,12 +28,19 @@ export class GlassesComponent implements OnInit {
   statusArray: string[] = ['Todos', 'Pendiente', 'En Taller', 'Entregado'];
   edit: boolean;
   glasses: any;
+  userRole: string;
 
   ngOnInit(): void {
+    this.getUserRole();
     this.getAll();
     this.dialogConfig.width = '100%';
     this.dialogConfig.height = '100%';
     this.dialogConfig.disableClose = true;
+  }
+
+  getUserRole(){
+    this.loginService.getUserRole()
+      .subscribe(res => this.userRole = res.payload.role)
   }
 
   getAll(){

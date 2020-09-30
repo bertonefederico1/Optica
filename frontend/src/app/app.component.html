@@ -17,7 +17,7 @@
         <li><a class="black-text" routerLink="armazones" routerLinkActive="active">Armazones</a></li>
         <li><a class="black-text" routerLink="proveedores" routerLinkActive="active">Proveedores/Laboratorios</a></li>
         <li>
-          <a class="black-text" mat-button [matMenuTriggerFor]="healthCareMenu"><i class="material-icons right">arrow_drop_down</i>Obras Sociales</a>
+          <a *ngIf="userRole !== 'EmpleadoTaller'" class="black-text" mat-button [matMenuTriggerFor]="healthCareMenu"><i class="material-icons right">arrow_drop_down</i>Obras Sociales</a>
             <mat-menu #healthCareMenu="matMenu" xPosition="after">
               <a mat-menu-item routerLink="obrasSociales">Obras Sociales</a>
               <a mat-menu-item routerLink="reportHealthCare">Generar Reporte</a>
@@ -27,4 +27,5 @@
     </div>
   </nav>
   <!-- <div  *ngIf="loginService.isLogged()" class="black-text mt2" style="margin-left: 10px"><b>Usuario: </b><span>{{ userLogged }}</span></div> -->
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+  

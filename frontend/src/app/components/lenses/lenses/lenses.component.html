@@ -30,8 +30,9 @@
       <th mat-header-cell *matHeaderCellDef> Acciones </th>
       <td mat-cell *matCellDef="let element">
         <a style="cursor: pointer" (click)="dataLens(element.codLente)"><i class="material-icons">visibility</i></a>
-        <a style="cursor: pointer" (click)="editLens(element.codLente)"><i class="material-icons">edit</i></a>
-        <a style="cursor: pointer; color: red" (click)="deleteLens(element.codLente)"><i class="material-icons">delete</i></a>
+        <a *ngIf="userRole === 'Administrador' || userRole === 'Optico' || userRole === 'EmpleadoTaller'" style="cursor: pointer" (click)="editLens(element.codLente)"><i class="material-icons">edit</i></a>
+        <a *ngIf="userRole === 'Administrador' || userRole === 'Optico' || userRole === 'EmpleadoTaller'" style="cursor: pointer; color: red" (click)="deleteLens(element.codLente)"><i
+            class="material-icons">delete</i></a>
       </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

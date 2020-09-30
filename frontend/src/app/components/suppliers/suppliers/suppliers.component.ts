@@ -5,6 +5,7 @@ import { SuppliersService } from './../../../services/suppliers/suppliers.servic
 import { AddSupplierComponent } from './../add-supplier/add-supplier.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { SupplierDataComponent } from '../supplier-data/supplier-data.component';
+import { LoginService } from './../../../services/login/login.service';
 
 @Component({
   selector: 'app-suppliers',
@@ -22,11 +23,20 @@ export class SuppliersComponent implements OnInit {
   
   constructor(
     private supplierService: SuppliersService,
-    private dialogRef: MatDialog
+    private dialogRef: MatDialog,
+    private loginService: LoginService
   ){ }
+
+  userRole: string;
   
   ngOnInit() {
+    this.getUserRole();
     this.getAll();
+  }
+
+  getUserRole(){
+    this.loginService.getUserRole()
+      .subscribe(res => this.userRole = res.payload.role)
   }
 
   dataSupplier(supplierID: number){

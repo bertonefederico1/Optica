@@ -28,4 +28,14 @@ export class LoginService {
     return this.http.get<any>(`${this.URL}/getUserRole`);
   }
 
+  getNameUserRole(){
+    let userRole: string;
+    this.getUserRole()
+      .subscribe(res => {
+        userRole = res.payload.role;
+        return userRole;
+      },
+      err => console.log(err))
+  }
+
 }

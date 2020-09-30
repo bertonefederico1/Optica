@@ -5,6 +5,7 @@ import { FramesService } from './../../../services/frames/frames.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { DataFrameComponent } from './../data-frame/data-frame.component';
 import { AddFrameComponent } from './../add-frame/add-frame.component';
+import { LoginService } from './../../../services/login/login.service';
 
 @Component({
   selector: 'app-frames',
@@ -22,11 +23,20 @@ export class FramesComponent implements OnInit {
   
   constructor(
     private framesService: FramesService,
-    private dialogRef: MatDialog
+    private dialogRef: MatDialog,
+    private loginService: LoginService
   ){ }
+
+  userRole: string;
   
   ngOnInit() {
+    this.getUserRole();
     this.getAll();
+  }
+
+  getUserRole(){
+    this.loginService.getUserRole()
+      .subscribe(res => this.userRole = res.payload.role)
   }
 
   dataFrame(frameID: number) {

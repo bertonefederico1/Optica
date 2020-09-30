@@ -35,7 +35,7 @@ router.put('/suspendCustomer/:customerID', logController.verifyTokenUserLvl5, cu
 //Rutas de Obras Sociales
 router.get('/healthCares', logController.verifyTokenUserLvl3, healthCarelController.getAll);
 router.get('/healthCare/:healthCareID', logController.verifyTokenUserLvl3, healthCarelController.getOne);
-router.post('/newHealthCare', healthCarelController.createHealthCare);
+router.post('/newHealthCare', logController.verifyTokenUserLvl5, healthCarelController.createHealthCare);
 router.put('/editHealthCare/:healthCareID', logController.verifyTokenUserLvl5, healthCarelController.editHealthCare);
 router.put('/suspendHealthCare/:healthCareID', logController.verifyTokenUserLvl5, healthCarelController.suspendHealthCare);
 
@@ -46,16 +46,16 @@ router.get('/healthCaresByCustomer/:customerID', logController.verifyTokenUserLv
 //Rutas de Proveedores/Laboratorios
 router.get('/suppliersLaboratories/:select?', logController.verifyTokenUserLvl3, supplierLaboratoryController.getAll);
 router.get('/supplierLaboratory/:supplierLaboratoryID', logController.verifyTokenUserLvl3, supplierLaboratoryController.getOne);
-router.post('/newSupplierLaboratory', logController.verifyTokenUserLvl5, supplierLaboratoryController.createSupplierLaboratory);
-router.put('/editSupplierLaboratory/:supplierLaboratoryID', logController.verifyTokenUserLvl5, supplierLaboratoryController.editSupplierLaboratory);
-router.put('/suspendSupplierLaboratory/:supplierLaboratoryID', logController.verifyTokenUserLvl5, supplierLaboratoryController.suspendSupplierLaboratory);
+router.post('/newSupplierLaboratory', logController.verifyTokenUserLvl4, supplierLaboratoryController.createSupplierLaboratory);
+router.put('/editSupplierLaboratory/:supplierLaboratoryID', logController.verifyTokenUserLvl4, supplierLaboratoryController.editSupplierLaboratory);
+router.put('/suspendSupplierLaboratory/:supplierLaboratoryID', logController.verifyTokenUserLvl4, supplierLaboratoryController.suspendSupplierLaboratory);
 
 //Rutas de Armazones
 router.get('/frames/:select?', logController.verifyTokenUserLvl3, frameController.getAll);
 router.get('/frame/:frameID', logController.verifyTokenUserLvl3, frameController.getOne);
-router.post('/newFrame', logController.verifyTokenUserLvl5, frameController.createFrame);
-router.put('/editFrame/:frameID', logController.verifyTokenUserLvl5, frameController.editFrame);
-router.put('/suspendFrame/:frameID', logController.verifyTokenUserLvl5, frameController.suspendFrame);
+router.post('/newFrame', logController.verifyTokenUserLvl3, frameController.createFrame);
+router.put('/editFrame/:frameID', logController.verifyTokenUserLvl3, frameController.editFrame);
+router.put('/suspendFrame/:frameID', logController.verifyTokenUserLvl3, frameController.suspendFrame);
 
 //Ruta de Materiales de Armazones
 router.get('/frameMaterials', logController.verifyTokenUserLvl3, frameMaterialController.getAll);
@@ -69,9 +69,9 @@ router.get('/frameUtilities', logController.verifyTokenUserLvl3, frameUtilityCon
 //Rutas de Lentes
 router.get('/lenses/:select?', logController.verifyTokenUserLvl3, lensController.getAll);
 router.get('/lens/:lensID', logController.verifyTokenUserLvl3, lensController.getOne);
-router.post('/newLens', logController.verifyTokenUserLvl5, lensController.createLens);
-router.put('/editLens/:lensID', logController.verifyTokenUserLvl5, lensController.editLens);
-router.put('/suspendLens/:lensID', logController.verifyTokenUserLvl5, lensController.suspendLens);
+router.post('/newLens', logController.verifyTokenUserLvl3, lensController.createLens);
+router.put('/editLens/:lensID', logController.verifyTokenUserLvl3, lensController.editLens);
+router.put('/suspendLens/:lensID', logController.verifyTokenUserLvl3, lensController.suspendLens);
 
 //Ruta de Materiales de Lentes
 router.get('/materialsLens', logController.verifyTokenUserLvl3, lensMaterialController.getAll);
@@ -104,7 +104,7 @@ router.get('/prescriptionByGlasses/:glassesNumber', logController.verifyTokenUse
 router.get('/glassesPending', logController.verifyTokenUserLvl3, glassesController.getGlassesPending);
 router.post('/newGlasses', logController.verifyTokenUserLvl5, glassesController.createGlasses);
 router.post('/glassesByHealthCareAndDate', glassesController.getAllByHealthCareAndDate);
-router.put('/editGlasses/:glassesNumber', logController.verifyTokenUserLvl5, glassesController.editGlasses);
+router.put('/editGlasses/:glassesNumber', logController.verifyTokenUserLvl3, glassesController.editGlasses);
 router.put('/suspendGlasses/:glassesNumber', logController.verifyTokenUserLvl5, glassesController.suspendGlasses);
 
 module.exports = router;

@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddPrescriptionComponent } from './../add-prescription/add-prescription.component';
 import { DataPrescriptionComponent } from './../data-prescription/data-prescription.component';
+import { LoginService } from './../../../services/login/login.service';
 
 @Component({
   selector: 'app-prescriptions-per-customer',
@@ -16,18 +17,26 @@ export class PrescriptionsPerCustomerComponent implements OnInit, OnChanges {
 
   constructor(
     private prescriptionsService: PrescriptionsService,
-    private dialogRef: MatDialog
+    private dialogRef: MatDialog,
+    private loginService: LoginService
   ) { }
 
   displayedColumns: string[] = ['prescriptionNumber', 'prescriptionDate', 'doctorName', 'actions'];
   dataSource = null;
   dialogConfig = new MatDialogConfig();
   edit: boolean;
+  userRole: string;
   
   ngOnInit(){
+    this.getUserRole();
     this.dialogConfig.width = '100%';
     this.dialogConfig.height = '100%';
     this.dialogConfig.autoFocus = true;  
+  }
+
+  getUserRole(){
+    this.loginService.getUserRole()
+      .subscribe(res => this.userRole = res.payload.role)
   }
 
   ngOnChanges(){

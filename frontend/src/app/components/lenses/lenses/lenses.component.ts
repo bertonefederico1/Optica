@@ -5,6 +5,7 @@ import { LensDataComponent } from '../lens-data/lens-data.component';
 import { AddLensComponent } from './../add-lens/add-lens.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { LensesService } from './../../../services/lenses/lenses.service';
+import { LoginService } from './../../../services/login/login.service';
 
 @Component({
   selector: 'app-lenses',
@@ -23,11 +24,20 @@ export class LensesComponent implements OnInit {
   
   constructor(
     private lensService: LensesService,
-    private dialogRef: MatDialog
+    private dialogRef: MatDialog,
+    private loginService: LoginService
   ){ }
+
+  userRole: string;
   
   ngOnInit() {
+    this.getUserRole();
     this.getAll();
+  }
+
+  getUserRole(){
+    this.loginService.getUserRole()
+      .subscribe(res => this.userRole = res.payload.role)
   }
 
   dataLens(lensID: number) {

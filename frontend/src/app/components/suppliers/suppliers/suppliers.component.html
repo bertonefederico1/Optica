@@ -1,20 +1,11 @@
 <div class="container section">
   <h1 class="title1">PROVEEDORES Y LABORATORIOS</h1>
   <div class="row">
-    <input
-      class="col s3 offset-s9"
-      type="search"
-      (keyup)="applyFilter($event.target.value)"
-      (focus)="setupFilter()"
-      placeholder="Buscar"
-    />
+    <input class="col s3 offset-s9" type="search" (keyup)="applyFilter($event.target.value)" (focus)="setupFilter()"
+      placeholder="Buscar" />
     <a class="waves-effect green btn" (click)="addSupplier()">Agregar</a>
   </div>
-  <table
-    mat-table
-    [dataSource]="dataSource"
-    class="mat-elevation-z8 striped res centered"
-  >
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 striped res centered">
     <ng-container matColumnDef="codigo">
       <th mat-header-cell *matHeaderCellDef>Código</th>
       <td mat-cell *matCellDef="let supplier">
@@ -36,17 +27,11 @@
     <ng-container matColumnDef="acciones">
       <th mat-header-cell *matHeaderCellDef>Acciones</th>
       <td mat-cell *matCellDef="let element">
-        <a style="cursor: pointer" (click)="dataSupplier(element.idProvLab)"
-          ><i class="material-icons">visibility</i></a
-        >
-        <a style="cursor: pointer" (click)="editSupplier(element.idProvLab)"
-          ><i class="material-icons">edit</i></a
-        >
-        <a
-          style="cursor: pointer; color: red"
-          (click)="deleteSupplier(element.idProvLab)"
-          ><i class="material-icons">delete</i></a
-        >
+        <a style="cursor: pointer" (click)="dataSupplier(element.idProvLab)"><i
+            class="material-icons">visibility</i></a>
+        <a *ngIf="userRole === 'Administrador' || userRole === 'EmpleadoTaller' || userRole === 'Optico'" style="cursor: pointer" (click)="editSupplier(element.idProvLab)"><i class="material-icons">edit</i></a>
+        <a *ngIf="userRole === 'Administrador' || userRole === 'EmpleadoTaller' || userRole === 'Optico'" style="cursor: pointer; color: red" (click)="deleteSupplier(element.idProvLab)"><i
+            class="material-icons">delete</i></a>
       </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -54,9 +39,5 @@
   </table>
 </div>
 
-<mat-paginator
-  [length]="suppliers.length"
-  [pageSize]="10"
-  showFirstLastButtons
-  style="margin-right: 12rem !important"
-></mat-paginator>
+<mat-paginator [length]="suppliers.length" [pageSize]="10" showFirstLastButtons style="margin-right: 12rem !important">
+</mat-paginator>

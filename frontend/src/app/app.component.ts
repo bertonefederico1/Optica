@@ -1,4 +1,4 @@
-import { Component, OnChanges, SimpleChanges } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from './services/login/login.service';
 
@@ -15,6 +15,13 @@ export class AppComponent {
   ){ }
 
   title = 'OpticaVLA';
+  userRole: string;
+
+
+  getUserRole(){
+    this.loginService.getUserRole()
+      .subscribe(res => this.userRole = res.payload.role);
+  }
 
   logout(){
     localStorage.removeItem('token');

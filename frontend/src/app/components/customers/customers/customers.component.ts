@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddCustomerComponent } from '../add-customer/add-customer.component';
 import { CustomerDataComponent } from '../customer-data/customer-data.component';
 import { Customer } from 'src/app/models/Customer';
+import { LoginService } from './../../../services/login/login.service';
 
 
 
@@ -27,14 +28,22 @@ export class CustomersComponent implements OnInit {
 
   constructor(
     private customerService: CustomersService,
-    private dialogRef: MatDialog
+    private dialogRef: MatDialog,
+    private loginService: LoginService
   ){ }
+
+  userRole: string;
   
 
   ngOnInit() {
+    this.getUserRole();
     this.getAll();
   }
 
+  getUserRole(){
+    this.loginService.getUserRole()
+      .subscribe(res => this.userRole = res.payload.role)
+  }
 
   dataCustomer(customerID) {
     const dialogRef = this.dialogRef.open(CustomerDataComponent, {

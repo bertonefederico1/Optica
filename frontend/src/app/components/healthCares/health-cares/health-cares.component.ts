@@ -3,6 +3,7 @@ import { HealthCaresService } from '../../../services/healthCares/health-cares.s
 import { MatTableDataSource } from '@angular/material/table';
 import { AddHealthCareComponent } from '../add-health-care/add-health-care.component';
 import { MatDialog } from '@angular/material/dialog';
+import { LoginService } from './../../../services/login/login.service';
 
 @Component({
   selector: 'app-health-cares',
@@ -13,16 +14,24 @@ export class HealthCaresComponent implements OnInit {
 
   constructor(
     private healthCareService: HealthCaresService,
-    private dialogRef: MatDialog
+    private dialogRef: MatDialog,
+    private loginService: LoginService
   ) { }
 
   ngOnInit(): void {
+    this.getUserRole();
     this.getAll();
   }
 
   edit: boolean;
   displayedColumns: string[] = ['codigo', 'nombre', 'periodoFacturacion', 'cantidadAnteojosPorPeriodo', 'acciones'];
   dataSource = null;
+  userRole: string;
+
+  getUserRole(){
+    this.loginService.getUserRole()
+      .subscribe(res => this.userRole = res.payload.role);
+  }
 
   editHealthCare(healthCareID: number){
     this.edit = true;

@@ -4,16 +4,16 @@
         <legend><b>Datos Personales</b></legend>
         <form class="col s12" [formGroup]="customerForm">
             <div class="row">
-                <div class="col m6 direction">
+                <!-- <div class="col m6 direction">
                     <span class="description">Nombre y Apellido:</span>
                     <div class="input-field inline">
                         <input type="text" class="ml10 col" formControlName="nameAndSurname">
                     </div>
-                </div>
-                <!-- <div class="col m7 direction">
-                    <span class="description">Nombre y Apellido</span>
-                    <input type="text" readonly formControlName="nameAndSurname">
                 </div> -->
+                <div class="col m7">
+                    Nombre y Apellido
+                    <input type="text" readonly formControlName="nameAndSurname">
+                </div>
                 <div class="col s4 offset-s1">
                     Teléfono
                     <input type="text" readonly formControlName="telephone">
@@ -25,9 +25,9 @@
                     <input type="text" readonly formControlName="address">
                 </div>
                 <button class="waves-effect waves-light btn-small col offset-s9" (click)="addCustomer()"><i
-                    class="material-icons left">search</i>Buscar Cliente</button>
+                        class="material-icons left">search</i>Buscar Cliente</button>
             </div>
-        </form>      
+        </form>
     </fieldset>
     <app-prescriptions-per-customer *ngIf="customer" [customerID]="customer.idCliente"></app-prescriptions-per-customer>
 </div>
