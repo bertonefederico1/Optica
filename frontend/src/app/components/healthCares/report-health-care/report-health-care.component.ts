@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HealthCaresService } from './../../../services/healthCares/health-cares.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import * as html2pdf from 'html2pdf.js'
+import { MatDialog } from '@angular/material/dialog';
+import { PopUpReportComponent } from '../pop-up-report/pop-up-report.component';
 
 @Component({
   selector: 'app-report-health-care',
@@ -13,7 +14,8 @@ import * as html2pdf from 'html2pdf.js'
 export class ReportHealthCareComponent implements OnInit {
 
   constructor(
-    private healthCaresService: HealthCaresService
+    private healthCaresService: HealthCaresService,
+    private dialogRef: MatDialog
   ) { }
 
   date = new Date();
@@ -35,31 +37,6 @@ export class ReportHealthCareComponent implements OnInit {
     this.getYears();
   }
 
-  generateReport(){
-    const options = {
-      filename: "Reporte Obra Social",
-      margin: 2,
-      image: {type: 'jpeg', quality: '0.98'},
-      html2canvas: { },
-      jsPDF: {orientation: 'portrait'}
-    };
-    const supportingDocument: Element = document.getElementById('report');
-    html2pdf()
-      .from(supportingDocument)
-      .set(options)
-      .toPdf()
-      .get('pdf')
-      .then((pdf) => {
-        window.open(pdf.output('bloburl'), '_blank');
-      })
-  }
-
-  getYears(){
-    for(let i = 2000; i <= this.date.getFullYear(); i++){
-      this.years.push(i);
-    }
-  }
-
   searchReport(){
     const month = this.reportForm.get('month').value;
     const monthNumber = parseInt((this.months.indexOf(month) + 1).toString().padStart(2, '0'));
@@ -70,30 +47,22 @@ export class ReportHealthCareComponent implements OnInit {
       .subscribe(
         res => {
           this.glasses = res;
+          this.dialogRef.open(PopUpReportComponent, {
+            height: '100%',
+            width: '100%',
+            data: {
+              glasses: this.glasses,
+              dataSearch: this.reportForm.value
+            }
+          });
         },
         err => alert(err.error.msg)
       )
   }
 
-  calculateFarValue(farValue: any){
-    const modifyDecimals = (decimals) => {
-      if(decimals[1]){
-        if(decimals[1].length === 1){
-          decimals[1] = ''; 
-          return decimals[1] + '0';
-        } else if(decimals[1].length === 2){
-          return '';
-        };
-      } else {
-        return '.00';
-      };
-    }; 
-    const decimals = farValue.toString().split('.');
-    const decimalsTruncated = modifyDecimals(decimals);
-    if(farValue > 0) {
-      return '+' + farValue.toString() + decimalsTruncated;
-    } else if(farValue < 0) {
-      return '-' + farValue.toString() + decimalsTruncated;
+  getYears(){
+    for(let i = 2000; i <= this.date.getFullYear(); i++){
+      this.years.push(i);
     }
   }
 

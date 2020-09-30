@@ -1,0 +1,76 @@
+<div id="report" class="section" *ngIf="glasses">
+    <div class="description-report">
+        <b>Resúmen mensual de prestaciones ópticas correspondientes al mes de {{ data.dataSearch.month }} de {{ data.dataSearch.year }}</b>
+    </div>
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <th scope="col" colspan="2" rowspan="2"></th>
+                <th class="center" scope="col" colspan="6">Cerca</th>
+                <th class="center" scope="col" colspan="6">Lejos</th>
+                <th scope="col" colspan="2" rowspan="2"></th>
+            </tr>
+            <tr>
+                <th class="center" scope="col" colspan="3">Ojo Izquierdo</th>
+                <th class="center" scope="col" colspan="3">Ojo Derecho</th>
+                <th class="center" scope="col" colspan="3">Ojo Izquierdo</th>
+                <th class="center" scope="col" colspan="3">Ojo Derecho</th>
+                <th style="border: none" scope="col"></th>
+            </tr>
+            <tr>
+                <th>Nombre y apellido</th>
+                <th>Nº Afiliado</th>
+                <th>Esf</th>
+                <th>Cil</th>
+                <th>Eje</th>
+                <th>Esf</th>
+                <th>Cil</th>
+                <th>Eje</th>
+
+                <th>Esf</th>
+                <th>Cil</th>
+                <th>Eje</th>
+                <th>Esf</th>
+                <th>Cil</th>
+                <th>Eje</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let element of glasses">
+                <td>{{ element.nombre }} {{ element.apellido }}</td>
+                <td>{{ element.nroSocio }}</td>
+                <!-- CERCA -->
+                <td>{{ element.valorEsfOI }}</td>
+                <td>{{ element.valorCilOI }}</td>
+                <td>{{ element.ejeOI }}º</td>
+                <td>{{ element.valorEsfOD }}</td>
+                <td>{{ element.valorCilOD }}</td>
+                <td>{{ element.ejeOD }}º</td>
+                <!-- LEJOS -->
+                <td>{{ calculateFarValue(element.valorLejosOI) }}</td>
+                <td>{{ element.valorCilOI }}</td>
+                <td>{{ element.ejeOI }}º</td>
+                <td>{{ calculateFarValue(element.valorLejosOD) }}</td>
+                <td>{{ element.valorCilOD }}</td>
+                <td>{{ element.ejeOD }}º</td>
+                <td>$ {{ element.montoTotal }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col push-m9 mt2" style="font-size: 20px">
+            <span class="description" style="font-size: 20px">Total: </span>
+            <span><b>$ {{ totalAmount }}</b></span>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="glasses">
+    <div class="col push-m8">
+        <a class="waves-effect waves-light btn" (click)="generateReport()"><i
+                class="material-icons left">search</i>Generar Reporte</a>
+        <a class="waves-effect red btn ml10" mat-dialog-close>Salir</a>
+    </div>
+</div>

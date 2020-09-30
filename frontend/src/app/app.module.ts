@@ -50,6 +50,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from "./guards/auth.guard";
 import { TokenInterceptorService } from './services/token-interceptor/token-interceptor.service';
 import { ReportHealthCareComponent } from './components/healthCares/report-health-care/report-health-care.component';
+import { PopUpReportComponent } from './components/healthCares/pop-up-report/pop-up-report.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,8 @@ import { ReportHealthCareComponent } from './components/healthCares/report-healt
     SelectGlassesPendingComponent,
     ReportHealthCareComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    PopUpReportComponent
   ],
   imports: [
   BrowserModule,

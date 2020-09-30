@@ -1,6 +1,12 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+
+.description-report {
+    text-align: center !important;
+    font-size: 20px;
+}
+
 #report td {
     border: 1px solid black;
     padding: 4px;
