@@ -23,6 +23,7 @@ const customerHealthCareController = require('../controllers/customerHealthCareC
 //Login y Logout
 router.post('/login', logController.signIn);
 router.post('/signup', logController.signUp);
+router.get('/getUserRole', logController.getUserRole);
 
 //Rutas de Clientes
 router.get('/customers/:select?', logController.verifyTokenUserLvl3, customerController.getAll);

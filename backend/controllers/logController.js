@@ -21,7 +21,7 @@ logController.signIn = async (req, res) => {
         if(!match) {
             throw new Error('Usuario y/o contraseña incorrectos');
         };
-        const token = jwt.sign({userLevel: user.nivelUsuario}, 'wordKey');
+        const token = jwt.sign({userLevel: user.nivelUsuario, role: user.rol}, 'wordKey');
         res.status(200).json({token});
     } catch (err) {
         res.status(400).json({
@@ -50,8 +50,6 @@ logController.signUp = async (req, res) => {
             msg: err.message
         });
     }
-   
-    
 }
 
 logController.verifyTokenUserLvl3 = (req, res, next) => {
@@ -98,6 +96,22 @@ logController.verifyTokenUserLvl5 = (req, res, next) => {
     } else {
         next();
     };
+};
+
+logController.getUserRole = (req, res) => {
+    if(!req.headers.authorization){
+        res.status(401).json({
+            msg: 'Debe inciar sesion'
+        });
+    };
+    const token = req.headers.authorization.split(' ')[1];
+    if(token === null){
+        res.status(401).json({
+            msg: 'Debe inciar sesion'
+        });
+    };
+    const payload = jwt.verify(token, 'wordKey');
+    res.status(200).json({payload})
 };
 
 /* logController.verifyUserLevel = (req, res, next) => {

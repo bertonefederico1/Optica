@@ -24,4 +24,8 @@ export class LoginService {
     return localStorage.getItem('token');
   }
 
+  getUserRole(){
+    return this.http.get<any>(`${this.URL}/getUserRole`);
+  }
+
 }
