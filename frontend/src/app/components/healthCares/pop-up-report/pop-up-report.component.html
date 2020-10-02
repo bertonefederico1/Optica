@@ -61,9 +61,15 @@
         </tbody>
     </table>
     <div class="row">
-        <div class="col push-m9 mt2" style="font-size: 20px">
+        <div class="col push-m8 mt2" style="font-size: 20px">
             <span class="description" style="font-size: 20px">Total: </span>
             <span><b>$ {{ totalAmount }}</b></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col push-m8 mt2" style="font-size: 20px">
+            <span class="description" style="font-size: 20px">Nº de Factura: </span>
+            <span><b>{{ data.reportForm.receiptNumber.toString().padStart(7, 0) }}</b></span>
         </div>
     </div>
 </div>

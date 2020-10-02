@@ -94,7 +94,7 @@ router.get('/orders', logController.verifyTokenUserLvl3, orderController.getAll)
 router.get('/order/:orderNumber', logController.verifyTokenUserLvl3, orderController.getOne);
 router.get('/ordersByPrescription/:prescriptionNumber', logController.verifyTokenUserLvl3, orderController.getOrdersByPrescription);
 router.post('/newOrder', logController.verifyTokenUserLvl5, orderController.createOrder);
-router.put('/editOrder/:orderNumber', logController.verifyTokenUserLvl5, orderController.editOrder);
+router.put('/editOrder/:orderNumber', logController.verifyTokenUserLvl3, orderController.editOrder);
 router.put('/suspendOrder/:orderNumber', logController.verifyTokenUserLvl5, orderController.suspendOrder);
 
 //Rutas de Anteojos

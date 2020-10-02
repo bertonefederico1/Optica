@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { SelectCustomerComponent } from './../../customers/select-customer/select-customer.component';
 import { fromEvent } from 'rxjs';
@@ -10,10 +10,9 @@ import { CustomersService } from './../../../services/customers/customers.servic
   templateUrl: './prescriptions.component.html',
   styleUrls: []
 })
-export class PrescriptionsComponent implements OnInit {
+export class PrescriptionsComponent {
 
   dialogConfig = new MatDialogConfig();
-  openModalSelectCliente$ = fromEvent<KeyboardEvent>(document, 'keyup');
   customer: any;
 
   constructor(
@@ -27,15 +26,6 @@ export class PrescriptionsComponent implements OnInit {
     telephone: new FormControl(''),
     address: new FormControl('')
   })
-
-  ngOnInit(): void {
-    this.openModalSelectCliente$
-      .subscribe(res => {
-        if(res.key === '+'){
-          this.addCustomer();
-        }
-      })
-  }
 
   setData(){
     this.customerForm.patchValue({
@@ -53,8 +43,10 @@ export class PrescriptionsComponent implements OnInit {
     const dialogRef = this.dialogRef.open(SelectCustomerComponent, this.dialogConfig);
     dialogRef.afterClosed()
       .subscribe(res => {
-        this.customer = res;
-        this.setData();
+        if (res){
+          this.customer = res;
+          this.setData();
+        };
       });
   }
 

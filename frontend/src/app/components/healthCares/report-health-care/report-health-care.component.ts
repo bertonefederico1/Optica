@@ -52,6 +52,7 @@ export class ReportHealthCareComponent implements OnInit {
             width: '100%',
             data: {
               glasses: this.glasses,
+              reportForm: this.reportForm.value,
               dataSearch: this.reportForm.value
             }
           });

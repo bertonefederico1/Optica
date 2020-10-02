@@ -28,7 +28,7 @@ export class AddPrescriptionComponent implements OnInit {
     axisLE: new FormControl('', Validators.required),
     farValueDIP: new FormControl('', Validators.required),
     nearValueDIP: new FormControl('', Validators.required),
-    addValue: new FormControl('', Validators.required)
+    addValue: new FormControl(0, Validators.required)
   });
   prescription: any;
 

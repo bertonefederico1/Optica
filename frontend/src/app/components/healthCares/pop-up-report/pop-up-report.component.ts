@@ -21,6 +21,7 @@ export class PopUpReportComponent implements OnInit {
   ngOnInit(): void {
     this.glasses = this.data.glasses;
     this.totalAmount = this.getTotalAmount();
+    console.log(this.data)
   }
 
   generateReport(){

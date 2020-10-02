@@ -48,9 +48,9 @@ customerController.getOne = async (req, res) => {
 
 customerController.createCustomer = async (req, res) => {
     try {
-        if(req.body.obrasSociales.length === 0) {
+        /* if(req.body.obrasSociales.length === 0) {
             throw new Error();
-        }; 
+        };  */
         const customer = await Customer.create({
             nombre: req.body.nombre,
             apellido: req.body.apellido,
@@ -58,13 +58,15 @@ customerController.createCustomer = async (req, res) => {
             email: req.body.email,
             domicilio: req.body.domicilio
         });
-        req.body.obrasSociales.map(os => {
-            Customer_HealthCare.create({
-                idCliente: customer.idCliente,
-                idObraSocial: os.obraSocial.idObraSocial,
-                nroSocio: os.nsocio
-            })
-        });
+        if(req.body.obrasSociales.length > 0){
+            req.body.obrasSociales.map(os => {
+                Customer_HealthCare.create({
+                    idCliente: customer.idCliente,
+                    idObraSocial: os.obraSocial.idObraSocial,
+                    nroSocio: os.nsocio
+                })
+            });
+        };
         res.status(200).json();
     } catch (err) {
         res.status(400).json({
@@ -75,9 +77,9 @@ customerController.createCustomer = async (req, res) => {
 
 customerController.editCustomer = async (req, res) => {
     try {
-        if(req.body.obrasSociales.length === 0) {
+        /* if(req.body.obrasSociales.length === 0) {
             throw new Error();
-        }; 
+        };  */
         await Customer.update(req.body, {
             where: {
                 idCliente: req.params.customerID
@@ -88,13 +90,15 @@ customerController.editCustomer = async (req, res) => {
                 idCliente: req.params.customerID
             }
         });
-        req.body.obrasSociales.map((os) => {
-            Customer_HealthCare.create({
-                idObraSocial: os.obraSocial.idObraSocial,
-                idCliente: req.params.customerID,
-                nroSocio: os.nsocio
+        if(req.body.obrasSociales.length > 0) {
+            req.body.obrasSociales.map((os) => {
+                Customer_HealthCare.create({
+                    idObraSocial: os.obraSocial.idObraSocial,
+                    idCliente: req.params.customerID,
+                    nroSocio: os.nsocio
+                })
             })
-        });
+        };
         res.status(200).json();
     } catch (err) {
         res.status(400).json({

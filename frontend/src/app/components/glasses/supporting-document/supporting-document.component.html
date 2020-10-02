@@ -47,7 +47,8 @@
         </div>
         <div class="row">
             <label class="black-text label2">Saldo: </label>
-            <span class="content2">$ {{ glasses.montoTotal - glasses.montoSena }}</span>
+            <span *ngIf="!glasses.abonoSaldo" class="content2">$ {{ glasses.montoTotal - glasses.montoSena }}</span>
+            <span *ngIf="glasses.abonoSaldo" class="content2">Abonado</span>
         </div>
     </div>
     <button (click)="generateSupportingDocument()" class="waves-effect waves-light btn">Generar Comprobante</button>

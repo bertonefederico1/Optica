@@ -23,13 +23,13 @@
         <div class="row">
             <div class="col m12">
                 <span class="description">Cod. Lente Izquierdo:</span>
-                <span class="content1">{{ glasses.codLenteOI.toString().padStart(6, 0) }}</span>
+                <span *ngIf="glasses.LensLE" class="content1">{{ glasses.codLenteOI.toString().padStart(6, 0) }}</span>
             </div>
         </div>
         <div class="row">
             <div class="col m12">
                 <span class="description">Cod. Lente Derecho:</span>
-                <span class="content1">{{ glasses.codLenteOD.toString().padStart(6, 0) }}</span>
+                <span *ngIf="glasses.LensRE" class="content1">{{ glasses.codLenteOD.toString().padStart(6, 0) }}</span>
             </div>
         </div>
         <div class="row center-align mt3p">
@@ -40,27 +40,27 @@
             <div class="center-align col m12">
                 <div class="col m6">
                     <span class="description">Valor Esférico:</span>
-                    <span class="content1">{{ glasses.LensLE.valorEsf }}</span>
+                    <span *ngIf="glasses.LensLE" class="content1">{{ glasses.LensLE.valorEsf }}</span>
                 </div>
                 <div class="col m6">
                     <span class="description">Valor Esférico:</span>
-                    <span class="content1">{{ glasses.LensRE.valorEsf }}</span>
+                    <span *ngIf="glasses.LensRE" class="content1">{{ glasses.LensRE.valorEsf }}</span>
                 </div>
                 <div class="col m6">
                     <span class="description">Valor Cilíndrico:</span>
-                    <span class="content1">{{ glasses.LensLE.valorCil }}</span>
+                    <span *ngIf="glasses.LensLE" class="content1">{{ glasses.LensLE.valorCil }}</span>
                 </div>
                 <div class="col m6">
                     <span class="description">Valor Cilíndrico:</span>
-                    <span class="content1">{{ glasses.LensRE.valorCil }}</span>
+                    <span *ngIf="glasses.LensRE" class="content1">{{ glasses.LensRE.valorCil }}</span>
                 </div>
                 <div class="col m6">
                     <span class="description">Eje:</span>
-                    <span class="content1">{{ glasses.LensLE.eje }} °</span>
+                    <span *ngIf="glasses.LensLE" class="content1">{{ glasses.LensLE.eje }} °</span>
                 </div>
                 <div class="col m6">
                     <span class="description">Eje:</span>
-                    <span class="content1">{{ glasses.LensRE.eje }} °</span>
+                    <span *ngIf="glasses.LensRE" class="content1">{{ glasses.LensRE.eje }} °</span>
                 </div>
             </div>
         </div>

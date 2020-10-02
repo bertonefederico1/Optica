@@ -35,7 +35,7 @@ export class SupportingDocumentComponent implements OnInit {
     const options = {
       filename: "Comprobante Anteojo",
       margin: 2,
-      image: {type: 'svg', quality: '0.98'},
+      image: {type: 'png', quality: '0.98'},
       html2canvas: { },
       jsPDF: {orientation: 'portrait'}
     };
