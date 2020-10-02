@@ -120,6 +120,12 @@
         <div class="divider blue-grey"></div>
         <h3 class="title2"><b>Datos Pedido</b></h3>
         <div class="row">
+            <div class="col m12">
+                <span class="description">Nº de Pedido:</span>
+                <span class="content1">{{ order.numPedido.toString().padStart(7, 0)}}</span>
+            </div>
+        </div>
+        <div class="row">
             <div class="col m4">
                 <span class="description">Fecha:</span>
                 <span class="content1">{{ order.fechaPedido | date: 'dd-MM-yyyy'}}</span>
