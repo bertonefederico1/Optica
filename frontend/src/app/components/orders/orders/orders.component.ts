@@ -25,7 +25,7 @@ export class OrdersComponent implements OnInit {
   dialogConfig = new MatDialogConfig();
   edit: boolean;
   filterSelect: string = 'Todos';
-  statusArray: string[] = ['Todos', 'Pendiente', 'Entregado'];
+  statusArray: string[] = ['Todos', 'Pendiente', 'Recibido'];
   userRole: string;
 
   ngOnInit(): void {
@@ -77,6 +77,8 @@ export class OrdersComponent implements OnInit {
       orderNumber: orderNumber
     };
     const dialogRef = this.dialogRef.open(AddOrderComponent, this.dialogConfig);
+    dialogRef.afterClosed()
+      .subscribe(res => this.getAll());
   }
 
   deleteOrder(orderNumber: number){
