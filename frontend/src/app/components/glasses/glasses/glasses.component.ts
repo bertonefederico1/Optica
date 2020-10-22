@@ -25,7 +25,7 @@ export class GlassesComponent implements OnInit {
   dataSource = null;
   dialogConfig = new MatDialogConfig();
   filterSelect: string = 'Todos';
-  statusArray: string[] = ['Todos', 'Pendiente', 'En Taller', 'Entregado'];
+  statusArray: string[] = ['Todos', 'Pendiente', 'En Taller', 'Listo Para Entregar', 'Entregado'];
   edit: boolean;
   glasses: any;
   userRole: string;

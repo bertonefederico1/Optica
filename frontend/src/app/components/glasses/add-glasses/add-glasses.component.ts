@@ -71,7 +71,7 @@ export class AddGlassesComponent implements OnInit {
   glassesUtilities: string[] = ['Lejos', 'Cerca', 'Ambos']; 
   healthCares$: Observable<any[]>;
   glasses: any;
-  statusArray: any[] = ['Pendiente', 'En Taller', 'Entregado'];
+  statusArray: any[] = ['Pendiente', 'En Taller', 'Listo Para Entregar', 'Entregado'];
   today = moment().format('DD/MM/yyyy');
 
   ngOnInit(): void {
