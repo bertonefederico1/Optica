@@ -1,5 +1,5 @@
-<h4 *ngIf="!data.edit" class="center-align section title1">NUEVA OBRA SOCIAL</h4>
-<h4 *ngIf="data.edit" class="center-align section title1">EDITAR OBRA SOCIAL</h4>
+<h4 *ngIf="!data.edit" class="center-align section titleFicha">NUEVA OBRA SOCIAL</h4>
+<h4 *ngIf="data.edit" class="center-align section titleFicha">EDITAR OBRA SOCIAL</h4>
 <div class="container section">
     <div class="row">
         <form class="col s12" [formGroup]="healthCareForm">
@@ -20,9 +20,9 @@
             </div>
           </div>
         </form>
-      </div>
-      <div class="row">
-        <button class="waves-effect green btn selected" (click)="onSubmit()">Guardar</button>
-        <button class="waves-effect red btn selected" (click)="cancel()" style="margin-left: 0.2rem;">Cancelar</button>
-      </div>
-</div>
+      </div> 
+  </div>
+  <p class="right-align margin-right: 1rem;">
+    <button class="waves-effect green btn selected" (click)="onSubmit()">Guardar</button>
+    <button class="waves-effect red btn selected" (click)="cancel()" style="margin-left: 0.2rem;">Cancelar</button>
+  </p>

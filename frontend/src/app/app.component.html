@@ -1,7 +1,7 @@
-<nav class="teal lighten-2" *ngIf="loginService.isLogged()">
+<nav class="teal lighten-1 white-text" *ngIf="loginService.isLogged()">
     <div class="nav-wrapper">
-      <a class="black-text brand-logo" style="margin-left: 82%" routerLink="/">OpticaVLA</a>
-      <a class="black-text brand-logo right">
+      <a class="white-text brand-logo" style="margin-left: 82%" routerLink="/">OpticaVLA</a>
+      <a class="white-text brand-logo right">
         <i class="material-icons md-35" style="cursor: pointer;" mat-button [matMenuTriggerFor]="loginMenu">person
           <mat-menu #loginMenu="matMenu" xPosition="after">
             <a (click)="logout()" mat-menu-item>Cerrar Sesión</a>
@@ -9,15 +9,15 @@
         </i>
       </a>
       <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li *ngIf="loginService.getNameUserRole() !== 'EmpleadoTaller'"><a class="black-text" routerLink="clientes" routerLinkActive="active">Clientes</a></li>
-        <li><a class="black-text" routerLink="recetas" routerLinkActive="active">Recetas</a></li>
-        <li><a class="black-text" routerLink="anteojos" routerLinkActive="active">Anteojos</a></li>
-        <li><a class="black-text" routerLink="pedidos" routerLinkActive="active">Pedidos</a></li>
-        <li><a class="black-text" routerLink="lentes" routerLinkActive="active">Lentes</a></li>
-        <li><a class="black-text" routerLink="armazones" routerLinkActive="active">Armazones</a></li>
-        <li><a class="black-text" routerLink="proveedores" routerLinkActive="active">Proveedores/Laboratorios</a></li>
+        <li *ngIf="loginService.getNameUserRole() !== 'EmpleadoTaller'"><a class="white-text" routerLink="clientes" routerLinkActive="active">Clientes</a></li>
+        <li><a class="white-text" routerLink="recetas" routerLinkActive="active">Recetas</a></li>
+        <li><a class="white-text" routerLink="anteojos" routerLinkActive="active">Anteojos</a></li>
+        <li><a class="white-text" routerLink="pedidos" routerLinkActive="active">Pedidos</a></li>
+        <li><a class="white-text" routerLink="lentes" routerLinkActive="active">Lentes</a></li>
+        <li><a class="white-text" routerLink="armazones" routerLinkActive="active">Armazones</a></li>
+        <li><a class="white-text" routerLink="proveedores" routerLinkActive="active">Proveedores/Laboratorios</a></li>
         <li>
-          <a *ngIf="loginService.getNameUserRole() !== 'EmpleadoTaller' && loginService.getNameUserRole() !== 'EmpleadoLocalComercial'" class="black-text" mat-button [matMenuTriggerFor]="healthCareMenu"><i class="material-icons right">arrow_drop_down</i>Obras Sociales</a>
+          <a *ngIf="loginService.getNameUserRole() !== 'EmpleadoTaller' && loginService.getNameUserRole() !== 'EmpleadoLocalComercial'" class="white-text" mat-button [matMenuTriggerFor]="healthCareMenu"><i class="material-icons right">arrow_drop_down</i>Obras Sociales</a>
             <mat-menu #healthCareMenu="matMenu" xPosition="after">
               <a mat-menu-item routerLink="obrasSociales">Obras Sociales</a>
               <a mat-menu-item routerLink="reportHealthCare">Generar Reporte</a>

@@ -1,4 +1,4 @@
-<h2 mat-dialog-title class="title1">CLIENTES</h2>
+<h2 mat-dialog-title class="titleFicha">CLIENTES</h2>
 <mat-dialog-content>
     <div class="row">
         <input class="col s3 offset-s9" type="search" (keyup)="applyFilter($event.target.value)" (focus)="setupFilter()"
@@ -34,6 +34,6 @@
     </table>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close class="btn btn-small red" style="margin-right: 6px;">Cancelar</button>
-    <button mat-button class="btn btn-small" (click)="accept()">Aceptar</button>
+    <button mat-button class="btn btn-small" (click)="accept()"style="margin-right: 10px;">Aceptar</button>
+    <button mat-button mat-dialog-close class="btn btn-small red">Cancelar</button>
 </mat-dialog-actions>

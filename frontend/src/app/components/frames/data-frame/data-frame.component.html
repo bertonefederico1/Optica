@@ -1,40 +1,42 @@
-<div class="sheet" *ngIf="frame">
+<div class="sheetFicha" *ngIf="frame">
     <p>
-    <h4 class="center-align title1">DATOS DEL ARMAZON</h4>
+    <h4 class="center-align titleFicha">DATOS DEL ARMAZON</h4>
     <br><br>
 
     <p>
-        <label class="black-text label1">Marca: </label>
-        <span class="content">{{frame.marca}}</span>
+        <label class="black-text labelFicha">Marca: </label>
+        <span class="contentFicha">{{frame.marca}}</span>
     <p>
-        <label class="black-text label1">Modelo: </label>
-        <span class="content">{{frame.modelo}}</span>
+        <label class="black-text labelFicha">Modelo: </label>
+        <span class="contentFicha">{{frame.modelo}}</span>
 
     <p>
-        <label class="black-text label1">Color: </label>
-        <span class="content">{{frame.color}}</span>
+        <label class="black-text labelFicha">Color: </label>
+        <span class="contentFicha">{{frame.color}}</span>
 
     <p>
-        <label class="black-text label1">Proveedor: </label>
-        <span class="content">{{frame.proveedor_laboratorio.nombreFantasia}}</span>
+        <label class="black-text labelFicha">Proveedor: </label>
+        <span class="contentFicha">{{frame.proveedor_laboratorio.nombreFantasia}}</span>
 
     <p>
-        <label class="black-text label1">Cantidad en Stock: </label>
-        <span class="content">{{frame.cantidad}}</span>
+        <label class="black-text labelFicha">Cantidad en Stock: </label>
+        <span class="contentFicha">{{frame.cantidad}}</span>
 
     <p>
-        <label class="black-text label1">Diseño: </label>
-        <span class="content">{{frame.diseno_armazon.nombre}}</span>
+        <label class="black-text labelFicha">Diseño: </label>
+        <span class="contentFicha">{{frame.diseno_armazon.nombre}}</span>
 
     <p>
-        <label class="black-text label1">Material: </label>
-        <span class="content">{{frame.material_armazon.nombre}}</span>
+        <label class="black-text labelFicha">Material: </label>
+        <span class="contentFicha">{{frame.material_armazon.nombre}}</span>
 
     <p>
-        <label class="black-text label1">Utilidad: </label>
-        <span class="content">{{frame.utilidad_armazon.nombre}}</span>
+        <label class="black-text labelFicha">Utilidad: </label>
+        <span class="contentFicha">{{frame.utilidad_armazon.nombre}}</span>
 
 </div>
-<div style="padding-bottom: 2rem">
-    <a (click)="close()" class="waves-effect red btn-large" style="display: block">Salir</a>
+<div>
+    <p class="right-align">
+        <a (click)="close()" class="waves-effect btn-small red" style="margin-right: 2rem;">Salir</a>
+    </p>
 </div>

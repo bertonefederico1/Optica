@@ -1,21 +1,21 @@
-<div *ngIf="prescription" class="sheet">
+<div *ngIf="prescription" class="sheetFicha">
     <p>
-    <h4 class="center-align title1">DATOS DE LA RECETA</h4>
+    <h4 class="center-align titleFicha">DATOS DE LA RECETA</h4>
     <fieldset class="container">
         <legend><b>Datos Personales</b></legend>
         <div class="col m12">
             <div class="row">
                 <div class="col s12">
-                    <span class="description">Nombre y Apellido:</span><span
-                        class="content1">{{prescription.cliente.nombre}} {{prescription.cliente.apellido}}</span>
+                    <span class="descriptionFicha">Nombre y Apellido:</span><span
+                        class="contentFicha">{{prescription.cliente.nombre}} {{prescription.cliente.apellido}}</span>
                 </div>
                 <div class="col s12">
-                    <span class="description">Domicilio:</span> <span
-                        class="content1">{{prescription.cliente.domicilio}}</span>
+                    <span class="descriptionFicha">Domicilio:</span> <span
+                        class="contentFicha">{{prescription.cliente.domicilio}}</span>
                 </div>
                 <div class="col s12">
-                    <span class="description">Teléfono:</span><span
-                        class="content1">{{prescription.cliente.telefono}}</span>
+                    <span class="descriptionFicha">Teléfono:</span><span
+                        class="contentFicha">{{prescription.cliente.telefono}}</span>
                 </div>
             </div>
         </div>
@@ -23,34 +23,34 @@
     <fieldset class="container">
         <legend><b>Datos Lentes</b></legend>
         <div class="row center-align">
-            <div class="col s6 subtitle">OJO DERECHO</div>
-            <div class="col s6 subtitle">OJO IZQUIERDO</div>
+            <div class="col s6 subtitleFicha">OJO DERECHO</div>
+            <div class="col s6 subtitleFicha">OJO IZQUIERDO</div>
         </div>
         <div class="row col m12">
             <div class="center-align">
                 <div class="col m6">
-                    <span class="description">Valor Esférico:</span><span
-                        class="content1">{{prescription.valorEsfOD}}</span>
+                    <span class="descriptionFicha">Valor Esférico:</span><span
+                        class="contentFicha">{{prescription.valorEsfOD}}</span>
                 </div>
                 <div class="col m6">
-                    <span class="description">Valor Esférico:</span><span
-                        class="content1">{{prescription.valorEsfOI}}</span>
+                    <span class="descriptionFicha">Valor Esférico:</span><span
+                        class="contentFicha">{{prescription.valorEsfOI}}</span>
                 </div>
                 <div class="col m6">
-                    <span class="description">Valor Cilíndrico:</span><span
-                        class="content1">{{prescription.valorCilOD}}</span>
+                    <span class="descriptionFicha">Valor Cilíndrico:</span><span
+                        class="contentFicha">{{prescription.valorCilOD}}</span>
                 </div>
                 <div class="col m6">
-                    <span class="description">Valor Cilíndrico:</span><span
-                        class="content1">{{prescription.valorCilOI}}</span>
+                    <span class="descriptionFicha">Valor Cilíndrico:</span><span
+                        class="contentFicha">{{prescription.valorCilOI}}</span>
                 </div>
                 <div class="col m6">
-                    <span class="description">Eje (En grados):</span><span
-                        class="content1">{{prescription.ejeOD}}º</span>
+                    <span class="descriptionFicha">Eje (En grados):</span><span
+                        class="contentFicha">{{prescription.ejeOD}}º</span>
                 </div>
                 <div class="col m6">
-                    <span class="description">Eje (En grados):</span><span
-                        class="content1">{{prescription.ejeOI}}º</span>
+                    <span class="descriptionFicha">Eje (En grados):</span><span
+                        class="contentFicha">{{prescription.ejeOI}}º</span>
                 </div>
             </div>
         </div>
@@ -58,20 +58,20 @@
         <div class="center-align">
             <div class="row">
                 <div class="col m6">
-                    <span class="description">D.I Cerca:</span><span
-                        class="content1">{{prescription.valorDIPCerca}}</span>
+                    <span class="descriptionFicha">D.I Cerca:</span><span
+                        class="contentFicha">{{prescription.valorDIPCerca}}</span>
                 </div>
                 <div class="col m6">
-                    <span class="description">Valor ADD:</span><span class="content1">{{prescription.valorADD}}</span>
+                    <span class="descriptionFicha">Valor ADD:</span><span class="contentFicha">{{prescription.valorADD}}</span>
                 </div>
                 <div class="col m6">
-                    <span class="description">D.I Lejos:</span><span
-                        class="content1">{{prescription.valorDIPLejos}}</span>
+                    <span class="descriptionFicha">D.I Lejos:</span><span
+                        class="contentFicha">{{prescription.valorDIPLejos}}</span>
                 </div>
             </div>
             <div class="row">
-                <div class="col m12 description">
-                    <span class="description">Observaciones:</span>
+                <div class="col m12 descriptionFicha">
+                    <span class="descriptionFicha">Observaciones:</span>
                     <div class="input-field inline">
                         <textarea disabled class="text-area2">{{prescription.obsReceta}}</textarea>
                     </div>
@@ -79,8 +79,9 @@
             </div>
         </div>
     </fieldset>
-    <div class="container">
-        <a mat-dialog-close class="waves-effect red btn-large" style="display: block; margin: 5px">Salir</a>
-    </div>
+    <p></p>
+    <p class="right-align">
+        <a mat-dialog-close class="waves-effect waves-light btn-small red" style="margin-right: 2rem;">Salir</a>
+    </p>
     
 </div>

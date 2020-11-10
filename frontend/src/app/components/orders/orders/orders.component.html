@@ -4,7 +4,7 @@
         <input class="col s3 offset-s9" type="search" (keyup)="applyFilter($event.target.value)" (focus)="setupFilter()"
             placeholder="Buscar" />
         <div class="col m12 offset-m9">
-            <span class="description">Estado:</span>
+            <span class="descriptionFicha">Estado:</span>
             <div class="input-field inline">
                 <select class="browser-default col m3 border-black"
                     style="border-color: black; height: 2.5rem; margin-top: 1rem" name="filterSelect"
@@ -26,7 +26,7 @@
                 {{ element.anteojo_recetum.recetum.cliente.apellido }}</td>
         </ng-container>
         <ng-container matColumnDef="prescriptionNumber">
-            <th mat-header-cell *matHeaderCellDef>N° de Receta</th>
+            <th mat-header-cell *matHeaderCellDef>N° de Anteojo</th>
             <td mat-cell *matCellDef="let element">
                 {{ element.anteojo_recetum.recetum.numReceta.toString().padStart(7,0) }}</td>
         </ng-container>

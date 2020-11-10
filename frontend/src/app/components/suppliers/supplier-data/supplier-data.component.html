@@ -1,36 +1,36 @@
-<div *ngIf="supplier" class="sheet">
+<div *ngIf="supplier" class="sheetFicha">
   <p></p>
-  <h4 class="center-align title1">DATOS PROVEEDOR/LABORATORIO</h4>
+  <h4 class="center-align titleFicha">DATOS PROVEEDOR/LABORATORIO</h4>
   <br /><br />
 
   <p>
-    <label class="black-text label1">Razón Social: </label>
-    <span class="content">{{ supplier.razonSocial }}</span>
+    <label class="black-text labelFicha">Razón Social: </label>
+    <span class="contentFicha">{{ supplier.razonSocial }}</span>
   </p>
 
   <p>
-    <label class="black-text label1">Nombre de Fantasía: </label>
-    <span class="content">{{ supplier.nombreFantasia }}</span>
+    <label class="black-text labelFicha">Nombre de Fantasía: </label>
+    <span class="contentFicha">{{ supplier.nombreFantasia }}</span>
   </p>
 
   <p>
-    <label class="black-text label1">Teléfono: </label>
-    <span class="content">{{ supplier.telefono }}</span>
+    <label class="black-text labelFicha">Teléfono: </label>
+    <span class="contentFicha">{{ supplier.telefono }}</span>
   </p>
 
   <p>
-    <label class="black-text label1">Domicilio: </label>
-    <span class="content">{{ supplier.domicilio }}</span>
+    <label class="black-text labelFicha">Domicilio: </label>
+    <span class="contentFicha">{{ supplier.domicilio }}</span>
   </p>
 
   <p>
-    <label class="black-text label1">Email: </label>
-    <span class="content">{{ supplier.email }}</span>
+    <label class="black-text labelFicha">Email: </label>
+    <span class="contentFicha">{{ supplier.email }}</span>
   </p>
 </div>
 
-<div style="padding-bottom: 2rem">
-  <a (click)="close()" class="waves-effect red btn-large" style="display: block"
-    >Salir</a
-  >
+<div>
+  <p class="right-align">
+    <a (click)="close()" class="waves-effect red btn-small" style="margin-right: 2rem;">Salir</a>
+  </p>
 </div>

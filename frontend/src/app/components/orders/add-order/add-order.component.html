@@ -1,17 +1,17 @@
-<h4 mat-dialog-title class="section title1">DATOS DEL PEDIDO</h4>
+<h4 mat-dialog-title class="section titleFicha">DATOS DEL PEDIDO</h4>
 <form [formGroup]="orderForm">
     <div class="section">
         <fieldset>
             <legend><b>Datos Anteojo</b></legend>
             <div class="row">
                 <div class="col m12">
-                    <span class="description">Nombre y Apellido:</span>
+                    <span class="descriptionFicha">Nombre y Apellido:</span>
                     <div class="input-field inline">
                         <input type="text" class="col m8" readonly formControlName="nameAndSurname">
                     </div>
                 </div>
                 <div class="col m9">
-                    <span class="description">N° de Anteojo:</span>
+                    <span class="descriptionFicha">N° de Anteojo:</span>
                     <div class="input-field inline">
                         <input type="text" class="col m4" readonly formControlName="glassesNumberDescription">
                     </div>
@@ -25,7 +25,7 @@
             <legend><b>Datos Laboratorio</b></legend>
             <div class="row">
                 <div class="col m9">
-                    <span class="description">Laboratorio:</span>
+                    <span class="descriptionFicha">Laboratorio:</span>
                     <div class="input-field inline">
                         <input type="text" readonly formControlName="supplierLaboratoryFantasyName">
                     </div>
@@ -41,13 +41,13 @@
             <legend><b>Datos Pedido</b></legend>
             <div class="row">
                 <div class="col m4">
-                    <span class="description">Fecha:</span>
+                    <span class="descriptionFicha">Fecha:</span>
                     <div class="input-field inline">
                         <input type="text" class="col m8" readonly formControlName="currentDate">
                     </div>
                 </div>
                 <div class="col m8">
-                    <span class="description">Fecha Entrega Esperada:</span>
+                    <span class="descriptionFicha">Fecha Entrega Esperada:</span>
                     <div class="input-field inline">
                         <input type="date" class="validate col m10" formControlName="expectedDeliveryDate">
                     </div>
@@ -55,7 +55,7 @@
             </div>
             <div class="row">
                 <div class="col m12">
-                    <span class="description">Observaciones:</span>
+                    <span class="descriptionFicha">Observaciones:</span>
                     <div class="input-field inline">
                         <textarea class="text-area1 mt3" formControlName="orderObs"></textarea>
                     </div>
@@ -86,49 +86,49 @@
             <div class="row">
                 <div class="center-align">
                     <div class="col m6">
-                        <span class="description">Valor Esférico:</span>
+                        <span class="descriptionFicha">Valor Esférico:</span>
                         <div class="input-field inline">
                             <input type="text" class="ml10 col s5" readonly formControlName="sphericalValueLE">
                         </div>
                     </div>
                     <div class="col m6">
-                        <span class="description">Valor Esférico:</span>
+                        <span class="descriptionFicha">Valor Esférico:</span>
                         <div class="input-field inline">
                             <input type="text" class="ml10 col s5" readonly formControlName="sphericalValueRE">
                         </div>
                     </div>
                     <div class="col m6">
-                        <span class="description">Valor Cilíndrico:</span>
+                        <span class="descriptionFicha">Valor Cilíndrico:</span>
                         <div class="input-field inline">
                             <input type="text" class="ml10 col s5" readonly formControlName="cilyndricalValueLE">
                         </div>
                     </div>
                     <div class="col m6">
-                        <span class="description">Valor Cilíndrico:</span>
+                        <span class="descriptionFicha">Valor Cilíndrico:</span>
                         <div class="input-field inline">
                             <input type="text" class="ml10 col s5" readonly formControlName="cilyndricalValueRE">
                         </div>
                     </div>
                     <div class="col m6">
-                        <span class="description">Eje (En grados):</span>
+                        <span class="descriptionFicha">Eje (En grados):</span>
                         <div class="input-field inline">
                             <input type="text" class="ml10 col s5" readonly formControlName="axisLE">
                         </div>
                     </div>
                     <div class="col m6">
-                        <span class="description">Eje (En grados):</span>
+                        <span class="descriptionFicha">Eje (En grados):</span>
                         <div class="input-field inline">
                             <input type="text" class="ml10 col s5" readonly formControlName="axisRE">
                         </div>
                     </div>
                     <div class="col m6">
-                        <span class="description">Índice de Refracción:</span>
+                        <span class="descriptionFicha">Índice de Refracción:</span>
                         <div class="input-field inline">
                             <input type="text" class="validate ml10 col s5" formControlName="refractionIndexLE">
                         </div>
                     </div>
                     <div class="col m6">
-                        <span class="description">Índice de Refracción:</span>
+                        <span class="descriptionFicha">Índice de Refracción:</span>
                         <div class="input-field inline">
                             <input type="text" class="validate ml10 col s5" formControlName="refractionIndexRE">
                         </div>
@@ -140,13 +140,13 @@
 
             <div class="row">
                 <div class="col m4">
-                    <span class="description">Color:</span>
+                    <span class="descriptionFicha">Color:</span>
                     <div class="input-field inline">
                         <input type="text" class="validate ml10" formControlName="lensColor">
                     </div>
                 </div>
                 <div class="col m4">
-                    <span class="description">Diseño:</span>
+                    <span class="descriptionFicha">Diseño:</span>
                     <div class="input-field inline">
                         <select class="browser-default border-black" *ngIf="lensDesigns$ | async as lensDesigns"
                             style="border-color: black; height: 40px; margin-top: 1rem;" formControlName="lensDesign">
@@ -157,7 +157,7 @@
                     </div>
                 </div>
                 <div class="col m4">
-                    <span class="description">Material:</span>
+                    <span class="descriptionFicha">Material:</span>
                     <div class="input-field inline">
                         <select class="browser-default border-black" *ngIf="lensMaterials$ | async as lensMaterials"
                             style="border-color: black; height: 40px; margin-top: 1rem;" formControlName="lensMaterial">
@@ -168,13 +168,13 @@
                     </div>
                 </div>
                 <div class="col m4">
-                    <span class="description">Diámetro (mm):</span>
+                    <span class="descriptionFicha">Diámetro (mm):</span>
                     <div class="input-field inline">
                         <input type="text" class="validate ml10 col m4" formControlName="lensDiameter">
                     </div>
                 </div>
                 <div class="col m4">
-                    <span class="description">Acabado:</span>
+                    <span class="descriptionFicha">Acabado:</span>
                     <div class="input-field inline">
                         <select class="browser-default border-black" *ngIf="lensFinishes$ | async as lensFinishes"
                             style="border-color: black; height: 40px; margin-top: 1rem;" formControlName="lensFinish">
@@ -185,7 +185,7 @@
                     </div>
                 </div>
                 <div class="col m12" *ngIf="this.data.edit">
-                    <span class="description">Estado:</span>
+                    <span class="descriptionFicha">Estado:</span>
                     <div class="input-field inline">
                         <select class="browser-default border-black col m3"
                             style="border-color: black; height: 40px; margin-top: 1rem;" formControlName="orderStatus">

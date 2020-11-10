@@ -1,53 +1,54 @@
-<div *ngIf="customer" class="sheet">
+<div *ngIf="customer" class="sheetFicha">
   <p></p>
-  <h4 class="title1">DATOS PERSONALES</h4>
+  <h4 class="titleFicha">DATOS PERSONALES</h4>
   <br /><br />
 
   <p></p>
   <div class="row">
-    <label class="black-text label1">Nombre y Apellido: </label>
-    <span class="content">{{ customer.nombre }} {{ customer.apellido }}</span>
+    <label class="black-text labelFicha">Nombre y Apellido: </label>
+    <span class="contentFicha">{{ customer.nombre }} {{ customer.apellido }}</span>
   </div>
 
   <p></p>
   <div class="row">
-    <label class="black-text label1">Teléfono: </label>
-    <span class="content">{{ customer.telefono }}</span>
+    <label class="black-text labelFicha">Teléfono: </label>
+    <span class="contentFicha">{{ customer.telefono }}</span>
   </div>
 
   <p></p>
   <div class="row">
-    <label class="black-text label1">Email: </label>
-    <span class="content">{{ customer.email }}</span>
+    <label class="black-text labelFicha">Email: </label>
+    <span class="contentFicha">{{ customer.email }}</span>
   </div>
 
   <p></p>
   <div class="row">
-    <label class="black-text label1">Domicilio: </label>
-    <span class="content">{{ customer.domicilio }}</span>
+    <label class="black-text labelFicha">Domicilio: </label>
+    <span class="contentFicha">{{ customer.domicilio }}</span>
   </div>
 
   <p></p>
   <div class="row">
-    <div class="black-text label1">Obra/s social/es:</div>
+    <div class="black-text labelFicha">Obra/s social/es:</div>
   </div>
 
-  <p></p>
   <table class="stripped responsive-table container">
-    <thead style="background-color: grey">
+    <thead style="background-color: #eeeeee">
       <tr>
-        <th>Descripción</th>
-        <th>Nº de Socio</th>
+        <th class="labelFicha">Descripción</th>
+        <th class="labelFicha">Nº de Socio</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let healthCare of customer.obra_socials">
-        <td>{{ healthCare.nombre }}</td>
-        <td>{{ healthCare.cliente_obra_social.nroSocio }}</td>
+        <td class="contentFicha">{{ healthCare.nombre }}</td>
+        <td class="contentFicha">{{ healthCare.cliente_obra_social.nroSocio }}</td>
       </tr>
     </tbody>
   </table>
 </div>
 <div>
-  <a (click)="close()" class="waves-effect red btn-large" style="display: block">Salir</a>
+  <p class="right-align">
+    <a (click)="close()" class="waves-effect waves-light btn-small red" style="margin-right: 2rem;">Salir</a>
+  </p>
 </div>

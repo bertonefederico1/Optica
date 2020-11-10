@@ -1,12 +1,12 @@
-<h4 *ngIf="!data.edit" class="section title1">NUEVO ANTEOJO</h4>
-<h4 *ngIf="data.edit" class="section title1">EDITAR ANTEOJO</h4>
+<h4 *ngIf="!data.edit" class="section titleFicha">NUEVO ANTEOJO</h4>
+<h4 *ngIf="data.edit" class="section titleFicha">EDITAR ANTEOJO</h4>
 <div class="row">
     <form class="col m12" [formGroup]="glassesForm">
         <fieldset>
             <legend><b>Datos Personales</b></legend>
             <div class="row">
                 <div class="col m9 direction">
-                    <span class="description">Nombre y Apellido:</span>
+                    <span class="descriptionFicha">Nombre y Apellido:</span>
                     <div class="input-field inline">
                         <input type="text" class="ml10 col m9" readonly formControlName="nameAndSurname">
                     </div>
@@ -14,13 +14,13 @@
             </div>
             <div class="row">
                 <div class="col m5">
-                    <span class="description">Teléfono:</span>
+                    <span class="descriptionFicha">Teléfono:</span>
                     <div class="input-field inline">
                         <input type="text" class="ml10" readonly formControlName="telephone">
                     </div>
                 </div>
                 <div class="col m7">
-                    <span class="description">Domicilio:</span>
+                    <span class="descriptionFicha">Domicilio:</span>
                     <div class="input-field inline">
                         <input type="text" class="ml10" readonly formControlName="address">
                     </div>
@@ -43,37 +43,37 @@
             <div class="row">
                 <div class="center-align col m12">
                     <div class="col m6">
-                        <span class="description">Valor Esférico:</span>
+                        <span class="descriptionFicha">Valor Esférico:</span>
                         <div class="input-field inline">
                             <input type="text" class="ml10 col m5" readonly formControlName="sphericalValueLE">
                         </div>
                     </div>
                     <div class="col m6">
-                        <span class="description">Valor Esférico:</span>
+                        <span class="descriptionFicha">Valor Esférico:</span>
                         <div class="input-field inline">
                             <input type="text" class="ml10 col m5" readonly formControlName="sphericalValueRE">
                         </div>
                     </div>
                     <div class="col m6">
-                        <span class="description">Valor Cilíndrico:</span>
+                        <span class="descriptionFicha">Valor Cilíndrico:</span>
                         <div class="input-field inline">
                             <input type="text" class="ml10 col m5" readonly formControlName="cylindricalValueLE">
                         </div>
                     </div>
                     <div class="col m6">
-                        <span class="description">Valor Cilíndrico:</span>
+                        <span class="descriptionFicha">Valor Cilíndrico:</span>
                         <div class="input-field inline">
                             <input type="text" class="ml10 col m5" readonly formControlName="cylindricalValueRE">
                         </div>
                     </div>
                     <div class="col m6">
-                        <span class="description">Eje (En grados):</span>
+                        <span class="descriptionFicha">Eje (En grados):</span>
                         <div class="input-field inline">
                             <input type="text" class="ml10 col m5" readonly formControlName="axisLE">
                         </div>
                     </div>
                     <div class="col m6">
-                        <span class="description">Eje (En grados):</span>
+                        <span class="descriptionFicha">Eje (En grados):</span>
                         <div class="input-field inline">
                             <input type="text" class="ml10 col m5" readonly formControlName="axisRE">
                         </div>
@@ -84,7 +84,7 @@
             <div class="row mt3" style="margin-bottom: 4rem">
                 <div class="center-align">
                     <div class="col m6">
-                        <span class="description">Lente Izquierdo:</span>
+                        <span class="descriptionFicha">Lente Izquierdo:</span>
                         <div class="input-field inline">
                             <input type="text" class="ml10 col m6" readonly formControlName="descriptionLeftLens">
                         </div>
@@ -97,7 +97,7 @@
                         </div>
                     </div>
                     <div class="col m6">
-                        <span class="description">Lente Derecho:</span>
+                        <span class="descriptionFicha">Lente Derecho:</span>
                         <div class="input-field inline">
                             <input type="text" class="ml10 col m6" readonly formControlName="descriptionRightLens">
                         </div>
@@ -115,25 +115,25 @@
             <div class="row">
                 <div class="center-align">
                     <div class="col m6">
-                        <span class="description">Valor DIP Cerca:</span>
+                        <span class="descriptionFicha">Valor DIP Cerca:</span>
                         <div class="input-field inline">
                             <input type="text" class="ml10 col m5" readonly formControlName="nearValueDIP">
                         </div>
                     </div>
                     <div class="col m6">
-                        <span class="description">Valor ADD:</span>
+                        <span class="descriptionFicha">Valor ADD:</span>
                         <div class="input-field inline">
                             <input type="text" class="ml10 col m5" readonly formControlName="addValue">
                         </div>
                     </div>
                     <div class="col m6">
-                        <span class="description">Valor DIP Lejos:</span>
+                        <span class="descriptionFicha">Valor DIP Lejos:</span>
                         <div class="input-field inline">
                             <input type="text" class="ml10 col m5" readonly formControlName="farValueDIP">
                         </div>
                     </div>
                     <div class="col m6">
-                        <span class="description">Valor Altura:</span>
+                        <span class="descriptionFicha">Valor Altura:</span>
                         <div class="input-field inline">
                             <input type="text" class="validate ml10 col m5" formControlName="heightValue">
                         </div>
@@ -142,7 +142,7 @@
             </div>
             <div class="col m4">
                 <div class="center-align">
-                    <span class="description">Utilidad Anteojo:</span>
+                    <span class="descriptionFicha">Utilidad Anteojo:</span>
                     <div class="input-field inline">
                         <select class="browser-default border-black"
                             style="border-color: black; height: 40px; margin-top: 1rem;" formControlName="glassesUtility">
@@ -157,7 +157,7 @@
             <legend><b>Datos Armazón</b></legend>
             <div class="row">
                 <div class="col m7">
-                    <span class="description">Armazón:</span>
+                    <span class="descriptionFicha">Armazón:</span>
                     <div class="input-field inline">
                         <input type="text" readonly formControlName="frameDescription">
                     </div>
@@ -173,13 +173,13 @@
             <div class="row">
                 <div class="center-align">
                     <div class="col m6">
-                        <span class="description">Total ($):</span>
+                        <span class="descriptionFicha">Total ($):</span>
                         <div class="input-field inline">
                             <input type="number" class="ml10 col m5" (keyup)="calculateAmountRemainder($event.target.value)" formControlName="totalAmount">
                         </div>
                     </div>
                     <div class="col m6">
-                        <span class="description">Fecha Entrega Estimada:</span>
+                        <span class="descriptionFicha">Fecha Entrega Estimada:</span>
                         <div class="input-field inline">
                             <input type="date" class="validate ml10 col m8" formControlName="expectedDeliveryDate">
                         </div>
@@ -187,13 +187,13 @@
                 </div>
                 <div class="center-align">
                     <div class="col m6">
-                        <span class="description">Seña ($):</span>
+                        <span class="descriptionFicha">Seña ($):</span>
                         <div class="input-field inline">
                             <input type="number" class="ml10 col m5" (keyup)="calculateAmountRemainder($event.target.value)" formControlName="tokenPayment">
                         </div>
                     </div>
                     <div class="col m6" *ngIf="this.data.edit">
-                        <span class="description">Fecha Entrega Real:</span>
+                        <span class="descriptionFicha">Fecha Entrega Real:</span>
                         <div class="input-field inline">
                             <input type="date" class="validate ml10 col m9" formControlName="deliveryDate">
                         </div>
@@ -202,11 +202,11 @@
                
                 <div class="center-align">
                     <div class="col m6">
-                        <span class="description">Saldo ($):</span>
+                        <span class="descriptionFicha">Saldo ($):</span>
                         <div class="input-field inline">
                             <input type="number" class="ml10 col m5" readonly formControlName="amountRemainder">
                             <mat-checkbox color="primary" formControlName="payRemainder">
-                                <b class="black-text description">Abonó Saldo</b>
+                                <b class="black-text descriptionFicha">Abonó Saldo</b>
                             </mat-checkbox>
                         </div>
                     </div>
@@ -215,7 +215,7 @@
             <div class="row">
                 <div class="col m3 ml4r">
                     <mat-checkbox color="primary" formControlName="receiptHealthCare">
-                        <b class="black-text description">Facturado Obra Social</b>
+                        <b class="black-text descriptionFicha">Facturado Obra Social</b>
                     </mat-checkbox>
                     <div class="col m12">
                         <div class="input-field">
@@ -230,7 +230,7 @@
                 <div *ngIf="data.edit">
                     <div class="center-align">
                         <div class="col m4 push-m2">
-                            <span class="description">Estado:</span>
+                            <span class="descriptionFicha">Estado:</span>
                             <div class="input-field inline">
                                 <select class="browser-default border-black" 
                                     style="border-color: black; height: 40px; margin-top: 1rem;" formControlName="glassesStatus">

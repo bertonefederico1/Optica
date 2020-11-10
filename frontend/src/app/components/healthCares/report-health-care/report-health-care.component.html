@@ -4,7 +4,7 @@
         <fieldset>
             <div class="row">
                 <div class=" col m4">
-                    <span class="description">Año:</span>
+                    <span class="descriptionFicha">Año:</span>
                     <div class="input-field inline">
                         <select class="browser-default border-black" formControlName="year"
                             style="border-color: black; height: 40px; margin-top: 1rem;">
@@ -14,7 +14,7 @@
                     </div>
                 </div>
                 <div class="col m6">
-                    <span class="description">Mes:</span>
+                    <span class="descriptionFicha">Mes:</span>
                     <div class="input-field inline">
                         <select class="browser-default border-black" formControlName="month"
                             style="border-color: black; height: 40px; margin-top: 1rem;">
@@ -26,7 +26,7 @@
             </div>
             <div class="row">
                 <div class="col m6" *ngIf="healthCares$ | async as healthCares">
-                    <span class="description">Obra Social:</span>
+                    <span class="descriptionFicha">Obra Social:</span>
                     <div class="input-field inline">
                         <select class="browser-default border-black" formControlName="healthCare"
                             style="border-color: black; height: 40px; margin-top: 1rem;">
@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="col m6">
-                    <span class="description">Nº de Factura:</span>
+                    <span class="descriptionFicha">Nº de Factura:</span>
                     <div class="input-field inline">
                         <input type="text" class="col m6" formControlName="receiptNumber">
                     </div>

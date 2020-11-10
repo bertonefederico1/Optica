@@ -1,35 +1,35 @@
-<h3 class="section title1">DATOS ANTEOJO</h3>
+<h3 class="section titleFicha">DATOS ANTEOJO</h3>
 <div class="container">
-    <div class="row sheet" *ngIf="glasses">
-        <h3 class="title2"><b>Datos Personales</b></h3>
+    <div class="row sheetFicha" *ngIf="glasses">
+        <h3 class="subtitleFicha"><b>Datos Personales</b></h3>
         <div class="row">
             <div class="col m9">
-                <span class="description">Nombre y Apellido:</span>
-                <span class="content1">{{ glasses.recetum.cliente.nombre }}  {{ glasses.recetum.cliente.apellido }}</span>
+                <span class="descriptionFicha">Nombre y Apellido:</span>
+                <span class="contentFicha">{{ glasses.recetum.cliente.nombre }}  {{ glasses.recetum.cliente.apellido }}</span>
             </div>
         </div>
         <div class="row">
             <div class="col m5">
-                <span class="description">Teléfono:</span>
-                <span class="content1">{{ glasses.recetum.cliente.telefono }}</span>
+                <span class="descriptionFicha">Teléfono:</span>
+                <span class="contentFicha">{{ glasses.recetum.cliente.telefono }}</span>
             </div>
             <div class="col m7">
-                <span class="description">Domicilio:</span>
-                <span class="content1">{{ glasses.recetum.cliente.domicilio }}</span>
+                <span class="descriptionFicha">Domicilio:</span>
+                <span class="contentFicha">{{ glasses.recetum.cliente.domicilio }}</span>
             </div>
         </div>
-        <div class="divider blue-grey"></div>
-        <h3 class="title2"><b>Datos Lentes</b></h3>
+        <div class="divider grey lighten-2"></div>
+        <h3 class="subtitleFicha"><b>Datos Lentes</b></h3>
         <div class="row">
             <div class="col m12">
-                <span class="description">Cod. Lente Izquierdo:</span>
-                <span *ngIf="glasses.LensLE" class="content1">{{ glasses.codLenteOI.toString().padStart(6, 0) }}</span>
+                <span class="descriptionFicha">Cod. Lente Izquierdo:</span>
+                <span *ngIf="glasses.LensLE" class="contentFicha">{{ glasses.codLenteOI.toString().padStart(6, 0) }}</span>
             </div>
         </div>
         <div class="row">
             <div class="col m12">
-                <span class="description">Cod. Lente Derecho:</span>
-                <span *ngIf="glasses.LensRE" class="content1">{{ glasses.codLenteOD.toString().padStart(6, 0) }}</span>
+                <span class="descriptionFicha">Cod. Lente Derecho:</span>
+                <span *ngIf="glasses.LensRE" class="contentFicha">{{ glasses.codLenteOD.toString().padStart(6, 0) }}</span>
             </div>
         </div>
         <div class="row center-align mt3p">
@@ -39,121 +39,123 @@
         <div class="row">
             <div class="center-align col m12">
                 <div class="col m6">
-                    <span class="description">Valor Esférico:</span>
-                    <span *ngIf="glasses.LensLE" class="content1">{{ glasses.LensLE.valorEsf }}</span>
+                    <span class="descriptionFicha">Valor Esférico:</span>
+                    <span *ngIf="glasses.LensLE" class="contentFicha">{{ glasses.LensLE.valorEsf }}</span>
                 </div>
                 <div class="col m6">
-                    <span class="description">Valor Esférico:</span>
-                    <span *ngIf="glasses.LensRE" class="content1">{{ glasses.LensRE.valorEsf }}</span>
+                    <span class="descriptionFicha">Valor Esférico:</span>
+                    <span *ngIf="glasses.LensRE" class="contentFicha">{{ glasses.LensRE.valorEsf }}</span>
                 </div>
                 <div class="col m6">
-                    <span class="description">Valor Cilíndrico:</span>
-                    <span *ngIf="glasses.LensLE" class="content1">{{ glasses.LensLE.valorCil }}</span>
+                    <span class="descriptionFicha">Valor Cilíndrico:</span>
+                    <span *ngIf="glasses.LensLE" class="contentFicha">{{ glasses.LensLE.valorCil }}</span>
                 </div>
                 <div class="col m6">
-                    <span class="description">Valor Cilíndrico:</span>
-                    <span *ngIf="glasses.LensRE" class="content1">{{ glasses.LensRE.valorCil }}</span>
+                    <span class="descriptionFicha">Valor Cilíndrico:</span>
+                    <span *ngIf="glasses.LensRE" class="contentFicha">{{ glasses.LensRE.valorCil }}</span>
                 </div>
                 <div class="col m6">
-                    <span class="description">Eje:</span>
-                    <span *ngIf="glasses.LensLE" class="content1">{{ glasses.LensLE.eje }} °</span>
+                    <span class="descriptionFicha">Eje:</span>
+                    <span *ngIf="glasses.LensLE" class="contentFicha">{{ glasses.LensLE.eje }} °</span>
                 </div>
                 <div class="col m6">
-                    <span class="description">Eje:</span>
-                    <span *ngIf="glasses.LensRE" class="content1">{{ glasses.LensRE.eje }} °</span>
+                    <span class="descriptionFicha">Eje:</span>
+                    <span *ngIf="glasses.LensRE" class="contentFicha">{{ glasses.LensRE.eje }} °</span>
                 </div>
             </div>
         </div>
-        <div class="divider blue-grey"></div>
-        <h3 class="title2"><b>Datos Anteojo</b></h3>
+        <div class="divider grey lighten-2"></div>
+        <h3 class="subtitleFicha"><b>Datos Anteojo</b></h3>
         <div class="row">
             <div class="center-align">
                 <div class="col m6">
-                    <span class="description">Valor DIP Cerca:</span>
-                    <span class="content1">{{ glasses.recetum.valorDIPCerca }}</span>
+                    <span class="descriptionFicha">Valor DIP Cerca:</span>
+                    <span class="contentFicha">{{ glasses.recetum.valorDIPCerca }}</span>
                 </div>
                 <div class="col m6">
-                    <span class="description">Valor ADD:</span>
-                    <span class="content1">{{ glasses.recetum.valorADD }}</span>
+                    <span class="descriptionFicha">Valor ADD:</span>
+                    <span class="contentFicha">{{ glasses.recetum.valorADD }}</span>
                 </div>
                 <div class="col m6">
-                    <span class="description">Valor DIP Lejos:</span>
-                    <span class="content1">{{ glasses.recetum.valorDIPLejos }}</span>
+                    <span class="descriptionFicha">Valor DIP Lejos:</span>
+                    <span class="contentFicha">{{ glasses.recetum.valorDIPLejos }}</span>
                 </div>
                 <div class="col m6">
-                    <span class="description">Valor Altura:</span>
-                    <span class="content1">{{ glasses.valorAltura }}</span>
+                    <span class="descriptionFicha">Valor Altura:</span>
+                    <span class="contentFicha">{{ glasses.valorAltura }}</span>
                 </div>
                 <div class="col m6">
-                    <span class="description">Utilidad Anteojo:</span>
-                    <span class="content1">{{ glasses.utilidadAnteojo }}</span>
+                    <span class="descriptionFicha">Utilidad Anteojo:</span>
+                    <span class="contentFicha">{{ glasses.utilidadAnteojo }}</span>
                 </div>
             </div>
         </div>
-        <div class="divider blue-grey"></div>
-        <h3 class="title2"><b>Datos Armazón</b></h3>
+        <div class="divider grey lighten-2"></div>
+        <h3 class="subtitleFicha"><b>Datos Armazón</b></h3>
         <div class="row">
             <div class="col m12">
-                <span class="description">Cod. Armazón:</span>
-                <span class="content1">{{ glasses.armazon.codArmazon.toString().padStart(7, 0) }}</span>
+                <span class="descriptionFicha">Cod. Armazón:</span>
+                <span class="contentFicha">{{ glasses.armazon.codArmazon.toString().padStart(7, 0) }}</span>
             </div>
             <div class="col m6">
-                <span class="description">Marca:</span>
-                <span class="content1">{{ glasses.armazon.marca }}</span>  
+                <span class="descriptionFicha">Marca:</span>
+                <span class="contentFicha">{{ glasses.armazon.marca }}</span>  
             </div>
             <div class="col m6">
-                <span class="description">Modelo:</span>
-                <span class="content1">{{ glasses.armazon.modelo }}</span>
+                <span class="descriptionFicha">Modelo:</span>
+                <span class="contentFicha">{{ glasses.armazon.modelo }}</span>
             </div>
         </div>
-        <div class="divider blue-grey"></div>
-        <h3 class="title2"><b>Datos Facturación</b></h3>
+        <div class="divider grey lighten-2"></div>
+        <h3 class="subtitleFicha"><b>Datos Facturación</b></h3>
         <div class="row">
             <div class="col m6">
-                <span class="description">Total:</span>
-                <span class="content1">$ {{ glasses.montoTotal }}</span>
+                <span class="descriptionFicha">Total:</span>
+                <span class="contentFicha">$ {{ glasses.montoTotal }}</span>
             </div>
             <div class="col m6">
-                <span class="description">Fecha Entrega Estimada:</span>
-                <span class="content1">{{ glasses.fechaPrometido | date: 'dd/MM/yyyy' }}</span>
+                <span class="descriptionFicha">Fecha Entrega Estimada:</span>
+                <span class="contentFicha">{{ glasses.fechaPrometido | date: 'dd/MM/yyyy' }}</span>
             </div>
             <div class="col m6">
-                <span class="description">Seña:</span>
-                <span class="content1">$ {{ glasses.montoSena }}</span>
+                <span class="descriptionFicha">Seña:</span>
+                <span class="contentFicha">$ {{ glasses.montoSena }}</span>
             </div>
             <div class="col m6">
-                <span class="description">Fecha Entrega Real:</span>
-                <span class="content1" *ngIf="glasses.fechaEntrega">{{ glasses.fechaEntrega | date: 'dd/MM/yyyy' }}</span>
-                <span class="content1" *ngIf="!glasses.fechaEntrega">Aún no fué entregado</span>
+                <span class="descriptionFicha">Fecha Entrega Real:</span>
+                <span class="contentFicha" *ngIf="glasses.fechaEntrega">{{ glasses.fechaEntrega | date: 'dd/MM/yyyy' }}</span>
+                <span class="contentFicha" *ngIf="!glasses.fechaEntrega">Aún no fué entregado</span>
             </div>
             <div class="col m6 push-m6">
-                <span class="description">Estado:</span>
-                <span class="content1">{{ glasses.estadoAnteojo }}</span>
+                <span class="descriptionFicha">Estado:</span>
+                <span class="contentFicha">{{ glasses.estadoAnteojo }}</span>
             </div>
         </div>
         <div class="row">
             <div class="col m12">
-                <span class="description">Saldo:</span>
-                <span class="content1">$ {{ glasses.montoTotal - glasses.montoSena }}</span>
+                <span class="descriptionFicha">Saldo:</span>
+                <span class="contentFicha">$ {{ glasses.montoTotal - glasses.montoSena }}</span>
             </div>
             <div class="col m12">
-                <span class="description">Abonó Saldo:</span>
-                <span class="content1" *ngIf="glasses.abonoSaldo">Si</span>
-                <span class="content1" *ngIf="!glasses.abonoSaldo">No</span>
+                <span class="descriptionFicha">Abonó Saldo:</span>
+                <span class="contentFicha" *ngIf="glasses.abonoSaldo">Si</span>
+                <span class="contentFicha" *ngIf="!glasses.abonoSaldo">No</span>
             </div>
         </div>
         <div class="row">
             <div class="col m12">
-                <span class="description">Facturado Por Obra Social:</span>
-                <span class="content1" *ngIf="glasses.esFacObraSocial">Si</span>
-                <span class="content1" *ngIf="!glasses.esFacObraSocial">No</span>
+                <span class="descriptionFicha">Facturado Por Obra Social:</span>
+                <span class="contentFicha" *ngIf="glasses.esFacObraSocial">Si</span>
+                <span class="contentFicha" *ngIf="!glasses.esFacObraSocial">No</span>
             </div>
             <div class="col m12">
-                <span class="description">Obra Social:</span>
-                <span class="content1" *ngIf="glasses.esFacObraSocial">{{ glasses.obra_social.nombre }}</span>
-                <span class="content1" *ngIf="!glasses.esFacObraSocial">No fué facturado por obra social</span>
+                <span class="descriptionFicha">Obra Social:</span>
+                <span class="contentFicha" *ngIf="glasses.esFacObraSocial">{{ glasses.obra_social.nombre }}</span>
+                <span class="contentFicha" *ngIf="!glasses.esFacObraSocial">No fué facturado por obra social</span>
             </div>
         </div>
     </div>
-    <button mat-dialog-close class="waves-effect red btn right">Salir</button>
+    <p class="right-align">
+        <button mat-dialog-close class="waves-effect red btn" style="margin-right: 2rem;">Salir</button>
+    </p>
 </div>

@@ -1,9 +1,6 @@
-<h4 mat-dialog-title *ngIf="!data.edit" class="section title1">
-  NUEVO CLIENTE
-</h4>
-<h4 mat-dialog-title *ngIf="data.edit" class="section title1">
-  EDITAR CLIENTE
-</h4>
+<h4 mat-dialog-title *ngIf="!data.edit" class="section titleFicha">NUEVO CLIENTE</h4>
+<h4 mat-dialog-title *ngIf="data.edit" class="section titleFicha">EDITAR CLIENTE</h4>
+
 <div class="row">
   <form class="col s12" #clientForm>
     <div class="row">
@@ -59,10 +56,10 @@
   </form>
 </div>
 <div class="row right-align">
-  <button class="waves-effect green btn selected" (click)="onSubmit()">
+  <button class="waves-effect btn green" (click)="onSubmit()">
     Guardar
   </button>
-  <button class="waves-effect red btn selected" (click)="cancel()" style="margin-left: 0.2rem;">
+  <button class="waves-effect btn red" (click)="cancel()" style="margin-left: 0.2rem;">
     Cancelar
   </button>
 </div>

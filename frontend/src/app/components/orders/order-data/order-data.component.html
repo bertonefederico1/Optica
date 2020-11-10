@@ -1,25 +1,25 @@
-<h3 class="section title1">DATOS PEDIDO</h3>
+<h3 class="section titleFicha">DATOS PEDIDO</h3>
 <div class="container">
-    <div class="row sheet" *ngIf="order">
-        <h3 class="title2"><b>Datos Personales</b></h3>
+    <div class="row sheetFicha" *ngIf="order">
+        <h3 class="subtitleFicha"><b>Datos Personales</b></h3>
         <div class="row">
             <div class="col m9">
-                <span class="description">Nombre y Apellido:</span>
-                <span class="content1">{{ order.anteojo_recetum.recetum.cliente.nombre }} {{ order.anteojo_recetum.recetum.cliente.apellido }}</span>
+                <span class="descriptionFicha">Nombre y Apellido:</span>
+                <span class="contentFicha">{{ order.anteojo_recetum.recetum.cliente.nombre }} {{ order.anteojo_recetum.recetum.cliente.apellido }}</span>
             </div>
         </div>
         <div class="row">
             <div class="col m5">
-                <span class="description">Teléfono:</span>
-                <span class="content1">{{ order.anteojo_recetum.recetum.cliente.telefono }}</span>
+                <span class="descriptionFicha">Teléfono:</span>
+                <span class="contentFicha">{{ order.anteojo_recetum.recetum.cliente.telefono }}</span>
             </div>
             <div class="col m7">
-                <span class="description">Domicilio:</span>
-                <span class="content1">{{ order.anteojo_recetum.recetum.cliente.domicilio }}</span>
+                <span class="descriptionFicha">Domicilio:</span>
+                <span class="contentFicha">{{ order.anteojo_recetum.recetum.cliente.domicilio }}</span>
             </div>
         </div>
-        <div class="divider blue-grey"></div>
-        <h3 class="title2"><b>Datos Lentes</b></h3>
+        <div class="divider grey lighten-2"></div>
+        <h3 class="subtitleFicha"><b>Datos Lentes</b></h3>
         <div class="row center-align mt3p">
             <div class="col s6 subtitle">OJO IZQUIERDO</div>
             <div class="col s6 subtitle">OJO DERECHO</div>
@@ -27,130 +27,132 @@
         <div class="row">
             <div class="center-align col m12">
                 <div class="col m6">
-                    <span class="description">Valor Esférico:</span>
-                    <span class="content1" *ngIf="order.LensOI">{{ order.LensOI.valorEsf }}</span>
-                    <span class="content1" *ngIf="!order.LensOI"></span>
+                    <span class="descriptionFicha">Valor Esférico:</span>
+                    <span class="contentFicha" *ngIf="order.LensOI">{{ order.LensOI.valorEsf }}</span>
+                    <span class="contentFicha" *ngIf="!order.LensOI"></span>
                 </div>
                 <div class="col m6">
-                    <span class="description" >Valor Esférico:</span>
-                    <span class="content1" *ngIf="order.LensOD">{{ order.LensOD.valorEsf }}</span>
-                    <span class="content1" *ngIf="!order.LensOD"></span>
+                    <span class="descriptionFicha" >Valor Esférico:</span>
+                    <span class="contentFicha" *ngIf="order.LensOD">{{ order.LensOD.valorEsf }}</span>
+                    <span class="contentFicha" *ngIf="!order.LensOD"></span>
                 </div>
                 <div class="col m6">
-                    <span class="description">Valor Cilíndrico:</span>
-                    <span class="content1" *ngIf="order.LensOI">{{ order.LensOI.valorCil }}</span>
-                    <span class="content1" *ngIf="!order.LensOI"></span>
+                    <span class="descriptionFicha">Valor Cilíndrico:</span>
+                    <span class="contentFicha" *ngIf="order.LensOI">{{ order.LensOI.valorCil }}</span>
+                    <span class="contentFicha" *ngIf="!order.LensOI"></span>
                 </div>
                 <div class="col m6">
-                    <span class="description">Valor Cilíndrico:</span>
-                    <span class="content1" *ngIf="order.LensOD">{{ order.LensOD.valorCil }}</span>
-                    <span class="content1" *ngIf="!order.LensOD"></span>
+                    <span class="descriptionFicha">Valor Cilíndrico:</span>
+                    <span class="contentFicha" *ngIf="order.LensOD">{{ order.LensOD.valorCil }}</span>
+                    <span class="contentFicha" *ngIf="!order.LensOD"></span>
                 </div>
                 <div class="col m6">
-                    <span class="description">Eje:</span>
-                    <span class="content1" *ngIf="order.LensOI">{{ order.LensOI.eje }}</span>
-                    <span class="content1" *ngIf="!order.LensOI"></span>
+                    <span class="descriptionFicha">Eje:</span>
+                    <span class="contentFicha" *ngIf="order.LensOI">{{ order.LensOI.eje }}</span>
+                    <span class="contentFicha" *ngIf="!order.LensOI"></span>
                 </div>
                 <div class="col m6">
-                    <span class="description">Eje:</span>
-                    <span class="content1" *ngIf="order.LensOD">{{ order.LensOD.eje }}</span>
-                    <span class="content1" *ngIf="!order.LensOD"></span>
+                    <span class="descriptionFicha">Eje:</span>
+                    <span class="contentFicha" *ngIf="order.LensOD">{{ order.LensOD.eje }}</span>
+                    <span class="contentFicha" *ngIf="!order.LensOD"></span>
                 </div>
                 <div class="col m6">
-                    <span class="description">Índice de refracción:</span>
-                    <span class="content1" *ngIf="order.LensOI">{{ order.LensOI.indiceRefraccion }}</span>
-                    <span class="content1" *ngIf="!order.LensOI"></span>
+                    <span class="descriptionFicha">Índice de refracción:</span>
+                    <span class="contentFicha" *ngIf="order.LensOI">{{ order.LensOI.indiceRefraccion }}</span>
+                    <span class="contentFicha" *ngIf="!order.LensOI"></span>
                 </div>
                 <div class="col m6">
-                    <span class="description">Índice de refracción:</span>
-                    <span class="content1" *ngIf="order.LensOD">{{ order.LensOD.indiceRefraccion }}</span>
-                    <span class="content1" *ngIf="!order.LensOD"></span>
+                    <span class="descriptionFicha">Índice de refracción:</span>
+                    <span class="contentFicha" *ngIf="order.LensOD">{{ order.LensOD.indiceRefraccion }}</span>
+                    <span class="contentFicha" *ngIf="!order.LensOD"></span>
                 </div>
             </div>
         </div>
-        <h3 class="title2"><b>Características</b></h3>
+        <h3 class="subtitleFicha"><b>Características</b></h3>
         <div class="row">
             <div class="center-align">
                 <div class="col m6">
-                    <span class="description">Material Lente:</span>
-                    <span class="content1" *ngIf="order.LensOI && !order.LensOD">{{ order.LensOI.material_lente.nombre }}</span>
-                    <span class="content1" *ngIf="order.LensOD && !order.LensOI">{{ order.LensOD.material_lente.nombre }}</span>
-                    <span class="content1" *ngIf="order.LensOD && order.LensOI">{{ order.LensOD.material_lente.nombre }}</span>
+                    <span class="descriptionFicha">Material Lente:</span>
+                    <span class="contentFicha" *ngIf="order.LensOI && !order.LensOD">{{ order.LensOI.material_lente.nombre }}</span>
+                    <span class="contentFicha" *ngIf="order.LensOD && !order.LensOI">{{ order.LensOD.material_lente.nombre }}</span>
+                    <span class="contentFicha" *ngIf="order.LensOD && order.LensOI">{{ order.LensOD.material_lente.nombre }}</span>
                 </div>
                 <div class="col m6">
-                    <span class="description">Diseño Lente:</span>
-                    <span class="content1" *ngIf="order.LensOI && !order.LensOD">{{ order.LensOI.diseno_lente.nombre }}</span>
-                    <span class="content1" *ngIf="order.LensOD && !order.LensOI">{{ order.LensOD.diseno_lente.nombre }}</span>
-                    <span class="content1" *ngIf="order.LensOD && order.LensOI">{{ order.LensOD.diseno_lente.nombre }}</span>
+                    <span class="descriptionFicha">Diseño Lente:</span>
+                    <span class="contentFicha" *ngIf="order.LensOI && !order.LensOD">{{ order.LensOI.diseno_lente.nombre }}</span>
+                    <span class="contentFicha" *ngIf="order.LensOD && !order.LensOI">{{ order.LensOD.diseno_lente.nombre }}</span>
+                    <span class="contentFicha" *ngIf="order.LensOD && order.LensOI">{{ order.LensOD.diseno_lente.nombre }}</span>
                 </div>
                 <div class="col m6">
-                    <span class="description">Acabado Lente:</span>
-                    <span class="content1" *ngIf="order.LensOI && !order.LensOD">{{ order.LensOI.acabado_lente.nombre }}</span>
-                    <span class="content1" *ngIf="order.LensOD && !order.LensOI">{{ order.LensOD.acabado_lente.nombre }}</span>
-                    <span class="content1" *ngIf="order.LensOD && order.LensOI">{{ order.LensOD.acabado_lente.nombre }}</span>
+                    <span class="descriptionFicha">Acabado Lente:</span>
+                    <span class="contentFicha" *ngIf="order.LensOI && !order.LensOD">{{ order.LensOI.acabado_lente.nombre }}</span>
+                    <span class="contentFicha" *ngIf="order.LensOD && !order.LensOI">{{ order.LensOD.acabado_lente.nombre }}</span>
+                    <span class="contentFicha" *ngIf="order.LensOD && order.LensOI">{{ order.LensOD.acabado_lente.nombre }}</span>
                 </div>
                 <div class="col m5">
-                    <span class="description">Diámetro Lente:</span>
-                    <span class="content1" *ngIf="order.LensOI && !order.LensOD">{{ order.LensOI.diametro }}</span>
-                    <span class="content1" *ngIf="order.LensOD && !order.LensOI">{{ order.LensOD.diametro }}</span>
-                    <span class="content1" *ngIf="order.LensOD && order.LensOI">{{ order.LensOD.diametro }}</span>
+                    <span class="descriptionFicha">Diámetro Lente:</span>
+                    <span class="contentFicha" *ngIf="order.LensOI && !order.LensOD">{{ order.LensOI.diametro }}</span>
+                    <span class="contentFicha" *ngIf="order.LensOD && !order.LensOI">{{ order.LensOD.diametro }}</span>
+                    <span class="contentFicha" *ngIf="order.LensOD && order.LensOI">{{ order.LensOD.diametro }}</span>
                 </div>
             </div>
         </div>
-        <div class="divider blue-grey"></div>
-        <h3 class="title2"><b>Laboratorio</b></h3>
+        <div class="divider grey lighten-2"></div>
+        <h3 class="subtitleFicha"><b>Laboratorio</b></h3>
         <div class="row">
             <div class="col m12">
-                <span class="description">Razón Social:</span>
-                <span class="content1">{{ order.proveedor_laboratorio.razonSocial }}</span>
+                <span class="descriptionFicha">Razón Social:</span>
+                <span class="contentFicha">{{ order.proveedor_laboratorio.razonSocial }}</span>
             </div>
             <div class="col m12">
-                <span class="description">Domicilio:</span>
-                <span class="content1">{{ order.proveedor_laboratorio.domicilio }}</span>  
+                <span class="descriptionFicha">Domicilio:</span>
+                <span class="contentFicha">{{ order.proveedor_laboratorio.domicilio }}</span>  
             </div>
             <div class="col m6">
-                <span class="description">Teléfono:</span>
-                <span class="content1">{{ order.proveedor_laboratorio.telefono }}</span>
+                <span class="descriptionFicha">Teléfono:</span>
+                <span class="contentFicha">{{ order.proveedor_laboratorio.telefono }}</span>
             </div>
             <div class="col m6">
-                <span class="description">Email:</span>
-                <span class="content1">{{ order.proveedor_laboratorio.email }}</span>
+                <span class="descriptionFicha">Email:</span>
+                <span class="contentFicha">{{ order.proveedor_laboratorio.email }}</span>
             </div>
         </div>
-        <div class="divider blue-grey"></div>
-        <h3 class="title2"><b>Datos Pedido</b></h3>
+        <div class="divider grey lighten-2"></div>
+        <h3 class="subtitleFicha"><b>Datos Pedido</b></h3>
         <div class="row">
             <div class="col m12">
-                <span class="description">Nº de Pedido:</span>
-                <span class="content1">{{ order.numPedido.toString().padStart(7, 0)}}</span>
+                <span class="descriptionFicha">Nº de Pedido:</span>
+                <span class="contentFicha">{{ order.numPedido.toString().padStart(7, 0)}}</span>
             </div>
         </div>
         <div class="row">
             <div class="col m4">
-                <span class="description">Fecha:</span>
-                <span class="content1">{{ order.fechaPedido | date: 'dd-MM-yyyy'}}</span>
+                <span class="descriptionFicha">Fecha:</span>
+                <span class="contentFicha">{{ order.fechaPedido | date: 'dd-MM-yyyy'}}</span>
             </div>
             <div class="col m6">
-                <span class="description">Fecha De Entrega Estimada:</span>
-                <span class="content1">{{ order.fechaEntregaEsperada }}</span>
+                <span class="descriptionFicha">Fecha De Entrega Estimada:</span>
+                <span class="contentFicha">{{ order.fechaEntregaEsperada }}</span>
             </div>
             <div class="col m4">
-                <span class="description">Estado:</span>
-                <span class="content1">{{ order.estadoPedido }}</span>
+                <span class="descriptionFicha">Estado:</span>
+                <span class="contentFicha">{{ order.estadoPedido }}</span>
             </div>
             <div class="col m6">
-                <span class="description">Fecha De Entrega Real:</span>
-                <span class="content1">{{ order.fechaRecibido }}</span>
+                <span class="descriptionFicha">Fecha De Entrega Real:</span>
+                <span class="contentFicha">{{ order.fechaRecibido }}</span>
             </div>
         </div>
         <div class="row">
-            <div class="col m12 description">
-                <span class="description">Observaciones:</span>
+            <div class="col m12 descriptionFicha">
+                <span class="descriptionFicha">Observaciones:</span>
                 <div class="input-field inline">
                     <textarea disabled class="text-area2">{{ order.obsPedido }}</textarea>
                 </div>
             </div>
         </div>
     </div>
-    <button mat-dialog-close class="waves-effect red btn right">Salir</button>
+    <p class="right-align">
+        <button mat-dialog-close class="waves-effect red btn-small" style="margin-right: 2rem;">Salir</button>
+    </p>
 </div>
