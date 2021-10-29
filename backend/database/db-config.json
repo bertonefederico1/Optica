@@ -1,9 +1,0 @@
-{
-    "mysql": {
-        "db": "optica",
-        "username": "root",
-        "password": "root",
-        "host": "localhost",
-        "dialect": "mysql"
-    }
-}
